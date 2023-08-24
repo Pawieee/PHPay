@@ -34,11 +34,11 @@ public class userDATA {
 		String hashed = passwordHash(this.savePass);
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = (Connection) java.sql.DriverManager.getConnection("jdbc:mysql://localhost/test", "root", "password");
+            Connection con = (Connection) java.sql.DriverManager.getConnection("jdbc:mysql://localhost/phpay", "root", "password");
             PreparedStatement ps =  (PreparedStatement) con.prepareStatement("INSERT INTO `users`(`id`, `username`, `password_hash`) VALUES (?, ?, ?)");
-            ps.setString(1,"");
-            ps.setString(2, "");
-            ps.setString(3, "");
+            ps.setString(1,this.saveID);
+            ps.setString(2,this.saveUser);
+            ps.setString(3, hashed);
             ps.executeUpdate();
 		} catch (SQLException ex) {
 			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
