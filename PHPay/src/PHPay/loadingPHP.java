@@ -56,12 +56,6 @@ public class loadingPHP extends JFrame{
 	progressBar.setBackground(new Color(0, 0, 0));
 	progressBar.setBounds(-6, 94, 470, 17);
 	panel.add(progressBar);
-	
-	JLabel lblNewLabel = new JLabel("CS23L PROJECT MADAFCKERS");
-	lblNewLabel.setFont(new Font("Dark Distance", Font.PLAIN, 11));
-	lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-	lblNewLabel.setBounds(0, 111, 464, 14);
-	getContentPane().add(lblNewLabel);
 
 	progressBar.setVisible(true);
 	SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
