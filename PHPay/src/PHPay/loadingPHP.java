@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.SwingWorker;
+import javax.swing.SwingConstants;
+import java.awt.Font;
 
 public class loadingPHP extends JFrame{
 	
@@ -20,13 +22,13 @@ public class loadingPHP extends JFrame{
 	public loadingPHP() {
 		
 	setType(Type.UTILITY);
-	
+	setUndecorated(true);
 	setAlwaysOnTop(false);
 	setResizable(false);
 	setIconImage(Toolkit.getDefaultToolkit().getImage(loadingPHP.class.getResource("/phpay/phpimg/phpLogo1.png")));
 	getContentPane().setForeground(Color.WHITE);
 	setForeground(Color.WHITE);
-	setBounds(275, 55, 480, 153);
+	setBounds(275, 55, 465, 125);
 	setLocationRelativeTo(null);
 	getContentPane().setLayout(null);
 	
@@ -45,7 +47,7 @@ public class loadingPHP extends JFrame{
 	panel.add(textField);
 	
 	JLabel PHPAYLOADING = new JLabel("");
-	PHPAYLOADING.setBounds(-16, -9, 500, 104);
+	PHPAYLOADING.setBounds(-17, 0, 522, 104);
 	PHPAYLOADING.setIcon(new ImageIcon(loadingPHP.class.getResource("/phpay/phpimg/PHPAY LOGO.png")));
 	panel.add(PHPAYLOADING);
 	
@@ -54,6 +56,12 @@ public class loadingPHP extends JFrame{
 	progressBar.setBackground(new Color(0, 0, 0));
 	progressBar.setBounds(-6, 94, 470, 17);
 	panel.add(progressBar);
+	
+	JLabel lblNewLabel = new JLabel("CS23L PROJECT MADAFCKERS");
+	lblNewLabel.setFont(new Font("Dark Distance", Font.PLAIN, 11));
+	lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+	lblNewLabel.setBounds(0, 111, 464, 14);
+	getContentPane().add(lblNewLabel);
 
 	progressBar.setVisible(true);
 	SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
