@@ -46,26 +46,6 @@ public class userDATA {
 			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
-//		try {
-//			String filename = "tempUPID.txt";
-//			FileWriter fileWriter = new FileWriter(filename);
-//			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-//
-//			bufferedWriter.write("ID: " + saveID);
-//			bufferedWriter.newLine();
-//			bufferedWriter.write("Username: " + saveUser);
-//			bufferedWriter.newLine();
-//			bufferedWriter.write("Password: " + savePass);
-//			bufferedWriter.newLine();
-//			bufferedWriter.write("Balance: " + balance);
-//			bufferedWriter.newLine();
-//			bufferedWriter.write(" ");
-//			bufferedWriter.newLine();
-//
-//			bufferedWriter.close();
-//		} catch (IOException ex) {
-//			System.out.println("Error writing to file '" + saveID + ".txt'");
-//		}
 	}
 	
 	public String passwordHash(String password) {
