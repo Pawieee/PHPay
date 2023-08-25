@@ -18,8 +18,6 @@ public class SQLConnect {
 
 		try {
 			Connection connection = DriverManager.getConnection(url, username, password);
-
-
 		} catch (SQLException e) {
 			System.out.println("Oops, error!");
 			e.printStackTrace();

@@ -233,6 +233,10 @@ public class UserPassID extends JFrame implements Serializable {
 							double balance = 0;
 
 							userDATA account = new userDATA(saveID, saveUser, savePass, balance);
+							if (account.accountExist() == false) {
+								System.out.println("Duplicate username");
+								System.exit(0);
+							}
 							account.saveAccount();
 							CustomerID(saveID);
 

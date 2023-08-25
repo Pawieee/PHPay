@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import java.sql.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 
 public class userDATA {
@@ -13,7 +14,7 @@ public class userDATA {
 
 	private double balance;
 	
-	private SQLConnect con;
+	private SQLConnection con;
 
 	public userDATA(String saveID, String saveUser, String savePass, double balance) {
 
@@ -21,7 +22,7 @@ public class userDATA {
 		this.saveUser = saveUser;
 		this.savePass = savePass;
 		this.balance = balance;
-		this.con = new SQLConnect();
+		this.con = new SQLConnection();
 
 	}
 
@@ -31,22 +32,19 @@ public class userDATA {
 
 	public void saveAccount() {
 		this.con.Connect();
-		
+		String query = "INSERT INTO `users`(`id`, `username`, `password_hash`) VALUES (?, ?, ?)";
+				
 		
 		String hashed = passwordHash(this.savePass);
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = (Connection) java.sql.DriverManager.getConnection("jdbc:mysql://localhost/phpay", "root", "password");
-            PreparedStatement ps =  (PreparedStatement) con.prepareStatement("INSERT INTO `users`(`id`, `username`, `password_hash`) VALUES (?, ?, ?)");
-            ps.setString(1,"");
-            ps.setString(2, "");
-            ps.setString(3, "");
-            ps.executeUpdate();
+			PreparedStatement pst = this.con.getCon().prepareStatement(query);
+            pst.setString(1,this.saveID);
+            pst.setString(2,this.saveUser);
+            pst.setString(3, hashed);
+            pst.executeUpdate();
 		} catch (SQLException ex) {
 			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (ClassNotFoundException ex) {
-			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
-		}
+		} 
 
 	}
 	
@@ -70,23 +68,31 @@ public class userDATA {
 		return "";
 	}
 	
-	public boolean checkAccount() {
+	public boolean accountExist() {
+		ArrayList<String> names = new ArrayList<>();
 		this.con.Connect();
+		String query = "SELECT `username` FROM `users`";
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = (Connection) java.sql.DriverManager.getConnection("jdbc:mysql://localhost/phpay", "root", "password");
-            PreparedStatement ps =  (PreparedStatement) con.prepareStatement("SELECT * FROM `users`(`id`, `username`, `password_hash`) VALUES (?, ?, ?)");
-            ps.setString(1,"");
-            ps.setString(2, "");
-            ps.setString(3, "");
-            ps.executeUpdate();
+			Statement stmt = this.con.getCon().createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+            
+            while(rs.next()) {
+            	String name = rs.getString("username");
+            	names.add(name);
+            }
 		} catch (SQLException ex) {
 			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (ClassNotFoundException ex) {
-			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		
-		return true;
+		//trys
+		if (names.isEmpty()) {
+			return false;
+		}
+		for (String name: names) {
+			if (this.saveUser.equals(name)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }
