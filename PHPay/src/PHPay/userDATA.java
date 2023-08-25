@@ -83,7 +83,7 @@ public class userDATA {
 		} catch (SQLException ex) {
 			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		//try
+		//trys
 		if (names.isEmpty()) {
 			return false;
 		}
