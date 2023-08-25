@@ -83,13 +83,15 @@ public class userDATA {
 		} catch (SQLException ex) {
 			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		//
+		if (names.isEmpty()) {
+			return false;
+		}
 		for (String name: names) {
 			if (this.saveUser.equals(name)) {
-				return false;
+				return true;
 			}
 		}
-		return true;
+		return false;
 	}
 
 }
