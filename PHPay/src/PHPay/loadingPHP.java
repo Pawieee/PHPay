@@ -28,7 +28,7 @@ public class loadingPHP extends JFrame{
 	setIconImage(Toolkit.getDefaultToolkit().getImage(loadingPHP.class.getResource("/phpay/phpimg/phpLogo1.png")));
 	getContentPane().setForeground(Color.WHITE);
 	setForeground(Color.WHITE);
-	setBounds(275, 55, 465, 125);
+	setBounds(275, 55, 460, 110);
 	setLocationRelativeTo(null);
 	getContentPane().setLayout(null);
 	
@@ -47,7 +47,7 @@ public class loadingPHP extends JFrame{
 	panel.add(textField);
 	
 	JLabel PHPAYLOADING = new JLabel("");
-	PHPAYLOADING.setBounds(-17, 0, 522, 104);
+	PHPAYLOADING.setBounds(-17, 0, 481, 104);
 	PHPAYLOADING.setIcon(new ImageIcon(loadingPHP.class.getResource("/phpay/phpimg/PHPAY LOGO.png")));
 	panel.add(PHPAYLOADING);
 	
