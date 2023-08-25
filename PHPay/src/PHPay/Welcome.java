@@ -97,11 +97,11 @@ public class Welcome extends JFrame {
 		lblNewLabel_1.setFont(new Font("Microsoft YaHei Light", Font.PLAIN, 29));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 
-		JLabel lblNewLabel_1_1_1_1_1_1 = new JLabel("Make the switch to cashless transactions by creating an account.");
-		lblNewLabel_1_1_1_1_1_1.setBounds(13, 411, 469, 30);
+		JLabel lblNewLabel_1_1_1_1_1_1 = new JLabel("Transforming Transactions, Powering Possibilities!");
+		lblNewLabel_1_1_1_1_1_1.setBounds(0, 411, 837, 30);
 		grayPanel.add(lblNewLabel_1_1_1_1_1_1);
-		lblNewLabel_1_1_1_1_1_1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_1_1_1_1_1_1.setFont(new Font("Microsoft JhengHei UI Light", Font.PLAIN, 11));
+		lblNewLabel_1_1_1_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1_1_1_1_1_1.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 15));
 
 		IDField = new JTextField("ID");
 		IDField.setBounds(88, 132, 161, 30);
@@ -269,141 +269,141 @@ public class Welcome extends JFrame {
 		dontHaveAccountYet.setHorizontalAlignment(SwingConstants.LEFT);
 		dontHaveAccountYet.setFont(new Font("Microsoft JhengHei UI Light", Font.PLAIN, 13));
 		grayPanel.add(dontHaveAccountYet);
-		
-				JLabel lblNewLabel = new JLabel("");
-				lblNewLabel.setBounds(347, 106, 500, 265);
-				grayPanel.add(lblNewLabel);
-				lblNewLabel.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/icon3.png")));
-				
-						JLabel lblNewLabel_1_1_1_1 = new JLabel("Experience the convenience of cashless transactions today");
-						lblNewLabel_1_1_1_1.setBounds(396, 198, 437, 21);
-						grayPanel.add(lblNewLabel_1_1_1_1);
-						lblNewLabel_1_1_1_1.setHorizontalAlignment(SwingConstants.LEFT);
-						lblNewLabel_1_1_1_1.setFont(new Font("Bahnschrift", Font.ITALIC, 14));
+
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBounds(390, 81, 407, 135);
+		grayPanel.add(lblNewLabel);
+		lblNewLabel.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/NEWPHPAY.png")));
+
+		JLabel lblNewLabel_1_1_1_1 = new JLabel("Experience the convenience of cashless transactions today");
+		lblNewLabel_1_1_1_1.setBounds(400, 204, 437, 21);
+		grayPanel.add(lblNewLabel_1_1_1_1);
+		lblNewLabel_1_1_1_1.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel_1_1_1_1.setFont(new Font("Bahnschrift", Font.ITALIC, 14));
 
 		JLabel lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setIcon(new ImageIcon(Welcome.class.getResource("/phpay/phpimg/walletBG2.png")));
 		lblNewLabel_2.setBounds(418, 173, 373, 279);
 		grayPanel.add(lblNewLabel_2);
-												
-														// SlideShow slideShow = new SlideShow();
-														// slideShow.setBounds(-10008, -10031, 631, 485);
-														// slideShow.setLocationRelativeTo(null);
-														// slideShow.setVisible(true);
-												
-														JButton close = new JButton("");
-														close.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/exit.png")));
-														close.setFont(new Font("Tahoma", Font.PLAIN, 17));
-														close.setBounds(803, -2, 30, 24);
-														
-																close.addActionListener(new ActionListener() {
-																	public void actionPerformed(ActionEvent e) {
-																		System.exit(0);
-																	}
-																});
-																close.setOpaque(false);
-																close.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-																close.setBorderPainted(false);
-																close.setForeground(new Color(255, 255, 255));
-																close.setBackground(new Color(255, 255, 255));
-																close.setBorder(null);
-																close.addMouseListener(new MouseAdapter() {
-																	@Override
-																	public void mouseEntered(MouseEvent e) {
-																		focusBG.setBounds(803, -4, 30, 24);
-																		focusBG.setBackground(new Color(255, 45, 50));
-																		focusBG.setVisible(true);
-																	}
+		
+		JLabel date = new JLabel("2023 v.1.0");
+		date.setBounds(770, 430, 74, 19);
+		grayPanel.add(date);
+		date.setForeground(new Color(192, 192, 192));
+		date.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
 
-																	@Override
-																	public void mouseExited(MouseEvent e) {
-																		focusBG.setVisible(false);
-																	}
-																});
-																
-																		JPanel titleBar = new JPanel();
-																		titleBar.setBounds(0, 0, 833, 24);
-																		getContentPane().add(titleBar);
-																		titleBar.setBackground(new Color(35, 35, 35));
-																		titleBar.setLayout(null);
-																		titleBar.add(close);
-																		
-																				// PHPAY COLOR HEX (134, 116, 237)
-																				
-																				JButton minimize = new JButton("");
-																				minimize.setBounds(772, -3, 20, 20);
-																				minimize.addActionListener(new ActionListener() {
-																					public void actionPerformed(ActionEvent e) {
-																						setState(Frame.ICONIFIED); // Minimize the frame
-																					}
-																				});
-																				minimize.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/min.png")));
-																				minimize.setOpaque(false);
-																				minimize.setForeground(Color.WHITE);
-																				minimize.setFont(new Font("Tahoma", Font.PLAIN, 17));
-																				minimize.setBorderPainted(false);
-																				minimize.setBorder(null);
-																				minimize.setBackground(new Color(255, 255, 255));
-																				minimize.setBounds(772, -2, 30, 24);
-																				titleBar.add(minimize);
-																				
-																						focusBG = new JPanel();
-																						focusBG.setBounds(900, 3, 30, 23);
-																						titleBar.add(focusBG);
-																						ignoreThisVariable.setBounds(10, 3, -8, 19);
-																						titleBar.add(ignoreThisVariable);
-																						ignoreThisVariable.setOpaque(false);
-																						ignoreThisVariable.setForeground(Color.WHITE);
-																						ignoreThisVariable.setFont(new Font("Tahoma", Font.PLAIN, 17));
-																						ignoreThisVariable.setBorderPainted(false);
-																						ignoreThisVariable.setBorder(null);
-																						ignoreThisVariable.setBackground(Color.WHITE);
-																						
-																						JLabel lblNewLabel_3 = new JLabel("PAY");
-																						lblNewLabel_3.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 13));
-																						lblNewLabel_3.setForeground(new Color(255, 255, 255));
-																						lblNewLabel_3.setBounds(26, 3, 111, 19);
-																						titleBar.add(lblNewLabel_3);
-																						
-																						JLabel lblNewLabel_3_1 = new JLabel("PH");
-																						lblNewLabel_3_1.setForeground(new Color(166, 69, 245));
-																						lblNewLabel_3_1.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 13));
-																						lblNewLabel_3_1.setBounds(8, 3, 111, 19);
-																						titleBar.add(lblNewLabel_3_1);
-												
-														minimize.addMouseListener(new MouseAdapter() {
-															@Override
-															public void mouseEntered(MouseEvent e) {
-																focusBG.setBounds(772, -2, 30, 24);
-																focusBG.setBackground(Color.GRAY);
-																focusBG.setVisible(true);
-															}
-												
-															@Override
-															public void mouseExited(MouseEvent e) {
-																focusBG.setVisible(false);
-															}
-														});
-														
-														titleBar.addMouseListener(new MouseAdapter() {
-															@Override
-															public void mousePressed(MouseEvent e) {
-																x = e.getX();
-																y = e.getY();
-															}
-														});
-														
-																titleBar.addMouseMotionListener(new MouseMotionAdapter() {
-																	@Override
-																	public void mouseDragged(MouseEvent e) {
-														
-																		int newX = getX() + e.getX() - x;
-																		int newY = getY() + e.getY() - y;
-														
-																		setLocation(newX, newY);
-																	}
-																});
+		JButton close = new JButton("");
+		close.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/exit.png")));
+		close.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		close.setBounds(803, -1, 30, 24);
+
+		close.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		close.setOpaque(false);
+		close.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		close.setBorderPainted(false);
+		close.setForeground(new Color(255, 255, 255));
+		close.setBackground(new Color(255, 255, 255));
+		close.setBorder(null);
+		close.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				focusBG.setBounds(803, -1, 30, 23);
+				focusBG.setBackground(new Color(255, 45, 50));
+				focusBG.setVisible(true);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				focusBG.setVisible(false);
+			}
+		});
+
+		JPanel titleBar = new JPanel();
+		titleBar.setBounds(0, 0, 833, 23);
+		getContentPane().add(titleBar);
+		titleBar.setBackground(new Color(35, 35, 35));
+		titleBar.setLayout(null);
+		titleBar.add(close);
+
+		// PHPAY COLOR HEX (134, 116, 237)
+
+		JButton minimize = new JButton("");
+		minimize.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setState(Frame.ICONIFIED); // Minimize the frame
+			}
+		});
+		minimize.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/min.png")));
+		minimize.setOpaque(false);
+		minimize.setForeground(Color.WHITE);
+		minimize.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		minimize.setBorderPainted(false);
+		minimize.setBorder(null);
+		minimize.setBackground(new Color(255, 255, 255));
+		minimize.setBounds(772, -1, 30, 24);
+		titleBar.add(minimize);
+
+		focusBG = new JPanel();
+		focusBG.setBounds(900, 3, 30, 23);
+		titleBar.add(focusBG);
+		ignoreThisVariable.setBounds(10, 3, -8, 19);
+		titleBar.add(ignoreThisVariable);
+		ignoreThisVariable.setOpaque(false);
+		ignoreThisVariable.setForeground(Color.WHITE);
+		ignoreThisVariable.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		ignoreThisVariable.setBorderPainted(false);
+		ignoreThisVariable.setBorder(null);
+		ignoreThisVariable.setBackground(Color.WHITE);
+
+		JLabel lblNewLabel_3 = new JLabel("PAY");
+		lblNewLabel_3.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 13));
+		lblNewLabel_3.setForeground(new Color(255, 255, 255));
+		lblNewLabel_3.setBounds(25, 3, 30, 19);
+		titleBar.add(lblNewLabel_3);
+
+		JLabel lblNewLabel_3_1 = new JLabel("PH");
+		lblNewLabel_3_1.setForeground(new Color(166, 69, 245));
+		lblNewLabel_3_1.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 13));
+		lblNewLabel_3_1.setBounds(8, 3, 111, 19);
+		titleBar.add(lblNewLabel_3_1);
+
+		minimize.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				focusBG.setBounds(772, -2, 30, 24);
+				focusBG.setBackground(Color.GRAY);
+				focusBG.setVisible(true);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				focusBG.setVisible(false);
+			}
+		});
+
+		titleBar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				x = e.getX();
+				y = e.getY();
+			}
+		});
+
+		titleBar.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+
+				int newX = getX() + e.getX() - x;
+				int newY = getY() + e.getY() - y;
+
+				setLocation(newX, newY);
+			}
+		});
 		checkID.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String idToCheck = IDField.getText();
