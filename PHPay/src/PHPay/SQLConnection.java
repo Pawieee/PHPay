@@ -6,8 +6,6 @@ public class SQLConnection {
 
 	private Connection connection;
 
-
-
 	public SQLConnection() {
 		Connect();
 	}
@@ -33,12 +31,9 @@ public class SQLConnection {
 			e.printStackTrace();
 		}
 	}
+
 	public Connection getCon() {
 		return connection;
 	}
 
-
-
-	
-	
 }

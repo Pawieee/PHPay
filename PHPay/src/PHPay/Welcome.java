@@ -27,9 +27,16 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.*;
 
@@ -47,7 +54,7 @@ public class Welcome extends JFrame {
 	private JTextField userField, IDField;
 	private JPasswordField passField;
 	private JPanel focusBG;
-	private static String idToCheck;
+	private static String userCheck, passCheck;
 	private static double angle = 0;
 	private int x, y;
 	private final JButton ignoreThisVariable = new JButton("");
@@ -144,60 +151,22 @@ public class Welcome extends JFrame {
 		LoginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				idToCheck = IDField.getText();
-				if (!idToCheck.equals("ID")) {
-					String fileName = idToCheck + ".txt";
-					File file = new File(fileName);
-					if (file.exists()) {
-						checkID.setBackground(Color.GREEN);
-						IDLabel.setText("");
-						IDLabel.setForeground(Color.BLACK);
-						try {
-							try {
-								String filename = "ID.txt";
-								FileWriter fileWriter = new FileWriter(filename);
-								BufferedWriter writer = new BufferedWriter(fileWriter);
-								writer.write("ID: " + idToCheck);
-								writer.close();
-							} catch (FileNotFoundException ex) {
-								ex.printStackTrace();
-							}
-							BufferedReader br = new BufferedReader(new FileReader(file));
-							String line;
-							String username = "";
-							String password = "";
-							while ((line = br.readLine()) != null) {
-								if (line.startsWith("Username:")) {
-									username = line.substring(line.indexOf(":") + 1).trim();
-								} else if (line.startsWith("Password:")) {
-									password = line.substring(line.indexOf(":") + 1).trim();
-								}
-							}
-							br.close();
+				userCheck = userField.getText();
+				passCheck = passField.getText();
 
-							if (username.equals(userField.getText()) && password.equals(passField.getText())) {
-								System.out.println("Login successful.");
-								Wallet wallet = new Wallet();
-								wallet.setVisible(true);
-								dispose();
-								setVisible(false);
+				if (accountExist(userCheck, passCheck) == true) {
+					System.out.println("Login successful.");
+					Wallet wallet = new Wallet();
+					wallet.setVisible(true);
+					dispose();
+					setVisible(false);
+				} else {
+					passField.setForeground(Color.RED);
+					userField.setForeground(Color.RED);
+					System.out.println("Invalid username or password.");
 
-							} else {
-								passField.setForeground(Color.RED);
-								userField.setForeground(Color.RED);
-								System.out.println("Invalid username or password.");
-
-							}
-
-						} catch (IOException ex) {
-							ex.printStackTrace();
-						}
-					} else {
-						IDLabel.setText("ID is not registered");
-						IDLabel.setForeground(Color.RED);
-						checkID.setBackground(Color.RED);
-					}
 				}
+
 				String username = "";
 				String password = "";
 				if (userField.getText().equals("Username")) {
@@ -286,7 +255,7 @@ public class Welcome extends JFrame {
 		lblNewLabel_2.setIcon(new ImageIcon(Welcome.class.getResource("/phpay/phpimg/walletBG2.png")));
 		lblNewLabel_2.setBounds(418, 173, 373, 279);
 		grayPanel.add(lblNewLabel_2);
-		
+
 		JLabel date = new JLabel("2023 v.1.0");
 		date.setBounds(770, 430, 74, 19);
 		grayPanel.add(date);
@@ -475,5 +444,35 @@ public class Welcome extends JFrame {
 
 			}
 		});
+	}
+
+	public boolean accountExist(String user, String pass) {
+		SQLConnection newCon = new SQLConnection();
+		boolean userexist = false;
+		// IF ACCOUNT USERNAME DOESN'T EXIST, RETURN FALSE
+		if (AccountVerify.accountExist(user) == false) {
+			return userexist;
+		}
+		String hashed = AccountVerify.passwordHash(pass);
+		String hash = "";
+		String query = "SELECT `password_hash` FROM `users` WHERE username = ?";
+		try {
+			PreparedStatement pst = newCon.getCon().prepareStatement(query);
+			pst.setString(1, user);
+			ResultSet rs = pst.executeQuery();
+
+			// IF HASHED PASS DOESN'T MEET DATABASED HASH, RETURN FALSE
+			if (rs.next()) {
+				hash = rs.getString("password_hash");
+			}
+
+		} catch (SQLException ex) {
+			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		if (!hash.equals(hashed)) {
+			return userexist;
+		}
+		return true;
+
 	}
 }

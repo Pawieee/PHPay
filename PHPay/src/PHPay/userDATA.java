@@ -7,20 +7,19 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
-
 public class userDATA {
 
-	private String saveID, saveUser, savePass;
+	private String userID, userName, userPass;
 
 	private double balance;
-	
+
 	private SQLConnection con;
 
-	public userDATA(String saveID, String saveUser, String savePass, double balance) {
+	public userDATA(String userID, String userName, String userPass, double balance) {
 
-		this.saveID = saveID;
-		this.saveUser = saveUser;
-		this.savePass = savePass;
+		this.userID = userID;
+		this.userName = userName;
+		this.userPass = userPass;
 		this.balance = balance;
 		this.con = new SQLConnection();
 
@@ -33,66 +32,22 @@ public class userDATA {
 	public void saveAccount() {
 		this.con.Connect();
 		String query = "INSERT INTO `users`(`id`, `username`, `password_hash`) VALUES (?, ?, ?)";
-				
-		
-		String hashed = passwordHash(this.savePass);
+
+		String hashed = AccountVerify.passwordHash(this.userPass);
 		try {
 			PreparedStatement pst = this.con.getCon().prepareStatement(query);
-            pst.setString(1,this.saveID);
-            pst.setString(2,this.saveUser);
-            pst.setString(3, hashed);
-            pst.executeUpdate();
+			pst.setString(1, this.userID);
+			pst.setString(2, this.userName);
+			pst.setString(3, hashed);
+			pst.executeUpdate();
 		} catch (SQLException ex) {
 			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
-		} 
+		}
 
 	}
-	
-	public String passwordHash(String password) {
-		try {
-			MessageDigest md = MessageDigest.getInstance("MD5");
-			
-			md.update(password.getBytes());
-			
-			byte[] result = md.digest();
-			
-			StringBuilder sb = new StringBuilder(); 
-			
-			for (byte b : result) {
-				sb.append(String.format("%02x", b));
-			}
-			return sb.toString();
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-		return "";
-	}
-	
+
 	public boolean accountExist() {
-		ArrayList<String> names = new ArrayList<>();
-		this.con.Connect();
-		String query = "SELECT `username` FROM `users`";
-		try {
-			Statement stmt = this.con.getCon().createStatement();
-			ResultSet rs = stmt.executeQuery(query);
-            
-            while(rs.next()) {
-            	String name = rs.getString("username");
-            	names.add(name);
-            }
-		} catch (SQLException ex) {
-			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
-		}
-		//trys
-		if (names.isEmpty()) {
-			return false;
-		}
-		for (String name: names) {
-			if (this.saveUser.equals(name)) {
-				return true;
-			}
-		}
-		return false;
+		return AccountVerify.accountExist(this.userName);
 	}
 
 }
