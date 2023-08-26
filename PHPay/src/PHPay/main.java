@@ -9,7 +9,6 @@ public class main extends JFrame{
 		
 		loadingPHP hello = new loadingPHP();
 		hello.setVisible(true);
-	
 
 		}
 		

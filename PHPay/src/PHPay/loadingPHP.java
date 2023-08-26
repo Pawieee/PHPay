@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.SwingWorker;
+import javax.swing.SwingConstants;
+import java.awt.Font;
 
 public class loadingPHP extends JFrame{
 	
@@ -20,13 +22,13 @@ public class loadingPHP extends JFrame{
 	public loadingPHP() {
 		
 	setType(Type.UTILITY);
-	
+	setUndecorated(true);
 	setAlwaysOnTop(false);
 	setResizable(false);
 	setIconImage(Toolkit.getDefaultToolkit().getImage(loadingPHP.class.getResource("/phpay/phpimg/phpLogo1.png")));
 	getContentPane().setForeground(Color.WHITE);
 	setForeground(Color.WHITE);
-	setBounds(275, 55, 480, 153);
+	setBounds(275, 55, 460, 110);
 	setLocationRelativeTo(null);
 	getContentPane().setLayout(null);
 	
@@ -45,7 +47,7 @@ public class loadingPHP extends JFrame{
 	panel.add(textField);
 	
 	JLabel PHPAYLOADING = new JLabel("");
-	PHPAYLOADING.setBounds(-16, -9, 500, 104);
+	PHPAYLOADING.setBounds(-17, 0, 481, 104);
 	PHPAYLOADING.setIcon(new ImageIcon(loadingPHP.class.getResource("/phpay/phpimg/PHPAY LOGO.png")));
 	panel.add(PHPAYLOADING);
 	
