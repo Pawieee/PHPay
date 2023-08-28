@@ -79,10 +79,13 @@ public class Wallet extends JFrame {
 		SQLConnection newCon = new SQLConnection();
 		String getBalTemp = "";
 		String getBal = "";
+		//USE CODE AGAIN FOR 
 
 		
 		
 	}
+
+
 
 	public static String addCommaSeparator(String value) {
 		DecimalFormat formatter = new DecimalFormat("#,###.0");
@@ -581,7 +584,7 @@ public class Wallet extends JFrame {
 				updateBalanceLabelFromFile();
 				termsCheck.setSelected(false);
 
-				processPHP run = new processPHP();
+				processPHP run = new processPHP(getSession());
 				run.setVisible(true);
 				dispose();
 
@@ -2744,5 +2747,9 @@ public class Wallet extends JFrame {
 		} catch (IOException e) {
 			System.err.println("Error: " + e.getMessage());
 		}
+	}
+	
+	public String getSession() {
+		return session;
 	}
 }
