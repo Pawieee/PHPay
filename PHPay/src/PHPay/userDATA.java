@@ -3,10 +3,6 @@ package PHPay;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.*;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-
 public class userDATA {
 
 	private String userID, userName, userPass;
@@ -16,7 +12,6 @@ public class userDATA {
 	private SQLConnection con;
 
 	public userDATA(String userID, String userName, String userPass, double balance) {
-
 		this.userID = userID;
 		this.userName = userName;
 		this.userPass = userPass;
