@@ -1,9 +1,13 @@
 package PHPay;
 import javax.swing.JFrame;
-import java.awt.EventQueue;
 
 
 public class main extends JFrame{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	public static void main(String[] args) {
 		

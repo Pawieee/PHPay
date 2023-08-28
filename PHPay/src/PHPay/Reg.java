@@ -1,5 +1,6 @@
 package PHPay;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.SystemColor;
 import java.awt.Toolkit;
@@ -7,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Calendar;
 import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
@@ -14,15 +17,18 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Frame;
 import javax.swing.SwingUtilities;
-import java.awt.BorderLayout;
 
 public class Reg extends JFrame{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField firstNameField,lastNameField,ageField,phonenumberField,addressField,emailField,textField,yearField;
 	private JLabel firstNameStatusLabel, lastNameStatusLabel,ageStatusLabel,phoneStatusLabel,addressStatusLabel,emailStatusLabel, yearStatusLabel;
 	JButton registerButton;
@@ -36,7 +42,8 @@ public class Reg extends JFrame{
 	public String selectedDay,selectedMonth;
 	private String FName, lName, ageStr, phone, address, saveM, saveD;
 	private int year;
-	 
+	private JPanel focusBG;
+	private final JButton ignoreThisVariable = new JButton("");	 
 	
 	public static boolean isValidEmail(String email) {
 		String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+ 
@@ -62,37 +69,109 @@ public class Reg extends JFrame{
 	    }
 	}
 	
-	
 	public Reg() {
 		setFont(new Font("Microsoft JhengHei UI Light", Font.PLAIN, 12));
 		setBackground(new Color(255, 255, 255));
-
+		setUndecorated(true);
 		setAlwaysOnTop(false);
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Administrator\\Downloads\\JAVA\\PHPAY\\PHPAY LOGO.png"));
 		getContentPane().setForeground(Color.WHITE);
 		setForeground(new Color(255, 255, 255));
-		setBounds(275, 55, 480, 595);
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int screenWidth = screenSize.width;
+		int screenHeight = screenSize.height;
+		int centerX = (screenWidth - 833) / 2;
+		int centerY = (screenHeight - 475) / 2;
+		setLocation(centerX, centerY);
+		setSize(833, 475);
 		setLocationRelativeTo(null);
-		setTitle("PHPAY - Virtual Wallet");
 		getContentPane().setLayout(null);
+		
+		JPanel titleBar = new JPanel();
+		titleBar.setBounds(0, 0, 833, 23);
+		getContentPane().add(titleBar);
+		titleBar.setBackground(new Color(35, 35, 35));
+		titleBar.setLayout(null);
+		
+		JButton minimize = new JButton("");
+		minimize.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setState(Frame.ICONIFIED); // Minimize the frame
+			}
+		});
+		minimize.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/min.png")));
+		minimize.setOpaque(false);
+		minimize.setForeground(Color.WHITE);
+		minimize.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		minimize.setBorderPainted(false);
+		minimize.setBorder(null);
+		minimize.setBackground(new Color(255, 255, 255));
+		minimize.setBounds(772, -1, 30, 24);
+		titleBar.add(minimize);
+		
+		JButton close = new JButton("");
+		close.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/exit.png")));
+		close.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		close.setBounds(803, -1, 30, 24);
+		titleBar.add(close);
+		close.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		close.setOpaque(false);
+		close.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		close.setBorderPainted(false);
+		close.setForeground(new Color(255, 255, 255));
+		close.setBackground(new Color(255, 255, 255));
+		close.setBorder(null);
+		close.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				focusBG.setBounds(803, -1, 30, 23);
+				focusBG.setBackground(new Color(255, 45, 50));
+				focusBG.setVisible(true);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				focusBG.setVisible(false);
+			}
+		});
+		
+		minimize.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				focusBG.setBounds(772, -2, 30, 24);
+				focusBG.setBackground(Color.GRAY);
+				focusBG.setVisible(true);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				focusBG.setVisible(false);
+			}
+		});
+		
+		focusBG = new JPanel();
+		focusBG.setBounds(900, 3, 30, 23);
+		titleBar.add(focusBG);
+		ignoreThisVariable.setBounds(10, 3, -8, 19);
+		titleBar.add(ignoreThisVariable);
+		ignoreThisVariable.setOpaque(false);
+		ignoreThisVariable.setForeground(Color.WHITE);
+		ignoreThisVariable.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		ignoreThisVariable.setBorderPainted(false);
+		ignoreThisVariable.setBorder(null);
+		ignoreThisVariable.setBackground(Color.WHITE);
 		
 		JPanel panel = new JPanel();
 		panel.setForeground(SystemColor.textHighlight);
 		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(0, 0, 464, 595);
+		panel.setBounds(0, 0, 455, 562);
 		getContentPane().add(panel);
 		panel.setLayout(null);
-		
-		JPanel panel_1_2 = new JPanel();
-		panel_1_2.setBounds(0, 545, 474, 1);
-		panel_1_2.setBackground(Color.BLACK);
-		panel.add(panel_1_2);
-		
-		JPanel panel_1_2_1 = new JPanel();
-		panel_1_2_1.setBounds(0, 11, 464, 1);
-		panel_1_2_1.setBackground(Color.BLACK);
-		panel.add(panel_1_2_1);
 		
 		JButton registerButton = new JButton("NEXT");
 		registerButton.setFont(new Font("Microsoft YaHei Light", Font.PLAIN, 13));
@@ -568,7 +647,7 @@ public class Reg extends JFrame{
 		JPanel eff1_2_1_1 = new JPanel();
 		eff1_2_1_1.setLayout(null);
 		eff1_2_1_1.setBackground(Color.LIGHT_GRAY);
-		eff1_2_1_1.setBounds(0, 0, 474, 560);
+		eff1_2_1_1.setBounds(0, 0, 454, 560);
 		panel.add(eff1_2_1_1);
 		
 	}
