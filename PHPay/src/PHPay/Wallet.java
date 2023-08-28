@@ -27,7 +27,12 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.awt.event.ActionEvent;
 import javax.swing.Timer;
 import javax.swing.UIManager;
@@ -49,6 +54,7 @@ import javax.swing.JTextArea;
 import javax.swing.JToggleButton;
 
 public class Wallet extends JFrame {
+	private String session;
 
 	JTextField textField;
 	private JButton send;
@@ -67,44 +73,15 @@ public class Wallet extends JFrame {
 	private double currentBal;
 	private String amountString, getBalTemp, newgetBal;
 	private String getID;
-
+	private String bal;
+	
 	public void checkIDandBalance() {
-		String getID = "";
+		SQLConnection newCon = new SQLConnection();
 		String getBalTemp = "";
 		String getBal = "";
 
-		try {
-			String idFile = "ID.txt";
-			File ID = new File(idFile);
-			if (ID.exists()) {
-				BufferedReader br = new BufferedReader(new FileReader(ID));
-				String line;
-
-				while ((line = br.readLine()) != null) {
-					if (line.startsWith("ID: ")) {
-						getID = line.substring(line.indexOf(":") + 1).trim();
-					}
-				}
-				br.close();
-			}
-			String fileName = getID + ".txt";
-			File file = new File(fileName);
-			if (file.exists()) {
-				BufferedReader br = new BufferedReader(new FileReader(file));
-				String line;
-
-				while ((line = br.readLine()) != null) {
-					if (line.startsWith("Balance: ")) {
-						getBalTemp = line.substring(line.indexOf(":") + 1).trim();
-					}
-				}
-				br.close();
-
-				getBal = addCommaSeparator(getBalTemp);
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
+		
 	}
 
 	public static String addCommaSeparator(String value) {
@@ -125,7 +102,9 @@ public class Wallet extends JFrame {
 		}
 	}
 
-	public Wallet() {
+	public Wallet(String ID) {
+		SQLConnection newCon = new SQLConnection();
+		this.session = ID;
 
 		setBackground(new Color(128, 0, 255));
 		setLocationRelativeTo(null);
@@ -133,41 +112,23 @@ public class Wallet extends JFrame {
 		LineBorder border = new LineBorder(Color.BLACK, 2);
 		getRootPane().setBorder(border);
 
-		getID = "";
-
+		newCon.Connect();
+		
+		String query = "SELECT `balance` FROM `users` WHERE id = ?"; 
 		try {
-			String idFile = "ID.txt";
-			File ID = new File(idFile);
-			if (ID.exists()) {
-				BufferedReader br = new BufferedReader(new FileReader(ID));
-				String line;
-
-				while ((line = br.readLine()) != null) {
-					if (line.startsWith("ID: ")) {
-						getID = line.substring(line.indexOf(":") + 1).trim();
-					}
-				}
-				br.close();
+			PreparedStatement ps = newCon.getCon().prepareStatement(query);
+			ps.setString(1, session);
+			ResultSet rs = ps.executeQuery();
+			
+			if (rs.next()) {
+				getBal = rs.getString("balance");
+				System.out.println(getBal);
 			}
-			System.out.println("ID " + getID);
-			String fileName = getID + ".txt";
-			File file = new File(fileName);
-			if (file.exists()) {
-				BufferedReader br = new BufferedReader(new FileReader(file));
-				String line;
-
-				while ((line = br.readLine()) != null) {
-					if (line.startsWith("Balance: ")) {
-						getBalTemp = line.substring(line.indexOf(":") + 1).trim();
-					}
-				}
-				br.close();
-
-				getBal = addCommaSeparator(getBalTemp);
-			}
-		} catch (IOException e) {
-
+		} catch (SQLException ex) {
+			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
 		}
+
+
 
 		setAlwaysOnTop(false);
 		setResizable(false);

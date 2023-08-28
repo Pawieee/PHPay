@@ -2,6 +2,7 @@ package PHPay;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -59,5 +60,26 @@ public class AccountVerify {
 		}
 		return false;
 	}
+	
+	public static String sessionID(String user) {
+		con.Connect();
+		String query = "SELECT `id` FROM `users` WHERE username = ?";
+		String id = "";
+		try {
+			PreparedStatement ps = con.getCon().prepareStatement(query);
+			ps.setString(1, user);
+			ResultSet rs = ps.executeQuery();
+			
+			if (rs.next()) {
+				id = rs.getString("id");
+			}
+		
+		} catch (SQLException ex) {
+			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		
+		return id;
+	}
+
 
 }

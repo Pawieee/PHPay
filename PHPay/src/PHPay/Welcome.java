@@ -156,7 +156,7 @@ public class Welcome extends JFrame {
 
 				if (accountExist(userCheck, passCheck) == true) {
 					System.out.println("Login successful.");
-					Wallet wallet = new Wallet();
+					Wallet wallet = new Wallet(AccountVerify.sessionID(userCheck));
 					wallet.setVisible(true);
 					dispose();
 					setVisible(false);
