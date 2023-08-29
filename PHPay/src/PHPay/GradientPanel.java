@@ -7,7 +7,11 @@ import javax.swing.JPanel;
 
 public class GradientPanel extends JPanel {
 
-    private Color startColor;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Color startColor;
     private Color endColor;
 
     public GradientPanel(Color startColor, Color endColor) {

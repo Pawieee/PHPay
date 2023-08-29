@@ -12,13 +12,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import java.awt.Font;
 import java.awt.Toolkit;
-import java.awt.Window.Type;
-import javax.swing.DropMode;
 import java.awt.Color;
 
 public class Profile extends JFrame {
 
-  private JTextArea textArea;
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+private JTextArea textArea;
   private String profileID;
 
   public Profile() {

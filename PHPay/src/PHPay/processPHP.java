@@ -1,10 +1,7 @@
 package PHPay;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.SystemColor;
 import java.awt.Toolkit;
-import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,6 +17,11 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 
 public class processPHP extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private String session;
 
 	JTextField textField;
@@ -111,9 +113,6 @@ public class processPHP extends JFrame {
 	}
 
 	public void process() {
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int screenWidth = screenSize.width;
-		int screenHeight = screenSize.height;
 
 		processPHP Fframe = new processPHP(getSession());
 		Fframe.setSize(480, 159);

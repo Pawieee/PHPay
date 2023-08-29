@@ -1,6 +1,5 @@
 package PHPay;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -9,20 +8,21 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.Calendar;
 import java.util.regex.Pattern;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingUtilities;
-import java.awt.BorderLayout;
 
 public class Reg extends JFrame{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField firstNameField,lastNameField,ageField,phonenumberField,addressField,emailField,textField,yearField;
 	private JLabel firstNameStatusLabel, lastNameStatusLabel,ageStatusLabel,phoneStatusLabel,addressStatusLabel,emailStatusLabel, yearStatusLabel;
 	JButton registerButton;
@@ -122,16 +122,15 @@ public class Reg extends JFrame{
     		    	String saveAd = addressField.getText();
     		    	String saveE = emailField.getText();
     		    	
-    		    	tempTXT registerInfo = new tempTXT
+    		    	accountInfo registerInfo = new accountInfo
     		    			(
     		    			 saveF, saveL, saveA, 
     		    			 saveM, saveD, saveY, 
     		    			 saveP, saveAd,saveE
     		    			 );
-    		    	registerInfo.tempDATA();
 		       
 		        	
-		            UserPassID userpassID = new UserPassID();
+		            UserPassID userpassID = new UserPassID(registerInfo);
 		            userpassID.setVisible(true);
 		            setVisible(false);
 		            dispose();

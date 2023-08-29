@@ -88,7 +88,7 @@ public class UserPassID extends JFrame implements Serializable {
 		}
 	}
 
-	public UserPassID() {
+	public UserPassID(accountInfo account) {
 		setBackground(Color.WHITE);
 
 		setAlwaysOnTop(false);
@@ -232,12 +232,12 @@ public class UserPassID extends JFrame implements Serializable {
 							String savePass = passField.getText();
 							double balance = 0;
 
-							userDATA account = new userDATA(saveID, saveUser, savePass, balance);
-							if (account.accountExist() == true) {
+							userDATA newAccount = new userDATA(saveID, saveUser, savePass, balance, account);
+							if (newAccount.accountExist() == true) {
 								System.out.println("Duplicate username");
 								System.exit(0);
 							}
-							account.saveAccount();
+							newAccount.saveAccount();
 							CustomerID(saveID);
 
 							progressPanel.setVisible(false);
@@ -445,6 +445,11 @@ public class UserPassID extends JFrame implements Serializable {
 		eff1_2_1_1.setBounds(0, 0, 474, 560);
 		panel.add(eff1_2_1_1);
 
+	}
+
+	public UserPassID() {
+		// TODO Auto-generated constructor stub
+		//IDK AUTOMATIC MAN GURO
 	}
 
 	public int generateId() {

@@ -1,7 +1,6 @@
 package PHPay;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.SystemColor;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
@@ -11,12 +10,14 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.SwingWorker;
-import javax.swing.SwingConstants;
-import java.awt.Font;
 
 public class loadingPHP extends JFrame{
 	
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JTextField textField;	
 	
 	public loadingPHP() {
@@ -84,11 +85,7 @@ public class loadingPHP extends JFrame{
 
 	
 	public void runloadingPHP() {
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int screenWidth = screenSize.width;
-        int screenHeight = screenSize.height;
-
-        loadingPHP Fframe = new loadingPHP();
+		loadingPHP Fframe = new loadingPHP();
         Fframe.setSize(480, 159);
         Fframe.setResizable(false);
         Fframe.setDefaultCloseOperation(EXIT_ON_CLOSE);

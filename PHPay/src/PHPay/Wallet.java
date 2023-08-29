@@ -4,18 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.SystemColor;
 import java.awt.Toolkit;
-import java.awt.Window.Type;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.ImageIcon;
-import javax.swing.InputVerifier;
-import javax.swing.JButton;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -33,34 +26,33 @@ import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.awt.event.ActionEvent;
-import javax.swing.Timer;
-import javax.swing.UIManager;
-import javax.swing.border.LineBorder;
-import javax.swing.plaf.ColorUIResource;
-import javax.swing.plaf.metal.DefaultMetalTheme;
-import javax.swing.plaf.metal.MetalLookAndFeel;
 
-import java.awt.Font;
-import java.awt.GridLayout;
-
-import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JRadioButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JToggleButton;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.Timer;
+import javax.swing.border.LineBorder;
 
 public class Wallet extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private String session;
 
 	JTextField textField;
 	private JButton send;
 
 	private boolean isVisible = false;
-	private Timer timer;
 	private String getBal, selectedBranch = null, selectedSchool = null, selectedWater = null, selectedElectric = null,
 			selectedSim = null;
 
@@ -71,21 +63,16 @@ public class Wallet extends JFrame {
 	private boolean check = false;
 	private JLabel showBalance, BG1;
 	private double currentBal;
-	private String amountString, getBalTemp, newgetBal;
+	private String getBalTemp;
 	private String getID;
-	private String bal;
-	
+
 	public void checkIDandBalance() {
-		SQLConnection newCon = new SQLConnection();
-		String getBalTemp = "";
-		String getBal = "";
-		//USE CODE AGAIN FOR 
+//		SQLConnection newCon = new SQLConnection();
+//		String getBalTemp = "";
+//		String getBal = "";
+		// USE CODE AGAIN FOR
 
-		
-		
 	}
-
-
 
 	public static String addCommaSeparator(String value) {
 		DecimalFormat formatter = new DecimalFormat("#,###.0");
@@ -115,23 +102,8 @@ public class Wallet extends JFrame {
 		LineBorder border = new LineBorder(Color.BLACK, 2);
 		getRootPane().setBorder(border);
 
-		newCon.Connect();
-		
-		String query = "SELECT `balance` FROM `users` WHERE id = ?"; 
-		try {
-			PreparedStatement ps = newCon.getCon().prepareStatement(query);
-			ps.setString(1, session);
-			ResultSet rs = ps.executeQuery();
-			
-			if (rs.next()) {
-				getBal = rs.getString("balance");
-				System.out.println(getBal);
-			}
-		} catch (SQLException ex) {
-			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
-		}
-
-
+		currentBal = SQLQuery.getBalance(session);
+		getBal = currentBal+"";
 
 		setAlwaysOnTop(false);
 		setResizable(false);
@@ -1099,7 +1071,7 @@ public class Wallet extends JFrame {
 				loadConfirm.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 
-						double validAmount = Double.parseDouble(getBalTemp);
+						double validAmount = Double.parseDouble(getBal);
 						String amountString = Field1.getText().trim();
 						double amountDouble = 0.0, sendBal = 0.0;
 						selectedSim = (String) loadbox.getSelectedItem();
@@ -1148,43 +1120,28 @@ public class Wallet extends JFrame {
 
 						} else {
 							amountString = Field1.getText();
-							currentBal = Double.parseDouble(getBalTemp);
-							amountDouble = Double.parseDouble(amountString);
+							currentBal = Double.parseDouble(getBal);
+							amountDouble = Float.parseFloat(amountString);
 							sendBal = currentBal - amountDouble;
 
 							// DEDUCTING THE SENDER BALANCE
+							newCon.Connect();
+
+							String query = "UPDATE users SET balance = balance - ? WHERE id = ?";
 							try {
-								// Open the file in read mode
-								String filename = getID + ".txt";
-								BufferedReader br = new BufferedReader(new FileReader(filename));
-
-								// Create a temporary file to write the modified contents to
-								PrintWriter pw = new PrintWriter(new FileWriter("SenderTransac.txt"));
-
-								// Read each line of the file and modify the balance if necessary
-								String line;
-								while ((line = br.readLine()) != null) {
-									if (line.startsWith("Balance: ")) {
-										// Replace the number after "Balance: " with a new value
-
-										line = "Balance: " + sendBal;
-									}
-									// Write the modified line to the temporary file
-									pw.println(line);
+								PreparedStatement ps = newCon.getCon().prepareStatement(query);
+								ps.setDouble(1, sendBal);
+								ps.setString(2, ID);
+								int rows = ps.executeUpdate();
+								
+								if (rows > 0 ) {
+									System.out.println("Balance deducted successfully");
+								} else {
+									System.out.println("Error, no transaction pushed");
 								}
 
-								// Close the input and output files
-								br.close();
-								pw.close();
-
-								// Rename the temporary file to the original file name
-								File file = new File(getID + ".txt");
-								file.delete();
-								File tempFile = new File("SenderTransac.txt");
-								tempFile.renameTo(file);
-
-							} catch (IOException e1) {
-								System.err.println("Error: " + e1.getMessage());
+							} catch (SQLException ex) {
+								Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
 							}
 							fEdited1 = false;
 							fEdited2 = false;
@@ -1268,7 +1225,7 @@ public class Wallet extends JFrame {
 				cashConfirm.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 
-						double validAmount = Double.parseDouble(getBalTemp);
+						// double validAmount = Double.parseDouble(getBalTemp);
 						String amountString = Field1.getText().trim();
 						String idToCheck = Field2.getText();
 						double newReceiverBal = 0.0, amountDouble = 0.0;
@@ -2417,7 +2374,7 @@ public class Wallet extends JFrame {
 				borrowConfirm.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 
-						double validAmount = Double.parseDouble(getBalTemp);
+						// double validAmount = Double.parseDouble(getBalTemp);
 						String amountString = Field1.getText();
 						double newReceiverBal = 0.0, amountDouble = 0.0;
 
@@ -2723,32 +2680,29 @@ public class Wallet extends JFrame {
 	}
 
 	public void updateBalanceLabelFromFile() {
+		SQLConnection newCon = new SQLConnection();
+		newCon.Connect();
 
+		String query = "SELECT `balance` FROM `users` WHERE id = ?";
 		try {
-			// Open the file in read mode
-			String filename = getID + ".txt";
-			BufferedReader br = new BufferedReader(new FileReader(filename));
+			PreparedStatement ps = newCon.getCon().prepareStatement(query);
+			ps.setString(1, session);
+			ResultSet rs = ps.executeQuery();
 
-			// Read each line of the file and find the balance value
-			String line;
-			while ((line = br.readLine()) != null) {
-				if (line.startsWith("Balance: ")) {
-					// Get the balance value and update the label
-					String balanceString = line.substring(9);
-					double balance = Double.parseDouble(balanceString);
-					String formattedBalance = addCommaSeparator(String.format("%.2f", balance));
-					showBalance.setText(formattedBalance);
-					break;
-				}
+			if (rs.next()) {
+				getBal = rs.getString("balance");
+				System.out.println(getBal);
+				double balance = Double.parseDouble(getBal);
+				String formattedBalance = addCommaSeparator(String.format("%.2f", balance));
+				showBalance.setText(formattedBalance);
+
 			}
-
-			br.close();
-
-		} catch (IOException e) {
-			System.err.println("Error: " + e.getMessage());
+		} catch (SQLException ex) {
+			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
 		}
+
 	}
-	
+
 	public String getSession() {
 		return session;
 	}
