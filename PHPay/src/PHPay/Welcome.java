@@ -1,10 +1,13 @@
 package PHPay;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
+import java.awt.Graphics2D;
 import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -14,42 +17,48 @@ import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.font.TextAttribute;
+import java.awt.geom.AffineTransform;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+import javax.swing.*;
+
+import java.awt.Window.Type;
+import java.awt.geom.*;
+import javax.swing.border.BevelBorder;
 import javax.swing.border.CompoundBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.EtchedBorder;
 
 public class Welcome extends JFrame {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private JTextField textField;
-	//private JTextField textField_1;
+	private JTextField textField_1;
 	private JTextField userField;
 	private JPasswordField passField;
 	private JPanel focusBG;
 	private static String userCheck, passCheck;
-	//private static double angle = 0;
+	// private static double angle = 0;
 	private int x, y;
 	private final JButton ignoreThisVariable = new JButton("");
+
+	private JPanel advertisementPanel; // New advertisement panel
+	private Timer advertisementTimer; // Timer for sliding animation
+	private int advertisementY; // Y-coordinate for the advertisement panel
 
 	public Welcome() {
 
@@ -57,8 +66,7 @@ public class Welcome extends JFrame {
 		setUndecorated(true);
 		setAlwaysOnTop(false);
 		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit()
-				.getImage(Welcome.class.getResource("/phpay/phpimg/icons8-pandora-app-100.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Welcome.class.getResource("/PHPay/phpimg/phpsmall.png")));
 		getContentPane().setForeground(Color.WHITE);
 		setForeground(Color.WHITE);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -80,37 +88,68 @@ public class Welcome extends JFrame {
 		panel.setLayout(null);
 		getContentPane().add(panel);
 
+		advertisementPanel = new JPanel();
+		advertisementPanel.setBounds(0, -50, 833, 50); // Initially positioned above the JFrame
+		advertisementPanel.setBackground(new Color(255, 215, 0)); // Yellow background, you can customize this
+		panel.add(advertisementPanel); // Add the advertisement panel to the main panel
+
+		JLabel advertisementLabel = new JLabel("WELCOME BUGO HINAYUPAK INUTIL WAY PULOS PWEH!");
+		advertisementLabel.setFont(new Font("Couture", Font.PLAIN, 19));
+		advertisementLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		advertisementPanel.add(advertisementLabel);
+
+		// Set up the timer for the sliding animation
+		advertisementTimer = new Timer(10, e -> {
+			if (advertisementPanel.getY() < 0) {
+				// Slide the advertisement panel down
+				advertisementPanel.setLocation(advertisementPanel.getX(), advertisementPanel.getY() + 1);
+			} else {
+				// Stop the timer when the advertisement panel is fully visible
+				advertisementTimer.stop();
+				// Start a new timer to slide the panel up after a delay
+				Timer slideUpTimer = new Timer(5000, evt -> {
+					new Timer(10, e1 -> {
+						if (advertisementPanel.getY() > -50) {
+							// Slide the advertisement panel up
+							advertisementPanel.setLocation(advertisementPanel.getX(), advertisementPanel.getY() - 1);
+						} else { 
+							// Stop the timer when the panel is fully hidden
+							((Timer) e1.getSource()).stop();
+						}
+					}).start();
+				});
+				slideUpTimer.setRepeats(false); // Run only once
+				slideUpTimer.start();
+			}
+		});
+
+		// Start the sliding animation when the JFrame is visible
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent e) {
+				advertisementTimer.start();
+			}
+		});
+
 		GradientPanel grayPanel = new GradientPanel(Color.WHITE, new Color(134, 116, 237));
 		grayPanel.setBounds(-2, 0, 835, 452);
 		panel.add(grayPanel);
 		grayPanel.setLayout(null);
 
-		JLabel IDLabel = new JLabel("");
-		IDLabel.setBounds(88, 162, 161, 23);
-		IDLabel.setFont(new Font("Bahnschrift", Font.PLAIN, 11));
-		grayPanel.add(IDLabel);
-
-		JLabel lblNewLabel_1 = new JLabel("WELCOME");
-		lblNewLabel_1.setBounds(0, 47, 349, 62);
-		grayPanel.add(lblNewLabel_1);
-		lblNewLabel_1.setFont(new Font("Microsoft YaHei Light", Font.PLAIN, 29));
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-
-		JLabel lblNewLabel_1_1_1_1_1_1 = new JLabel("Transforming Transactions, Powering Possibilities!");
-		lblNewLabel_1_1_1_1_1_1.setBounds(0, 411, 837, 30);
-		grayPanel.add(lblNewLabel_1_1_1_1_1_1);
-		lblNewLabel_1_1_1_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_1_1_1_1_1.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 15));
-
+		JLabel catchPhrase = new JLabel("Transforming Transactions, Powering Possibilities!");
+		catchPhrase.setBounds(0, 411, 837, 30);
+		grayPanel.add(catchPhrase);
+		catchPhrase.setHorizontalAlignment(SwingConstants.CENTER);
+		catchPhrase.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 15));
 
 		userField = new JTextField("Username");
-		userField.setBounds(40, 195, 273, 30);
+		userField.setBounds(40, 142, 273, 30);
 		userField.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 12));
 		grayPanel.add(userField);
 		userField.setForeground(Color.GRAY);
 
 		passField = new JPasswordField();
-		passField.setBounds(40, 246, 273, 30);
+		passField.setBounds(40, 215, 273, 30);
 		passField.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 12));
 		grayPanel.add(passField);
 		passField.setForeground(Color.GRAY);
@@ -122,15 +161,13 @@ public class Welcome extends JFrame {
 		textField.setForeground(Color.GRAY);
 		grayPanel.add(textField);
 
-
 		JButton LoginButton = new JButton("LOGIN");
-		LoginButton.setBounds(116, 311, 105, 22);
+		LoginButton.setBounds(116, 289, 105, 22);
 		grayPanel.add(LoginButton);
 		LoginButton.setBackground(new Color(255, 255, 255));
 		LoginButton.setForeground(new Color(0, 0, 0));
 		getRootPane().setDefaultButton(LoginButton);
 		LoginButton.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 
 				userCheck = userField.getText();
@@ -215,22 +252,22 @@ public class Welcome extends JFrame {
 		dontHaveAccountYet.setFont(new Font("Microsoft JhengHei UI Light", Font.PLAIN, 13));
 		grayPanel.add(dontHaveAccountYet);
 
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(390, 81, 407, 135);
-		grayPanel.add(lblNewLabel);
-		lblNewLabel.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/NEWPHPAY.png")));
+		JLabel phpayLOGO = new JLabel("");
+		phpayLOGO.setBounds(400, 82, 407, 135);
+		grayPanel.add(phpayLOGO);
+		phpayLOGO.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/phpay1.0.png")));
 
-		JLabel lblNewLabel_1_1_1_1 = new JLabel("Experience the convenience of cashless transactions today");
-		lblNewLabel_1_1_1_1.setBounds(400, 204, 437, 21);
-		grayPanel.add(lblNewLabel_1_1_1_1);
-		lblNewLabel_1_1_1_1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_1_1_1_1.setFont(new Font("Bahnschrift", Font.ITALIC, 14));
+		JLabel experienceLabel = new JLabel("Experience the convenience of cashless transactions today");
+		experienceLabel.setBounds(400, 204, 437, 21);
+		grayPanel.add(experienceLabel);
+		experienceLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		experienceLabel.setFont(new Font("Bahnschrift", Font.ITALIC, 14));
 
-		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setIcon(new ImageIcon(Welcome.class.getResource("/phpay/phpimg/walletBG2.png")));
-		lblNewLabel_2.setBounds(418, 173, 373, 279);
-		grayPanel.add(lblNewLabel_2);
+		JLabel logo = new JLabel("");
+		logo.setHorizontalAlignment(SwingConstants.CENTER);
+		logo.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/try.gif")));
+		logo.setBounds(410, 227, 373, 173);
+		grayPanel.add(logo);
 
 		JLabel date = new JLabel("2023 v.1.0");
 		date.setBounds(770, 430, 74, 19);
@@ -238,10 +275,28 @@ public class Welcome extends JFrame {
 		date.setForeground(new Color(192, 192, 192));
 		date.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 12));
 
+		JLabel lblNewLabel = new JLabel("Hello Ka-Paulo!");
+		lblNewLabel.setFont(new Font("Couture", Font.PLAIN, 31));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(40, 53, 273, 60);
+		grayPanel.add(lblNewLabel);
+
+		JButton btnNewButton = new JButton("HOME BUTTON (BETA)");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Home home = new Home();
+				home.setVisible(true);
+				dispose();
+				setVisible(false);
+			}
+		});
+		btnNewButton.setBounds(68, 377, 204, 23);
+		grayPanel.add(btnNewButton);
+
 		JButton close = new JButton("");
 		close.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/exit.png")));
 		close.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		close.setBounds(803, -1, 30, 24);
+		close.setBounds(804, -1, 30, 24);
 
 		close.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -257,7 +312,7 @@ public class Welcome extends JFrame {
 		close.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				focusBG.setBounds(803, -1, 30, 23);
+				focusBG.setBounds(804, -1, 30, 23);
 				focusBG.setBackground(new Color(255, 45, 50));
 				focusBG.setVisible(true);
 			}
@@ -269,7 +324,7 @@ public class Welcome extends JFrame {
 		});
 
 		JPanel titleBar = new JPanel();
-		titleBar.setBounds(0, 0, 833, 23);
+		titleBar.setBounds(-1, 0, 848, 23);
 		getContentPane().add(titleBar);
 		titleBar.setBackground(new Color(35, 35, 35));
 		titleBar.setLayout(null);
@@ -290,7 +345,7 @@ public class Welcome extends JFrame {
 		minimize.setBorderPainted(false);
 		minimize.setBorder(null);
 		minimize.setBackground(new Color(255, 255, 255));
-		minimize.setBounds(772, -1, 30, 24);
+		minimize.setBounds(773, -1, 30, 24);
 		titleBar.add(minimize);
 
 		focusBG = new JPanel();
@@ -305,22 +360,17 @@ public class Welcome extends JFrame {
 		ignoreThisVariable.setBorder(null);
 		ignoreThisVariable.setBackground(Color.WHITE);
 
-		JLabel lblNewLabel_3 = new JLabel("PAY");
-		lblNewLabel_3.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 13));
-		lblNewLabel_3.setForeground(new Color(255, 255, 255));
-		lblNewLabel_3.setBounds(25, 3, 30, 19);
-		titleBar.add(lblNewLabel_3);
-
-		JLabel lblNewLabel_3_1 = new JLabel("PH");
+		JLabel lblNewLabel_3_1 = new JLabel("");
+		lblNewLabel_3_1.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/phpsmall.png")));
 		lblNewLabel_3_1.setForeground(new Color(166, 69, 245));
-		lblNewLabel_3_1.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 13));
-		lblNewLabel_3_1.setBounds(8, 3, 111, 19);
+		lblNewLabel_3_1.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 27));
+		lblNewLabel_3_1.setBounds(3, 2, 46, 19);
 		titleBar.add(lblNewLabel_3_1);
 
 		minimize.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				focusBG.setBounds(772, -2, 30, 24);
+				focusBG.setBounds(773, -2, 30, 24);
 				focusBG.setBackground(Color.GRAY);
 				focusBG.setVisible(true);
 			}
@@ -349,8 +399,6 @@ public class Welcome extends JFrame {
 				setLocation(newX, newY);
 			}
 		});
-		
-
 
 		passField.addFocusListener(new FocusListener() {
 			public void focusGained(FocusEvent e) {

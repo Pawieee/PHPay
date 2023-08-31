@@ -51,7 +51,6 @@ public class Wallet extends JFrame {
 
 	JTextField textField;
 	private JButton send;
-
 	private boolean isVisible = false;
 	private String getBal, selectedBranch = null, selectedSchool = null, selectedWater = null, selectedElectric = null,
 			selectedSim = null;
