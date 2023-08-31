@@ -103,7 +103,7 @@ public class Wallet extends JFrame {
 		getRootPane().setBorder(border);
 
 		currentBal = SQLQuery.getBalance(session);
-		getBal = currentBal+"";
+		getBal = currentBal + "";
 
 		setAlwaysOnTop(false);
 		setResizable(false);
@@ -783,16 +783,6 @@ public class Wallet extends JFrame {
 		mainPanel.add(waterLabel);
 		waterLabel.setVisible(false);
 
-		showBalance = new JLabel("");
-		showBalance.setIcon(new ImageIcon(Wallet.class.getResource("/phpay/phpimg/icon3.png")));
-		showBalance.setForeground(new Color(0, 0, 0));
-		showBalance.setBackground(new Color(255, 255, 255));
-		showBalance.setHorizontalAlignment(SwingConstants.CENTER);
-		showBalance.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 42));
-		showBalance.setBounds(331, 33, 344, 77);
-		showBalance.setText(getBal);
-		mainPanel.add(showBalance);
-
 		sendIcon.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -1133,8 +1123,8 @@ public class Wallet extends JFrame {
 								ps.setDouble(1, sendBal);
 								ps.setString(2, ID);
 								int rows = ps.executeUpdate();
-								
-								if (rows > 0 ) {
+
+								if (rows > 0) {
 									System.out.println("Balance deducted successfully");
 								} else {
 									System.out.println("Error, no transaction pushed");
@@ -1227,8 +1217,7 @@ public class Wallet extends JFrame {
 
 						// double validAmount = Double.parseDouble(getBalTemp);
 						String amountString = Field1.getText().trim();
-						String idToCheck = Field2.getText();
-						double newReceiverBal = 0.0, amountDouble = 0.0;
+						double amountDouble = 0.0;
 
 						if (!isNumeric(amountString)) {
 							// the input is not a valid number
@@ -1247,114 +1236,31 @@ public class Wallet extends JFrame {
 							}
 						}
 
-						if (Field2.getText().isEmpty()) {
-							Field2.setForeground(Color.RED);
-							fEdited2 = false;
-						}
-
-						else if (!Field2.getText().isEmpty()) {
-							String fileName = idToCheck + ".txt";
-							File file = new File(fileName);
-							if (file.exists()) {
-								System.out.println("ID exists and is registered.");
-								fEdited2 = true;
-							} else {
-								System.out.println("ID is not registered.");
-								Field2.setForeground(Color.RED);
-								fEdited2 = false;
-							}
-						}
-
 						if (check) {
 							termsCheck.setBackground(Color.LIGHT_GRAY);
 						} else {
 							termsCheck.setBackground(Color.RED);
 						}
 
-						if (!fEdited1 || !fEdited2 || !check) {
+						amountDouble = Double.parseDouble(amountString);
+						SQLQuery.addBalance(session, amountDouble);
+						check = false;
+						fEdited1 = false;
+						fEdited2 = false;
+						sLabel.setText("");
+						Label1.setText("");
+						Label2.setText("");
+						Field1.setText("");
+						Field2.setText("");
+						Field1.setVisible(false);
+						Field2.setVisible(false);
+						termsCheck.setVisible(false);
+						checkLabel.setVisible(false);
+						termsAndconditions.setVisible(false);
+						sendConfirm.setVisible(false);
+						cashConfirm.setVisible(false);
 
-							if (Field1.getText().isEmpty() || Field2.getText().isEmpty()) {
-
-							}
-
-						} else {
-
-							amountDouble = Double.parseDouble(amountString);
-
-							// GETTING THE BALANCE OF THE RECEIVER
-							String r = Field2.getText();
-							String fileName = r + ".txt";
-							String balance = null;
-							try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-								String line;
-								while ((line = br.readLine()) != null) {
-									if (line.startsWith("Balance: ")) {
-										balance = line.substring("Balance: ".length()).trim();
-										newReceiverBal = Double.parseDouble(balance);
-										newReceiverBal += amountDouble;
-										break;
-									}
-								}
-							} catch (IOException e1) {
-								e1.printStackTrace();
-							}
-
-							// ADDING THE NEW BALANCE OF RECEIVER
-							try {
-								// Open the file in read mode
-								String receiver = Field2.getText();
-								String fileN = receiver + ".txt";
-								String receiverID = Field2.getText();
-								BufferedReader br = new BufferedReader(new FileReader(fileN));
-
-								// Create a temporary file to write the modified contents to
-								PrintWriter pw = new PrintWriter(new FileWriter("RecieverTransac.txt"));
-
-								// Read each line of the file and modify the balance if necessary
-								String line;
-								while ((line = br.readLine()) != null) {
-									if (line.startsWith("Balance: ")) {
-										// Replace the number after "Balance: " with a new value
-
-										line = "Balance: " + newReceiverBal;
-									}
-									// Write the modified line to the temporary file
-									pw.println(line);
-								}
-
-								// Close the input and output files
-								br.close();
-								pw.close();
-
-								// Rename the temporary file to the original file name
-								File file = new File(receiverID + ".txt");
-								file.delete();
-								File tempFile = new File("RecieverTransac.txt");
-								tempFile.renameTo(file);
-
-							} catch (IOException e1) {
-								System.err.println("Error: " + e1.getMessage());
-							}
-
-							check = false;
-							fEdited1 = false;
-							fEdited2 = false;
-							sLabel.setText("");
-							Label1.setText("");
-							Label2.setText("");
-							Field1.setText("");
-							Field2.setText("");
-							Field1.setVisible(false);
-							Field2.setVisible(false);
-							termsCheck.setVisible(false);
-							checkLabel.setVisible(false);
-							termsAndconditions.setVisible(false);
-							sendConfirm.setVisible(false);
-							cashConfirm.setVisible(false);
-
-							successFrame.setVisible(true);
-
-						}
+						successFrame.setVisible(true);
 
 					}
 				});
@@ -2675,6 +2581,16 @@ public class Wallet extends JFrame {
 		borrow.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		water.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		send.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+		showBalance = new JLabel("");
+		showBalance.setBounds(18, 38, 344, 77);
+		grayPanel.add(showBalance);
+		showBalance.setIcon(new ImageIcon(Wallet.class.getResource("/phpay/phpimg/icon3.png")));
+		showBalance.setForeground(new Color(0, 0, 0));
+		showBalance.setBackground(new Color(255, 255, 255));
+		showBalance.setHorizontalAlignment(SwingConstants.CENTER);
+		showBalance.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 42));
+		showBalance.setText(getBal);
 		termsAndconditions.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
 	}
