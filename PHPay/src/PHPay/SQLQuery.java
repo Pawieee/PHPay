@@ -8,7 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class SQLQuery {
-	private static SQLConnection con;
+	
 
 	public static double getBalance(String ID) {
 		SQLConnection con = new SQLConnection();

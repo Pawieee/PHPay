@@ -2,14 +2,12 @@ package PHPay;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -18,6 +16,11 @@ import java.awt.RenderingHints;
 import javax.swing.SwingConstants;
 
 public class Home extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Home() {
 		setUndecorated(true);
 		getContentPane().setLayout(null);
@@ -98,7 +101,11 @@ public class Home extends JFrame {
 	}
 
 class RoundedPanel extends JPanel {
-    private int cornerRadius;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int cornerRadius;
 
     public RoundedPanel(int cornerRadius) {
         this.cornerRadius = cornerRadius;

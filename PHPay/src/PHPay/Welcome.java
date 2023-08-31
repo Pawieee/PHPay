@@ -1,13 +1,10 @@
 package PHPay;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
-import java.awt.Graphics2D;
 import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -20,15 +17,9 @@ import java.awt.event.MouseMotionAdapter;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.font.TextAttribute;
-import java.awt.geom.AffineTransform;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -36,18 +27,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.*;
-
-import java.awt.Window.Type;
-import java.awt.geom.*;
-import javax.swing.border.BevelBorder;
 import javax.swing.border.CompoundBorder;
-import javax.swing.border.SoftBevelBorder;
-import javax.swing.border.EtchedBorder;
+
 
 public class Welcome extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField textField;
-	private JTextField textField_1;
+	//private JTextField textField_1;
 	private JTextField userField;
 	private JPasswordField passField;
 	private JPanel focusBG;
@@ -58,8 +48,6 @@ public class Welcome extends JFrame {
 
 	private JPanel advertisementPanel; // New advertisement panel
 	private Timer advertisementTimer; // Timer for sliding animation
-	private int advertisementY; // Y-coordinate for the advertisement panel
-
 	public Welcome() {
 
 		setType(Type.POPUP);
@@ -168,6 +156,7 @@ public class Welcome extends JFrame {
 		LoginButton.setForeground(new Color(0, 0, 0));
 		getRootPane().setDefaultButton(LoginButton);
 		LoginButton.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 
 				userCheck = userField.getText();

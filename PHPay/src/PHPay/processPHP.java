@@ -1,10 +1,7 @@
 package PHPay;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.SystemColor;
 import java.awt.Toolkit;
-import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

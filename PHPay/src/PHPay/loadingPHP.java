@@ -2,7 +2,6 @@ package PHPay;
 
 import java.awt.Color;
 import java.awt.SystemColor;
-import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;

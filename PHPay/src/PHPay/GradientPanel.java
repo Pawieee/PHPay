@@ -2,8 +2,6 @@ package PHPay;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.MultipleGradientPaint.CycleMethod;
-import java.awt.geom.*;
 
 public class GradientPanel extends JPanel {
 
