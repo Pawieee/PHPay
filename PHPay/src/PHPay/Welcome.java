@@ -43,7 +43,7 @@ public class Welcome extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	//private JTextField textField_1;
-	private JTextField userField, IDField;
+	private JTextField userField;
 	private JPasswordField passField;
 	private JPanel focusBG;
 	private static String userCheck, passCheck;
@@ -102,11 +102,6 @@ public class Welcome extends JFrame {
 		lblNewLabel_1_1_1_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_1_1_1_1_1.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 15));
 
-		IDField = new JTextField("ID");
-		IDField.setBounds(88, 132, 161, 30);
-		IDField.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 12));
-		grayPanel.add(IDField);
-		IDField.setForeground(Color.GRAY);
 
 		userField = new JTextField("Username");
 		userField.setBounds(40, 195, 273, 30);
@@ -127,12 +122,6 @@ public class Welcome extends JFrame {
 		textField.setForeground(Color.GRAY);
 		grayPanel.add(textField);
 
-		JButton checkID = new JButton("");
-		checkID.setBounds(259, 141, 15, 10);
-		checkID.setForeground(new Color(255, 255, 255));
-		checkID.setBackground(new Color(255, 255, 255));
-		grayPanel.add(checkID);
-		checkID.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 18));
 
 		JButton LoginButton = new JButton("LOGIN");
 		LoginButton.setBounds(116, 311, 105, 22);
@@ -177,12 +166,6 @@ public class Welcome extends JFrame {
 					if (password.equals(userField.getText())) {
 						passField.setForeground(Color.BLACK);
 					}
-				}
-
-				if (IDField.getText().equals("ID")) {
-					IDField.setForeground(Color.RED);
-				} else {
-					IDField.setForeground(Color.BLACK);
 				}
 			}
 		});
@@ -366,24 +349,8 @@ public class Welcome extends JFrame {
 				setLocation(newX, newY);
 			}
 		});
-		checkID.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String idToCheck = IDField.getText();
-				if (!idToCheck.equals("ID")) {
-					String fileName = idToCheck + ".txt";
-					File file = new File(fileName);
-					if (file.exists()) {
-						System.out.println("ID exists and is registered.");
-						checkID.setBackground(Color.GREEN);
-					} else if (!idToCheck.equals("ID")) {
-						checkID.setBackground(Color.RED);
-					} else {
-						System.out.println("ID is not registered.");
-						checkID.setBackground(Color.RED);
-					}
-				}
-			}
-		});
+		
+
 
 		passField.addFocusListener(new FocusListener() {
 			public void focusGained(FocusEvent e) {
@@ -422,22 +389,7 @@ public class Welcome extends JFrame {
 				}
 			}
 		});
-		IDField.addFocusListener(new FocusListener() {
-			public void focusGained(FocusEvent e) {
-				if (IDField.getText().equals("ID")) {
-					IDField.setText("");
-					IDField.setForeground(Color.BLACK);
-				}
-			}
 
-			public void focusLost(FocusEvent e) {
-				if (IDField.getText().isEmpty()) {
-					IDField.setText("ID");
-					IDField.setForeground(Color.GRAY);
-				}
-
-			}
-		});
 	}
 
 	public boolean accountExist(String user, String pass) {
