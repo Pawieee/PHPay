@@ -11,11 +11,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -39,7 +34,6 @@ public class UserPassID extends JFrame implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String saveID;
 
 	private String randomID;
 	private JPasswordField passField;
@@ -228,7 +222,6 @@ public class UserPassID extends JFrame implements Serializable {
 								System.exit(0);
 							}
 							newAccount.saveAccount();
-							CustomerID(saveID);
 
 							progressPanel.setVisible(false);
 
@@ -459,42 +452,5 @@ public class UserPassID extends JFrame implements Serializable {
 		frame.setVisible(true);
 	}
 
-	public void CustomerID(String saveID) {
 
-		this.saveID = saveID;
-
-		try {
-			// Open original file for reading
-			BufferedReader reader = new BufferedReader(new FileReader("tempUPID.txt"));
-
-			// Open temporary file for reading
-			BufferedReader tempReader = new BufferedReader(new FileReader("tempREG.txt"));
-
-			// Open file for writing (overwrite existing data)
-			String customer = saveID + ".txt";
-			BufferedWriter writer = new BufferedWriter(new FileWriter(customer));
-
-			// Read and write data from original file
-			String line = null;
-			while ((line = reader.readLine()) != null) {
-				writer.write(line);
-				writer.newLine();
-			}
-
-			// Read and write data from temporary file
-			while ((line = tempReader.readLine()) != null) {
-				writer.write(line);
-				writer.newLine();
-			}
-
-			// Close readers and writer
-			reader.close();
-			tempReader.close();
-			writer.close();
-
-			System.out.println("Successfully merged data into " + customer);
-		} catch (IOException e) {
-			System.out.println("An error occurred: " + e);
-		}
-	}
 }
