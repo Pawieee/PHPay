@@ -47,7 +47,7 @@ public class AccountVerify {
 				names.add(name);
 			}
 		} catch (SQLException ex) {
-			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
 		if (names.isEmpty()) {
@@ -75,7 +75,7 @@ public class AccountVerify {
 			}
 		
 		} catch (SQLException ex) {
-			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		
 		return id;

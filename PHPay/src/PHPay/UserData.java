@@ -4,18 +4,18 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-public class userDATA {
+public class UserData {
 
 	private String userID, userName, userPass;
 	
-	private accountInfo account;
+	private AccountInfo account;
 
 	@SuppressWarnings("unused")
 	private double balance;
 
 	private SQLConnection con;
 
-	public userDATA(String userID, String userName, String userPass, double balance, accountInfo account) {
+	public UserData(String userID, String userName, String userPass, double balance, AccountInfo account) {
 		this.userID = userID;
 		this.userName = userName;
 		this.userPass = userPass;
@@ -41,7 +41,7 @@ public class userDATA {
 			pst.setString(3, hashed);
 			pst.executeUpdate();
 		} catch (SQLException ex) {
-			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		
 		String query2 = "INSERT INTO `user_profile`(`id`, `f_name`, `l_name`, `age`, `birth_month`, `birth_day`, `birth_year`, `phone_number`, `address`, `email`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -60,7 +60,7 @@ public class userDATA {
 			pst.setString(10, account.getEmail());
 			pst.executeUpdate();
 		} catch (SQLException ex) {
-			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
 	}

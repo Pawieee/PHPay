@@ -1,24 +1,19 @@
 package PHPay;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.awt.geom.RoundRectangle2D;
 import java.awt.Color;
-import javax.swing.JButton;
-import javax.swing.JLabel;
+import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class Home extends JFrame {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public Home() {
@@ -51,6 +46,13 @@ public class Home extends JFrame {
 //		titlePanel.setLayout(null);
 
 		JButton btnNewButton = new JButton("Logout");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				Welcome runFrame = new Welcome();
+				runFrame.setVisible(true);
+			}
+		});
 		btnNewButton.setBackground(new Color(255, 255, 255));
 		btnNewButton.setBounds(1085, 23, 89, 29);
 		titlePanel.add(btnNewButton);
@@ -100,37 +102,5 @@ public class Home extends JFrame {
 		panel.add(panel_2);
 	}
 
-class RoundedPanel extends JPanel {
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private int cornerRadius;
 
-    public RoundedPanel(int cornerRadius) {
-        this.cornerRadius = cornerRadius;
-        setOpaque(false); // Make the panel transparent
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        int width = getWidth();
-        int height = getHeight();
-        Graphics2D g2d = (Graphics2D) g.create();
-
-        // Create a rounded rectangle shape
-        RoundRectangle2D roundedRectangle = new RoundRectangle2D.Float(0, 0, width - 1, height - 1, cornerRadius * 2, cornerRadius * 2);
-
-        // Set rendering hints for smooth edges
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-
-        // Fill the shape with the panel's background color
-        g2d.setColor(getBackground());
-        g2d.fill(roundedRectangle);
-
-        g2d.dispose();
-    }
-}
 }

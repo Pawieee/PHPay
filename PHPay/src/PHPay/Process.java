@@ -16,7 +16,7 @@ import javax.swing.Timer;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 
-public class processPHP extends JFrame {
+public class Process extends JFrame {
 	/**
 	 * 
 	 */
@@ -27,7 +27,7 @@ public class processPHP extends JFrame {
 
 
 
-	public processPHP(String ID) {
+	public Process(String ID) {
 		this.session = ID;
 
 		setType(Type.UTILITY);
@@ -61,7 +61,7 @@ public class processPHP extends JFrame {
 		panel.add(progressBar);
 
 		JLabel processingLabel = new JLabel("PROCESSING");
-		processingLabel.setIcon(new ImageIcon(processPHP.class.getResource("/phpay/phpimg/icons8-enter-60.png")));
+		processingLabel.setIcon(new ImageIcon(Process.class.getResource("/phpay/phpimg/icons8-enter-60.png")));
 		processingLabel.setFont(new Font("Microsoft JhengHei Light", Font.PLAIN, 34));
 		processingLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		processingLabel.setBounds(9, -22, 398, 103);
@@ -101,8 +101,8 @@ public class processPHP extends JFrame {
 
 			protected void done() {
 				progressBar.setVisible(false);
-				processPHP.this.setVisible(false); // hide the current frame
-				processPHP.this.dispose(); // dispose of the current frame
+				Process.this.setVisible(false); // hide the current frame
+				Process.this.dispose(); // dispose of the current frame
 
 				Wallet run = new Wallet(getSession());
 				run.setVisible(true);
@@ -115,7 +115,7 @@ public class processPHP extends JFrame {
 
 	public void process1() {
 
-		processPHP Fframe = new processPHP(getSession());
+		Process Fframe = new Process(getSession());
 		Fframe.setSize(480, 159);
 		Fframe.setResizable(false);
 		Fframe.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -125,7 +125,7 @@ public class processPHP extends JFrame {
 	public String getSession() {
 		return this.session;
 	}
-	public processPHP() {
+	public Process() {
 
 		setType(Type.UTILITY);
 
@@ -158,7 +158,7 @@ public class processPHP extends JFrame {
 		panel.add(progressBar);
 
 		JLabel processingLabel = new JLabel("PROCESSING");
-		processingLabel.setIcon(new ImageIcon(processPHP.class.getResource("/phpay/phpimg/icons8-enter-60.png")));
+		processingLabel.setIcon(new ImageIcon(Process.class.getResource("/phpay/phpimg/icons8-enter-60.png")));
 		processingLabel.setFont(new Font("Microsoft JhengHei Light", Font.PLAIN, 34));
 		processingLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		processingLabel.setBounds(9, -22, 398, 103);
@@ -198,8 +198,8 @@ public class processPHP extends JFrame {
 
 			protected void done() {
 				progressBar.setVisible(false);
-				processPHP.this.setVisible(false); // hide the current frame
-				processPHP.this.dispose(); // dispose of the current frame
+				Process.this.setVisible(false); // hide the current frame
+				Process.this.dispose(); // dispose of the current frame
 
 				Wallet run = new Wallet(session);
 				run.setVisible(true);
@@ -211,7 +211,7 @@ public class processPHP extends JFrame {
 	}
 
 public void process() {
-	processPHP Fframe = new processPHP();
+	Process Fframe = new Process();
 	Fframe.setSize(480, 159);
 	Fframe.setResizable(false);
 	Fframe.setDefaultCloseOperation(EXIT_ON_CLOSE);

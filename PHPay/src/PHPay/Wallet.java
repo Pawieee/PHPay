@@ -555,7 +555,7 @@ public class Wallet extends JFrame {
 				updateBalanceLabelFromFile();
 				termsCheck.setSelected(false);
 
-				processPHP run = new processPHP(getSession());
+				Process run = new Process(getSession());
 				run.setVisible(true);
 				dispose();
 
@@ -1130,7 +1130,7 @@ public class Wallet extends JFrame {
 								}
 
 							} catch (SQLException ex) {
-								Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
+								Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
 							}
 							fEdited1 = false;
 							fEdited2 = false;
@@ -2613,7 +2613,7 @@ public class Wallet extends JFrame {
 
 			}
 		} catch (SQLException ex) {
-			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
 	}

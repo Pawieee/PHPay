@@ -4,11 +4,11 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class tempTXT {
+public class TempText {
 
 	private String saveF, saveL, saveA, saveM, saveD, saveY, saveP, saveAd, saveE;
 
-	public tempTXT(String saveF, String saveL, String saveA, String saveM, String saveD, String saveY, String saveP,
+	public TempText(String saveF, String saveL, String saveA, String saveM, String saveD, String saveY, String saveP,
 			String saveAd, String saveE) {
 
 		this.saveF = saveF;

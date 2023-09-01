@@ -1,9 +1,9 @@
 package PHPay;
 
-public class accountInfo {
+public class AccountInfo {
 	private String fName, lName, age, month, day, year, phoneNum, address, email;
 	
-	public accountInfo(String fName, String lName, String age, String month, String day, String year, String phoneNum, String address, String email) {
+	public AccountInfo(String fName, String lName, String age, String month, String day, String year, String phoneNum, String address, String email) {
 		this.fName = fName;
 		this.lName = lName;
 		this.age = age;
