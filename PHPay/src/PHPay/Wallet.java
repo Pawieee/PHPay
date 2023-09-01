@@ -17,9 +17,7 @@ import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -62,16 +60,7 @@ public class Wallet extends JFrame {
 	private boolean check = false;
 	private JLabel showBalance, BG1;
 	private double currentBal;
-	private String getBalTemp;
 	private String getID;
-
-	public void checkIDandBalance() {
-//		SQLConnection newCon = new SQLConnection();
-//		String getBalTemp = "";
-//		String getBal = "";
-		// USE CODE AGAIN FOR
-
-	}
 
 	public static String addCommaSeparator(String value) {
 		DecimalFormat formatter = new DecimalFormat("#,###.0");
@@ -92,7 +81,6 @@ public class Wallet extends JFrame {
 	}
 
 	public Wallet(String ID) {
-		SQLConnection newCon = new SQLConnection();
 		this.session = ID;
 
 		setBackground(new Color(128, 0, 255));
@@ -404,16 +392,8 @@ public class Wallet extends JFrame {
 				okButton.setForeground(new Color(0, 0, 0));
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						try {
-							File fileToDelete = new File(getID + ".txt");
-							if (fileToDelete.delete()) {
-								System.out.println("File deleted successfully.");
-							} else {
-								System.out.println("Failed to delete the file.");
-							}
-						} catch (Exception e1) {
-
-						}
+						// DELETES ACCOUNT
+						SQLQuery.deleteAccount(session);
 
 						dispose();
 						deleteFrame.dispose();
@@ -836,10 +816,8 @@ public class Wallet extends JFrame {
 				sendConfirm.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 
-						double validAmount = Double.parseDouble(getBalTemp);
-						double newReceiverBal = 0.0, amountDouble = 0.0;
 						String amountString = Field1.getText().trim();
-						String idToCheck = Field2.getText();
+						String receiverID = Field2.getText();
 
 						if (!isNumeric(amountString)) {
 							// the input is not a valid number
@@ -851,7 +829,7 @@ public class Wallet extends JFrame {
 								// the input is 0 or a negative number
 								Field1.setForeground(Color.RED);
 								fEdited1 = false;
-							} else if (amount >= validAmount) {
+							} else if (amount >= currentBal) {
 								Field1.setForeground(Color.RED);
 								fEdited1 = false;
 							} else {
@@ -865,140 +843,25 @@ public class Wallet extends JFrame {
 							fEdited2 = false;
 						}
 
-						else if (!Field2.getText().isEmpty()) {
-							String fileName = idToCheck + ".txt";
-							File file = new File(fileName);
-							if (Field2.getText().equals(getID)) {
-								Field2.setForeground(Color.RED);
-								fEdited2 = false;
-							} else if (file.exists()) {
-								System.out.println("ID exists and is registered.");
-								fEdited2 = true;
-							}
+						double amountDouble = Double.parseDouble(amountString);
+						showBalance.setText(getBal);
 
-							else {
-								System.out.println("ID is not registered.");
-								Field2.setForeground(Color.RED);
-								fEdited2 = false;
-							}
-						}
+						// DEDUCTING THE SENDER BALANCE
+						SQLQuery.sendMoney(session, receiverID, amountDouble);
 
-						if (!fEdited1 || !fEdited2) {
+						fEdited1 = false;
+						fEdited2 = false;
+						sLabel.setText("");
+						Label1.setText("");
+						Label2.setText("");
+						Field1.setText("");
+						Field2.setText("");
+						Field1.setVisible(false);
+						Field2.setVisible(false);
+						sendConfirm.setVisible(false);
 
-							if (Field1.getText().isEmpty() || Field2.getText().isEmpty()) {
+						successFrame.setVisible(true);
 
-							}
-
-						} else {
-							checkIDandBalance();
-							currentBal = Double.parseDouble(getBalTemp);
-							amountDouble = Double.parseDouble(amountString);
-							currentBal -= amountDouble;
-							showBalance.setText(getBal);
-
-							// DEDUCTING THE SENDER BALANCE
-							try {
-								// Open the file in read mode
-								String filename = getID + ".txt";
-								BufferedReader br = new BufferedReader(new FileReader(filename));
-
-								// Create a temporary file to write the modified contents to
-								PrintWriter pw = new PrintWriter(new FileWriter("SenderTransac.txt"));
-
-								// Read each line of the file and modify the balance if necessary
-								String line;
-								while ((line = br.readLine()) != null) {
-									if (line.startsWith("Balance: ")) {
-										// Replace the number after "Balance: " with a new value
-
-										line = "Balance: " + currentBal;
-									}
-									// Write the modified line to the temporary file
-									pw.println(line);
-								}
-
-								// Close the input and output files
-								br.close();
-								pw.close();
-
-								// Rename the temporary file to the original file name
-								File file = new File(getID + ".txt");
-								file.delete();
-								File tempFile = new File("SenderTransac.txt");
-								tempFile.renameTo(file);
-
-							} catch (IOException e1) {
-								System.err.println("Error: " + e1.getMessage());
-							}
-
-							// GETTING THE BALANCE OF THE RECEIVER
-							String r = Field2.getText();
-							String fileName = r + ".txt";
-							String balance = null;
-							try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-								String line;
-								while ((line = br.readLine()) != null) {
-									if (line.startsWith("Balance: ")) {
-										balance = line.substring("Balance: ".length()).trim();
-										newReceiverBal = Double.parseDouble(balance) + amountDouble;
-										break;
-									}
-								}
-							} catch (IOException e1) {
-								e1.printStackTrace();
-							}
-
-							// ADDING THE NEW BALANCE OF RECEIVER
-							try {
-								// Open the file in read mode
-								String receiver = Field2.getText();
-								String fileN = receiver + ".txt";
-								String receiverID = Field2.getText();
-								BufferedReader br = new BufferedReader(new FileReader(fileN));
-
-								// Create a temporary file to write the modified contents to
-								PrintWriter pw = new PrintWriter(new FileWriter("RecieverTransac.txt"));
-
-								// Read each line of the file and modify the balance if necessary
-								String line;
-								while ((line = br.readLine()) != null) {
-									if (line.startsWith("Balance: ")) {
-										// Replace the number after "Balance: " with a new value
-
-										line = "Balance: " + newReceiverBal;
-									}
-									// Write the modified line to the temporary file
-									pw.println(line);
-								}
-
-								// Close the input and output files
-								br.close();
-								pw.close();
-
-								// Rename the temporary file to the original file name
-								File file = new File(receiverID + ".txt");
-								file.delete();
-								File tempFile = new File("RecieverTransac.txt");
-								tempFile.renameTo(file);
-
-							} catch (IOException e1) {
-								System.err.println("Error: " + e1.getMessage());
-							}
-
-							fEdited1 = false;
-							fEdited2 = false;
-							sLabel.setText("");
-							Label1.setText("");
-							Label2.setText("");
-							Field1.setText("");
-							Field2.setText("");
-							Field1.setVisible(false);
-							Field2.setVisible(false);
-							sendConfirm.setVisible(false);
-
-							successFrame.setVisible(true);
-
-						}
 					}
 
 				});
@@ -1060,9 +923,7 @@ public class Wallet extends JFrame {
 				loadConfirm.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 
-						double validAmount = Double.parseDouble(getBal);
 						String amountString = Field1.getText().trim();
-						double amountDouble = 0.0, sendBal = 0.0;
 						selectedSim = (String) loadbox.getSelectedItem();
 
 						if (!isNumeric(amountString)) {
@@ -1073,7 +934,7 @@ public class Wallet extends JFrame {
 							if (amount <= 0) {
 								Field1.setForeground(Color.RED);
 								fEdited1 = false;
-							} else if (amount >= validAmount) {
+							} else if (amount >= currentBal) {
 								Field1.setForeground(Color.RED);
 								fEdited1 = false;
 							} else {
@@ -1109,29 +970,12 @@ public class Wallet extends JFrame {
 
 						} else {
 							amountString = Field1.getText();
-							currentBal = Double.parseDouble(getBal);
-							amountDouble = Float.parseFloat(amountString);
-							sendBal = currentBal - amountDouble;
+							double amountDouble = Double.parseDouble(amountString);
 
 							// DEDUCTING THE SENDER BALANCE
-							newCon.Connect();
 
-							String query = "UPDATE users SET balance = balance - ? WHERE id = ?";
-							try {
-								PreparedStatement ps = newCon.getCon().prepareStatement(query);
-								ps.setDouble(1, sendBal);
-								ps.setString(2, ID);
-								int rows = ps.executeUpdate();
+							SQLQuery.load(ID, amountDouble);
 
-								if (rows > 0) {
-									System.out.println("Balance deducted successfully");
-								} else {
-									System.out.println("Error, no transaction pushed");
-								}
-
-							} catch (SQLException ex) {
-								Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
-							}
 							fEdited1 = false;
 							fEdited2 = false;
 							fEdited3 = false;
@@ -1214,9 +1058,7 @@ public class Wallet extends JFrame {
 				cashConfirm.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 
-						// double validAmount = Double.parseDouble(getBalTemp);
 						String amountString = Field1.getText().trim();
-						double amountDouble = 0.0;
 
 						if (!isNumeric(amountString)) {
 							// the input is not a valid number
@@ -1241,8 +1083,9 @@ public class Wallet extends JFrame {
 							termsCheck.setBackground(Color.RED);
 						}
 
-						amountDouble = Double.parseDouble(amountString);
-						SQLQuery.addBalance(session, amountDouble);
+						double amountDouble = Double.parseDouble(amountString);
+						SQLQuery.cashIn(session, amountDouble);
+
 						check = false;
 						fEdited1 = false;
 						fEdited2 = false;
@@ -1369,9 +1212,7 @@ public class Wallet extends JFrame {
 				deliveryConfirm.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 
-						double validAmount = Double.parseDouble(getBalTemp);
 						String amountString = newAmountField.getText().trim();
-						double amountDouble = 0.0, sendBal = 0.0;
 
 						if (!isNumeric(amountString)) {
 							// the input is not a valid number
@@ -1383,7 +1224,7 @@ public class Wallet extends JFrame {
 								// the input is 0 or a negative number
 								newAmountField.setForeground(Color.RED);
 								aEdited = false;
-							} else if (amount >= validAmount) {
+							} else if (amount >= currentBal) {
 								newAmountField.setForeground(Color.RED);
 								aEdited = false;
 							} else {
@@ -1422,75 +1263,37 @@ public class Wallet extends JFrame {
 							termsCheck.setBackground(Color.RED);
 						}
 
-						if (!fEdited1 || !fEdited2 || !fEdited3 || !aEdited || !check) {
+						amountString = newAmountField.getText();
+						double amountDouble = Double.parseDouble(amountString);
 
-						} else {
-							amountString = newAmountField.getText();
-							currentBal = Double.parseDouble(getBalTemp);
-							amountDouble = Double.parseDouble(amountString);
-							sendBal = currentBal - amountDouble;
+						// DEDUCTING THE SENDER BALANCE
+						SQLQuery.withdraw(ID, amountDouble);
 
-							// DEDUCTING THE SENDER BALANCE
-							try {
-								// Open the file in read mode
-								String filename = getID + ".txt";
-								BufferedReader br = new BufferedReader(new FileReader(filename));
+						fEdited1 = false;
+						fEdited2 = false;
+						fEdited3 = false;
+						aEdited = false;
+						check = false;
+						sLabel.setText("");
+						Label1.setText("");
+						Label2.setText("");
+						Label3.setText("");
+						Field1.setText("");
+						Field2.setText("");
+						Field1.setVisible(false);
+						Field2.setVisible(false);
+						Field3.setVisible(false);
+						newAmountField.setVisible(false);
+						pickup.setVisible(false);
+						delivery.setVisible(false);
+						branchbox.setVisible(false);
+						termsCheck.setVisible(false);
+						checkLabel.setVisible(false);
+						pickupConfirm.setVisible(false);
+						deliveryConfirm.setVisible(false);
+						termsAndconditions.setVisible(false);
 
-								// Create a temporary file to write the modified contents to
-								PrintWriter pw = new PrintWriter(new FileWriter("SenderTransac.txt"));
-
-								// Read each line of the file and modify the balance if necessary
-								String line;
-								while ((line = br.readLine()) != null) {
-									if (line.startsWith("Balance: ")) {
-										// Replace the number after "Balance: " with a new value
-
-										line = "Balance: " + sendBal;
-									}
-									// Write the modified line to the temporary file
-									pw.println(line);
-								}
-
-								// Close the input and output files
-								br.close();
-								pw.close();
-
-								// Rename the temporary file to the original file name
-								File file = new File(getID + ".txt");
-								file.delete();
-								File tempFile = new File("SenderTransac.txt");
-								tempFile.renameTo(file);
-
-							} catch (IOException e1) {
-								System.err.println("Error: " + e1.getMessage());
-							}
-							fEdited1 = false;
-							fEdited2 = false;
-							fEdited3 = false;
-							aEdited = false;
-							check = false;
-							sLabel.setText("");
-							Label1.setText("");
-							Label2.setText("");
-							Label3.setText("");
-							Field1.setText("");
-							Field2.setText("");
-							Field1.setVisible(false);
-							Field2.setVisible(false);
-							Field3.setVisible(false);
-							newAmountField.setVisible(false);
-							pickup.setVisible(false);
-							delivery.setVisible(false);
-							branchbox.setVisible(false);
-							termsCheck.setVisible(false);
-							checkLabel.setVisible(false);
-							pickupConfirm.setVisible(false);
-							deliveryConfirm.setVisible(false);
-							termsAndconditions.setVisible(false);
-
-							successFrame.setVisible(true);
-
-						}
+						successFrame.setVisible(true);
 
 					}
 				});
@@ -1540,9 +1343,7 @@ public class Wallet extends JFrame {
 				pickupConfirm.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 
-						double validAmount = Double.parseDouble(getBalTemp);
 						String amountString = newAmountField.getText().trim();
-						double amountDouble = 0.0, sendBal = 0.0;
 						selectedBranch = (String) branchbox.getSelectedItem();
 
 						if (!isNumeric(amountString)) {
@@ -1555,7 +1356,7 @@ public class Wallet extends JFrame {
 								// the input is 0 or a negative number
 								newAmountField.setForeground(Color.RED);
 								aEdited = false;
-							} else if (amount > validAmount) {
+							} else if (amount > currentBal) {
 								newAmountField.setForeground(Color.RED);
 								aEdited = false;
 							} else {
@@ -1595,73 +1396,36 @@ public class Wallet extends JFrame {
 							termsCheck.setBackground(Color.RED);
 						}
 
-						if (!fEdited1 || !fEdited2 || !fEdited3 || !aEdited || !check) {
+						amountString = newAmountField.getText();
+						double amountDouble = Double.parseDouble(amountString);
 
-						} else {
-							amountString = newAmountField.getText();
-							currentBal = Double.parseDouble(getBalTemp);
-							amountDouble = Double.parseDouble(amountString);
-							sendBal = currentBal - amountDouble;
+						// DEDUCTING THE SENDER BALANCE
+						SQLQuery.withdraw(ID, amountDouble);
 
-							// DEDUCTING THE SENDER BALANCE
-							try {
-								// Open the file in read mode
-								String filename = getID + ".txt";
-								BufferedReader br = new BufferedReader(new FileReader(filename));
+						fEdited1 = false;
+						fEdited2 = false;
+						fEdited3 = false;
+						aEdited = false;
+						check = false;
+						sLabel.setText("");
+						Label1.setText("");
+						Label2.setText("");
+						Label3.setText("");
+						Field1.setText("");
+						Field2.setText("");
+						Field1.setVisible(false);
+						Field2.setVisible(false);
+						newAmountField.setVisible(false);
+						pickup.setVisible(false);
+						delivery.setVisible(false);
+						branchbox.setVisible(false);
+						termsCheck.setVisible(false);
+						checkLabel.setVisible(false);
+						pickupConfirm.setVisible(false);
+						termsAndconditions.setVisible(false);
 
-								// Create a temporary file to write the modified contents to
-								PrintWriter pw = new PrintWriter(new FileWriter("SenderTransac.txt"));
+						successFrame.setVisible(true);
 
-								// Read each line of the file and modify the balance if necessary
-								String line;
-								while ((line = br.readLine()) != null) {
-									if (line.startsWith("Balance: ")) {
-										// Replace the number after "Balance: " with a new value
-
-										line = "Balance: " + sendBal;
-									}
-									// Write the modified line to the temporary file
-									pw.println(line);
-								}
-
-								// Close the input and output files
-								br.close();
-								pw.close();
-
-								// Rename the temporary file to the original file name
-								File file = new File(getID + ".txt");
-								file.delete();
-								File tempFile = new File("SenderTransac.txt");
-								tempFile.renameTo(file);
-
-							} catch (IOException e1) {
-								System.err.println("Error: " + e1.getMessage());
-							}
-							fEdited1 = false;
-							fEdited2 = false;
-							fEdited3 = false;
-							aEdited = false;
-							check = false;
-							sLabel.setText("");
-							Label1.setText("");
-							Label2.setText("");
-							Label3.setText("");
-							Field1.setText("");
-							Field2.setText("");
-							Field1.setVisible(false);
-							Field2.setVisible(false);
-							newAmountField.setVisible(false);
-							pickup.setVisible(false);
-							delivery.setVisible(false);
-							branchbox.setVisible(false);
-							termsCheck.setVisible(false);
-							checkLabel.setVisible(false);
-							pickupConfirm.setVisible(false);
-							termsAndconditions.setVisible(false);
-
-							successFrame.setVisible(true);
-
-						}
 					}
 
 				});
@@ -1766,9 +1530,7 @@ public class Wallet extends JFrame {
 				schoolConfirm.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 
-						double validAmount = Double.parseDouble(getBalTemp);
 						String amountString = newAmountField.getText().trim();
-						double amountDouble = 0.0, sendBal = 0.0;
 						selectedSchool = (String) schoolbox.getSelectedItem();
 
 						if (!isNumeric(amountString)) {
@@ -1781,7 +1543,7 @@ public class Wallet extends JFrame {
 								// the input is 0 or a negative number
 								newAmountField.setForeground(Color.RED);
 								aEdited = false;
-							} else if (amount > validAmount) {
+							} else if (amount > currentBal) {
 								newAmountField.setForeground(Color.RED);
 								aEdited = false;
 							} else {
@@ -1820,75 +1582,42 @@ public class Wallet extends JFrame {
 						} else {
 							termsCheck.setBackground(Color.RED);
 						}
+//
+//						if (!fEdited1 || !fEdited2 || !fEdited3 || !aEdited || !check) {
+//
+//						} else {
 
-						if (!fEdited1 || !fEdited2 || !fEdited3 || !aEdited || !check) {
+						amountString = newAmountField.getText();
+						double amountDouble = Double.parseDouble(amountString);
 
-						} else {
+						// DEDUCTING THE SENDER BALANCE
+						SQLQuery.payBills(ID, amountDouble, selectedSchool);
 
-							amountString = newAmountField.getText();
-							currentBal = Double.parseDouble(getBalTemp);
-							amountDouble = Double.parseDouble(amountString);
-							sendBal = currentBal - amountDouble;
+						fEdited1 = false;
+						fEdited2 = false;
+						check = false;
+						sLabel.setText("");
+						Label1.setText("");
+						Label2.setText("");
+						Label3.setText("");
+						Field1.setText("");
+						Field2.setText("");
+						Field3.setText("");
+						Field1.setVisible(false);
+						Field2.setVisible(false);
+						Field3.setVisible(false);
+						newAmountField.setVisible(false);
+						pickup.setVisible(false);
+						delivery.setVisible(false);
+						schoolbox.setVisible(false);
+						termsCheck.setVisible(false);
+						checkLabel.setVisible(false);
+						schoolConfirm.setVisible(false);
+						termsAndconditions.setVisible(false);
 
-							// DEDUCTING THE SENDER BALANCE
-							try {
-								// Open the file in read mode
-								String filename = getID + ".txt";
-								BufferedReader br = new BufferedReader(new FileReader(filename));
+						successFrame.setVisible(true);
 
-								// Create a temporary file to write the modified contents to
-								PrintWriter pw = new PrintWriter(new FileWriter("SenderTransac.txt"));
-
-								// Read each line of the file and modify the balance if necessary
-								String line;
-								while ((line = br.readLine()) != null) {
-									if (line.startsWith("Balance: ")) {
-										// Replace the number after "Balance: " with a new value
-
-										line = "Balance: " + sendBal;
-									}
-									// Write the modified line to the temporary file
-									pw.println(line);
-								}
-
-								// Close the input and output files
-								br.close();
-								pw.close();
-
-								// Rename the temporary file to the original file name
-								File file = new File(getID + ".txt");
-								file.delete();
-								File tempFile = new File("SenderTransac.txt");
-								tempFile.renameTo(file);
-
-							} catch (IOException e1) {
-								System.err.println("Error: " + e1.getMessage());
-							}
-							fEdited1 = false;
-							fEdited2 = false;
-							check = false;
-							sLabel.setText("");
-							Label1.setText("");
-							Label2.setText("");
-							Label3.setText("");
-							Field1.setText("");
-							Field2.setText("");
-							Field3.setText("");
-							Field1.setVisible(false);
-							Field2.setVisible(false);
-							Field3.setVisible(false);
-							newAmountField.setVisible(false);
-							pickup.setVisible(false);
-							delivery.setVisible(false);
-							schoolbox.setVisible(false);
-							termsCheck.setVisible(false);
-							checkLabel.setVisible(false);
-							schoolConfirm.setVisible(false);
-							termsAndconditions.setVisible(false);
-
-							successFrame.setVisible(true);
-
-						}
+//						}
 
 					}
 				});
@@ -1929,10 +1658,8 @@ public class Wallet extends JFrame {
 				waterConfirm.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 
-						double validAmount = Double.parseDouble(getBalTemp);
 						String amountString = newAmountField.getText();
-						;
-						double amountDouble = 0.0, sendBal = 0.0;
+
 						selectedWater = (String) waterbox.getSelectedItem();
 
 						if (!isNumeric(amountString)) {
@@ -1945,7 +1672,7 @@ public class Wallet extends JFrame {
 								// the input is 0 or a negative number
 								newAmountField.setForeground(Color.RED);
 								aEdited = false;
-							} else if (amount > validAmount) {
+							} else if (amount > currentBal) {
 								newAmountField.setForeground(Color.RED);
 								aEdited = false;
 							} else {
@@ -1985,74 +1712,35 @@ public class Wallet extends JFrame {
 							termsCheck.setBackground(Color.RED);
 						}
 
-						if (!fEdited1 || !fEdited2 || !fEdited3 || !aEdited || !check) {
+						amountString = newAmountField.getText();
+						double amountDouble = Double.parseDouble(amountString);
 
-						} else {
+						// DEDUCTING THE SENDER BALANCE
+						SQLQuery.payBills(ID, amountDouble, selectedWater);
 
-							amountString = newAmountField.getText();
-							currentBal = Double.parseDouble(getBalTemp);
-							amountDouble = Double.parseDouble(amountString);
-							sendBal = currentBal - amountDouble;
+						fEdited1 = false;
+						fEdited2 = false;
+						check = false;
+						sLabel.setText("");
+						Label1.setText("");
+						Label2.setText("");
+						Label3.setText("");
+						Field1.setText("");
+						Field2.setText("");
+						Field3.setText("");
+						Field1.setVisible(false);
+						Field2.setVisible(false);
+						Field3.setVisible(false);
+						newAmountField.setVisible(false);
+						pickup.setVisible(false);
+						delivery.setVisible(false);
+						waterbox.setVisible(false);
+						termsCheck.setVisible(false);
+						checkLabel.setVisible(false);
+						waterConfirm.setVisible(false);
+						termsAndconditions.setVisible(false);
 
-							// DEDUCTING THE SENDER BALANCE
-							try {
-								// Open the file in read mode
-								String filename = getID + ".txt";
-								BufferedReader br = new BufferedReader(new FileReader(filename));
-
-								// Create a temporary file to write the modified contents to
-								PrintWriter pw = new PrintWriter(new FileWriter("SenderTransac.txt"));
-
-								// Read each line of the file and modify the balance if necessary
-								String line;
-								while ((line = br.readLine()) != null) {
-									if (line.startsWith("Balance: ")) {
-										// Replace the number after "Balance: " with a new value
-
-										line = "Balance: " + sendBal;
-									}
-									// Write the modified line to the temporary file
-									pw.println(line);
-								}
-
-								// Close the input and output files
-								br.close();
-								pw.close();
-
-								// Rename the temporary file to the original file name
-								File file = new File(getID + ".txt");
-								file.delete();
-								File tempFile = new File("SenderTransac.txt");
-								tempFile.renameTo(file);
-
-							} catch (IOException e1) {
-								System.err.println("Error: " + e1.getMessage());
-							}
-							fEdited1 = false;
-							fEdited2 = false;
-							check = false;
-							sLabel.setText("");
-							Label1.setText("");
-							Label2.setText("");
-							Label3.setText("");
-							Field1.setText("");
-							Field2.setText("");
-							Field3.setText("");
-							Field1.setVisible(false);
-							Field2.setVisible(false);
-							Field3.setVisible(false);
-							newAmountField.setVisible(false);
-							pickup.setVisible(false);
-							delivery.setVisible(false);
-							waterbox.setVisible(false);
-							termsCheck.setVisible(false);
-							checkLabel.setVisible(false);
-							waterConfirm.setVisible(false);
-							termsAndconditions.setVisible(false);
-
-							successFrame.setVisible(true);
-
-						}
+						successFrame.setVisible(true);
 
 					}
 				});
@@ -2093,10 +1781,7 @@ public class Wallet extends JFrame {
 				elecConfirm.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 
-						double validAmount = Double.parseDouble(getBalTemp);
 						String amountString = newAmountField.getText();
-						;
-						double amountDouble = 0.0, sendBal = 0.0;
 						selectedElectric = (String) electricitybox.getSelectedItem();
 
 						if (!isNumeric(amountString)) {
@@ -2109,7 +1794,7 @@ public class Wallet extends JFrame {
 								// the input is 0 or a negative number
 								newAmountField.setForeground(Color.RED);
 								aEdited = false;
-							} else if (amount > validAmount) {
+							} else if (amount > currentBal) {
 								newAmountField.setForeground(Color.RED);
 								aEdited = false;
 							} else {
@@ -2154,44 +1839,11 @@ public class Wallet extends JFrame {
 						} else {
 
 							amountString = newAmountField.getText();
-							currentBal = Double.parseDouble(getBalTemp);
-							amountDouble = Double.parseDouble(amountString);
-							sendBal = currentBal - amountDouble;
+							double amountDouble = Double.parseDouble(amountString);
 
 							// DEDUCTING THE SENDER BALANCE
-							try {
-								// Open the file in read mode
-								String filename = getID + ".txt";
-								BufferedReader br = new BufferedReader(new FileReader(filename));
+							SQLQuery.payBills(ID, amountDouble, selectedElectric);
 
-								// Create a temporary file to write the modified contents to
-								PrintWriter pw = new PrintWriter(new FileWriter("SenderTransac.txt"));
-
-								// Read each line of the file and modify the balance if necessary
-								String line;
-								while ((line = br.readLine()) != null) {
-									if (line.startsWith("Balance: ")) {
-										// Replace the number after "Balance: " with a new value
-
-										line = "Balance: " + sendBal;
-									}
-									// Write the modified line to the temporary file
-									pw.println(line);
-								}
-
-								// Close the input and output files
-								br.close();
-								pw.close();
-
-								// Rename the temporary file to the original file name
-								File file = new File(getID + ".txt");
-								file.delete();
-								File tempFile = new File("SenderTransac.txt");
-								tempFile.renameTo(file);
-
-							} catch (IOException e1) {
-								System.err.println("Error: " + e1.getMessage());
-							}
 							fEdited1 = false;
 							fEdited2 = false;
 							check = false;
@@ -2279,9 +1931,7 @@ public class Wallet extends JFrame {
 				borrowConfirm.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 
-						// double validAmount = Double.parseDouble(getBalTemp);
 						String amountString = Field1.getText();
-						double newReceiverBal = 0.0, amountDouble = 0.0;
 
 						if (!isNumeric(amountString)) {
 							// the input is not a valid number
@@ -2313,60 +1963,11 @@ public class Wallet extends JFrame {
 							Field1.setForeground(Color.BLACK);
 
 							// GETTING THE BALANCE OF THE RECEIVER
-							String r = getID;
-							String fileName = r + ".txt";
-							String balance = null;
-							amountDouble = Double.parseDouble(amountString);
-							try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-								String line;
-								while ((line = br.readLine()) != null) {
-									if (line.startsWith("Balance: ")) {
-										balance = line.substring("Balance: ".length()).trim();
-										newReceiverBal = Double.parseDouble(balance);
-										newReceiverBal += amountDouble;
-										break;
-									}
-								}
 
-							} catch (IOException e1) {
-								e1.printStackTrace();
-							}
+							amountString = newAmountField.getText();
+							double amountDouble = Double.parseDouble(amountString);
 
-							// ADDING THE NEW BALANCE OF RECEIVER
-							try {
-								// Open the file in read mode
-								String receiver = getID;
-								String fileN = receiver + ".txt";
-								BufferedReader br = new BufferedReader(new FileReader(fileN));
-
-								// Create a temporary file to write the modified contents to
-								PrintWriter pw = new PrintWriter(new FileWriter("RecieverTransac.txt"));
-
-								// Read each line of the file and modify the balance if necessary
-								String line;
-								while ((line = br.readLine()) != null) {
-									if (line.startsWith("Balance: ")) {
-										// Replace the number after "Balance: " with a new value
-										System.out.println(newReceiverBal);
-										line = "Balance: " + newReceiverBal;
-									}
-									// Write the modified line to the temporary file
-									pw.println(line);
-								}
-
-								// Close the input and output files
-								br.close();
-								pw.close();
-
-								// Rename the temporary file to the original file name
-								File file = new File(receiver + ".txt");
-								file.delete();
-								File tempFile = new File("RecieverTransac.txt");
-								tempFile.renameTo(file);
-
-							} catch (IOException e1) {
-								System.err.println("Error: " + e1.getMessage());
-							}
+							SQLQuery.addBalance(ID, amountDouble);
 
 							fEdited1 = false;
 							fEdited2 = false;
