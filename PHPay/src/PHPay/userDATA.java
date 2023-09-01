@@ -10,27 +10,20 @@ public class userDATA {
 	
 	private accountInfo account;
 
-	@SuppressWarnings("unused")
-	private double balance;
-
 	private SQLConnection con;
 
 	public userDATA(String userID, String userName, String userPass, double balance, accountInfo account) {
 		this.userID = userID;
 		this.userName = userName;
 		this.userPass = userPass;
-		this.balance = balance;
 		this.account = account;
 		this.con = new SQLConnection();
 
 	}
 
-	public void setBalance(double newBalance) {
-		this.balance = newBalance;
-	}
+
 
 	public void saveAccount() {
-		this.con.Connect();
 		String query = "INSERT INTO `users`(`id`, `username`, `password_hash`) VALUES (?, ?, ?)";
 
 		String hashed = AccountVerify.passwordHash(this.userPass);
