@@ -40,7 +40,7 @@ public class Reg extends JFrame{
 	boolean ageEdited = false;
 	boolean yearEdited = false;
 	public String selectedDay,selectedMonth;
-	private String FName, lName, ageStr, phone, address, saveM, saveD;
+	private String FName, lName, ageStr, phone, address;
 	private int year;
 	private JPanel focusBG;
 	private final JButton ignoreThisVariable = new JButton("");	 
@@ -194,8 +194,8 @@ public class Reg extends JFrame{
 		        	String saveF = firstNameField.getText();
     		    	String saveL = lastNameField.getText();
     		    	String saveA = ageField.getText();
-    		    	saveM = selectedMonth;
-    		    	saveD = selectedDay;
+    		    	String saveM = selectedMonth;
+    		    	String saveD = selectedDay;
     		    	String saveY = yearField.getText();
     		    	String saveP = phonenumberField.getText();
     		    	String saveAd = addressField.getText();
@@ -557,11 +557,7 @@ public class Reg extends JFrame{
 		panel_1_1_1_1.setBounds(88, 32, 386, 30);
 		panel.add(panel_1_1_1_1);
 
-		saveM = "";
-		saveD = "";
-		
-
-		String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+		String[] months = {"Month", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 		JComboBox<String> monthBox = new JComboBox<>(months);
 		monthBox.setBounds(88, 240, 77, 30);
 		monthBox.setFont(new Font("Microsoft YaHei Light", Font.PLAIN, 13));
@@ -570,12 +566,12 @@ public class Reg extends JFrame{
 		panel.add(monthBox);
 		monthBox.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        saveM = selectedMonth; // save previous value
 		        selectedMonth = (String) monthBox.getSelectedItem();
+		        System.out.println("Month " +selectedMonth);
 		    }
 		});
 
-		String[] days = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"};    
+		String[] days = {"Day", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"};    
 		JComboBox<String> dayBox = new JComboBox<>(days);
 		dayBox.setBounds(179, 240, 77, 30);
 		dayBox.setFont(new Font("Microsoft YaHei Light", Font.PLAIN, 13));
@@ -584,8 +580,8 @@ public class Reg extends JFrame{
 		panel.add(dayBox);
 		dayBox.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        saveD = selectedDay; // save previous value
 		        selectedDay = (String) dayBox.getSelectedItem();
+		        System.out.println("Day " +selectedDay);
 		    }
 		});
 
