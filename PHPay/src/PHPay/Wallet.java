@@ -15,7 +15,6 @@ import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.PreparedStatement;
@@ -60,7 +59,6 @@ public class Wallet extends JFrame {
 	private boolean check = false;
 	private JLabel showBalance, BG1;
 	private double currentBal;
-	private String getID;
 
 	public static String addCommaSeparator(String value) {
 		DecimalFormat formatter = new DecimalFormat("#,###.0");
@@ -2199,7 +2197,7 @@ public class Wallet extends JFrame {
 		SQLConnection newCon = new SQLConnection();
 		newCon.Connect();
 
-		String query = "SELECT `balance` FROM `users` WHERE id = ?";
+		String query = "SELECT `balance` FROM `users` WHERE user_id = ?";
 		try {
 			PreparedStatement ps = newCon.getCon().prepareStatement(query);
 			ps.setString(1, session);

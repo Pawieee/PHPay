@@ -24,7 +24,7 @@ public class userDATA {
 
 
 	public void saveAccount() {
-		String query = "INSERT INTO `users`(`id`, `username`, `password_hash`) VALUES (?, ?, ?)";
+		String query = "INSERT INTO `users`(`user_id`, `username`, `hashed_pass`) VALUES (?, ?, ?)";
 
 		String hashed = AccountVerify.passwordHash(this.userPass);
 		try {
@@ -37,7 +37,7 @@ public class userDATA {
 			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		
-		String query2 = "INSERT INTO `user_profile`(`id`, `f_name`, `l_name`, `age`, `birth_month`, `birth_day`, `birth_year`, `phone_number`, `address`, `email`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String query2 = "INSERT INTO `user_profile`(`user_id`, `fName`, `lName`, `age`, `bMonth`, `bDay`, `bYear`, `phoneNum`, `address`, `email`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try {
 			PreparedStatement pst = this.con.getCon().prepareStatement(query2);

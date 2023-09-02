@@ -14,7 +14,7 @@ public class SQLQuery {
 	public static double getBalance(String ID) {
 		SQLConnection con = new SQLConnection();
 		double bal = 0.0;
-		String query = "SELECT `balance` FROM `users` WHERE id = ?";
+		String query = "SELECT `balance` FROM `users` WHERE user_id = ?";
 		try {
 			PreparedStatement ps = con.getCon().prepareStatement(query);
 			ps.setString(1, ID);
@@ -33,13 +33,13 @@ public class SQLQuery {
 	public boolean IDExists(String ID) {
 		SQLConnection con = new SQLConnection();
 
-		String query = "SELECT `id` FROM `users`";
+		String query = "SELECT `user_id` FROM `users`";
 		try {
 			Statement stmt = con.getCon().createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 
 			while (rs.next()) {
-				String checkID = rs.getString("id");
+				String checkID = rs.getString("user_id");
 				if (checkID.equals(ID)) {
 					return true;
 				}
@@ -54,7 +54,7 @@ public class SQLQuery {
 		SQLConnection con = new SQLConnection();
 
 
-		String query = "DELETE FROM `user_profile` WHERE id = ?";
+		String query = "DELETE FROM `user_profile` WHERE user_id = ?";
 
 		try {
 			PreparedStatement ps = con.getCon().prepareStatement(query);
@@ -63,7 +63,7 @@ public class SQLQuery {
 		} catch (SQLException ex) {
 			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		String query2 = "DELETE FROM `users` WHERE id = ?";
+		String query2 = "DELETE FROM `users` WHERE user_id = ?";
 		
 		try {
 			PreparedStatement ps = con.getCon().prepareStatement(query2);
@@ -77,7 +77,7 @@ public class SQLQuery {
 	public static void addBalance(String ID, double addCash) {
 		SQLConnection con = new SQLConnection();
 
-		String query = "UPDATE `users` SET `balance` = balance + ? WHERE id = ?";
+		String query = "UPDATE `users` SET `balance` = balance + ? WHERE user_id = ?";
 
 		try {
 			PreparedStatement ps = con.getCon().prepareStatement(query);
@@ -94,7 +94,7 @@ public class SQLQuery {
 	public static void deductBalance(String ID, double amount) {
 		SQLConnection con = new SQLConnection();
 
-		String query = "UPDATE `users` SET `balance` = balance - ? WHERE id = ?";
+		String query = "UPDATE `users` SET `balance` = balance - ? WHERE user_id = ?";
 
 		try {
 			PreparedStatement ps = con.getCon().prepareStatement(query);

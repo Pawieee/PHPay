@@ -11,13 +11,10 @@ public class SQLConnection {
 	}
 
 	public void Connect() {
-		String url = "jdbc:mysql://localhost:3306/PHPay";
-		String username = "root";
-		String password = "password";
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			setCon(url, username, password);
+			setCon("jdbc:mysql://192.168.1.3:3306/phpay", "DIO", "password");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}

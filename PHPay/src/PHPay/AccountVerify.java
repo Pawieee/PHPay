@@ -63,15 +63,15 @@ public class AccountVerify {
 	
 	public static String sessionID(String user) {
 		con.Connect();
-		String query = "SELECT `id` FROM `users` WHERE username = ?";
-		String id = "";
+		String query = "SELECT `user_id` FROM `users` WHERE username = ?";
+		String id = "";	
 		try {
 			PreparedStatement ps = con.getCon().prepareStatement(query);
 			ps.setString(1, user);
 			ResultSet rs = ps.executeQuery();
 			
 			if (rs.next()) {
-				id = rs.getString("id");
+				id = rs.getString("user_id");
 			}
 		
 		} catch (SQLException ex) {
