@@ -460,7 +460,7 @@ public class Welcome extends JFrame {
 		}
 		String hashed = AccountVerify.passwordHash(pass);
 		String hash = "";
-		String query = "SELECT `password_hash` FROM `users` WHERE username = ?";
+		String query = "SELECT `hashed_pass` FROM `users` WHERE username = ?";
 		try {
 			PreparedStatement pst = newCon.getCon().prepareStatement(query);
 			pst.setString(1, user);
@@ -468,7 +468,7 @@ public class Welcome extends JFrame {
 
 			// IF HASHED PASS DOESN'T MEET DATABASED HASH, RETURN FALSE
 			if (rs.next()) {
-				hash = rs.getString("password_hash");
+				hash = rs.getString("hashed_pass");
 			}
 
 		} catch (SQLException ex) {
