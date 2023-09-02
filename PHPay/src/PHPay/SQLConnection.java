@@ -11,9 +11,9 @@ public class SQLConnection {
 	}
 
 	public void Connect() {
-		String url = "jdbc:mysql://192.168.5.101:3306/PHPay";
-		String username = "username";
-		String password = "password";
+		String url = "jdbc:mysql://localhost:3306/PHPay";
+		String username = "root";
+		String password = "4304Qwe123";
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
