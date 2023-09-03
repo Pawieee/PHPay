@@ -4,27 +4,34 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-public class userDATA {
+public class UserData {
 
 	private String userID, userName, userPass;
 	
 	private AccountInfo account;
 
+	@SuppressWarnings("unused")
+	private double balance;
+
 	private SQLConnection con;
 
-	public userDATA(String userID, String userName, String userPass, double balance, AccountInfo account) {
+	public UserData(String userID, String userName, String userPass, double balance, AccountInfo account) {
 		this.userID = userID;
 		this.userName = userName;
 		this.userPass = userPass;
+		this.balance = balance;
 		this.account = account;
 		this.con = new SQLConnection();
 
 	}
 
-
+	public void setBalance(double newBalance) {
+		this.balance = newBalance;
+	}
 
 	public void saveAccount() {
-		String query = "INSERT INTO `users`(`user_id`, `username`, `hashed_pass`) VALUES (?, ?, ?)";
+		this.con.Connect();
+		String query = "INSERT INTO `users`(`id`, `username`, `password_hash`) VALUES (?, ?, ?)";
 
 		String hashed = AccountVerify.passwordHash(this.userPass);
 		try {
@@ -34,10 +41,10 @@ public class userDATA {
 			pst.setString(3, hashed);
 			pst.executeUpdate();
 		} catch (SQLException ex) {
-			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		
-		String query2 = "INSERT INTO `user_profile`(`user_id`, `fName`, `lName`, `age`, `bMonth`, `bDay`, `bYear`, `phoneNum`, `address`, `email`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String query2 = "INSERT INTO `user_profile`(`id`, `f_name`, `l_name`, `age`, `birth_month`, `birth_day`, `birth_year`, `phone_number`, `address`, `email`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try {
 			PreparedStatement pst = this.con.getCon().prepareStatement(query2);
@@ -53,7 +60,7 @@ public class userDATA {
 			pst.setString(10, account.getEmail());
 			pst.executeUpdate();
 		} catch (SQLException ex) {
-			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
 	}

@@ -2,7 +2,7 @@ package PHPay;
 
 import javax.swing.JFrame;
 
-public class phpayMain extends JFrame{
+public class PHPayMain extends JFrame{
 
 	/**
 	 * 
@@ -10,7 +10,7 @@ public class phpayMain extends JFrame{
 	private static final long serialVersionUID = 1L;
 
 	public static void main(String[] args) {
-		loadingPHP hello = new loadingPHP();
+		Loading hello = new Loading();
 		hello.setVisible(true);
 	}
 

@@ -72,7 +72,7 @@ public class UserPassID extends JFrame implements Serializable {
 		}
 	}
 
-	public UserPassID(accountInfo account) {
+	public UserPassID(AccountInfo account) {
 		setBackground(Color.WHITE);
 
 		setAlwaysOnTop(false);
@@ -404,8 +404,8 @@ public class UserPassID extends JFrame implements Serializable {
 		backButton.setBounds(30, 32, 48, 30);
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Reg runFrame = new Reg();
-				runFrame.RunReg();
+				Reg run = new Reg(panel);
+				run.setVisible(true);
 				UserPassID UserPassID = (UserPassID) SwingUtilities.getWindowAncestor(backButton);
 				UserPassID.dispose();
 			}

@@ -533,7 +533,7 @@ public class Wallet extends JFrame {
 				updateBalanceLabelFromFile();
 				termsCheck.setSelected(false);
 
-				processPHP run = new processPHP(getSession());
+				Process run = new Process(getSession());
 				run.setVisible(true);
 				dispose();
 
@@ -973,6 +973,7 @@ public class Wallet extends JFrame {
 							// DEDUCTING THE SENDER BALANCE
 
 							SQLQuery.load(ID, amountDouble);
+
 
 							fEdited1 = false;
 							fEdited2 = false;

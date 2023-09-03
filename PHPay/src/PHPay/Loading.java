@@ -12,7 +12,7 @@ import javax.swing.SwingWorker;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 
-public class loadingPHP extends JFrame {
+public class Loading extends JFrame {
 
 	/**
 	 * 
@@ -20,7 +20,7 @@ public class loadingPHP extends JFrame {
 	private static final long serialVersionUID = 1L;
 	JTextField textField;
 
-	public loadingPHP() {
+	public Loading() {
 
 		setType(Type.UTILITY);
 		setUndecorated(true);
@@ -39,16 +39,8 @@ public class loadingPHP extends JFrame {
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel line = new JLabel("__");
-		line.setHorizontalAlignment(SwingConstants.LEFT);
-		line.setVerticalAlignment(SwingConstants.TOP);
-		line.setForeground(Color.WHITE);
-		line.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 61));
-		line.setBounds(119, 47, 86, 150);
-		panel.add(line);
-		
 		JLabel SPhoto = new JLabel("");
-		SPhoto.setIcon(new ImageIcon(loadingPHP.class.getResource("/PHPay/phpimg/5S-Small.png")));
+		SPhoto.setIcon(new ImageIcon(Loading.class.getResource("/PHPay/phpimg/5S-Small.png")));
 		SPhoto.setBounds(431, 207, 59, 52);
 		panel.add(SPhoto);
 		
@@ -57,7 +49,7 @@ public class loadingPHP extends JFrame {
 		sy.setHorizontalAlignment(SwingConstants.LEFT);
 		sy.setForeground(Color.WHITE);
 		sy.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 12));
-		sy.setBounds(325, 138, 86, 24);
+		sy.setBounds(314, 137, 86, 24);
 		panel.add(sy);
 		
 		JLabel Stock = new JLabel("5StockRedemption");
@@ -65,14 +57,15 @@ public class loadingPHP extends JFrame {
 		Stock.setVerticalAlignment(SwingConstants.TOP);
 		Stock.setForeground(Color.WHITE);
 		Stock.setFont(new Font("Microsoft YaHei", Font.PLAIN, 12));
-		Stock.setBounds(157, 157, 118, 24);
+		Stock.setBounds(168, 157, 118, 24);
 		panel.add(Stock);
 		
-		JLabel PHPAY = new JLabel("PHPay");
-		PHPAY.setVerticalAlignment(SwingConstants.TOP);
+		JLabel PHPAY = new JLabel("");
+		PHPAY.setHorizontalAlignment(SwingConstants.CENTER);
+		PHPAY.setIcon(new ImageIcon(Loading.class.getResource("/PHPay/phpimg/PHPAY-BRAND.png")));
 		PHPAY.setForeground(new Color(255, 255, 255));
 		PHPAY.setFont(new Font("Cocogoose Pro SemiLight", Font.BOLD | Font.ITALIC, 55));
-		PHPAY.setBounds(120, 105, 224, 69);
+		PHPAY.setBounds(-16, 105, 494, 69);
 		panel.add(PHPAY);
 		
 		textField = new JTextField("");
@@ -83,7 +76,7 @@ public class loadingPHP extends JFrame {
 		JLabel PHPAYLOADING = new JLabel("");
 		PHPAYLOADING.setBounds(-1, 0, 502, 275);
 		panel.add(PHPAYLOADING);
-		PHPAYLOADING.setIcon(new ImageIcon(loadingPHP.class.getResource("/PHPay/phpimg/stackedBG.png")));
+		PHPAYLOADING.setIcon(new ImageIcon(Loading.class.getResource("/PHPay/phpimg/stackedBG.png")));
 		PHPAYLOADING.setVisible(true);
 
 		JProgressBar progressBar = new JProgressBar();
@@ -109,8 +102,8 @@ public class loadingPHP extends JFrame {
 
 			protected void done() {
 				progressBar.setVisible(false);
-				loadingPHP.this.setVisible(false); // hide the current frame
-				loadingPHP.this.dispose(); // dispose of the current frame
+				Loading.this.setVisible(false); // hide the current frame
+				Loading.this.dispose(); // dispose of the current frame
 
 				Welcome runFrame = new Welcome();
 				runFrame.setVisible(true);
@@ -120,7 +113,7 @@ public class loadingPHP extends JFrame {
 	}
 
 	public void runloadingPHP() {
-		loadingPHP Fframe = new loadingPHP();
+		Loading Fframe = new Loading();
 		Fframe.setSize(480, 159);
 		Fframe.setResizable(false);
 		Fframe.setDefaultCloseOperation(EXIT_ON_CLOSE);
