@@ -25,7 +25,7 @@ public class SQLQuery {
 				System.out.println(bal);
 			}
 		} catch (SQLException ex) {
-			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		return bal;
 	}
@@ -45,7 +45,7 @@ public class SQLQuery {
 				}
 			}
 		} catch (SQLException ex) {
-			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		return false;
 	}
@@ -61,7 +61,7 @@ public class SQLQuery {
 			ps.setString(1, ID);
 			ps.executeUpdate();
 		} catch (SQLException ex) {
-			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		String query2 = "DELETE FROM `users` WHERE user_id = ?";
 		
@@ -70,7 +70,7 @@ public class SQLQuery {
 			ps.setString(1, ID);
 			ps.executeUpdate();
 		} catch (SQLException ex) {
-			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 
@@ -86,7 +86,7 @@ public class SQLQuery {
 			ps.executeUpdate();
 
 		} catch (SQLException ex) {
-			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
 	}
@@ -103,55 +103,62 @@ public class SQLQuery {
 			ps.executeUpdate();
 
 		} catch (SQLException ex) {
-			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
 	}
 
 	public static void cashIn(String ID, double amount) {
 		addBalance(ID, amount);
-		transaction(ID, "Cash-In");
+		String aamount = amount +"";
+		transaction(ID, "Cash-In", "+"+aamount);
 	}
 
 	public static void sendMoney(String senderID, String receiverID, double amount) {
 		deductBalance(senderID, amount);
-		transaction(senderID, "Sent Money");
+		String aamount1 = amount +"";
+		transaction(senderID, "Sent Money", "-"+aamount1);
 		addBalance(receiverID, amount);
-		transaction(receiverID, "Received Money");
+		String aamount2 = amount +"";
+		transaction(receiverID, "Received Money", "-"+aamount2);
 	}
 
 	public static void load(String ID, double amount) {
 		deductBalance(ID, amount);
-		transaction(ID, "Bought Load");
+		String aamount = amount +"";
+		transaction(ID, "Bought Load", "-"+aamount);
 	}
 
 	public static void withdraw(String ID, double amount) {
 		deductBalance(ID, amount);
-		transaction(ID, "Withdraw Money");
+		String aamount = amount +"";
+		transaction(ID, "Withdraw Money", "-"+aamount);
 	}
 
 	public static void payBills(String ID, double amount, String bill) {
 		deductBalance(ID, amount);
-		transaction(ID, bill + " bill paid");
+		String aamount = amount +"";
+		transaction(ID, bill + " bill paid", "-"+aamount);
 	}
 
-	public static void transaction(String ID, String type) {
+	public static void transaction(String ID, String type, String amount) {
 		SQLConnection con = new SQLConnection();
 
 		Date date = new Date();
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String currentDateTime = format.format(date);
 
-		String query = "INSERT INTO `transactions`(`user_id`, `type`, `time`) VALUES (?, ?, ?)";
+		String query = "INSERT INTO `transactions`(`user_id`, `type`, `time`, `operation`) VALUES (?, ?, ?, ?)";
 
 		try {
 			PreparedStatement ps = con.getCon().prepareStatement(query);
 			ps.setString(1, ID);
 			ps.setString(2, type);
 			ps.setString(3, currentDateTime);
+			ps.setString(4, amount);
 			ps.executeUpdate();
 		} catch (SQLException ex) {
-			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 

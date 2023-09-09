@@ -472,7 +472,7 @@ public class Welcome extends JFrame {
 			}
 
 		} catch (SQLException ex) {
-			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		if (!hash.equals(hashed)) {
 			return userexist;

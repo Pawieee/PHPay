@@ -42,7 +42,6 @@ public class UserPassID extends JFrame implements Serializable {
 
 	boolean userFieldEdited = false;
 	boolean passFieldEdited = false;
-	boolean idEdited = false;
 
 	public JTextField textField, userField;
 	JLabel IDStatusLabel, userStatusLabel, passStatusLabel, passStatusLabel1, note1, note2;
@@ -118,18 +117,6 @@ public class UserPassID extends JFrame implements Serializable {
 		this.randomID = UUID.randomUUID().toString();
 		RandomIdGenerator generator = new RandomIdGenerator();
 
-		JTextField idField = new JTextField();
-		idField.setBackground(Color.WHITE);
-		idField.setFont(new Font("Microsoft YaHei UI Light", Font.BOLD, 17));
-		idField.setEditable(false);
-		idField.setText("");
-		idField.setBounds(88, 147, 290, 46);
-
-		panel.add(idField);
-
-		IDStatusLabel = new JLabel("");
-		IDStatusLabel.setBounds(88, 230, 103, 23);
-		panel.add(IDStatusLabel);
 
 		userStatusLabel = new JLabel("");
 		userStatusLabel.setBounds(88, 302, 103, 23);
@@ -151,26 +138,6 @@ public class UserPassID extends JFrame implements Serializable {
 		note2.setBounds(60, 416, 356, 30);
 		panel.add(note2);
 
-		boolean registerPressed = false;
-
-		JButton generateButton = new JButton("Generate ID");
-		generateButton.setBackground(Color.WHITE);
-		generateButton.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 11));
-		generateButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (!registerPressed) {
-					// Generate a new ID if the register button has not been pressed
-					int id = generator.generateId();
-					IDStatusLabel.setText(" ");
-
-					// Update the ID field with the generated ID
-					idField.setText(String.valueOf(id));
-				}
-			}
-		});
-		generateButton.setBounds(88, 204, 103, 23);
-		panel.add(generateButton);
 
 		JPanel progressPanel = new JPanel();
 		progressPanel.setBounds(88, 480, 290, 30);
@@ -189,7 +156,7 @@ public class UserPassID extends JFrame implements Serializable {
 		RegisterButton.setBackground(new Color(255, 255, 255));
 		RegisterButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (!userFieldEdited || !passFieldEdited || !idEdited) {
+				if (!userFieldEdited || !passFieldEdited) {
 
 				} else {
 					note1.setText("Please take note of your username and password as they are");
@@ -210,13 +177,18 @@ public class UserPassID extends JFrame implements Serializable {
 							// SAVING REGISTER DATA
 
 							// SAVING USERPASSID DATA
-							String saveID = idField.getText();
+							int id = generator.generateId();
+
+							// Update the ID field with the generated ID
+							String saveID = id + "";
 							String saveUser = userField.getText();
 							@SuppressWarnings("deprecation")
 							String savePass = passField.getText();
 							double balance = 0;
 
-							userDATA newAccount = new userDATA(saveID, saveUser, savePass, balance, account);
+							String key = AccountVerify.passkey(saveID);
+							
+							UserData newAccount = new UserData(saveID, saveUser, savePass, key, balance, account);
 							if (newAccount.accountExist() == true) {
 								System.out.println("Duplicate username");
 								System.exit(0);
@@ -271,13 +243,6 @@ public class UserPassID extends JFrame implements Serializable {
 				String User = userField.getText();
 				String Pass = passField.getText();
 
-				if (idField.getText().isEmpty()) {
-					IDStatusLabel.setText("Generate your ID");
-					IDStatusLabel.setForeground(Color.RED);
-				} else {
-					IDStatusLabel.setText(" ");
-					idEdited = true;
-				}
 
 				String user = userField.getText();
 				if (!isValidUser(user)) {

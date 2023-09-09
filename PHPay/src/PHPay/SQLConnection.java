@@ -14,7 +14,7 @@ public class SQLConnection {
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			setCon("jdbc:mysql://192.168.1.3:3306/phpay", "DIO", "password");
+			setCon("jdbc:mysql://localhost:3306/phpay", "DIO", "password");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}

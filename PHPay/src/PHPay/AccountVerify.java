@@ -33,6 +33,26 @@ public class AccountVerify {
 		}
 		return "";
 	}
+	
+	public static String passkey(String password) {
+		try {
+			MessageDigest md = MessageDigest.getInstance("SHA-256");
+
+			md.update(password.getBytes());
+
+			byte[] result = md.digest();
+
+			StringBuilder sb = new StringBuilder();
+
+			for (byte b : result) {
+				sb.append(String.format("%02x", b));
+			}
+			return sb.toString();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
 
 	public static boolean accountExist(String user) {
 		ArrayList<String> names = new ArrayList<>();
@@ -47,7 +67,7 @@ public class AccountVerify {
 				names.add(name);
 			}
 		} catch (SQLException ex) {
-			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
 		if (names.isEmpty()) {
@@ -75,7 +95,7 @@ public class AccountVerify {
 			}
 		
 		} catch (SQLException ex) {
-			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		
 		return id;

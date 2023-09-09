@@ -2213,7 +2213,7 @@ public class Wallet extends JFrame {
 
 			}
 		} catch (SQLException ex) {
-			Logger.getLogger(userDATA.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
 	}
