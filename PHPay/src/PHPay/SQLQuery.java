@@ -11,25 +11,6 @@ import java.util.logging.Logger;
 
 public class SQLQuery {
 
-	public static double getBalance(String ID) {
-		SQLConnection con = new SQLConnection();
-		double bal = 0.0;
-		String query = "SELECT `balance` FROM `users` WHERE user_id = ?";
-		try {
-			PreparedStatement ps = con.getCon().prepareStatement(query);
-			ps.setString(1, ID);
-			ResultSet rs = ps.executeQuery();
-
-			if (rs.next()) {
-				bal = rs.getDouble("balance");
-				System.out.println(bal);
-			}
-		} catch (SQLException ex) {
-			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
-		}
-		return bal;
-	}
-
 	public boolean IDExists(String ID) {
 		SQLConnection con = new SQLConnection();
 
@@ -50,9 +31,60 @@ public class SQLQuery {
 		return false;
 	}
 
-	public static void deleteAccount(String ID) {
+	public static void updatePass(String newPass, String user) {
 		SQLConnection con = new SQLConnection();
 
+		String query = "UPDATE `users` SET `password_hash` = ? WHERE username = ?";
+		//FINISH THIS
+		try {
+			PreparedStatement ps = con.getCon().prepareStatement(query);
+			ps.setString(1, newPass);
+			ps.setString(2, user);
+		} catch (SQLException ex) {
+			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
+
+	public static String getPassKey(String ID) {
+		SQLConnection con = new SQLConnection();
+		String passkey = "";
+		String query = "SELECT `passkey` FROM `users` WHERE user_id = ?";
+		try {
+			PreparedStatement ps = con.getCon().prepareStatement(query);
+			ps.setString(1, ID);
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				passkey = rs.getString("passkey");
+			}
+		} catch (SQLException ex) {
+			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return passkey;
+
+	}
+
+	public static double getBalance(String ID) {
+		SQLConnection con = new SQLConnection();
+		double bal = 0.0;
+		String query = "SELECT `balance` FROM `users` WHERE user_id = ?";
+		try {
+			PreparedStatement ps = con.getCon().prepareStatement(query);
+			ps.setString(1, ID);
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				bal = rs.getDouble("balance");
+				System.out.println(bal);
+			}
+		} catch (SQLException ex) {
+			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return bal;
+	}
+
+	public static void deleteAccount(String ID) {
+		SQLConnection con = new SQLConnection();
 
 		String query = "DELETE FROM `user_profile` WHERE user_id = ?";
 
@@ -64,7 +96,7 @@ public class SQLQuery {
 			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		String query2 = "DELETE FROM `users` WHERE user_id = ?";
-		
+
 		try {
 			PreparedStatement ps = con.getCon().prepareStatement(query2);
 			ps.setString(1, ID);
@@ -110,35 +142,35 @@ public class SQLQuery {
 
 	public static void cashIn(String ID, double amount) {
 		addBalance(ID, amount);
-		String aamount = amount +"";
-		transaction(ID, "Cash-In", "+"+aamount);
+		String aamount = amount + "";
+		transaction(ID, "Cash-In", "+" + aamount);
 	}
 
 	public static void sendMoney(String senderID, String receiverID, double amount) {
 		deductBalance(senderID, amount);
-		String aamount1 = amount +"";
-		transaction(senderID, "Sent Money", "-"+aamount1);
+		String aamount1 = amount + "";
+		transaction(senderID, "Sent Money", "-" + aamount1);
 		addBalance(receiverID, amount);
-		String aamount2 = amount +"";
-		transaction(receiverID, "Received Money", "-"+aamount2);
+		String aamount2 = amount + "";
+		transaction(receiverID, "Received Money", "-" + aamount2);
 	}
 
 	public static void load(String ID, double amount) {
 		deductBalance(ID, amount);
-		String aamount = amount +"";
-		transaction(ID, "Bought Load", "-"+aamount);
+		String aamount = amount + "";
+		transaction(ID, "Bought Load", "-" + aamount);
 	}
 
 	public static void withdraw(String ID, double amount) {
 		deductBalance(ID, amount);
-		String aamount = amount +"";
-		transaction(ID, "Withdraw Money", "-"+aamount);
+		String aamount = amount + "";
+		transaction(ID, "Withdraw Money", "-" + aamount);
 	}
 
 	public static void payBills(String ID, double amount, String bill) {
 		deductBalance(ID, amount);
-		String aamount = amount +"";
-		transaction(ID, bill + " bill paid", "-"+aamount);
+		String aamount = amount + "";
+		transaction(ID, bill + " bill paid", "-" + aamount);
 	}
 
 	public static void transaction(String ID, String type, String amount) {
