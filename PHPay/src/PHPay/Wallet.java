@@ -816,7 +816,7 @@ public class Wallet extends JFrame {
 
 						String amountString = Field1.getText().trim();
 						String receiverID = Field2.getText();
-
+ 
 						if (!isNumeric(amountString)) {
 							// the input is not a valid number
 							Field1.setForeground(Color.RED);
