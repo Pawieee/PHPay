@@ -186,9 +186,12 @@ public class UserPassID extends JFrame implements Serializable {
 							String savePass = passField.getText();
 							double balance = 0;
 
-							String key = AccountVerify.passkey(saveID);
+							String passkey = RandomID.generatePassKey();
+							System.out.println(passkey);
 							
-							UserData newAccount = new UserData(saveID, saveUser, savePass, key, balance, account);
+							String hashedPassKey = AccountVerify.passkey(passkey);
+							
+							UserData newAccount = new UserData(saveID, saveUser, savePass, hashedPassKey, balance, account);
 							if (newAccount.accountExist() == true) {
 								System.out.println("Duplicate username");
 								System.exit(0);
@@ -198,7 +201,7 @@ public class UserPassID extends JFrame implements Serializable {
 							progressPanel.setVisible(false);
 
 							JFrame logoutFrame = new JFrame("");
-							JLabel successLabel = new JLabel("Account created succesfully!");
+							JLabel successLabel = new JLabel(passkey);
 							successLabel.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 18));
 							successLabel.setHorizontalAlignment(SwingConstants.CENTER);
 							logoutFrame.getContentPane().add(successLabel, BorderLayout.CENTER);
@@ -216,8 +219,6 @@ public class UserPassID extends JFrame implements Serializable {
 									dispose();
 									logoutFrame.dispose();
 
-									Welcome mainpage = new Welcome();
-									mainpage.setVisible(true);
 									setVisible(false);
 									dispose();
 
@@ -240,8 +241,6 @@ public class UserPassID extends JFrame implements Serializable {
 		RegisterButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				String User = userField.getText();
-				String Pass = passField.getText();
 
 
 				String user = userField.getText();
