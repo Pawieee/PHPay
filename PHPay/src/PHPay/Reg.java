@@ -154,7 +154,7 @@ public class Reg extends JDialog {
 						if (selectedDayInt == 29) {
 							if (!isLeapYear) {
 								dayEdited = false;
-								return; 
+								return;
 							} else {
 								selectedYear = (String) yearBox.getSelectedItem();
 								dayEdited = true;
@@ -167,7 +167,7 @@ public class Reg extends JDialog {
 						dayEdited = true;
 						selectedYear = (String) yearBox.getSelectedItem();
 					}
-				} 
+				}
 
 				if (!selectedDay.equals("Day")) {
 					birthDay = Integer.parseInt(selectedDay);
