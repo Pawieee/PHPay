@@ -69,12 +69,12 @@ public class Welcome extends JFrame {
 
 		setTitle("PHPAY - Virtual Wallet");
 		getContentPane().setLayout(null);
-
-		JPanel blurPanel = new JPanel();
-		blurPanel.setBackground(new Color(0, 0, 0, 160));
-		blurPanel.setBounds(0, 0, 835, 498);
-		getContentPane().add(blurPanel);
-		blurPanel.setVisible(false);
+		
+				JPanel blurPanel = new JPanel();
+				blurPanel.setBackground(new Color(0, 0, 0, 160));
+				blurPanel.setBounds(0, 0, 835, 498);
+				getContentPane().add(blurPanel);
+				blurPanel.setVisible(false);
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new CompoundBorder());
@@ -84,54 +84,25 @@ public class Welcome extends JFrame {
 		panel.setLayout(null);
 		getContentPane().add(panel);
 
-//		advertisementPanel = new JPanel();
-//		advertisementPanel.setBounds(0, -50, 833, 50); // Initially positioned above the JFrame
-//		advertisementPanel.setBackground(new Color(255, 215, 0)); // Yellow background, you can customize this
-//		panel.add(advertisementPanel); // Add the advertisement panel to the main panel
-//
-//		JLabel advertisementLabel = new JLabel("WELCOME BUGO HINAYUPAK INUTIL WAY PULOS PWEH!");
-//		advertisementLabel.setFont(new Font("Couture", Font.PLAIN, 19));
-//		advertisementLabel.setHorizontalAlignment(SwingConstants.CENTER);
-//		advertisementPanel.add(advertisementLabel);
-//
-//		// Set up the timer for the sliding animation
-//		advertisementTimer = new Timer(10, e -> {
-//			if (advertisementPanel.getY() < 0) {
-//				// Slide the advertisement panel down
-//				advertisementPanel.setLocation(advertisementPanel.getX(), advertisementPanel.getY() + 1);
-//			} else {
-//				// Stop the timer when the advertisement panel is fully visible
-//				advertisementTimer.stop();
-//				// Start a new timer to slide the panel up after a delay
-//				Timer slideUpTimer = new Timer(5000, evt -> {
-//					new Timer(10, e1 -> {
-//						if (advertisementPanel.getY() > -50) {
-//							// Slide the advertisement panel up
-//							advertisementPanel.setLocation(advertisementPanel.getX(), advertisementPanel.getY() - 1);
-//						} else { 
-//							// Stop the timer when the panel is fully hidden
-//							((Timer) e1.getSource()).stop();
-//						}
-//					}).start();
-//				});
-//				slideUpTimer.setRepeats(false); // Run only once
-//				slideUpTimer.start();
-//			}
-//		});
-//
-//		// Start the sliding animation when the JFrame is visible
-//		addWindowListener(new WindowAdapter() {
-//			@Override
-//			public void windowOpened(WindowEvent e) {
-//				advertisementTimer.start();
-//			}
-//		});
-
-		// Color.WHITE, new Color(134, 116, 237)
 		JPanel grayPanel = new JPanel();
 		grayPanel.setBounds(-2, 0, 835, 452);
 		panel.add(grayPanel);
 		grayPanel.setLayout(null);
+		
+		JButton btnNewButton = new JButton("Reset Pass");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new ResetPass();
+				
+			}
+		});
+		
+		JLabel lblNewLabel_2 = new JLabel("New label");
+		lblNewLabel_2.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/eye.png")));
+		lblNewLabel_2.setBounds(283, 216, 30, 25);
+		grayPanel.add(lblNewLabel_2);
+		btnNewButton.setBounds(237, 291, 85, 21);
+		grayPanel.add(btnNewButton);
 
 		JLabel experienceLabel = new JLabel("Experience the convenience of cashless transactions today");
 		experienceLabel.setForeground(new Color(102, 51, 204));
