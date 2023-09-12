@@ -28,12 +28,13 @@ public class UserData {
 		String query = "INSERT INTO `users`(`user_id`, `username`, `hashed_pass`, `passkey`) VALUES (?, ?, ?, ?)";
 
 		String hashed = AccountVerify.passwordHash(this.userPass);
+		
 		try {
 			PreparedStatement pst = this.con.getCon().prepareStatement(query);
 			pst.setString(1, this.userID);
 			pst.setString(2, this.userName);
 			pst.setString(3, hashed);
-			pst.setString(4, passKey);
+			pst.setString(4, this.passKey);
 			pst.executeUpdate();
 		} catch (SQLException ex) {
 			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
