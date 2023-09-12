@@ -34,24 +34,25 @@ public class SQLQuery {
 	public static void updatePass(String newPass, String user) {
 		SQLConnection con = new SQLConnection();
 
-		String query = "UPDATE `users` SET `password_hash` = ? WHERE username = ?";
+		String query = "UPDATE `users` SET `hashed_pass` = ? WHERE username = ?";
 		//FINISH THIS
 		try {
 			PreparedStatement ps = con.getCon().prepareStatement(query);
 			ps.setString(1, newPass);
 			ps.setString(2, user);
+			ps.executeUpdate();
 		} catch (SQLException ex) {
 			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 
-	public static String getPassKey(String ID) {
+	public static String getPassKey(String user) {
 		SQLConnection con = new SQLConnection();
 		String passkey = "";
-		String query = "SELECT `passkey` FROM `users` WHERE user_id = ?";
+		String query = "SELECT `passkey` FROM `users` WHERE username = ?";
 		try {
 			PreparedStatement ps = con.getCon().prepareStatement(query);
-			ps.setString(1, ID);
+			ps.setString(1, user);
 			ResultSet rs = ps.executeQuery();
 
 			if (rs.next()) {
@@ -152,7 +153,7 @@ public class SQLQuery {
 		transaction(senderID, "Sent Money", "-" + aamount1);
 		addBalance(receiverID, amount);
 		String aamount2 = amount + "";
-		transaction(receiverID, "Received Money", "-" + aamount2);
+		transaction(receiverID, "Received Money", "+" + aamount2);
 	}
 
 	public static void load(String ID, double amount) {
@@ -187,7 +188,7 @@ public class SQLQuery {
 			ps.setString(1, ID);
 			ps.setString(2, type);
 			ps.setString(3, currentDateTime);
-			ps.setString(4, amount);
+			ps.setString(4, amount + " ₱");
 			ps.executeUpdate();
 		} catch (SQLException ex) {
 			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
