@@ -230,7 +230,7 @@ public class Welcome extends JFrame {
 					Timer timer = new Timer(50, new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
-							Reg reg = new Reg(blurPanel);
+							Reg reg = new Reg(blurPanel, logo);
 							reg.setVisible(true);
 						}
 					});

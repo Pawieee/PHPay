@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingWorker;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.Toolkit;
 
 public class Loading extends JFrame {
 
@@ -21,6 +22,7 @@ public class Loading extends JFrame {
 	JTextField textField;
 
 	public Loading() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Loading.class.getResource("/PHPay/phpimg/PHPAY-BRAND-ICON2.png")));
 
 		setType(Type.UTILITY);
 		setUndecorated(true);
@@ -35,7 +37,7 @@ public class Loading extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setForeground(SystemColor.textHighlight);
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(0, 0, 500, 276);
+		panel.setBounds(0, 0, 495, 276);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		

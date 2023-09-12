@@ -13,12 +13,14 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.geom.RoundRectangle2D;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Calendar;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Pattern;
 
 import javax.swing.ImageIcon;
@@ -27,8 +29,10 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.Timer;
 
 public class Reg extends JDialog {
 
@@ -46,13 +50,18 @@ public class Reg extends JDialog {
 	boolean dayEdited = false;
 	boolean yearEdited = false;
 	public String selectedDay, selectedMonth, selectedYear, age;
-	private String FName, lName, ageStr, phone, address, saveM, saveD, saveY;
+	private String fName, lName, ageStr, phone, address, saveM, saveD, saveY;
 	private int year, x, y;
 	private JLabel proceedButton;
 	private JLabel dayLabel;
 	private JLabel monthLabel;
 	private JPanel blurPanel;
+	private JLabel logo;
 	private JComboBox<String> yearBox;
+	private static final int LONG_PRESS_DURATION = 1000;
+	private JProgressBar progressBar;
+	private Timer longPressTimer;
+	private AtomicBoolean longPressing = new AtomicBoolean(false);
 
 	public static boolean isValidEmail(String email) {
 		String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-z"
@@ -74,8 +83,9 @@ public class Reg extends JDialog {
 		}
 	}
 
-	public Reg(JPanel blurPanel) {
+	public Reg(JPanel blurPanel, JLabel logo) {
 		this.blurPanel = blurPanel;
+		this.logo = logo;
 		setFont(new Font("Microsoft JhengHei UI Light", Font.PLAIN, 12));
 		setUndecorated(true);
 		setAlwaysOnTop(false);
@@ -89,12 +99,12 @@ public class Reg extends JDialog {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int screenWidth = screenSize.width;
 		int screenHeight = screenSize.height;
-		int centerX = (screenWidth - 395) / 2;
-		int centerY = (screenHeight - 405) / 2;
+		int centerX = (screenWidth - 426) / 2;
+		int centerY = (screenHeight - 446) / 2;
 		setLocation(centerX, centerY);
-		setSize(395, 430);
+		setSize(426, 446);
 		getContentPane().setLayout(null);
-		getContentPane().setBackground(new Color(0, 0, 0, 180));
+		getContentPane().setBackground(new Color(0, 0, 0, 255));
 		getContentPane().addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
@@ -106,25 +116,109 @@ public class Reg extends JDialog {
 			@Override
 			public void windowClosed(WindowEvent e) {
 				blurPanel.setVisible(false);
+				logo.setVisible(true);
 			}
 		});
 
-		GradientPanel panel = new GradientPanel(new Color(255, 255, 255), new Color(255, 255, 255));
+		JPanel panel = new JPanel();
 		panel.setForeground(SystemColor.textHighlight);
-		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(0, 0, 395, 442);
+		panel.setBackground(new Color(0, 0, 0, 10));
+		panel.setBounds(0, 0, 426, 469);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 
-		proceedButton = new JLabel(">");
-		proceedButton.setToolTipText("Proceed");
-		proceedButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
+		JButton nextButton = new JButton("Next");
 
-				int birthMonth = 0, birthDay, birthYear;
+		nextButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 
-				String[] months = { "Month", "January", "February", "March", "April", "May", "June", "July", "August",
+				System.out.println(selectedDay + "" + selectedYear);
+
+				fName = firstNameField.getText();
+				System.out.println(fName);
+				if (fName.equals("  First Name")) {
+					firstNameStatusLabel.setVisible(true);
+					firstNameStatusLabel.setToolTipText("Please type in your first name");
+					firstNameEdited = false;
+				} else if (!isValidName(fName)) {
+					firstNameStatusLabel.setVisible(true);
+					firstNameStatusLabel.setToolTipText("Invalid first name");
+					firstNameEdited = false;
+				} else {
+					firstNameStatusLabel.setVisible(false);
+					firstNameEdited = true;
+				}
+
+				lName = lastNameField.getText();
+				if (lastNameField.getText().equals("  Last Name")) {
+					lastNameStatusLabel.setVisible(true);
+					lastNameStatusLabel.setToolTipText("Please type in your last name");
+					lastNameEdited = false;
+				} else if (!isValidName(lName)) {
+					lastNameStatusLabel.setVisible(true);
+					lastNameStatusLabel.setToolTipText("Invalid last name");
+					lastNameEdited = false;
+				} else {
+					lastNameStatusLabel.setVisible(false);
+					lastNameEdited = true;
+				}
+
+				phone = phonenumberField.getText();
+				if (phone.equals("  Phone Number")) {
+					phoneStatusLabel.setVisible(true);
+					phoneStatusLabel.setToolTipText("Please type in your phone number");
+					phoneEdited = false;
+				} else if (!phone.matches("^\\d{11}$")) {
+					phoneStatusLabel.setVisible(true);
+					phoneStatusLabel.setToolTipText("Invalid phone number");
+					phoneEdited = false;
+				} else if (!(phone.length() == 11)) {
+					phoneStatusLabel.setVisible(true);
+					phoneStatusLabel.setToolTipText("Phone number length is invalid");
+					phoneEdited = false;
+				} else {
+					phoneStatusLabel.setVisible(true);
+					phoneEdited = true;
+				}
+
+				address = addressField.getText();
+				if (address.isEmpty()) {
+					addressStatusLabel.setVisible(true);
+					addressStatusLabel.setToolTipText("Please type in your address");
+					addressEdited = false;
+				} else if (addressField.getText().equals("  Address")) {
+					addressStatusLabel.setVisible(true);
+					addressStatusLabel.setToolTipText("Please type in your address");
+					addressEdited = false;
+				} else if (address.matches("^\\s+$")) {
+					addressStatusLabel.setVisible(true);
+					addressStatusLabel.setToolTipText("Invalid address");
+					addressEdited = false;
+				} else if (address.length() <= 3) {
+					addressStatusLabel.setVisible(true);
+					addressStatusLabel.setToolTipText("Fill your full address");
+					addressEdited = false;
+				} else {
+					addressStatusLabel.setVisible(false);
+					addressEdited = true;
+				}
+
+				String email = emailField.getText();
+				if (email.equals("  Email Address")) {
+					emailStatusLabel.setVisible(true);
+					emailStatusLabel.setToolTipText("Please type in your email");
+					emailEdited = false;
+				} else if (!isValidEmail(email)) {
+					emailStatusLabel.setVisible(true);
+					emailStatusLabel.setToolTipText("Invalid email");
+					emailEdited = false;
+				} else {
+					emailStatusLabel.setVisible(false);
+					emailEdited = true;
+				}
+
+				int birthMonth = 0, birthDay = 0, birthYear = 0;
+				String[] months = { " Month", "January", "February", "March", "April", "May", "June", "July", "August",
 						"September", "October", "November", "December" };
 
 				for (int i = 0; i < months.length; i++) {
@@ -136,9 +230,10 @@ public class Reg extends JDialog {
 
 				if (birthMonth > 0) {
 					monthEdited = true;
-					monthLabel.setForeground(Color.BLACK);
+					monthLabel.setVisible(false);
 				} else {
-					monthLabel.setForeground(Color.RED);
+					monthLabel.setVisible(true);
+					monthLabel.setToolTipText("Please select your birth month");
 					return;
 				}
 
@@ -154,36 +249,27 @@ public class Reg extends JDialog {
 						if (selectedDayInt == 29) {
 							if (!isLeapYear) {
 								dayEdited = false;
-								return; 
+								dayLabel.setVisible(true);
+								dayLabel.setToolTipText(
+										"February 29th is only available in leap years. Please choose another date.");
+								return;
 							} else {
 								selectedYear = (String) yearBox.getSelectedItem();
+								dayLabel.setVisible(false);
 								dayEdited = true;
 							}
 						} else {
 							dayEdited = false;
+							dayLabel.setVisible(true);
+							dayLabel.setToolTipText(
+									"February typically has 28 days, but in leap years, it has 29 days.");
 							return;
 						}
 					} else {
 						dayEdited = true;
 						selectedYear = (String) yearBox.getSelectedItem();
+						dayLabel.setVisible(false);
 					}
-				} 
-
-				if (!selectedDay.equals("Day")) {
-					birthDay = Integer.parseInt(selectedDay);
-					dayLabel.setForeground(Color.BLACK);
-					dayEdited = true;
-				} else {
-					dayLabel.setForeground(Color.RED);
-					return;
-				}
-				if (!selectedYear.equals("Year")) {
-					birthYear = Integer.parseInt(selectedYear);
-					yearLabel.setForeground(Color.BLACK);
-					yearEdited = true;
-				} else {
-					yearLabel.setForeground(Color.RED);
-					return;
 				}
 
 				LocalDate birthDate = LocalDate.of(birthYear, birthMonth, birthDay);
@@ -192,6 +278,38 @@ public class Reg extends JDialog {
 
 				int ageInt = agePeriod.getYears();
 				age = String.valueOf(ageInt);
+
+				if (selectedDay.equals(" Day")) {
+					dayLabel.setVisible(true);
+					dayLabel.setToolTipText("Please select your birth day");
+					System.out.println("days");
+					return;
+				} else if (selectedDay.equals(null)) {
+					dayLabel.setVisible(true);
+					dayLabel.setToolTipText("Please select your birth day");
+					dayEdited = false;
+					System.out.println("days");
+				} else {
+					birthDay = Integer.parseInt(selectedDay);
+					dayLabel.setVisible(false);
+					dayEdited = true;
+					System.out.println("days");
+				}
+
+				if (selectedYear.equals(null)) {
+					yearLabel.setVisible(true);
+					yearLabel.setToolTipText("Please select your birth year");
+					yearEdited = false;
+				} else if (selectedYear.equals(" Year")) {
+					yearLabel.setVisible(true);
+					yearLabel.setToolTipText("Please select your birth year");
+					return;
+				} else {
+					birthYear = Integer.parseInt(selectedYear);
+					yearLabel.setVisible(false);
+					yearEdited = true;
+
+				}
 
 				if (firstNameEdited && lastNameEdited && monthEdited && dayEdited && yearEdited && phoneEdited
 						&& addressEdited && emailEdited && yearEdited) {
@@ -230,91 +348,23 @@ public class Reg extends JDialog {
 			}
 		});
 
-		proceedButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
+		yearLabel = new JLabel("");
+		yearLabel.setVisible(false);
 
-				FName = firstNameField.getText();
-				if (!isValidName(FName)) {
-					firstNameStatusLabel.setText("Invalid name");
-					firstNameStatusLabel.setForeground(Color.RED);
-					firstNameEdited = false;
-				} else if (firstNameField.getText().equals(" First Name")) {
-					firstNameStatusLabel.setText("Invalid name");
-					firstNameStatusLabel.setForeground(Color.RED);
-					firstNameEdited = false;
-				} else {
-					firstNameStatusLabel.setText("");
-					firstNameEdited = true;
-				}
-
-				lName = lastNameField.getText();
-				if (!isValidName(lName)) {
-					lastNameStatusLabel.setText("Invalid name");
-					lastNameStatusLabel.setForeground(Color.RED);
-					lastNameEdited = false;
-				} else if (lastNameField.getText().equals(" Last Name")) {
-					lastNameStatusLabel.setText("Invalid name");
-					lastNameStatusLabel.setForeground(Color.RED);
-					lastNameEdited = false;
-				} else {
-					lastNameStatusLabel.setText("");
-					lastNameEdited = true;
-				}
-
-				phone = phonenumberField.getText();
-				if (phone.isEmpty()) {
-					phoneStatusLabel.setText("Input is empty");
-					phoneStatusLabel.setForeground(Color.RED);
-					phoneEdited = false;
-				} else if (!phone.matches("^\\d{11}$")) {
-					phoneStatusLabel.setText("Invalid phone number");
-					phoneStatusLabel.setForeground(Color.RED);
-					phoneEdited = false;
-				} else if (!(phone.length() == 11)) {
-					phoneStatusLabel.setText("Phone number length is invalid");
-					phoneStatusLabel.setForeground(Color.RED);
-					phoneEdited = false;
-				} else {
-					phoneStatusLabel.setText("");
-					phoneEdited = true;
-				}
-
-				address = addressField.getText();
-				if (address.isEmpty()) {
-					addressStatusLabel.setText("Invalid address");
-					addressStatusLabel.setForeground(Color.RED);
-					addressEdited = false;
-				} else if (addressField.getText().equals("  Address")) {
-					addressStatusLabel.setText("Invalid address");
-					addressStatusLabel.setForeground(Color.RED);
-					addressEdited = false;
-				} else if (address.matches("^\\s+$")) {
-					addressStatusLabel.setText("Invalid address");
-					addressStatusLabel.setForeground(Color.RED);
-					addressEdited = false;
-				} else if (address.length() <= 3) {
-					addressStatusLabel.setText("Fill your full address");
-					addressStatusLabel.setForeground(Color.RED);
-					addressEdited = false;
-				} else {
-					addressStatusLabel.setText("");
-					addressEdited = true;
-				}
-
-				String email = emailField.getText();
-				if (!isValidEmail(email)) {
-					emailStatusLabel.setText("Invalid email");
-					emailStatusLabel.setForeground(Color.RED);
-					emailEdited = false;
-				} else {
-					emailStatusLabel.setText("");
-					emailEdited = true;
-				}
-
-			}
-
-		});
+		dayLabel = new JLabel("");
+		dayLabel.setVisible(false);
+		dayLabel.setIcon(new ImageIcon(Reg.class.getResource("/PHPay/phpimg/warning.png")));
+		dayLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
+		dayLabel.setBounds(232, 354, 20, 20);
+		panel.add(dayLabel);
+		yearLabel.setIcon(new ImageIcon(Reg.class.getResource("/PHPay/phpimg/warning.png")));
+		yearLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
+		yearLabel.setBounds(355, 354, 20, 20);
+		panel.add(yearLabel);
+		nextButton.setBackground(new Color(0, 0, 0));
+		nextButton.setForeground(new Color(0, 0, 0));
+		nextButton.setBounds(144, 395, 122, 43);
+		panel.add(nextButton);
 
 		JLabel lblNewLabel = new JLabel("Sign Up");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -332,6 +382,7 @@ public class Reg extends JDialog {
 
 		JButton back = new JButton("");
 		back.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 
@@ -349,60 +400,56 @@ public class Reg extends JDialog {
 		back.setBorderPainted(false);
 		back.setBorder(null);
 		back.setBackground(Color.WHITE);
-		back.setBounds(365, 0, 30, 33);
+		back.setBounds(392, 4, 30, 33);
 		panel.add(back);
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(192, 192, 192));
-		panel_1.setBounds(0, 70, 395, 2);
+		panel_1.setBounds(0, 70, 507, 2);
 		panel.add(panel_1);
 
-		monthLabel = new JLabel("mont");
+		monthLabel = new JLabel("");
+		monthLabel.setVisible(false);
+		monthLabel.setIcon(new ImageIcon(Reg.class.getResource("/PHPay/phpimg/warning.png")));
 		monthLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
-		monthLabel.setBounds(23, 326, 20, 20);
+		monthLabel.setBounds(120, 354, 20, 20);
 		panel.add(monthLabel);
 
-		dayLabel = new JLabel("dd");
-		dayLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
-		dayLabel.setBounds(189, 326, 20, 20);
-		panel.add(dayLabel);
-
-		proceedButton.setHorizontalAlignment(SwingConstants.CENTER);
-		proceedButton.setForeground(Color.WHITE);
-		proceedButton.setFont(new Font("Tahoma", Font.BOLD, 32));
-		proceedButton.setBounds(337, 363, 48, 45);
-		panel.add(proceedButton);
-
-		firstNameStatusLabel = new JLabel("fn");
+		firstNameStatusLabel = new JLabel("");
+		firstNameStatusLabel.setVerifyInputWhenFocusTarget(false);
+		firstNameStatusLabel.setBackground(new Color(255, 255, 255));
+		firstNameStatusLabel.setVisible(false);
+		firstNameStatusLabel.setIcon(new ImageIcon(Reg.class.getResource("/PHPay/phpimg/warning.png")));
 		firstNameStatusLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
-		firstNameStatusLabel.setBounds(159, 95, 20, 20);
+		firstNameStatusLabel.setBounds(183, 102, 20, 20);
 		panel.add(firstNameStatusLabel);
 
-		lastNameStatusLabel = new JLabel("ln");
+		lastNameStatusLabel = new JLabel("");
+		lastNameStatusLabel.setVisible(false);
+		lastNameStatusLabel.setIcon(new ImageIcon(Reg.class.getResource("/PHPay/phpimg/warning.png")));
 		lastNameStatusLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
-		lastNameStatusLabel.setBounds(337, 95, 20, 20);
+		lastNameStatusLabel.setBounds(377, 102, 20, 20);
 		panel.add(lastNameStatusLabel);
 
-		phoneStatusLabel = new JLabel("pn");
+		phoneStatusLabel = new JLabel("");
+		phoneStatusLabel.setVisible(false);
+		phoneStatusLabel.setIcon(new ImageIcon(Reg.class.getResource("/PHPay/phpimg/warning.png")));
 		phoneStatusLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
-		phoneStatusLabel.setBounds(337, 145, 20, 20);
+		phoneStatusLabel.setBounds(377, 165, 20, 20);
 		panel.add(phoneStatusLabel);
 
-		addressStatusLabel = new JLabel("addr");
+		addressStatusLabel = new JLabel("");
+		addressStatusLabel.setVisible(false);
+		addressStatusLabel.setIcon(new ImageIcon(Reg.class.getResource("/PHPay/phpimg/warning.png")));
 		addressStatusLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
-		addressStatusLabel.setBounds(337, 195, 20, 20);
+		addressStatusLabel.setBounds(377, 228, 20, 20);
 		panel.add(addressStatusLabel);
-
-		yearLabel = new JLabel("yy");
-		yearLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
-		yearLabel.setBounds(268, 326, 20, 20);
-		panel.add(yearLabel);
 
 		firstNameField = new RoundedTextField(10);
 		firstNameField.setToolTipText("");
 		firstNameField.setFont(new Font("Microsoft YaHei Light", Font.PLAIN, 13));
 		firstNameField.setText("  First Name");
-		firstNameField.setBounds(23, 90, 160, 30);
+		firstNameField.setBounds(23, 97, 184, 30);
 		firstNameField.setForeground(Color.GRAY);
 		firstNameField.addFocusListener(new FocusListener() {
 
@@ -427,7 +474,7 @@ public class Reg extends JDialog {
 		lastNameField = new RoundedTextField(10);
 		lastNameField.setText("  Last Name");
 		lastNameField.setFont(new Font("Microsoft YaHei Light", Font.PLAIN, 13));
-		lastNameField.setBounds(209, 90, 160, 30);
+		lastNameField.setBounds(217, 97, 184, 30);
 		lastNameField.setForeground(Color.GRAY);
 		lastNameField.addFocusListener(new FocusListener() {
 			public void focusGained(FocusEvent e) {
@@ -451,7 +498,7 @@ public class Reg extends JDialog {
 		phonenumberField = new RoundedTextField(10);
 		phonenumberField.setText("  Phone Number");
 		phonenumberField.setFont(new Font("Microsoft YaHei Light", Font.PLAIN, 13));
-		phonenumberField.setBounds(23, 140, 346, 30);
+		phonenumberField.setBounds(23, 160, 378, 30);
 		phonenumberField.setForeground(Color.GRAY);
 		phonenumberField.addFocusListener(new FocusListener() {
 			public void focusGained(FocusEvent e) {
@@ -475,7 +522,7 @@ public class Reg extends JDialog {
 		addressField = new RoundedTextField(10);
 		addressField.setText("  Address");
 		addressField.setFont(new Font("Microsoft YaHei Light", Font.PLAIN, 13));
-		addressField.setBounds(23, 190, 346, 30);
+		addressField.setBounds(23, 223, 378, 30);
 		addressField.setForeground(Color.GRAY);
 		addressField.addFocusListener(new FocusListener() {
 			public void focusGained(FocusEvent e) {
@@ -505,7 +552,7 @@ public class Reg extends JDialog {
 		String[] months = { " Month", "January", "February", "March", "April", "May", "June", "July", "August",
 				"September", "October", "November", "December" };
 		RoundedComboBox<String> monthBox = new RoundedComboBox<>(months);
-		monthBox.setBounds(23, 290, 156, 30);
+		monthBox.setBounds(23, 349, 140, 30);
 		monthBox.setFont(new Font("Microsoft YaHei Light", Font.PLAIN, 13));
 		monthBox.setBackground(new Color(0, 0, 0, 1));
 		monthBox.setForeground(new Color(255, 255, 255));
@@ -513,7 +560,6 @@ public class Reg extends JDialog {
 		monthBox.setMaximumRowCount(4);
 		monthBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				saveM = selectedMonth;
 				selectedMonth = (String) monthBox.getSelectedItem();
 			}
 		});
@@ -525,7 +571,7 @@ public class Reg extends JDialog {
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				monthBox.setBackground(new Color(0, 0, 0, 1));
+				monthBox.setBackground(new Color(0, 0, 0));
 			}
 		});
 
@@ -535,7 +581,7 @@ public class Reg extends JDialog {
 			days[i] = String.valueOf(i);
 		}
 		JComboBox<String> dayBox = new JComboBox<>(days);
-		dayBox.setBounds(189, 290, 70, 30);
+		dayBox.setBounds(173, 349, 101, 30);
 		dayBox.setFont(new Font("Microsoft YaHei Light", Font.PLAIN, 13));
 		dayBox.setBackground(new Color(0, 0, 0, 1));
 		dayBox.setForeground(new Color(255, 255, 255));
@@ -544,20 +590,6 @@ public class Reg extends JDialog {
 
 		dayBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				saveD = selectedDay;
-				selectedDay = (String) dayBox.getSelectedItem();
-
-				if (" Day".equals(selectedDay)) {
-					dayBox.setForeground(Color.RED);
-				} else {
-					dayBox.setForeground(Color.WHITE);
-				}
-			}
-		});
-
-		dayBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				saveD = selectedDay; // save previous value
 				selectedDay = (String) dayBox.getSelectedItem();
 			}
 		});
@@ -570,7 +602,7 @@ public class Reg extends JDialog {
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				dayBox.setBackground(new Color(0, 0, 0, 1));
+				dayBox.setBackground(new Color(0, 0, 0));
 			}
 		});
 
@@ -585,7 +617,7 @@ public class Reg extends JDialog {
 		yearBox.setForeground(new Color(255, 255, 255));
 		yearBox.setBackground(new Color(0, 0, 0, 1));
 		yearBox.setFont(new Font("Microsoft YaHei Light", Font.PLAIN, 13));
-		yearBox.setBounds(268, 290, 101, 30);
+		yearBox.setBounds(284, 349, 113, 30);
 		panel.add(yearBox);
 		yearBox.setMaximumRowCount(4);
 		yearBox.addActionListener(new ActionListener() {
@@ -607,26 +639,31 @@ public class Reg extends JDialog {
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				yearBox.setBackground(new Color(0, 0, 0, 1));
+				yearBox.setBackground(new Color(0, 0, 0));
 			}
 		});
 
-		emailStatusLabel = new JLabel("em");
-		emailStatusLabel.setBounds(337, 245, 20, 20);
+		emailStatusLabel = new JLabel("");
+		emailStatusLabel.setVisible(false);
+		emailStatusLabel.setIcon(new ImageIcon(Reg.class.getResource("/PHPay/phpimg/warning.png")));
+		emailStatusLabel.setBounds(377, 291, 20, 20);
 		panel.add(emailStatusLabel);
 		emailStatusLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
 
 		emailField = new RoundedTextField(10);
 		emailField.setText("  Email Address");
-		emailField.setBounds(23, 240, 346, 30);
+		emailField.setBounds(23, 286, 378, 30);
 		panel.add(emailField);
 		emailField.setFont(new Font("Microsoft YaHei Light", Font.PLAIN, 13));
 		emailField.setForeground(Color.GRAY);
 
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setIcon(new ImageIcon(Reg.class.getResource("/PHPay/phpimg/Background-02.png")));
-		lblNewLabel_1.setBounds(0, 0, 395, 431);
-		panel.add(lblNewLabel_1);
+		JLabel background = new JLabel("New label");
+		background.setBackground(new Color(255, 255, 255, 10));
+		background.setIcon(new ImageIcon(Reg.class.getResource("/PHPay/phpimg/Background-02.png")));
+		background.setBounds(0, 0, 444, 455);
+		panel.add(background);
+		background.setEnabled(true);
+
 		emailField.addFocusListener(new FocusListener() {
 			public void focusGained(FocusEvent e) {
 				if (emailField.getText().equals("  Email Address")) {
@@ -652,7 +689,7 @@ public class Reg extends JDialog {
 	}
 
 	public String getFName() {
-		return FName;
+		return fName;
 	}
 
 	public String getLName() {
@@ -686,5 +723,4 @@ public class Reg extends JDialog {
 	public String getEmail() {
 		return emailField.getText();
 	}
-
 }

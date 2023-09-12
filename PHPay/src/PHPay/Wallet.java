@@ -2598,7 +2598,7 @@ public class Wallet extends JFrame {
 		SQLConnection newCon = new SQLConnection();
 		newCon.Connect();
 
-		String query = "SELECT `balance` FROM `users` WHERE id = ?";
+		String query = "SELECT `balance` FROM `users` WHERE user_id = ?";
 		try {
 			PreparedStatement ps = newCon.getCon().prepareStatement(query);
 			ps.setString(1, session);
