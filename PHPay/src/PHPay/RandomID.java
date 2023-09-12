@@ -2,6 +2,7 @@ package PHPay;
 import javax.swing.*;
 import java.util.HashSet;
 import java.util.Random;
+import java.util.UUID;
 
 public class RandomID {
 
@@ -40,4 +41,11 @@ public class RandomID {
 	        frame.add(idField);
 	        frame.setVisible(true);
 	    }
+	    
+	    //Generates a private passkey
+		public static String generatePassKey(){
+			UUID randomUUID = UUID.randomUUID();
+			
+			return randomUUID.toString().replaceAll("_","");
+		}
 	}
