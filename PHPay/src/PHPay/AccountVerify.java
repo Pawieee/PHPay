@@ -25,6 +25,24 @@ public class AccountVerify {
 			StringBuilder sb = new StringBuilder();
 
 			for (byte b : result) {
+			return sb.toString();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
+	
+	public static String passkey(String password) {
+		try {
+			MessageDigest md = MessageDigest.getInstance("SHA-256");
+
+			md.update(password.getBytes());
+
+			byte[] result = md.digest();
+
+			StringBuilder sb = new StringBuilder();
+
+			for (byte b : result) {
 				sb.append(String.format("%02x", b));
 			}
 			return sb.toString();
@@ -64,18 +82,8 @@ public class AccountVerify {
 	public static String sessionID(String user) {
 		con.Connect();
 		String query = "SELECT `user_id` FROM `users` WHERE username = ?";
-		String id = "";
+		String id = "";	
 		try {
-			PreparedStatement ps = con.getCon().prepareStatement(query);
-			ps.setString(1, user);
-			ResultSet rs = ps.executeQuery();
-			
-			if (rs.next()) {
-				id = rs.getString("user_id");
-			}
-		
-		} catch (SQLException ex) {
-			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		
 		return id;

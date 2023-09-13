@@ -6,39 +6,35 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 public class UserData {
 
-	private String userID, userName, userPass;
+	private String userID, userName, userPass, passKey;
 	
 	private AccountInfo account;
 
-	@SuppressWarnings("unused")
-	private double balance;
-
 	private SQLConnection con;
 
-	public UserData(String userID, String userName, String userPass, double balance, AccountInfo account) {
+	public UserData(String userID, String userName, String userPass, String passKey, double balance, AccountInfo account) {
 		this.userID = userID;
 		this.userName = userName;
 		this.userPass = userPass;
-		this.balance = balance;
 		this.account = account;
+		this.passKey = passKey;
 		this.con = new SQLConnection();
 
 	}
 
-	public void setBalance(double newBalance) {
-		this.balance = newBalance;
-	}
+
 
 	public void saveAccount() {
-		this.con.Connect();
-		String query = "INSERT INTO `users`(`user_id`, `username`, `hashed_pass`) VALUES (?, ?, ?)";
+		String query = "INSERT INTO `users`(`user_id`, `username`, `hashed_pass`, `passkey`) VALUES (?, ?, ?, ?)";
 
 		String hashed = AccountVerify.passwordHash(this.userPass);
+		
 		try {
 			PreparedStatement pst = this.con.getCon().prepareStatement(query);
 			pst.setString(1, this.userID);
 			pst.setString(2, this.userName);
 			pst.setString(3, hashed);
+			pst.setString(4, this.passKey);
 			pst.executeUpdate();
 		} catch (SQLException ex) {
 			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
