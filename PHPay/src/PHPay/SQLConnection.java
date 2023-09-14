@@ -6,20 +6,15 @@ public class SQLConnection {
 
 	private Connection connection;
 
-
-
 	public SQLConnection() {
 		Connect();
 	}
 
 	public void Connect() {
-		String url = "jdbc:mysql://localhost:3306/PHPay";
-		String username = "root";
-		String password = "password";
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			setCon(url, username, password);
+			setCon("jdbc:mysql://localhost:3306/phpay", "root", "password");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -33,12 +28,9 @@ public class SQLConnection {
 			e.printStackTrace();
 		}
 	}
+
 	public Connection getCon() {
 		return connection;
 	}
 
-
-
-	
-	
 }

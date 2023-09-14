@@ -3,53 +3,37 @@ package PHPay;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.net.Inet4Address;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Random;
-import javax.swing.ImageIcon;
+import java.util.UUID;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JProgressBar;
 import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridLayout;
-import java.awt.Insets;
-import java.util.UUID;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
-import PHPay.RandomID.RandomIdGenerator;
-import javax.swing.SwingConstants;;
+import PHPay.RandomID.RandomIdGenerator;;
 
 public class UserPassID extends JFrame implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String saveID;
 
 	private String randomID;
 	private JPasswordField passField;
@@ -58,7 +42,6 @@ public class UserPassID extends JFrame implements Serializable {
 
 	boolean userFieldEdited = false;
 	boolean passFieldEdited = false;
-	boolean idEdited = false;
 
 	public JTextField textField, userField;
 	JLabel IDStatusLabel, userStatusLabel, passStatusLabel, passStatusLabel1, note1, note2;
@@ -88,7 +71,7 @@ public class UserPassID extends JFrame implements Serializable {
 		}
 	}
 
-	public UserPassID() {
+	public UserPassID(AccountInfo account) {
 		setBackground(Color.WHITE);
 
 		setAlwaysOnTop(false);
@@ -134,18 +117,6 @@ public class UserPassID extends JFrame implements Serializable {
 		this.randomID = UUID.randomUUID().toString();
 		RandomIdGenerator generator = new RandomIdGenerator();
 
-		JTextField idField = new JTextField();
-		idField.setBackground(Color.WHITE);
-		idField.setFont(new Font("Microsoft YaHei UI Light", Font.BOLD, 17));
-		idField.setEditable(false);
-		idField.setText("");
-		idField.setBounds(88, 147, 290, 46);
-
-		panel.add(idField);
-
-		IDStatusLabel = new JLabel("");
-		IDStatusLabel.setBounds(88, 230, 103, 23);
-		panel.add(IDStatusLabel);
 
 		userStatusLabel = new JLabel("");
 		userStatusLabel.setBounds(88, 302, 103, 23);
@@ -167,26 +138,6 @@ public class UserPassID extends JFrame implements Serializable {
 		note2.setBounds(60, 416, 356, 30);
 		panel.add(note2);
 
-		boolean registerPressed = false;
-
-		JButton generateButton = new JButton("Generate ID");
-		generateButton.setBackground(Color.WHITE);
-		generateButton.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 11));
-		generateButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (!registerPressed) {
-					// Generate a new ID if the register button has not been pressed
-					int id = generator.generateId();
-					IDStatusLabel.setText(" ");
-
-					// Update the ID field with the generated ID
-					idField.setText(String.valueOf(id));
-				}
-			}
-		});
-		generateButton.setBounds(88, 204, 103, 23);
-		panel.add(generateButton);
 
 		JPanel progressPanel = new JPanel();
 		progressPanel.setBounds(88, 480, 290, 30);
@@ -205,7 +156,7 @@ public class UserPassID extends JFrame implements Serializable {
 		RegisterButton.setBackground(new Color(255, 255, 255));
 		RegisterButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (!userFieldEdited || !passFieldEdited || !idEdited) {
+				if (!userFieldEdited || !passFieldEdited) {
 
 				} else {
 					note1.setText("Please take note of your username and password as they are");
@@ -226,24 +177,31 @@ public class UserPassID extends JFrame implements Serializable {
 							// SAVING REGISTER DATA
 
 							// SAVING USERPASSID DATA
-							String saveID = idField.getText();
+							int id = generator.generateId();
+
+							// Update the ID field with the generated ID
+							String saveID = id + "";
 							String saveUser = userField.getText();
 							@SuppressWarnings("deprecation")
 							String savePass = passField.getText();
 							double balance = 0;
 
-							userDATA account = new userDATA(saveID, saveUser, savePass, balance);
-							if (account.accountExist() == false) {
+							String passkey = RandomID.generatePassKey();
+							System.out.println(passkey);
+							
+							String hashedPassKey = AccountVerify.passkey(passkey);
+							
+							UserData newAccount = new UserData(saveID, saveUser, savePass, hashedPassKey, balance, account);
+							if (newAccount.accountExist() == true) {
 								System.out.println("Duplicate username");
 								System.exit(0);
 							}
-							account.saveAccount();
-							CustomerID(saveID);
+							newAccount.saveAccount();
 
 							progressPanel.setVisible(false);
 
 							JFrame logoutFrame = new JFrame("");
-							JLabel successLabel = new JLabel("Account created succesfully!");
+							JLabel successLabel = new JLabel(passkey);
 							successLabel.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 18));
 							successLabel.setHorizontalAlignment(SwingConstants.CENTER);
 							logoutFrame.getContentPane().add(successLabel, BorderLayout.CENTER);
@@ -261,8 +219,6 @@ public class UserPassID extends JFrame implements Serializable {
 									dispose();
 									logoutFrame.dispose();
 
-									Welcome mainpage = new Welcome();
-									mainpage.setVisible(true);
 									setVisible(false);
 									dispose();
 
@@ -285,16 +241,7 @@ public class UserPassID extends JFrame implements Serializable {
 		RegisterButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				String User = userField.getText();
-				String Pass = passField.getText();
 
-				if (idField.getText().isEmpty()) {
-					IDStatusLabel.setText("Generate your ID");
-					IDStatusLabel.setForeground(Color.RED);
-				} else {
-					IDStatusLabel.setText(" ");
-					idEdited = true;
-				}
 
 				String user = userField.getText();
 				if (!isValidUser(user)) {
@@ -421,8 +368,8 @@ public class UserPassID extends JFrame implements Serializable {
 		backButton.setBounds(30, 32, 48, 30);
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Reg runFrame = new Reg();
-				runFrame.RunReg();
+				Reg run = new Reg(panel);
+				run.setVisible(true);
 				UserPassID UserPassID = (UserPassID) SwingUtilities.getWindowAncestor(backButton);
 				UserPassID.dispose();
 			}
@@ -447,6 +394,11 @@ public class UserPassID extends JFrame implements Serializable {
 
 	}
 
+	public UserPassID() {
+		// TODO Auto-generated constructor stub
+		//IDK AUTOMATIC MAN GURO
+	}
+
 	public int generateId() {
 		int id = random.nextInt(100000000 - 100000 + 1) + 100000;
 		while (usedIds.contains(id)) {
@@ -464,42 +416,5 @@ public class UserPassID extends JFrame implements Serializable {
 		frame.setVisible(true);
 	}
 
-	public void CustomerID(String saveID) {
 
-		this.saveID = saveID;
-
-		try {
-			// Open original file for reading
-			BufferedReader reader = new BufferedReader(new FileReader("tempUPID.txt"));
-
-			// Open temporary file for reading
-			BufferedReader tempReader = new BufferedReader(new FileReader("tempREG.txt"));
-
-			// Open file for writing (overwrite existing data)
-			String customer = saveID + ".txt";
-			BufferedWriter writer = new BufferedWriter(new FileWriter(customer));
-
-			// Read and write data from original file
-			String line = null;
-			while ((line = reader.readLine()) != null) {
-				writer.write(line);
-				writer.newLine();
-			}
-
-			// Read and write data from temporary file
-			while ((line = tempReader.readLine()) != null) {
-				writer.write(line);
-				writer.newLine();
-			}
-
-			// Close readers and writer
-			reader.close();
-			tempReader.close();
-			writer.close();
-
-			System.out.println("Successfully merged data into " + customer);
-		} catch (IOException e) {
-			System.out.println("An error occurred: " + e);
-		}
-	}
 }
