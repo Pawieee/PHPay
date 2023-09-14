@@ -5,6 +5,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
+import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -15,6 +16,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.font.TextAttribute;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,6 +30,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
 
@@ -34,6 +39,7 @@ public class Welcome extends JFrame {
 	/**
 	 * 
 	 */
+	private boolean def = true;
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	// private JTextField textField_1;
@@ -96,11 +102,24 @@ public class Welcome extends JFrame {
 				
 			}
 		});
-		
-		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/eye.png")));
-		lblNewLabel_2.setBounds(283, 216, 30, 25);
-		grayPanel.add(lblNewLabel_2);
+		ImageIcon eye = new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/eyetest.png"));
+		ImageIcon eye2 = new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/eyetes2.png"));
+
+		JLabel eye_label = new JLabel("New label");
+		eye_label.setIcon(eye);
+		eye_label.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (def) {
+					eye_label.setIcon(eye2);
+				} else {
+					eye_label.setIcon(eye);
+				}
+				def = !def;
+			}
+		});
+		eye_label.setBounds(288, 216, 25, 25);
+		grayPanel.add(eye_label);
 		btnNewButton.setBounds(237, 291, 85, 21);
 		grayPanel.add(btnNewButton);
 
