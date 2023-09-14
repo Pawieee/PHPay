@@ -6,9 +6,6 @@ import java.awt.geom.RoundRectangle2D;
 
 public class RoundedTextField extends JTextField {
 
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private Shape shape;
 

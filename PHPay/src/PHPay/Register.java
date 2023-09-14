@@ -36,7 +36,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
-public class Reg extends JDialog {
+public class Register extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private RoundedTextField firstNameField, lastNameField, phonenumberField, addressField, emailField;
@@ -85,7 +85,7 @@ public class Reg extends JDialog {
 		}
 	}
 
-	public Reg(JPanel blurPanel, JLabel logo) {
+	public Register(JPanel blurPanel, JLabel logo) {
 		this.blurPanel = blurPanel;
 		this.logo = logo;
 		setFont(new Font("Microsoft JhengHei UI Light", Font.PLAIN, 12));
@@ -94,8 +94,8 @@ public class Reg extends JDialog {
 		setResizable(false);
 		setModal(true);
 		setModalityType(ModalityType.APPLICATION_MODAL);
-		setIconImage(
-				Toolkit.getDefaultToolkit().getImage(Reg.class.getResource("/PHPay/phpimg/PHPAY-BRAND-ICON2.png")));
+		setIconImage(Toolkit.getDefaultToolkit()
+				.getImage(Register.class.getResource("/PHPay/phpimg/PHPAY-BRAND-ICON2.png")));
 		getContentPane().setForeground(Color.WHITE);
 		setForeground(new Color(255, 255, 255));
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -359,11 +359,11 @@ public class Reg extends JDialog {
 
 		dayLabel = new JLabel("");
 		dayLabel.setVisible(false);
-		dayLabel.setIcon(new ImageIcon(Reg.class.getResource("/PHPay/phpimg/warning.png")));
+		dayLabel.setIcon(new ImageIcon(Register.class.getResource("/PHPay/phpimg/warning.png")));
 		dayLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
 		dayLabel.setBounds(232, 354, 20, 20);
 		panel.add(dayLabel);
-		yearLabel.setIcon(new ImageIcon(Reg.class.getResource("/PHPay/phpimg/warning.png")));
+		yearLabel.setIcon(new ImageIcon(Register.class.getResource("/PHPay/phpimg/warning.png")));
 		yearLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
 		yearLabel.setBounds(355, 354, 20, 20);
 		panel.add(yearLabel);
@@ -399,7 +399,7 @@ public class Reg extends JDialog {
 
 			}
 		});
-		back.setIcon(new ImageIcon(Reg.class.getResource("/PHPay/phpimg/exit.png")));
+		back.setIcon(new ImageIcon(Register.class.getResource("/PHPay/phpimg/exit.png")));
 		back.setOpaque(false);
 		back.setForeground(Color.WHITE);
 		back.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -416,7 +416,7 @@ public class Reg extends JDialog {
 
 		monthLabel = new JLabel("");
 		monthLabel.setVisible(false);
-		monthLabel.setIcon(new ImageIcon(Reg.class.getResource("/PHPay/phpimg/warning.png")));
+		monthLabel.setIcon(new ImageIcon(Register.class.getResource("/PHPay/phpimg/warning.png")));
 		monthLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
 		monthLabel.setBounds(120, 354, 20, 20);
 		panel.add(monthLabel);
@@ -425,28 +425,28 @@ public class Reg extends JDialog {
 		firstNameStatusLabel.setVerifyInputWhenFocusTarget(false);
 		firstNameStatusLabel.setBackground(new Color(255, 255, 255));
 		firstNameStatusLabel.setVisible(false);
-		firstNameStatusLabel.setIcon(new ImageIcon(Reg.class.getResource("/PHPay/phpimg/warning.png")));
+		firstNameStatusLabel.setIcon(new ImageIcon(Register.class.getResource("/PHPay/phpimg/warning.png")));
 		firstNameStatusLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
 		firstNameStatusLabel.setBounds(183, 102, 20, 20);
 		panel.add(firstNameStatusLabel);
 
 		lastNameStatusLabel = new JLabel("");
 		lastNameStatusLabel.setVisible(false);
-		lastNameStatusLabel.setIcon(new ImageIcon(Reg.class.getResource("/PHPay/phpimg/warning.png")));
+		lastNameStatusLabel.setIcon(new ImageIcon(Register.class.getResource("/PHPay/phpimg/warning.png")));
 		lastNameStatusLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
 		lastNameStatusLabel.setBounds(377, 102, 20, 20);
 		panel.add(lastNameStatusLabel);
 
 		phoneStatusLabel = new JLabel("");
 		phoneStatusLabel.setVisible(false);
-		phoneStatusLabel.setIcon(new ImageIcon(Reg.class.getResource("/PHPay/phpimg/warning.png")));
+		phoneStatusLabel.setIcon(new ImageIcon(Register.class.getResource("/PHPay/phpimg/warning.png")));
 		phoneStatusLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
 		phoneStatusLabel.setBounds(377, 165, 20, 20);
 		panel.add(phoneStatusLabel);
 
 		addressStatusLabel = new JLabel("");
 		addressStatusLabel.setVisible(false);
-		addressStatusLabel.setIcon(new ImageIcon(Reg.class.getResource("/PHPay/phpimg/warning.png")));
+		addressStatusLabel.setIcon(new ImageIcon(Register.class.getResource("/PHPay/phpimg/warning.png")));
 		addressStatusLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
 		addressStatusLabel.setBounds(377, 228, 20, 20);
 		panel.add(addressStatusLabel);
@@ -651,7 +651,7 @@ public class Reg extends JDialog {
 
 		emailStatusLabel = new JLabel("");
 		emailStatusLabel.setVisible(false);
-		emailStatusLabel.setIcon(new ImageIcon(Reg.class.getResource("/PHPay/phpimg/warning.png")));
+		emailStatusLabel.setIcon(new ImageIcon(Register.class.getResource("/PHPay/phpimg/warning.png")));
 		emailStatusLabel.setBounds(377, 291, 20, 20);
 		panel.add(emailStatusLabel);
 		emailStatusLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
@@ -665,7 +665,7 @@ public class Reg extends JDialog {
 
 		JLabel background = new JLabel("New label");
 		background.setBackground(new Color(255, 255, 255, 10));
-		background.setIcon(new ImageIcon(Reg.class.getResource("/PHPay/phpimg/Background-02.png")));
+		background.setIcon(new ImageIcon(Register.class.getResource("/PHPay/phpimg/Background-02.png")));
 		background.setBounds(0, 0, 444, 455);
 		panel.add(background);
 		background.setEnabled(true);
