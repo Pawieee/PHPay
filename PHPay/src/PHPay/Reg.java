@@ -20,6 +20,8 @@ import java.awt.geom.RoundRectangle2D;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Pattern;
 
@@ -132,8 +134,6 @@ public class Reg extends JDialog {
 		nextButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				System.out.println(selectedDay + "" + selectedYear);
-
 				fName = firstNameField.getText();
 				System.out.println(fName);
 				if (fName.equals("  First Name")) {
@@ -177,7 +177,7 @@ public class Reg extends JDialog {
 					phoneStatusLabel.setToolTipText("Phone number length is invalid");
 					phoneEdited = false;
 				} else {
-					phoneStatusLabel.setVisible(true);
+					phoneStatusLabel.setVisible(false);
 					phoneEdited = true;
 				}
 
@@ -217,16 +217,24 @@ public class Reg extends JDialog {
 					emailEdited = true;
 				}
 
-				int birthMonth = 0, birthDay = 0, birthYear = 0;
-				String[] months = { " Month", "January", "February", "March", "April", "May", "June", "July", "August",
-						"September", "October", "November", "December" };
+				Map<String, Integer> monthMap = new HashMap<>();
+				monthMap.put("Month", 0);
+				monthMap.put("January", 1);
+				monthMap.put("February", 2);
+				monthMap.put("March", 3);
+				monthMap.put("April", 4);
+				monthMap.put("May", 5);
+				monthMap.put("June", 6);
+				monthMap.put("July", 7);
+				monthMap.put("August", 8);
+				monthMap.put("September", 9);
+				monthMap.put("October", 10);
+				monthMap.put("November", 11);
+				monthMap.put("December", 12);
 
-				for (int i = 0; i < months.length; i++) {
-					if (months[i].equals(selectedMonth)) {
-						birthMonth = i;
-						break;
-					}
-				}
+				int birthMonth = monthMap.get(selectedMonth);
+				int birthDay = Integer.parseInt(selectedDay);
+				int birthYear = Integer.parseInt(selectedYear);
 
 				if (birthMonth > 0) {
 					monthEdited = true;
@@ -237,16 +245,12 @@ public class Reg extends JDialog {
 					return;
 				}
 
-				int year = Integer.parseInt(selectedYear);
-
-				boolean isLeapYear = ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0));
-
-				int selectedDayInt = Integer.parseInt(selectedDay);
+				boolean isLeapYear = ((birthYear % 4 == 0 && birthYear % 100 != 0) || (birthYear % 400 == 0));
 
 				if (selectedMonth == "February") {
 
-					if (selectedDayInt >= 29) {
-						if (selectedDayInt == 29) {
+					if (birthDay >= 29) {
+						if (birthDay == 29) {
 							if (!isLeapYear) {
 								dayEdited = false;
 								dayLabel.setVisible(true);
@@ -272,6 +276,8 @@ public class Reg extends JDialog {
 					}
 				}
 
+				birthYear = Integer.parseInt(selectedYear);
+				System.out.println(birthMonth + "" + birthYear + "" + birthDay);
 				LocalDate birthDate = LocalDate.of(birthYear, birthMonth, birthDay);
 				LocalDate currentDate = LocalDate.now();
 				Period agePeriod = Period.between(birthDate, currentDate);

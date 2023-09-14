@@ -12,6 +12,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Home extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -85,6 +87,13 @@ public class Home extends JFrame {
 		titlePanel.add(lblWallet);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Summary");
+		lblNewLabel_1_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+				
+			}
+		});
 		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_1.setForeground(Color.WHITE);
 		lblNewLabel_1_1.setBounds(440, 0, 106, 77);

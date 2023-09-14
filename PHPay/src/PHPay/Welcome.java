@@ -5,10 +5,13 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
@@ -28,6 +31,7 @@ import java.util.logging.Logger;
 
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 
 public class Welcome extends JFrame {
 
@@ -72,7 +76,7 @@ public class Welcome extends JFrame {
 		
 				JPanel blurPanel = new JPanel();
 				blurPanel.setBackground(new Color(0, 0, 0, 160));
-				blurPanel.setBounds(0, 0, 835, 498);
+				blurPanel.setBounds(0, 0, 833, 475);
 				getContentPane().add(blurPanel);
 				blurPanel.setVisible(false);
 
@@ -83,51 +87,61 @@ public class Welcome extends JFrame {
 		panel.setBounds(0, 23, 833, 475);
 		panel.setLayout(null);
 		getContentPane().add(panel);
-
-		JPanel grayPanel = new JPanel();
-		grayPanel.setBounds(-2, 0, 835, 452);
-		panel.add(grayPanel);
-		grayPanel.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Reset Pass");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton seePassword = new JButton("");
+		seePassword.setVisible(false);
+		seePassword.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/eye-open.png")));
+		seePassword.setBounds(280, 215, 30, 30);
+		seePassword.setContentAreaFilled(false);
+		seePassword.setBorder(BorderFactory.createEmptyBorder());
+		panel.add(seePassword);
+
+		JPanel mainPanel = new JPanel();
+		mainPanel.setBounds(-2, 0, 835, 452);
+		panel.add(mainPanel);
+		mainPanel.setLayout(null);
+		
+		JButton resetBtn = new JButton("Reset Pass");
+		resetBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new ResetPass();
 				
 			}
 		});
 		
-		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/eye.png")));
-		lblNewLabel_2.setBounds(283, 216, 30, 25);
-		grayPanel.add(lblNewLabel_2);
-		btnNewButton.setBounds(237, 291, 85, 21);
-		grayPanel.add(btnNewButton);
-
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(40, 243, 273, 1);
+		mainPanel.add(panel_1);
+		resetBtn.setBounds(237, 291, 85, 21);
+		mainPanel.add(resetBtn);
+		resetBtn.setContentAreaFilled(false); // Make the button transparent
+		resetBtn.setBorder(BorderFactory.createEmptyBorder()); // Set empty border
+		
 		JLabel experienceLabel = new JLabel("Experience the convenience of cashless transactions today");
 		experienceLabel.setForeground(new Color(102, 51, 204));
 		experienceLabel.setBounds(373, 81, 432, 21);
-		grayPanel.add(experienceLabel);
+		mainPanel.add(experienceLabel);
 		experienceLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		experienceLabel.setFont(new Font("Bahnschrift", Font.ITALIC, 14));
 
 		JLabel catchPhrase = new JLabel("Transforming Transactions, Powering Possibilities!");
 		catchPhrase.setForeground(new Color(255, 255, 255));
 		catchPhrase.setBounds(373, 400, 432, 30);
-		grayPanel.add(catchPhrase);
+		mainPanel.add(catchPhrase);
 		catchPhrase.setHorizontalAlignment(SwingConstants.CENTER);
 		catchPhrase.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 15));
 
 		userField = new JTextField(" Username");
 		userField.setBounds(40, 142, 273, 30);
 		userField.setFont(new Font("Consolas", Font.BOLD, 14));
-		grayPanel.add(userField);
+		mainPanel.add(userField);
 		userField.setForeground(Color.GRAY);
 
-		passField = new JPasswordField();
+		passField = new RoundedPasswordField(20);
+		passField.setBorder(new EmptyBorder(0, 0, 0, 0));
 		passField.setBounds(40, 215, 273, 30);
 		passField.setFont(new Font("Consolas", Font.BOLD, 14));
-		grayPanel.add(passField);
+		mainPanel.add(passField);
 		passField.setForeground(Color.GRAY);
 		passField.setText(" Password");
 		passField.setEchoChar((char) 0);
@@ -135,11 +149,11 @@ public class Welcome extends JFrame {
 		textField = new JTextField("");
 		textField.setBounds(71, 11, -23, 1);
 		textField.setForeground(Color.GRAY);
-		grayPanel.add(textField);
+		mainPanel.add(textField);
 
 		JButton LoginButton = new JButton("LOGIN");
 		LoginButton.setBounds(116, 284, 105, 30);
-		grayPanel.add(LoginButton);
+		mainPanel.add(LoginButton);
 		LoginButton.setBackground(new Color(255, 255, 255));
 		LoginButton.setForeground(new Color(0, 0, 0));
 		getRootPane().setDefaultButton(LoginButton);
@@ -191,7 +205,7 @@ public class Welcome extends JFrame {
 		register.setHorizontalAlignment(SwingConstants.LEFT);
 		register.setFont(new Font("Microsoft JhengHei UI Light", Font.PLAIN, 13));
 		register.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		grayPanel.add(register);
+		mainPanel.add(register);
 
 		register.addMouseListener(new MouseAdapter() {
 			@Override
@@ -234,7 +248,7 @@ public class Welcome extends JFrame {
 		dontHaveAccountYet.setBounds(69, 340, 228, 30);
 		dontHaveAccountYet.setHorizontalAlignment(SwingConstants.LEFT);
 		dontHaveAccountYet.setFont(new Font("Microsoft JhengHei UI Light", Font.PLAIN, 13));
-		grayPanel.add(dontHaveAccountYet);
+		mainPanel.add(dontHaveAccountYet);
 
 		JLabel phpayLOGO = new JLabel("");
 		phpayLOGO.addMouseListener(new MouseAdapter() {
@@ -248,18 +262,18 @@ public class Welcome extends JFrame {
 		});
 		phpayLOGO.setBackground(new Color(0, 0, 0));
 		phpayLOGO.setBounds(337, 113, 500, 135);
-		grayPanel.add(phpayLOGO);
+		mainPanel.add(phpayLOGO);
 		phpayLOGO.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/PHPAY-BRAND-LARGE.png")));
 
 		logo = new JLabel("");
 		logo.setHorizontalAlignment(SwingConstants.CENTER);
 		logo.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/phpcard.gif")));
 		logo.setBounds(373, 229, 432, 173);
-		grayPanel.add(logo);
+		mainPanel.add(logo);
 
 		JLabel date = new JLabel("Copyright © 2023 PHPay. All Rights Reserved.");
 		date.setBounds(18, 422, 268, 19);
-		grayPanel.add(date);
+		mainPanel.add(date);
 		date.setForeground(new Color(81, 81, 81));
 		date.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 10));
 
@@ -268,12 +282,16 @@ public class Welcome extends JFrame {
 		lblNewLabel.setFont(new Font("Couture", Font.PLAIN, 37));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(3, 41, 341, 89);
-		grayPanel.add(lblNewLabel);
+		mainPanel.add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/Background-03.png")));
 		lblNewLabel_1.setBounds(2, 0, 835, 452);
-		grayPanel.add(lblNewLabel_1);
+		mainPanel.add(lblNewLabel_1);
+		
+		JPanel panel_1_1 = new JPanel();
+		panel_1_1.setBounds(40, 171, 273, 1);
+		mainPanel.add(panel_1_1);
 
 		JButton close = new JButton("");
 		close.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/exit.png")));
@@ -382,26 +400,31 @@ public class Welcome extends JFrame {
 			}
 		});
 
-		passField.addFocusListener(new FocusListener() {
-			public void focusGained(FocusEvent e) {
-				if (Arrays.equals(passField.getPassword(), " Password".toCharArray())) {
-					passField.setText("");
-					passField.setForeground(Color.BLACK);
-					passField.setEchoChar('*');
-				}
-			}
+		passField.addFocusListener(new FocusAdapter() {
+		    @Override
+		    public void focusGained(FocusEvent e) {
+		        if (Arrays.equals(passField.getPassword(), " Password".toCharArray())) {
+		            passField.setText("");
+		            passField.setForeground(Color.WHITE);
+		            passField.setEchoChar('*');
+		            System.out.println("eye1");
+		            seePassword.setVisible(true);
+		            
+		        }
+		    }
 
-			@SuppressWarnings("deprecation")
-			public void focusLost(FocusEvent e) {
-				if (passField.getPassword().length == 0) {
-					passField.setText(" Password");
-					passField.setForeground(Color.GRAY);
-					passField.setEchoChar((char) 0);
-				} else if (!passField.getText().isEmpty()) {
-
-				}
-			}
+		    @Override
+		    public void focusLost(FocusEvent e) {
+		        if (passField.getPassword().length == 0 || String.valueOf(passField.getPassword()).equals(" Password")) {
+		            passField.setText(" Password");
+		            passField.setForeground(Color.GRAY);
+		            passField.setEchoChar((char) 0);
+		            System.out.println("hideeye1");
+		            seePassword.setVisible(false);
+		        }
+		    }
 		});
+
 		userField.addFocusListener(new FocusListener() {
 			public void focusGained(FocusEvent e) {
 				if (userField.getText().equals(" Username")) {

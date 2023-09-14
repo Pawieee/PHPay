@@ -34,7 +34,6 @@ public class UserPassID extends JFrame implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-
 	private String randomID;
 	private JPasswordField passField;
 	private HashSet<Integer> usedIds;
@@ -112,7 +111,6 @@ public class UserPassID extends JFrame implements Serializable {
 		this.randomID = UUID.randomUUID().toString();
 		RandomIdGenerator generator = new RandomIdGenerator();
 
-
 		userStatusLabel = new JLabel("");
 		userStatusLabel.setBounds(88, 302, 103, 23);
 		panel.add(userStatusLabel);
@@ -132,7 +130,6 @@ public class UserPassID extends JFrame implements Serializable {
 		note2 = new JLabel("");
 		note2.setBounds(60, 416, 356, 30);
 		panel.add(note2);
-
 
 		JPanel progressPanel = new JPanel();
 		progressPanel.setBounds(88, 480, 290, 30);
@@ -183,10 +180,11 @@ public class UserPassID extends JFrame implements Serializable {
 
 							String passkey = RandomID.generatePassKey();
 							System.out.println(passkey);
-							
+
 							String hashedPassKey = AccountVerify.passkey(passkey);
-							
-							UserData newAccount = new UserData(saveID, saveUser, savePass, hashedPassKey, balance, account);
+
+							UserData newAccount = new UserData(saveID, saveUser, savePass, hashedPassKey, balance,
+									account);
 							if (newAccount.accountExist() == true) {
 								System.out.println("Duplicate username");
 								System.exit(0);
@@ -235,8 +233,6 @@ public class UserPassID extends JFrame implements Serializable {
 
 		RegisterButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-
 
 				String user = userField.getText();
 				if (!isValidUser(user)) {
@@ -407,6 +403,5 @@ public class UserPassID extends JFrame implements Serializable {
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
-
 
 }

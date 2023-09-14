@@ -87,10 +87,6 @@ public class Loading extends JFrame {
 		progressBar.setBounds(-1, 270, 502, 13);
 		panel.add(progressBar);
 		
-	
-		
-	
-
 		progressBar.setVisible(true);
 		SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
 
