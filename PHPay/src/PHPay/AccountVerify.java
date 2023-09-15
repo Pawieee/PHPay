@@ -33,7 +33,7 @@ public class AccountVerify {
 		}
 		return "";
 	}
-	
+
 	public static String passkey(String password) {
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -80,26 +80,25 @@ public class AccountVerify {
 		}
 		return false;
 	}
-	
+
 	public static String sessionID(String user) {
 		con.Connect();
-		String query = "SELECT `user_id` FROM `users` WHERE username = ?";
-		String id = "";	
+		String query = "SELECT user_id FROM users WHERE username = ?";
+		String id = "";
 		try {
 			PreparedStatement ps = con.getCon().prepareStatement(query);
 			ps.setString(1, user);
 			ResultSet rs = ps.executeQuery();
-			
+
 			if (rs.next()) {
 				id = rs.getString("user_id");
 			}
-		
+
 		} catch (SQLException ex) {
 			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		
+
 		return id;
 	}
-
 
 }

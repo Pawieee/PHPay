@@ -14,7 +14,7 @@ public class SQLConnection {
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			setCon("jdbc:mysql://localhost:3306/phpay", "root", "password");
+			setCon("jdbc:mysql://localhost:3306/PHPay", "root", "password");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}

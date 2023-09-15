@@ -35,7 +35,7 @@ public class SQLQuery {
 		SQLConnection con = new SQLConnection();
 
 		String query = "UPDATE `users` SET `hashed_pass` = ? WHERE username = ?";
-		//FINISH THIS
+		// FINISH THIS
 		try {
 			PreparedStatement ps = con.getCon().prepareStatement(query);
 			ps.setString(1, newPass);

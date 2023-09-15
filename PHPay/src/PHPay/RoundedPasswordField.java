@@ -1,15 +1,17 @@
 package PHPay;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
 
-public class RoundedTextField extends JTextField {
+public class RoundedPasswordField extends JPasswordField {
 
+    /**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	private Shape shape;
 
-    public RoundedTextField(int columns) {
+    public RoundedPasswordField(int columns) {
         super(columns);
         setOpaque(false);
     }
