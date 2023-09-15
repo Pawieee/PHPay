@@ -73,12 +73,12 @@ public class Welcome extends JFrame {
 
 		setTitle("PHPAY - Virtual Wallet");
 		getContentPane().setLayout(null);
-		
-				JPanel blurPanel = new JPanel();
-				blurPanel.setBackground(new Color(0, 0, 0, 160));
-				blurPanel.setBounds(0, 0, 833, 475);
-				getContentPane().add(blurPanel);
-				blurPanel.setVisible(false);
+
+		JPanel blurPanel = new JPanel();
+		blurPanel.setBackground(new Color(0, 0, 0, 160));
+		blurPanel.setBounds(0, 0, 833, 475);
+		getContentPane().add(blurPanel);
+		blurPanel.setVisible(false);
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new CompoundBorder());
@@ -130,6 +130,7 @@ public class Welcome extends JFrame {
 							reg.setVisible(true);
 						}
 					});
+					
 					timer.setRepeats(false);
 					timer.start();
 					blurPanel.setVisible(true);

@@ -40,6 +40,7 @@ public class Home extends JFrame {
 		int centerY = (screenHeight - 750) / 2;
 		setLocation(centerX, centerY);
 		setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 30, 30));
+		setVisible(true);
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
@@ -48,20 +49,20 @@ public class Home extends JFrame {
 		panel.setLayout(null);
 
 		JPanel panelArea = new JPanel();
-		panelArea.setBackground(new Color(255, 255, 255, 100));
+		panelArea.setBackground(new Color(255, 255, 255));
 		panelArea.setBounds(0, 141, 1200, 610);
 		panel.add(panelArea);
 		panelArea.setLayout(null);
 		
 		servicePanel = new ServicePanel();
 		summaryPanel = new SummaryPanel();
-		homePanel = new HomePanel();
 		
 		servicePanel.setVisible(false);
 		summaryPanel.setVisible(false);
+		homePanel = new HomePanel();
+		panelArea.add(homePanel);
 		
 		panelArea.add(servicePanel);
-		panelArea.add(homePanel);
 		panelArea.add(summaryPanel);
 		
 		JLabel lblNewLabel = new JLabel("Home");
@@ -75,6 +76,8 @@ public class Home extends JFrame {
 		panel.add(lblNewLabel);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setForeground(new Color(255, 255, 255));
+		
+		
 
 		JLabel lblWallet = new JLabel("Wallet");
 		lblWallet.addMouseListener(new MouseAdapter() {
