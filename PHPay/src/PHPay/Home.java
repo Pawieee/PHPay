@@ -70,6 +70,7 @@ public class Home extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				titleClicked(homePanel);
+				
 			}
 		});
 		lblNewLabel.setBounds(260, 39, 106, 77);
