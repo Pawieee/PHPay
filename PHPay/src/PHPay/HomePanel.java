@@ -51,11 +51,9 @@ public class HomePanel extends JPanel {
     private JLabel lblTheHighestLevel;
     private JLabel lblForTheirEveryday;
     private JPanel adsPanel;
-    private JLabel label1, label2, label3;
+    private FadingLabel label1, label2;
     private int currentLabelIndex = 0;
     private Timer timer;
-    private int xOffset = 0;
-    private static final int ANIMATION_SPEED = 5;
     
     public HomePanel() {
     	setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -67,7 +65,7 @@ public class HomePanel extends JPanel {
         JPanel panel = new JPanel();
         panel.setBorder(new EmptyBorder(0, 0, 0, 0));
         panel.setPreferredSize(new Dimension(1200, 1225));
-        panel.setBackground(new Color(192, 192, 192));
+        panel.setBackground(new Color(255, 255, 255));
 
         scrollPane = new JScrollPane(panel);
         scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -235,7 +233,7 @@ public class HomePanel extends JPanel {
         memberPanel.add(lblPhpayValuesGcash);
         lblPhpayValuesGcash.setVerticalAlignment(SwingConstants.TOP);
         lblPhpayValuesGcash.setHorizontalAlignment(SwingConstants.CENTER);
-        lblPhpayValuesGcash.setForeground(new Color(0, 0, 0));
+        lblPhpayValuesGcash.setForeground(new Color(102, 0, 255));
         lblPhpayValuesGcash.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 30));
         
         lblPaymentWorld = new JLabel("payment world.");
@@ -243,7 +241,7 @@ public class HomePanel extends JPanel {
         memberPanel.add(lblPaymentWorld);
         lblPaymentWorld.setVerticalAlignment(SwingConstants.TOP);
         lblPaymentWorld.setHorizontalAlignment(SwingConstants.CENTER);
-        lblPaymentWorld.setForeground(new Color(0, 0, 0));
+        lblPaymentWorld.setForeground(new Color(102, 0, 255));
         lblPaymentWorld.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 30));
         
         lblNewLabel_3 = new JLabel("");
@@ -322,36 +320,49 @@ public class HomePanel extends JPanel {
         panel.add(lblForTheirEveryday);
         
         adsPanel = new JPanel();
+        adsPanel.setBackground(new Color(192, 192, 192));
+        adsPanel.setForeground(new Color(192, 192, 192));
         adsPanel.setBounds(509, 34, 646, 283);
         panel.add(adsPanel);
+        adsPanel.setLayout(null);
+        
         scrollPane.setBounds(0, 0, 1200, 610);
 //        scrollPane.setBounds(0, 0, 1200, 1225);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         add(scrollPane);
         
-        // Create labels
-        label1 = new JLabel("Label1");
-        label2 = new JLabel("Label2");
-        label3 = new JLabel("Label3");
+        label1 = new FadingLabel("");
+        label1.setIcon(new ImageIcon(HomePanel.class.getResource("/PHPay/phpimg/blurrybg.png")));
+        label1.setHorizontalAlignment(SwingConstants.CENTER);
+        label1.setBounds(0, 0, 646, 283);
+        
+        label2 = new FadingLabel("");
+        label2.setIcon(new ImageIcon(HomePanel.class.getResource("/PHPay/phpimg/stackedBG.png")));
+        label2.setHorizontalAlignment(SwingConstants.CENTER);
+        label2.setBounds(0, 0, 646, 283);
+        
+//        label3 = new FadingLabel("");
+//        label3.setIcon(new ImageIcon(HomePanel.class.getResource("/PHPay/phpimg/Background-02.png")));
+//        label3.setHorizontalAlignment(SwingConstants.CENTER);
+//        label3.setBounds(0, 0, 646, 283);
 
         adsPanel.add(label1);
         adsPanel.add(label2);
-        adsPanel.add(label3);
+//        adsPanel.add(label3);
 
-        // Set the initial visibility
         label1.setVisible(true);
         label2.setVisible(false);
-        label3.setVisible(false);
+//        label3.setVisible(false);
         
         timer = new Timer(5000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                switchLabels();
+                switchLabelsWithFade();
             }
         });
 
         timer.start();
-
+        
         phpayScroll = new ScrollBarCustom();
         phpayScroll.setBorder(new EmptyBorder(0, 0, 0, 0));
         phpayScroll.setBlockIncrement(1);
@@ -361,47 +372,102 @@ public class HomePanel extends JPanel {
         scrollPane.setVerticalScrollBar(phpayScroll);
     }
     
-    // Method to switch labels with smooth sliding animation
-    private void switchLabels() {
-        int panelWidth = adsPanel.getWidth();
-        int labelWidth = label1.getWidth();
+    private void switchLabelsWithFade() {
+        int fadeDuration = 1000;
+        int pauseDuration = 5000;
 
-        Timer animationTimer = new Timer(ANIMATION_SPEED, new ActionListener() {
+        Timer fadeTimer = new Timer(fadeDuration, new ActionListener() {
+            private int step = 0;
+            private float initialOpacity = 1.0f;
+
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (xOffset >= panelWidth) {
-                    // Reset the xOffset when it reaches the panel width
-                    xOffset = -labelWidth;
-                    ((Timer) e.getSource()).stop(); // Stop the animation timer
+                if (step == 0) {
+                    // Start the fade animation
+                    startFadeAnimation();
+                } else if (step == 1) {
+                    // Pause for 5 seconds
+                    label1.setVisible(false);
+                    label2.setVisible(true);
+                } else if (step == 2) {
+                    // Start fading label2
+                    startFadeAnimation();
                 } else {
-                    // Update the labels' positions for sliding animation
-                    label1.setLocation(xOffset, 0);
-                    label2.setLocation(xOffset + labelWidth, 0);
-                    label3.setLocation(xOffset + 2 * labelWidth, 0);
-                    xOffset++;
+                    // Reset the step and continue the cycle
+                    step = -1;
                 }
+
+                step++;
             }
         });
 
-        // Start the animation timer
-        animationTimer.start();
+        fadeTimer.setInitialDelay(pauseDuration); // Set the initial pause duration
+        fadeTimer.setRepeats(true); // Repeat the timer
+        fadeTimer.start();
+    }
 
-        // Switch the labels without animation
+    private void startFadeAnimation() {
+        int fadeDuration = 1000;
+        int steps = 50;
+
+        Timer fadeTimer = new Timer(fadeDuration / steps, new ActionListener() {
+            private int step = 0;
+            private float initialOpacity = 1.0f;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                float opacity = 1.0f - (float) step / steps;
+                label1.setOpacity(opacity);
+                label2.setOpacity(1.0f - opacity);
+
+                if (step == steps) {
+                    ((Timer) e.getSource()).stop();
+                    switchLabels();
+                }
+
+                step++;
+            }
+        });
+
+        fadeTimer.start();
+    }
+
+    private void switchLabels() {
+        label1.setVisible(false);
+        label2.setVisible(false);
+//        label3.setVisible(false);
+
         if (currentLabelIndex == 0) {
-            label1.setVisible(false);
             label2.setVisible(true);
-            label3.setVisible(false);
             currentLabelIndex = 1;
         } else if (currentLabelIndex == 1) {
-            label1.setVisible(false);
-            label2.setVisible(false);
-            label3.setVisible(true);
+//            label3.setVisible(true);
             currentLabelIndex = 2;
         } else {
             label1.setVisible(true);
-            label2.setVisible(false);
-            label3.setVisible(false);
             currentLabelIndex = 0;
+        }
+    }
+
+    private class FadingLabel extends JLabel {
+		private static final long serialVersionUID = 1L;
+		private float opacity = 1.0f;
+
+        public FadingLabel(String text) {
+            super(text);
+        }
+
+        public void setOpacity(float opacity) {
+            this.opacity = opacity;
+            repaint();
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            Graphics2D g2d = (Graphics2D) g.create();
+            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
+            super.paintComponent(g2d);
+            g2d.dispose();
         }
 
     }
