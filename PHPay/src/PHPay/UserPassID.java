@@ -45,25 +45,6 @@ public class UserPassID extends JFrame implements Serializable {
 	public JTextField textField, userField;
 	JLabel IDStatusLabel, userStatusLabel, passStatusLabel, passStatusLabel1, note1, note2;
 
-	public static boolean isValidUser(String name) {
-		String pattern = "^[a-zA-Z0-9]+$";
-
-		if (name.matches(pattern)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	public static boolean isValidPass(String pass) {
-		String pattern = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
-
-		if (pass.matches(pattern)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
 
 	public UserPassID(AccountInfo account) {
 		setBackground(Color.WHITE);
@@ -143,10 +124,10 @@ public class UserPassID extends JFrame implements Serializable {
 		progressBar.setStringPainted(true);
 		progressPanel.add(progressBar);
 
-		JButton RegisterButton = new JButton("REGISTER");
-		RegisterButton.setFont(new Font("Microsoft YaHei Light", Font.PLAIN, 13));
-		RegisterButton.setBackground(new Color(255, 255, 255));
-		RegisterButton.addActionListener(new ActionListener() {
+		JButton registerButton = new JButton("REGISTER");
+		registerButton.setFont(new Font("Microsoft YaHei Light", Font.PLAIN, 13));
+		registerButton.setBackground(new Color(255, 255, 255));
+		registerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!userFieldEdited || !passFieldEdited) {
 
@@ -231,7 +212,7 @@ public class UserPassID extends JFrame implements Serializable {
 			}
 		});
 
-		RegisterButton.addActionListener(new ActionListener() {
+		registerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				String user = userField.getText();
@@ -264,19 +245,19 @@ public class UserPassID extends JFrame implements Serializable {
 			}
 		});
 
-		RegisterButton.addActionListener(new ActionListener() {
+		registerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 			}
 		});
 
-		RegisterButton.setBounds(172, 497, 124, 30);
-		panel.add(RegisterButton);
+		registerButton.setBounds(172, 497, 124, 30);
+		panel.add(registerButton);
 
-		panel.setComponentZOrder(RegisterButton, 0);
+		panel.setComponentZOrder(registerButton, 0);
 		panel.setComponentZOrder(progressPanel, 1);
-		progressPanel.setBounds(RegisterButton.getBounds().x, RegisterButton.getBounds().y - 40,
-				RegisterButton.getBounds().width, 20);
+		progressPanel.setBounds(registerButton.getBounds().x, registerButton.getBounds().y - 40,
+				registerButton.getBounds().width, 20);
 
 		JButton showPassword = new JButton("0");
 		showPassword.setBackground(Color.WHITE);
@@ -402,6 +383,27 @@ public class UserPassID extends JFrame implements Serializable {
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.setVisible(true);
+	}
+	
+
+	public static boolean isValidUser(String name) {
+		String pattern = "^[a-zA-Z0-9]+$";
+
+		if (name.matches(pattern)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public static boolean isValidPass(String pass) {
+		String pattern = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
+
+		if (pass.matches(pattern)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }
