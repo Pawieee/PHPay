@@ -94,6 +94,7 @@ public class Register extends JDialog {
 		setResizable(false);
 		setModal(true);
 		setModalityType(ModalityType.APPLICATION_MODAL);
+		setBackground(new Color(64, 0, 128));
 		setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(Register.class.getResource("/PHPay/phpimg/PHPAY-BRAND-ICON2.png")));
 		getContentPane().setForeground(Color.WHITE);
@@ -102,11 +103,11 @@ public class Register extends JDialog {
 		int screenWidth = screenSize.width;
 		int screenHeight = screenSize.height;
 		int centerX = (screenWidth - 426) / 2;
-		int centerY = (screenHeight - 446) / 2;
+		int centerY = (screenHeight - 430) / 2;
 		setLocation(centerX, centerY);
-		setSize(426, 446);
+		setSize(426, 451);
 		getContentPane().setLayout(null);
-		getContentPane().setBackground(new Color(0, 0, 0, 255));
+		getContentPane().setBackground(new Color(255, 255, 255));
 		getContentPane().addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
@@ -122,10 +123,10 @@ public class Register extends JDialog {
 			}
 		});
 
-		JPanel panel = new JPanel();
+		RoundedPanel panel = new RoundedPanel(20);
 		panel.setForeground(SystemColor.textHighlight);
-		panel.setBackground(new Color(0, 0, 0, 10));
-		panel.setBounds(0, 0, 426, 469);
+		panel.setBackground(new Color(255, 255, 255));
+		panel.setBounds(0, 0, 426, 452);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 
@@ -380,7 +381,7 @@ public class Register extends JDialog {
 		lblNewLabel.setBackground(new Color(255, 255, 255));
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 
-		RoundedPanel titlePanel = new RoundedPanel(5);
+		RoundedPanel titlePanel = new RoundedPanel(20);
 		titlePanel.setLayout(null);
 		titlePanel.setBackground(new Color(103, 0, 206));
 		titlePanel.setBounds(10, 9, 136, 50);
@@ -664,9 +665,9 @@ public class Register extends JDialog {
 		emailField.setForeground(Color.GRAY);
 
 		JLabel background = new JLabel("New label");
-		background.setBackground(new Color(255, 255, 255, 10));
-		background.setIcon(new ImageIcon(Register.class.getResource("/PHPay/phpimg/Background-02.png")));
-		background.setBounds(0, 0, 444, 455);
+		background.setBackground(new Color(255, 255, 255, 5));
+		background.setIcon(new ImageIcon(Register.class.getResource("/PHPay/phpimg/Background-03.png")));
+		background.setBounds(-200, 0, 833, 452);
 		panel.add(background);
 		background.setEnabled(true);
 

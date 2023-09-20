@@ -17,6 +17,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.font.TextAttribute;
+import java.awt.geom.RoundRectangle2D;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,6 +29,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
@@ -51,6 +53,7 @@ public class Welcome extends JFrame {
 	// private static double angle = 0;
 	private int x, y;
 	private final JButton ignoreThisVariable = new JButton("");
+	PhpaySplash mainPanel;
 
 //	private JPanel advertisementPanel; // New advertisement panel
 //	private Timer advertisementTimer; // Timer for sliding animation
@@ -75,35 +78,35 @@ public class Welcome extends JFrame {
 
 		setTitle("PHPAY - Virtual Wallet");
 		getContentPane().setLayout(null);
-
-		JPanel blurPanel = new JPanel();
-		blurPanel.setBackground(new Color(0, 0, 0, 160));
-		blurPanel.setBounds(0, 0, 833, 475);
-		getContentPane().add(blurPanel);
-		blurPanel.setVisible(false);
+		
+				JPanel blurPanel = new JPanel();
+				blurPanel.setBackground(new Color(0, 0, 0, 160));
+				blurPanel.setBounds(0, 0, 833, 475);
+				getContentPane().add(blurPanel);
+				blurPanel.setVisible(false);
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new CompoundBorder());
 		panel.setForeground(SystemColor.textHighlight);
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(0, 23, 833, 475);
+		panel.setBounds(0, 23, 833, 452);
 		panel.setLayout(null);
 		getContentPane().add(panel);
 
-		JButton seePassword = new JButton("");
-		seePassword.setVisible(false);
-		seePassword.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/eye-open.png")));
-		seePassword.setBounds(280, 215, 30, 30);
-		seePassword.setContentAreaFilled(false);
-		seePassword.setBorder(BorderFactory.createEmptyBorder());
-		panel.add(seePassword);
-
-		JPanel mainPanel = new JPanel();
+//		JButton seePassword = new JButton("");
+//		seePassword.setVisible(false);
+//		seePassword.setBounds(280, 215, 30, 30);
+//		seePassword.setContentAreaFilled(false);
+//		seePassword.setBorder(BorderFactory.createEmptyBorder());
+//		panel.add(seePassword);
+		
+		mainPanel = new PhpaySplash();
 		mainPanel.setBounds(-2, 0, 835, 452);
 		panel.add(mainPanel);
 		mainPanel.setLayout(null);
 
 		JButton resetBtn = new JButton("Forgot Password?");
+		resetBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		resetBtn.setForeground(new Color(255, 255, 255));
 		resetBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -113,9 +116,9 @@ public class Welcome extends JFrame {
 		});
 
 		JLabel register = new JLabel("Sign Up");
-		register.setBounds(147, 385, 60, 30);
+		register.setBounds(136, 385, 71, 30);
 		register.setForeground(new Color(0, 0, 0));
-		register.setHorizontalAlignment(SwingConstants.LEFT);
+		register.setHorizontalAlignment(SwingConstants.CENTER);
 		register.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 13));
 		register.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		mainPanel.add(register);
@@ -130,9 +133,10 @@ public class Welcome extends JFrame {
 						public void actionPerformed(ActionEvent e) {
 							Register reg = new Register(blurPanel, logo);
 							reg.setVisible(true);
+							reg.setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 50, 50));
 						}
 					});
-					
+
 					timer.setRepeats(false);
 					timer.start();
 					blurPanel.setVisible(true);
@@ -159,24 +163,29 @@ public class Welcome extends JFrame {
 			}
 		});
 
-		ImageIcon eye = new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/eyetest.png"));
-		ImageIcon eye2 = new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/eyetes2.png"));
+		ImageIcon eye = new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/see.png"));
+		ImageIcon eye2 = new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/blind.png"));
 
 		JLabel eye_label = new JLabel("New label");
-		eye_label.setIcon(eye);
+		eye_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		eye_label.setBounds(281, 193, 25, 25);
+		eye_label.setIcon(eye2);
 		eye_label.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (def) {
-					eye_label.setIcon(eye2);
-				} else {
 					eye_label.setIcon(eye);
+					eye_label.setBounds(281, 196, 25, 25);
+
+				} else {
+					eye_label.setIcon(eye2);
+					eye_label.setBounds(281, 193, 25, 25);
 				}
 				def = !def;
 			}
 		});
-		eye_label.setBounds(288, 216, 25, 25);
-//		grayPanel.add(eye_label);
+
+		mainPanel.add(eye_label);
 //		btnNewButton.setBounds(237, 291, 85, 21);
 //		grayPanel.add(btnNewButton);
 
@@ -204,7 +213,7 @@ public class Welcome extends JFrame {
 		JPanel passUnderline = new JPanel();
 		passUnderline.setBounds(37, 221, 273, 1);
 		mainPanel.add(passUnderline);
-		resetBtn.setBounds(3, 306, 345, 21);
+		resetBtn.setBounds(122, 306, 105, 21);
 		mainPanel.add(resetBtn);
 		resetBtn.setContentAreaFilled(false); // Make the button transparent
 		resetBtn.setBorder(BorderFactory.createEmptyBorder()); // Set empty border
@@ -212,7 +221,7 @@ public class Welcome extends JFrame {
 		JLabel experienceLabel = new JLabel("Experience the convenience of cashless transactions today");
 		experienceLabel.setBackground(new Color(102, 0, 204, 225));
 		experienceLabel.setForeground(new Color(153, 0, 255));
-		experienceLabel.setBounds(388, 87, 449, 21);
+		experienceLabel.setBounds(347, 87, 490, 21);
 		mainPanel.add(experienceLabel);
 		experienceLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		experienceLabel.setFont(new Font("Bahnschrift", Font.ITALIC, 14));
@@ -254,7 +263,6 @@ public class Welcome extends JFrame {
 
 				userCheck = userField.getText();
 				passCheck = passField.getText();
-
 				if (accountExist(userCheck, passCheck) == true) {
 					System.out.println("Login successful.");
 					Wallet wallet = new Wallet(AccountVerify.sessionID(userCheck));
@@ -270,6 +278,7 @@ public class Welcome extends JFrame {
 
 				String username = "";
 				String password = "";
+				boolean userState = false, passState = false;
 				if (userField.getText().equals(" Username")) {
 					userField.setForeground(Color.RED);
 				} else {
@@ -371,7 +380,7 @@ public class Welcome extends JFrame {
 		JButton minimize = new JButton("");
 		minimize.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setState(Frame.ICONIFIED); // Minimize the frame
+				setState(Frame.ICONIFIED);
 			}
 		});
 		minimize.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/min.png")));
@@ -444,7 +453,7 @@ public class Welcome extends JFrame {
 					passField.setForeground(Color.WHITE);
 					passField.setEchoChar('*');
 					System.out.println("eye1");
-					seePassword.setVisible(true);
+//					seePassword.setVisible(true);
 
 				}
 			}
@@ -457,7 +466,7 @@ public class Welcome extends JFrame {
 					passField.setForeground(Color.GRAY);
 					passField.setEchoChar((char) 0);
 					System.out.println("hideeye1");
-					seePassword.setVisible(false);
+//					seePassword.setVisible(false);
 				}
 			}
 		});

@@ -5,6 +5,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 
 import javax.swing.border.BevelBorder;
 import javax.swing.border.MatteBorder;
@@ -27,11 +28,9 @@ public class HomePanel extends JPanel {
 	private JLabel p2;
 	private JLabel p10;
 	private JLabel p6;
-	private JLabel lblNewLabel;
 	private JLabel lblYourWayTo;
-	private JLabel lblPay;
-	private JLabel lblYourVirtualWallet;
-	private JLabel lblXperienceTheFreedom;
+	private JLabel lbll1;
+	private JLabel lbll2;
 	private JLabel lblPhpayValuesYour;
 	private JLabel lblWeAreAn;
 	private JLabel lblLicensedByThe;
@@ -40,41 +39,41 @@ public class HomePanel extends JPanel {
 	private JLabel lblPhpayValuesGcash;
 	private JLabel lblPaymentWorld;
 	private JLabel lblNewLabel_1;
-	private JLabel lblNewLabel_2;
+	private JLabel lblUser;
 	private JLabel lblRegisteredUsers;
 	private JLabel lblNewLabel_3;
-	private JLabel lblNewLabel_4;
+	private JLabel lblPartner;
 	private JLabel lblRegisteredUsers_1;
 	private JLabel lblNewLabel_5;
 	private JLabel lblPhpaysRobustSecurity;
 	private JLabel lblHashingTechniquesTo;
 	private JLabel lblTheHighestLevel;
-	private JLabel lblForTheirEveryday;
-	private JPanel adsPanel;
-	private JLabel label1, label2;
+	private JLabel lbll3;
 	private int currentLabelIndex = 0;
 	private Timer timer;
+	private JLabel lblNewLabel_2;
+	private JLabel lblstockredemption;
 
 	public HomePanel() {
 		setBorder(new EmptyBorder(0, 0, 0, 0));
-		setBounds(0, 0, 1200, 1225);
+		setBounds(0, 0, 1200, 1220);
 		setBackground(new Color(0, 0, 0));
 		setForeground(new Color(0, 0, 0));
 		setLayout(null);
 
-		JPanel panel = new JPanel();
+		GradientPanel panel = new GradientPanel(new Color(0x360079), new Color((0x000000)));
 		panel.setBorder(new EmptyBorder(0, 0, 0, 0));
-		panel.setPreferredSize(new Dimension(1200, 1225));
-		panel.setBackground(new Color(255, 255, 255));
+		panel.setPreferredSize(new Dimension(1200, 1220));
+		panel.setBackground(new Color(30, 31, 33));
 
 		scrollPane = new JScrollPane(panel);
 		scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		panel.setLayout(null);
 
 		bluePanel = new RoundedPanel(25);
-		bluePanel.setBackground(new Color(30, 144, 255));
+		bluePanel.setBackground(new Color(255, 255, 255, 15));
 		bluePanel.setBorder(new EmptyBorder(0, 0, 0, 0));
-		bluePanel.setBounds(10, 919, 1180, 260);
+		bluePanel.setBounds(10, 915, 1180, 260);
 		panel.add(bluePanel);
 		bluePanel.setLayout(null);
 
@@ -139,143 +138,121 @@ public class HomePanel extends JPanel {
 		blackPanel = new RoundedPanel(15);
 		blackPanel.setBorder(new EmptyBorder(0, 0, 0, 0));
 		blackPanel.setBackground(new Color(0, 0, 0));
-		blackPanel.setBounds(10, 1190, 1180, 45);
+		blackPanel.setBounds(10, 1186, 1180, 45);
 		panel.add(blackPanel);
 		blackPanel.setLayout(null);
-
-		lblNewLabel = new JLabel("PHPay.");
-		lblNewLabel.setForeground(new Color(102, 0, 255));
-		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
-		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel.setFont(new Font("Segoe UI Symbol", Font.BOLD, 35));
-		lblNewLabel.setBounds(70, 124, 202, 45);
-		panel.add(lblNewLabel);
-
-		lblYourWayTo = new JLabel("Your way to");
-		lblYourWayTo.setForeground(new Color(0, 0, 0));
-		lblYourWayTo.setVerticalAlignment(SwingConstants.TOP);
-		lblYourWayTo.setHorizontalAlignment(SwingConstants.LEFT);
-		lblYourWayTo.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 35));
-		lblYourWayTo.setBounds(70, 159, 202, 57);
-		panel.add(lblYourWayTo);
-
-		lblPay = new JLabel("Pay.");
-		lblPay.setVerticalAlignment(SwingConstants.TOP);
-		lblPay.setHorizontalAlignment(SwingConstants.LEFT);
-		lblPay.setForeground(new Color(102, 0, 255));
-		lblPay.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 35));
-		lblPay.setBounds(260, 159, 86, 57);
-		panel.add(lblPay);
-
-		lblYourVirtualWallet = new JLabel("Your Virtual Wallet for a Seamless Financial Experience.");
-		lblYourVirtualWallet.setVerticalAlignment(SwingConstants.TOP);
-		lblYourVirtualWallet.setHorizontalAlignment(SwingConstants.LEFT);
-		lblYourVirtualWallet.setForeground(new Color(0, 0, 0));
-		lblYourVirtualWallet.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 15));
-		lblYourVirtualWallet.setBounds(70, 224, 380, 21);
-		panel.add(lblYourVirtualWallet);
-
-		lblXperienceTheFreedom = new JLabel("Join a community of satisfied users who trust PHPAY ");
-		lblXperienceTheFreedom.setVerticalAlignment(SwingConstants.TOP);
-		lblXperienceTheFreedom.setHorizontalAlignment(SwingConstants.LEFT);
-		lblXperienceTheFreedom.setForeground(Color.BLACK);
-		lblXperienceTheFreedom.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 15));
-		lblXperienceTheFreedom.setBounds(70, 245, 594, 21);
-		panel.add(lblXperienceTheFreedom);
+		
+		JLabel lblCopyright = new JLabel("Copyright © 2021 PHPay. All Rights Reserved.");
+		lblCopyright.setVerticalAlignment(SwingConstants.TOP);
+		lblCopyright.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblCopyright.setForeground(Color.WHITE);
+		lblCopyright.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 15));
+		lblCopyright.setBounds(765, 0, 405, 21);
+		blackPanel.add(lblCopyright);
+		
+		lblstockredemption = new JLabel("5StockRedemption");
+		lblstockredemption.setVerticalAlignment(SwingConstants.TOP);
+		lblstockredemption.setHorizontalAlignment(SwingConstants.LEFT);
+		lblstockredemption.setForeground(Color.WHITE);
+		lblstockredemption.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 15));
+		lblstockredemption.setBounds(10, 6, 405, 21);
+		blackPanel.add(lblstockredemption);
 
 		lblPhpayValuesYour = new JLabel("PHPay values your account’s security");
 		lblPhpayValuesYour.setVerticalAlignment(SwingConstants.TOP);
 		lblPhpayValuesYour.setHorizontalAlignment(SwingConstants.LEFT);
-		lblPhpayValuesYour.setForeground(new Color(102, 0, 255));
-		lblPhpayValuesYour.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 20));
-		lblPhpayValuesYour.setBounds(121, 634, 425, 34);
+		lblPhpayValuesYour.setForeground(new Color(255, 255, 255));
+		lblPhpayValuesYour.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 35));
+		lblPhpayValuesYour.setBounds(45, 633, 774, 61);
 		panel.add(lblPhpayValuesYour);
 
 		lblWeAreAn = new JLabel("We are an authorized e-money issuer and remittance agent ");
 		lblWeAreAn.setVerticalAlignment(SwingConstants.TOP);
 		lblWeAreAn.setHorizontalAlignment(SwingConstants.LEFT);
-		lblWeAreAn.setForeground(new Color(78, 78, 78));
+		lblWeAreAn.setForeground(new Color(255, 255, 255));
 		lblWeAreAn.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 15));
-		lblWeAreAn.setBounds(121, 711, 425, 21);
+		lblWeAreAn.setBounds(55, 726, 425, 21);
 		panel.add(lblWeAreAn);
 
 		lblLicensedByThe = new JLabel("licensed by the BSP, ensuring the security of your funds.");
 		lblLicensedByThe.setVerticalAlignment(SwingConstants.TOP);
 		lblLicensedByThe.setHorizontalAlignment(SwingConstants.LEFT);
-		lblLicensedByThe.setForeground(new Color(78, 78, 78));
+		lblLicensedByThe.setForeground(new Color(255, 255, 255));
 		lblLicensedByThe.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 15));
-		lblLicensedByThe.setBounds(121, 732, 425, 21);
+		lblLicensedByThe.setBounds(55, 747, 425, 21);
 		panel.add(lblLicensedByThe);
 
 		lblRegulatedByThe = new JLabel("Regulated by the Bangko Sentral ng Pilipinas");
 		lblRegulatedByThe.setVerticalAlignment(SwingConstants.TOP);
 		lblRegulatedByThe.setHorizontalAlignment(SwingConstants.LEFT);
-		lblRegulatedByThe.setForeground(new Color(78, 78, 78));
+		lblRegulatedByThe.setForeground(new Color(255, 255, 255));
 		lblRegulatedByThe.setFont(new Font("Segoe UI Symbol", Font.ITALIC, 15));
-		lblRegulatedByThe.setBounds(121, 668, 425, 21);
+		lblRegulatedByThe.setBounds(55, 684, 425, 21);
 		panel.add(lblRegulatedByThe);
 
 		JPanel memberPanel = new JPanel();
-		memberPanel.setBounds(0, 364, 1200, 197);
+		memberPanel.setBackground(new Color(255, 255, 255));
+		memberPanel.setBounds(0, 384, 1200, 197);
 		panel.add(memberPanel);
 		memberPanel.setLayout(null);
 
 		lblInGcash = new JLabel(
 				"In 2022, PHPay had 4 million users and over 22,000 partner stores all over the country.");
-		lblInGcash.setBounds(286, 153, 580, 21);
+		lblInGcash.setBounds(0, 153, 1200, 21);
 		memberPanel.add(lblInGcash);
 		lblInGcash.setVerticalAlignment(SwingConstants.TOP);
-		lblInGcash.setHorizontalAlignment(SwingConstants.LEFT);
+		lblInGcash.setHorizontalAlignment(SwingConstants.CENTER);
 		lblInGcash.setForeground(new Color(78, 78, 78));
 		lblInGcash.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 15));
 
 		lblPhpayValuesGcash = new JLabel("PHPay is shaping a digital");
-		lblPhpayValuesGcash.setBounds(166, 38, 776, 57);
+		lblPhpayValuesGcash.setBounds(512, 11, 688, 75);
 		memberPanel.add(lblPhpayValuesGcash);
-		lblPhpayValuesGcash.setVerticalAlignment(SwingConstants.TOP);
 		lblPhpayValuesGcash.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPhpayValuesGcash.setForeground(new Color(102, 0, 255));
-		lblPhpayValuesGcash.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 30));
+		lblPhpayValuesGcash.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 50));
 
-		lblPaymentWorld = new JLabel("payment world.");
-		lblPaymentWorld.setBounds(387, 70, 336, 57);
+		lblPaymentWorld = new JLabel("payment world");
+		lblPaymentWorld.setBounds(512, 74, 688, 90);
 		memberPanel.add(lblPaymentWorld);
 		lblPaymentWorld.setVerticalAlignment(SwingConstants.TOP);
 		lblPaymentWorld.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPaymentWorld.setForeground(new Color(102, 0, 255));
-		lblPaymentWorld.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 30));
+		lblPaymentWorld.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 50));
 
 		lblNewLabel_3 = new JLabel("");
-		lblNewLabel_3.setBounds(764, 38, 86, 99);
+		lblNewLabel_3.setBounds(300, 43, 86, 99);
 		memberPanel.add(lblNewLabel_3);
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_3.setIcon(new ImageIcon(HomePanel.class.getResource("/PHPay/phpimg/partnerships.png")));
 
-		lblNewLabel_4 = new JLabel("1M");
-		lblNewLabel_4.setBounds(854, 38, 120, 90);
-		memberPanel.add(lblNewLabel_4);
-		lblNewLabel_4.setFont(new Font("Segoe UI Symbol", Font.BOLD, 43));
+		lblPartner = new JLabel("1M");
+		lblPartner.setBounds(390, 43, 120, 90);
+		lblPartner.setVisible(false);
+		memberPanel.add(lblPartner);
+		lblPartner.setFont(new Font("Segoe UI Symbol", Font.BOLD, 43));
 
 		lblRegisteredUsers_1 = new JLabel("Partner Merchants");
-		lblRegisteredUsers_1.setBounds(854, 106, 192, 21);
+		lblRegisteredUsers_1.setBounds(390, 111, 192, 21);
 		memberPanel.add(lblRegisteredUsers_1);
 		lblRegisteredUsers_1.setVerticalAlignment(SwingConstants.TOP);
 		lblRegisteredUsers_1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblRegisteredUsers_1.setForeground(new Color(78, 78, 78));
 		lblRegisteredUsers_1.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 15));
 
-		lblNewLabel_2 = new JLabel("11M");
-		lblNewLabel_2.setBounds(233, 28, 120, 90);
-		memberPanel.add(lblNewLabel_2);
-		lblNewLabel_2.setFont(new Font("Segoe UI Symbol", Font.BOLD, 43));
+		lblUser = new JLabel("11M");
+		lblUser.setBounds(170, 43, 120, 90);
+		memberPanel.add(lblUser);
+		lblUser.setVisible(false);
+		lblUser.setFont(new Font("Segoe UI Symbol", Font.BOLD, 43));
 
 		lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setBounds(153, 28, 70, 99);
+		lblNewLabel_1.setBounds(90, 43, 70, 99);
 		memberPanel.add(lblNewLabel_1);
 		lblNewLabel_1.setIcon(new ImageIcon(HomePanel.class.getResource("/PHPay/phpimg/users.png")));
 
 		lblRegisteredUsers = new JLabel("Registered Users");
-		lblRegisteredUsers.setBounds(233, 96, 192, 21);
+		lblRegisteredUsers.setBounds(170, 111, 192, 21);
 		memberPanel.add(lblRegisteredUsers);
 		lblRegisteredUsers.setVerticalAlignment(SwingConstants.TOP);
 		lblRegisteredUsers.setHorizontalAlignment(SwingConstants.LEFT);
@@ -285,85 +262,39 @@ public class HomePanel extends JPanel {
 		lblNewLabel_5 = new JLabel("");
 		lblNewLabel_5.setIcon(new ImageIcon(HomePanel.class.getResource("/PHPay/phpimg/security.png")));
 		lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_5.setBounds(528, 561, 550, 357);
+		lblNewLabel_5.setBounds(640, 568, 550, 357);
 		panel.add(lblNewLabel_5);
 
 		lblPhpaysRobustSecurity = new JLabel("PHPAY's robust security utilizes cutting-edge encryption algorithms and");
 		lblPhpaysRobustSecurity.setVerticalAlignment(SwingConstants.TOP);
 		lblPhpaysRobustSecurity.setHorizontalAlignment(SwingConstants.LEFT);
-		lblPhpaysRobustSecurity.setForeground(new Color(78, 78, 78));
+		lblPhpaysRobustSecurity.setForeground(new Color(255, 255, 255));
 		lblPhpaysRobustSecurity.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 15));
-		lblPhpaysRobustSecurity.setBounds(121, 774, 543, 21);
+		lblPhpaysRobustSecurity.setBounds(55, 789, 543, 21);
 		panel.add(lblPhpaysRobustSecurity);
 
 		lblHashingTechniquesTo = new JLabel(
 				"hashing techniques to protect your personal information and financial data with ");
 		lblHashingTechniquesTo.setVerticalAlignment(SwingConstants.TOP);
 		lblHashingTechniquesTo.setHorizontalAlignment(SwingConstants.LEFT);
-		lblHashingTechniquesTo.setForeground(new Color(78, 78, 78));
+		lblHashingTechniquesTo.setForeground(new Color(255, 255, 255));
 		lblHashingTechniquesTo.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 15));
-		lblHashingTechniquesTo.setBounds(121, 795, 543, 21);
+		lblHashingTechniquesTo.setBounds(55, 810, 543, 21);
 		panel.add(lblHashingTechniquesTo);
 
 		lblTheHighestLevel = new JLabel("the highest level of assurance.");
 		lblTheHighestLevel.setVerticalAlignment(SwingConstants.TOP);
 		lblTheHighestLevel.setHorizontalAlignment(SwingConstants.LEFT);
-		lblTheHighestLevel.setForeground(new Color(78, 78, 78));
+		lblTheHighestLevel.setForeground(new Color(255, 255, 255));
 		lblTheHighestLevel.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 15));
-		lblTheHighestLevel.setBounds(121, 816, 543, 21);
+		lblTheHighestLevel.setBounds(55, 831, 543, 21);
 		panel.add(lblTheHighestLevel);
 
-		lblForTheirEveryday = new JLabel("for their everyday financial needs.");
-		lblForTheirEveryday.setVerticalAlignment(SwingConstants.TOP);
-		lblForTheirEveryday.setHorizontalAlignment(SwingConstants.LEFT);
-		lblForTheirEveryday.setForeground(Color.BLACK);
-		lblForTheirEveryday.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 15));
-		lblForTheirEveryday.setBounds(70, 268, 594, 21);
-		panel.add(lblForTheirEveryday);
-
-		adsPanel = new JPanel();
-		adsPanel.setBackground(new Color(192, 192, 192));
-		adsPanel.setForeground(new Color(192, 192, 192));
-		adsPanel.setBounds(509, 34, 646, 283);
-		panel.add(adsPanel);
-		adsPanel.setLayout(null);
-
 		scrollPane.setBounds(0, 0, 1200, 610);
-//        scrollPane.setBounds(0, 0, 1200, 1225);
+//		scrollPane.setBounds(0, 0, 1200, 1220);
 		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		add(scrollPane);
 
-		label1 = new JLabel("");
-		label1.setIcon(new ImageIcon(HomePanel.class.getResource("/PHPay/phpimg/slide ads 2.png")));
-		label1.setHorizontalAlignment(SwingConstants.CENTER);
-		label1.setBounds(0, 0, 646, 283);
-
-		label2 = new JLabel("");
-		label2.setIcon(new ImageIcon(HomePanel.class.getResource("/PHPay/phpimg/stackedBG.png")));
-		label2.setHorizontalAlignment(SwingConstants.CENTER);
-		label2.setBounds(0, 0, 646, 283);
-
-//        label3 = new FadingLabel("");
-//        label3.setIcon(new ImageIcon(HomePanel.class.getResource("/PHPay/phpimg/Background-02.png")));
-//        label3.setHorizontalAlignment(SwingConstants.CENTER);
-//        label3.setBounds(0, 0, 646, 283);
-
-		adsPanel.add(label1);
-		adsPanel.add(label2);
-//        adsPanel.add(label3);
-
-		label1.setVisible(true);
-		label2.setVisible(false);
-//        label3.setVisible(false);
-
-		timer = new Timer(5000, new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				switchLabels();
-			}
-		});
-
-		timer.start();
 
 		phpayScroll = new ScrollBarCustom();
 		phpayScroll.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -372,10 +303,154 @@ public class HomePanel extends JPanel {
 		phpayScroll.setForeground(new Color(192, 192, 192));
 		phpayScroll.setUnitIncrement(10);
 		scrollPane.setVerticalScrollBar(phpayScroll);
+
+		RoundedPanel bgpane = new RoundedPanel(15);
+		bgpane.setBackground(new Color(255, 255, 255, 35));
+		bgpane.setBounds(575, 40, 591, 305);
+		panel.add(bgpane);
+		bgpane.setLayout(null);
+												
+														lbll3 = new JLabel("for their everyday financial needs.");
+														lbll3.setBounds(220, 220, 394, 21);
+														panel.add(lbll3);
+														lbll3.setVerticalAlignment(SwingConstants.TOP);
+														lbll3.setHorizontalAlignment(SwingConstants.LEFT);
+														lbll3.setForeground(new Color(255, 255, 255));
+														lbll3.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 15));
+														slideAndFadeInLabel(lbll3);
+														
+																lblYourWayTo = new JLabel("Your Way To Pay");
+																lblYourWayTo.setBounds(29, 77, 569, 164);
+																panel.add(lblYourWayTo);
+																lblYourWayTo.setForeground(new Color(255, 255, 255));
+																lblYourWayTo.setVerticalAlignment(SwingConstants.TOP);
+																lblYourWayTo.setHorizontalAlignment(SwingConstants.LEFT);
+																lblYourWayTo.setFont(new Font("Segoe UI Historic", Font.BOLD, 66));
+																
+																		lbll1 = new JLabel("Your Virtual Wallet for a Seamless Financial Experience.");
+																		lbll1.setBounds(220, 176, 394, 21);
+																		panel.add(lbll1);
+																		lbll1.setVerticalAlignment(SwingConstants.TOP);
+																		lbll1.setHorizontalAlignment(SwingConstants.LEFT);
+																		lbll1.setForeground(new Color(255, 255, 255));
+																		lbll1.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 15));
+																		
+																				slideAndFadeInLabel(lbll1);
+																				
+																						lbll2 = new JLabel("Join a community of satisfied users who trust PHPAY ");
+																						lbll2.setBounds(220, 197, 394, 21);
+																						panel.add(lbll2);
+																						lbll2.setVerticalAlignment(SwingConstants.TOP);
+																						lbll2.setHorizontalAlignment(SwingConstants.LEFT);
+																						lbll2.setForeground(new Color(255, 255, 255));
+																						lbll2.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 15));
+																						slideAndFadeInLabel(lbll2);
+
+//		JLabel lblNewLabel = new JLabel("");
+//		lblNewLabel.setIcon(new ImageIcon(HomePanel.class.getResource("/PHPay/phpimg/backgroundHome.png")));
+//		lblNewLabel.setBounds(0, 0, 1200, 750);
+//		panel.add(lblNewLabel);
+//		
+//		lblNewLabel_2 = new JLabel("New label");
+//		lblNewLabel_2.setIcon(new ImageIcon(HomePanel.class.getResource("/PHPay/phpimg/backgroundHome.png")));
+//		lblNewLabel_2.setBounds(0, 749, 1200, 502);
+//		panel.add(lblNewLabel_2);
+
 	}
 
-	private void switchLabels() {
-		label1.setVisible(!label1.isVisible());
-		label2.setVisible(!label2.isVisible());
+	private void slideAndFadeInLabel(final JLabel label) {
+		Timer timer = new Timer(50, new ActionListener() {
+			int startX = label.getX();
+			int targetX = 38; // The final X position
+			float alpha = 0.0f; // The initial alpha (transparency)
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (startX > targetX) {
+					startX -= 5; // Adjust the sliding speed here
+					if (startX < targetX) {
+						startX = targetX;
+					}
+				}
+
+				alpha += 0.02f; // Adjust the fading speed here
+				if (alpha > 1.0f) {
+					alpha = 1.0f;
+				}
+
+				label.setBounds(startX, label.getY(), label.getWidth(), label.getHeight());
+				label.setForeground(new Color(255, 255, 255, Math.min(255, (int) (alpha * 255))));
+
+				if (startX == targetX && alpha == 1.0f) {
+					((Timer) e.getSource()).stop();
+					countUpLabel1(lblUser);
+					countUpLabel2(lblPartner);
+				}
+			}
+		});
+
+		timer.start();
+	}
+
+	private void countUpLabel1(final JLabel label) {
+		Timer timer = new Timer(100, new ActionListener() {
+			long currentValue = 0;
+			final long targetValue = 11; // 11M
+			DecimalFormat formatter = new DecimalFormat("#,###M");
+			float opacity = 0.0f; // Initial opacity
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				currentValue += 1; // Increment by 1M
+				if (currentValue <= targetValue) {
+					label.setText(formatter.format(currentValue));
+
+					opacity += 0.05f; // Adjust the step size for the fade-in effect
+					if (opacity > 1.0f) {
+						opacity = 1.0f;
+					}
+					label.setOpaque(true);
+					label.setBackground(label.getBackground());
+					label.setForeground(label.getForeground());
+
+					// Apply the opacity to the label
+					label.setOpaque(false);
+					label.repaint();
+					label.setForeground(label.getForeground());
+					label.setBackground(label.getBackground());
+				} else {
+					label.setText(formatter.format(targetValue));
+					((Timer) e.getSource()).stop();
+
+				}
+			}
+		});
+
+		label.setOpaque(false);
+
+		label.setVisible(true);
+		timer.start();
+	}
+
+	private void countUpLabel2(final JLabel label) {
+		Timer timer = new Timer(80, new ActionListener() {
+			int currentValue = 0;
+			final int targetValue = 900; // 1M
+			final int stepValue = 50; // 100K
+			DecimalFormat formatter = new DecimalFormat("#,###K");
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				currentValue += stepValue; // Increment by 100K
+				if (currentValue <= targetValue) {
+					label.setText(formatter.format(currentValue));
+				} else {
+					label.setText(formatter.format(targetValue));
+					((Timer) e.getSource()).stop();
+				}
+			}
+		});
+		label.setVisible(true);
+		timer.start();
 	}
 }
