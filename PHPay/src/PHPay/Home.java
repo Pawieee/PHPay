@@ -18,6 +18,7 @@ import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import java.awt.SystemColor;
 import javax.swing.UIManager;
+import javax.swing.JSeparator;
 
 public class Home extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -27,9 +28,10 @@ public class Home extends JFrame {
 	private HomePanel homePanel;
 
 	public Home() {
-		
+
 		setTitle("PHPAY");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Home.class.getResource("/PHPay/phpimg/PHPAY-BRAND-ICON2.png")));
+		setIconImage(
+				Toolkit.getDefaultToolkit().getImage(Home.class.getResource("/PHPay/phpimg/PHPAY-BRAND-ICON2.png")));
 		setUndecorated(true);
 		getContentPane().setLayout(null);
 		setBounds(0, 0, 1200, 749);
@@ -42,90 +44,111 @@ public class Home extends JFrame {
 		setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 30, 30));
 		setVisible(true);
 
-		JPanel panel = new JPanel();
+		GradientPanel panel = new GradientPanel(new Color(0x360079), new Color((0x000000)));
 		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(0, 0, 1200, 750);
+		panel.setBounds(0, 0, 1200, 1220);
 		getContentPane().add(panel);
 		panel.setLayout(null);
-
-		JPanel panelArea = new JPanel();
-		panelArea.setBackground(new Color(255, 255, 255));
-		panelArea.setBounds(0, 141, 1200, 610);
-		panel.add(panelArea);
-		panelArea.setLayout(null);
 		
-		servicePanel = new ServicePanel();
-		summaryPanel = new SummaryPanel();
-		
-		servicePanel.setVisible(false);
-		summaryPanel.setVisible(false);
-		homePanel = new HomePanel();
-		panelArea.add(homePanel);
-		
-		panelArea.add(servicePanel);
-		panelArea.add(summaryPanel);
-		
-		JLabel lblNewLabel = new JLabel("Home");
-		lblNewLabel.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				titleClicked(homePanel);
-				
-			}
-		});
-		lblNewLabel.setBounds(260, 39, 106, 77);
-		panel.add(lblNewLabel);
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		
-		
+		JSeparator separator = new JSeparator();
+		separator.setBackground(new Color(89, 89, 89, 1));
+		separator.setOrientation(SwingConstants.VERTICAL);
+		separator.setBounds(256, 43, 2, 69);
+		panel.add(separator);
 
 		JLabel lblWallet = new JLabel("Wallet");
+		lblWallet.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 16));
+		lblWallet.setBounds(385, 38, 70, 70);
+		panel.add(lblWallet);
 		lblWallet.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				titleClicked(servicePanel);
 			}
 		});
-		lblWallet.setBounds(380, 39, 106, 77);
-		panel.add(lblWallet);
 		lblWallet.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWallet.setForeground(new Color(255, 255, 255));
 
-		JLabel lblNewLabel_1_1 = new JLabel("Summary");
+		JLabel lblNewLabel = new JLabel("Home");
+		lblNewLabel.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 16));
+		lblNewLabel.setBounds(302, 38, 70, 70);
+		panel.add(lblNewLabel);
+		lblNewLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				titleClicked(homePanel);
+
+			}
+		});
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+
+		JLabel lblNewLabel_1_1 = new JLabel("Activity");
+		lblNewLabel_1_1.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 16));
+		lblNewLabel_1_1.setBounds(467, 38, 70, 70);
+		panel.add(lblNewLabel_1_1);
 		lblNewLabel_1_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				titleClicked(summaryPanel);
 			}
 		});
-		lblNewLabel_1_1.setBounds(500, 39, 106, 77);
-		panel.add(lblNewLabel_1_1);
 		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_1.setForeground(new Color(255, 255, 255));
 
-		JLabel lblNewLabel_1_1_1 = new JLabel("Ambot");
-		lblNewLabel_1_1_1.setBounds(620, 39, 106, 77);
+		JLabel lblNewLabel_1_1_1 = new JLabel("Help");
+		lblNewLabel_1_1_1.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 16));
+		lblNewLabel_1_1_1.setBounds(547, 38, 70, 70);
 		panel.add(lblNewLabel_1_1_1);
 		lblNewLabel_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_1_1.setForeground(new Color(255, 255, 255));
 
 		JLabel line = new JLabel("");
-		line.setBounds(33, 39, 188, 66);
+		line.setBounds(37, 42, 188, 66);
 		panel.add(line);
 		line.setIcon(new ImageIcon(Home.class.getResource("/PHPay/phpimg/PHPAY-BRAND.png")));
 		line.setHorizontalAlignment(SwingConstants.CENTER);
 		line.setForeground(Color.WHITE);
 		line.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 38));
 
-		JLabel background = new JLabel("");
-		background.setIcon(new ImageIcon(Home.class.getResource("/PHPay/phpimg/Home Background.jpg")));
-		background.setBounds(0, 0, 1201, 750);
-		panel.add(background);
+		JPanel panelArea = new JPanel();
+		panelArea.setBackground(new Color(255, 255, 255));
+		panelArea.setBounds(0, 139, 1200, 610);
+		panel.add(panelArea);
+		panelArea.setLayout(null);
+
+		servicePanel = new ServicePanel();
+		summaryPanel = new SummaryPanel();
+
+		servicePanel.setVisible(false);
+		summaryPanel.setVisible(false);
+		homePanel = new HomePanel();
+		panelArea.add(homePanel);
+
+		panelArea.add(servicePanel);
+		panelArea.add(summaryPanel);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setOrientation(SwingConstants.VERTICAL);
+		separator_1.setBackground(new Color(89, 89, 89, 1));
+		separator_1.setBounds(377, 57, 2, 35);
+		panel.add(separator_1);
+		
+		JSeparator separator_1_1 = new JSeparator();
+		separator_1_1.setOrientation(SwingConstants.VERTICAL);
+		separator_1_1.setBackground(new Color(89, 89, 89, 1));
+		separator_1_1.setBounds(459, 57, 2, 35);
+		panel.add(separator_1_1);
+		
+		JSeparator separator_1_1_1 = new JSeparator();
+		separator_1_1_1.setOrientation(SwingConstants.VERTICAL);
+		separator_1_1_1.setBackground(new Color(89, 89, 89, 1));
+		separator_1_1_1.setBounds(541, 57, 2, 35);
+		panel.add(separator_1_1_1);
 
 		JPanel top = new JPanel();
 		top.setBounds(1, 0, 1200, 17);
-		panel.add(top);
+		getContentPane().add(top);
 		top.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -145,11 +168,12 @@ public class Home extends JFrame {
 			}
 		});
 	}
+
 	private void titleClicked(JPanel selectedPanel) {
 		summaryPanel.setVisible(false);
 		servicePanel.setVisible(false);
 		homePanel.setVisible(false);
-		
+
 		selectedPanel.setVisible(true);
 	}
 }
