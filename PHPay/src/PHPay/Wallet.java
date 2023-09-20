@@ -80,6 +80,8 @@ public class Wallet extends JFrame {
 
 	public Wallet(String ID) {
 		this.session = ID;
+		
+		System.out.println(SQLQuery.getTransName(session));
 
 		setBackground(new Color(128, 0, 255));
 		setLocationRelativeTo(null);

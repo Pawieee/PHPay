@@ -41,11 +41,6 @@ public class Loading extends JFrame {
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel SPhoto = new JLabel("");
-		SPhoto.setIcon(new ImageIcon(Loading.class.getResource("/PHPay/phpimg/5S-Small.png")));
-		SPhoto.setBounds(431, 207, 59, 52);
-		panel.add(SPhoto);
-		
 		JLabel sy = new JLabel("2023.8");
 		sy.setVerticalAlignment(SwingConstants.TOP);
 		sy.setHorizontalAlignment(SwingConstants.LEFT);
