@@ -5,8 +5,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
+import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -35,11 +34,12 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-public class Welcome extends JFrame{
+public class Welcome extends JFrame {
 
 	/**
 	 * 
 	 */
+	private boolean def = true;
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	// private JTextField textField_1;
@@ -57,7 +57,6 @@ public class Welcome extends JFrame{
 
 	public Welcome() {
 
-		
 		setType(Type.POPUP);
 		setUndecorated(true);
 		setAlwaysOnTop(false);
@@ -76,12 +75,12 @@ public class Welcome extends JFrame{
 
 		setTitle("PHPAY - Virtual Wallet");
 		getContentPane().setLayout(null);
-		
-				JPanel blurPanel = new JPanel();
-				blurPanel.setBackground(new Color(0, 0, 0, 160));
-				blurPanel.setBounds(0, 0, 833, 475);
-				getContentPane().add(blurPanel);
-				blurPanel.setVisible(false);
+
+		JPanel blurPanel = new JPanel();
+		blurPanel.setBackground(new Color(0, 0, 0, 160));
+		blurPanel.setBounds(0, 0, 833, 475);
+		getContentPane().add(blurPanel);
+		blurPanel.setVisible(false);
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new CompoundBorder());
@@ -133,6 +132,7 @@ public class Welcome extends JFrame{
 							reg.setVisible(true);
 						}
 					});
+					
 					timer.setRepeats(false);
 					timer.start();
 					blurPanel.setVisible(true);
@@ -159,6 +159,27 @@ public class Welcome extends JFrame{
 			}
 		});
 
+		ImageIcon eye = new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/eyetest.png"));
+		ImageIcon eye2 = new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/eyetes2.png"));
+
+		JLabel eye_label = new JLabel("New label");
+		eye_label.setIcon(eye);
+		eye_label.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (def) {
+					eye_label.setIcon(eye2);
+				} else {
+					eye_label.setIcon(eye);
+				}
+				def = !def;
+			}
+		});
+		eye_label.setBounds(288, 216, 25, 25);
+//		grayPanel.add(eye_label);
+//		btnNewButton.setBounds(237, 291, 85, 21);
+//		grayPanel.add(btnNewButton);
+
 		JLabel lblNewLabel = new JLabel("Sign In");
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setFont(new Font("Couture", Font.PLAIN, 37));
@@ -175,7 +196,6 @@ public class Welcome extends JFrame{
 		userUnderline.setBounds(35, 149, 273, 1);
 		mainPanel.add(userUnderline);
 
-		
 		JPanel border = new JPanel();
 		border.setBackground(new Color(128, 128, 128, 60));
 		border.setBounds(347, 36, 1, 380);
@@ -197,8 +217,6 @@ public class Welcome extends JFrame{
 		experienceLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		experienceLabel.setFont(new Font("Bahnschrift", Font.ITALIC, 14));
 
-		
-		
 		userField = new RoundedTextField(20);
 		userField.setBorder(new EmptyBorder(0, 0, 0, 0));
 		userField.setText(" Username");
@@ -220,7 +238,6 @@ public class Welcome extends JFrame{
 		textField.setBounds(71, 11, -23, 1);
 		textField.setForeground(Color.GRAY);
 		mainPanel.add(textField);
-		
 
 		JButton LoginButton = new RoundedButton("LOGIN");
 		LoginButton.setEnabled(false);
@@ -237,6 +254,7 @@ public class Welcome extends JFrame{
 
 				userCheck = userField.getText();
 				passCheck = passField.getText();
+
 				if (accountExist(userCheck, passCheck) == true) {
 					System.out.println("Login successful.");
 					Wallet wallet = new Wallet(AccountVerify.sessionID(userCheck));
