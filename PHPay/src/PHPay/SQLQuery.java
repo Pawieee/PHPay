@@ -2,6 +2,7 @@ package PHPay;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
@@ -10,9 +11,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class SQLQuery {
-
+	static SQLConnection con = new SQLConnection();
 	public boolean IDExists(String ID) {
-		SQLConnection con = new SQLConnection();
 
 		String query = "SELECT `user_id` FROM `users`";
 		try {
@@ -32,7 +32,6 @@ public class SQLQuery {
 	}
 
 	public static void updatePass(String newPass, String user) {
-		SQLConnection con = new SQLConnection();
 
 		String query = "UPDATE `users` SET `hashed_pass` = ? WHERE username = ?";
 		// FINISH THIS
@@ -47,7 +46,6 @@ public class SQLQuery {
 	}
 
 	public static String getPassKey(String user) {
-		SQLConnection con = new SQLConnection();
 		String passkey = "";
 		String query = "SELECT `passkey` FROM `users` WHERE username = ?";
 		try {
@@ -66,7 +64,6 @@ public class SQLQuery {
 	}
 
 	public static double getBalance(String ID) {
-		SQLConnection con = new SQLConnection();
 		double bal = 0.0;
 		String query = "SELECT `balance` FROM `users` WHERE user_id = ?";
 		try {
@@ -86,7 +83,6 @@ public class SQLQuery {
 	
 	//Transaction NAME
 	public static String getTransName(String user) {
-		SQLConnection con = new SQLConnection();
 		String query = "SELECT `fName`, `lName` FROM `user_profile` WHERE user_id = ?";
 		String Fname = "";
 		String Dname = "";
@@ -108,7 +104,6 @@ public class SQLQuery {
 	
 
 	public static void deleteAccount(String ID) {
-		SQLConnection con = new SQLConnection();
 
 		String query = "DELETE FROM `user_profile` WHERE user_id = ?";
 
@@ -131,7 +126,6 @@ public class SQLQuery {
 	}
 
 	public static void addBalance(String ID, double addCash) {
-		SQLConnection con = new SQLConnection();
 
 		String query = "UPDATE `users` SET `balance` = balance + ? WHERE user_id = ?";
 
@@ -148,7 +142,6 @@ public class SQLQuery {
 	}
 
 	public static void deductBalance(String ID, double amount) {
-		SQLConnection con = new SQLConnection();
 
 		String query = "UPDATE `users` SET `balance` = balance - ? WHERE user_id = ?";
 
@@ -198,7 +191,6 @@ public class SQLQuery {
 	}
 
 	public static void transaction(String ID, String type, String amount) {
-		SQLConnection con = new SQLConnection();
 
 		Date date = new Date();
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -217,5 +209,5 @@ public class SQLQuery {
 			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
-
+	
 }
