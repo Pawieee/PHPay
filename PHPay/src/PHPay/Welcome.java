@@ -176,10 +176,12 @@ public class Welcome extends JFrame {
 				if (def) {
 					eye_label.setIcon(eye);
 					eye_label.setBounds(281, 196, 25, 25);
+					passField.setEchoChar((char) 0);
 
 				} else {
 					eye_label.setIcon(eye2);
 					eye_label.setBounds(281, 193, 25, 25);
+					passField.setEchoChar('*');
 				}
 				def = !def;
 			}
@@ -265,8 +267,8 @@ public class Welcome extends JFrame {
 				passCheck = passField.getText();
 				if (accountExist(userCheck, passCheck) == true) {
 					System.out.println("Login successful.");
-					Wallet wallet = new Wallet(AccountVerify.sessionID(userCheck));
-					wallet.setVisible(true);
+					Home home = new Home(AccountVerify.sessionID(userCheck));
+					home.setVisible(true);
 					dispose();
 					setVisible(false);
 				} else {
@@ -307,15 +309,13 @@ public class Welcome extends JFrame {
 		mainPanel.add(dontHaveAccountYet);
 
 		JLabel phpayLOGO = new JLabel("");
-		phpayLOGO.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Home home = new Home();
-				home.setVisible(true);
-				dispose();
-				setVisible(false);
-			}
-		});
+//		phpayLOGO.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseClicked(MouseEvent e) {
+//				dispose();
+//				setVisible(false);
+//			}
+//		});
 		phpayLOGO.setBackground(new Color(0, 0, 0));
 		phpayLOGO.setBounds(347, 119, 490, 135);
 		mainPanel.add(phpayLOGO);
@@ -453,7 +453,6 @@ public class Welcome extends JFrame {
 					passField.setForeground(Color.WHITE);
 					passField.setEchoChar('*');
 					System.out.println("eye1");
-//					seePassword.setVisible(true);
 
 				}
 			}
@@ -466,7 +465,6 @@ public class Welcome extends JFrame {
 					passField.setForeground(Color.GRAY);
 					passField.setEchoChar((char) 0);
 					System.out.println("hideeye1");
-//					seePassword.setVisible(false);
 				}
 			}
 		});
@@ -521,8 +519,6 @@ public class Welcome extends JFrame {
 		passField.getDocument().addDocumentListener(documentListener);
 		
 	}
-
-	
 	
 	public boolean accountExist(String user, String pass) {
 		SQLConnection newCon = new SQLConnection();
