@@ -26,9 +26,10 @@ public class Home extends JFrame {
 	private ServicePanel servicePanel;
 	private SummaryPanel summaryPanel;
 	private HomePanel homePanel;
+	private String session;
 
-	public Home() {
-
+	public Home(String ID) {
+		this.session = ID;
 		setTitle("PHPAY");
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage(Home.class.getResource("/PHPay/phpimg/PHPAY-BRAND-ICON2.png")));
@@ -49,7 +50,7 @@ public class Home extends JFrame {
 		panel.setBounds(0, 0, 1200, 1220);
 		getContentPane().add(panel);
 		panel.setLayout(null);
-		
+
 		JSeparator separator = new JSeparator();
 		separator.setBackground(new Color(89, 89, 89, 1));
 		separator.setOrientation(SwingConstants.VERTICAL);
@@ -117,8 +118,8 @@ public class Home extends JFrame {
 		panel.add(panelArea);
 		panelArea.setLayout(null);
 
-		servicePanel = new ServicePanel();
-		summaryPanel = new SummaryPanel();
+		servicePanel = new ServicePanel(session);
+		summaryPanel = new SummaryPanel(session);
 
 		servicePanel.setVisible(false);
 		summaryPanel.setVisible(false);
@@ -127,19 +128,19 @@ public class Home extends JFrame {
 
 		panelArea.add(servicePanel);
 		panelArea.add(summaryPanel);
-		
+
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setOrientation(SwingConstants.VERTICAL);
 		separator_1.setBackground(new Color(89, 89, 89, 1));
 		separator_1.setBounds(377, 57, 2, 35);
 		panel.add(separator_1);
-		
+
 		JSeparator separator_1_1 = new JSeparator();
 		separator_1_1.setOrientation(SwingConstants.VERTICAL);
 		separator_1_1.setBackground(new Color(89, 89, 89, 1));
 		separator_1_1.setBounds(459, 57, 2, 35);
 		panel.add(separator_1_1);
-		
+
 		JSeparator separator_1_1_1 = new JSeparator();
 		separator_1_1_1.setOrientation(SwingConstants.VERTICAL);
 		separator_1_1_1.setBackground(new Color(89, 89, 89, 1));

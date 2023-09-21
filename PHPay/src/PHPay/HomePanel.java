@@ -141,7 +141,7 @@ public class HomePanel extends JPanel {
 		blackPanel.setBounds(10, 1186, 1180, 45);
 		panel.add(blackPanel);
 		blackPanel.setLayout(null);
-		
+
 		JLabel lblCopyright = new JLabel("Copyright © 2021 PHPay. All Rights Reserved.");
 		lblCopyright.setVerticalAlignment(SwingConstants.TOP);
 		lblCopyright.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -149,7 +149,7 @@ public class HomePanel extends JPanel {
 		lblCopyright.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 15));
 		lblCopyright.setBounds(765, 0, 405, 21);
 		blackPanel.add(lblCopyright);
-		
+
 		lblstockredemption = new JLabel("5StockRedemption");
 		lblstockredemption.setVerticalAlignment(SwingConstants.TOP);
 		lblstockredemption.setHorizontalAlignment(SwingConstants.LEFT);
@@ -295,7 +295,6 @@ public class HomePanel extends JPanel {
 		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		add(scrollPane);
 
-
 		phpayScroll = new ScrollBarCustom();
 		phpayScroll.setBorder(new EmptyBorder(0, 0, 0, 0));
 		phpayScroll.setBlockIncrement(1);
@@ -309,42 +308,42 @@ public class HomePanel extends JPanel {
 		bgpane.setBounds(575, 40, 591, 305);
 		panel.add(bgpane);
 		bgpane.setLayout(null);
-												
-														lbll3 = new JLabel("for their everyday financial needs.");
-														lbll3.setBounds(220, 220, 394, 21);
-														panel.add(lbll3);
-														lbll3.setVerticalAlignment(SwingConstants.TOP);
-														lbll3.setHorizontalAlignment(SwingConstants.LEFT);
-														lbll3.setForeground(new Color(255, 255, 255));
-														lbll3.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 15));
-														slideAndFadeInLabel(lbll3);
-														
-																lblYourWayTo = new JLabel("Your Way To Pay");
-																lblYourWayTo.setBounds(29, 77, 569, 164);
-																panel.add(lblYourWayTo);
-																lblYourWayTo.setForeground(new Color(255, 255, 255));
-																lblYourWayTo.setVerticalAlignment(SwingConstants.TOP);
-																lblYourWayTo.setHorizontalAlignment(SwingConstants.LEFT);
-																lblYourWayTo.setFont(new Font("Segoe UI Historic", Font.BOLD, 66));
-																
-																		lbll1 = new JLabel("Your Virtual Wallet for a Seamless Financial Experience.");
-																		lbll1.setBounds(220, 176, 394, 21);
-																		panel.add(lbll1);
-																		lbll1.setVerticalAlignment(SwingConstants.TOP);
-																		lbll1.setHorizontalAlignment(SwingConstants.LEFT);
-																		lbll1.setForeground(new Color(255, 255, 255));
-																		lbll1.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 15));
-																		
-																				slideAndFadeInLabel(lbll1);
-																				
-																						lbll2 = new JLabel("Join a community of satisfied users who trust PHPAY ");
-																						lbll2.setBounds(220, 197, 394, 21);
-																						panel.add(lbll2);
-																						lbll2.setVerticalAlignment(SwingConstants.TOP);
-																						lbll2.setHorizontalAlignment(SwingConstants.LEFT);
-																						lbll2.setForeground(new Color(255, 255, 255));
-																						lbll2.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 15));
-																						slideAndFadeInLabel(lbll2);
+
+		lbll3 = new JLabel("for their everyday financial needs.");
+		lbll3.setBounds(220, 220, 394, 21);
+		panel.add(lbll3);
+		lbll3.setVerticalAlignment(SwingConstants.TOP);
+		lbll3.setHorizontalAlignment(SwingConstants.LEFT);
+		lbll3.setForeground(new Color(255, 255, 255));
+		lbll3.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 15));
+		slideAndFadeInLabel(lbll3);
+
+		lblYourWayTo = new JLabel("Your Way To Pay");
+		lblYourWayTo.setBounds(29, 77, 569, 164);
+		panel.add(lblYourWayTo);
+		lblYourWayTo.setForeground(new Color(255, 255, 255));
+		lblYourWayTo.setVerticalAlignment(SwingConstants.TOP);
+		lblYourWayTo.setHorizontalAlignment(SwingConstants.LEFT);
+		lblYourWayTo.setFont(new Font("Segoe UI Historic", Font.BOLD, 66));
+
+		lbll1 = new JLabel("Your Virtual Wallet for a Seamless Financial Experience.");
+		lbll1.setBounds(220, 176, 394, 21);
+		panel.add(lbll1);
+		lbll1.setVerticalAlignment(SwingConstants.TOP);
+		lbll1.setHorizontalAlignment(SwingConstants.LEFT);
+		lbll1.setForeground(new Color(255, 255, 255));
+		lbll1.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 15));
+
+		slideAndFadeInLabel(lbll1);
+
+		lbll2 = new JLabel("Join a community of satisfied users who trust PHPAY ");
+		lbll2.setBounds(220, 197, 394, 21);
+		panel.add(lbll2);
+		lbll2.setVerticalAlignment(SwingConstants.TOP);
+		lbll2.setHorizontalAlignment(SwingConstants.LEFT);
+		lbll2.setForeground(new Color(255, 255, 255));
+		lbll2.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 15));
+		slideAndFadeInLabel(lbll2);
 
 //		JLabel lblNewLabel = new JLabel("");
 //		lblNewLabel.setIcon(new ImageIcon(HomePanel.class.getResource("/PHPay/phpimg/backgroundHome.png")));
