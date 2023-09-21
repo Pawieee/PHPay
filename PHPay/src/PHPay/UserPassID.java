@@ -45,7 +45,6 @@ public class UserPassID extends JFrame implements Serializable {
 	public JTextField textField, userField;
 	JLabel IDStatusLabel, userStatusLabel, passStatusLabel, passStatusLabel1, note1, note2;
 
-
 	public UserPassID(AccountInfo account) {
 		setBackground(Color.WHITE);
 
@@ -384,7 +383,6 @@ public class UserPassID extends JFrame implements Serializable {
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
-	
 
 	public static boolean isValidUser(String name) {
 		String pattern = "^[a-zA-Z0-9]+$";
@@ -397,7 +395,7 @@ public class UserPassID extends JFrame implements Serializable {
 	}
 
 	public static boolean isValidPass(String pass) {
-		String pattern = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
+		String pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$";
 
 		if (pass.matches(pattern)) {
 			return true;

@@ -16,11 +16,6 @@ public class ServicePanel extends JPanel {
 		setBounds(0, 0, 1200, 610);
 		setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("this is service");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblNewLabel.setBounds(474, 181, 360, 230);
-		add(lblNewLabel);
-
 	}
 
 }

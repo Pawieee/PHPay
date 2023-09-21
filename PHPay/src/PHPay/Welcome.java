@@ -35,6 +35,7 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import java.awt.Insets;
 
 public class Welcome extends JFrame {
 
@@ -99,19 +100,33 @@ public class Welcome extends JFrame {
 //		seePassword.setContentAreaFilled(false);
 //		seePassword.setBorder(BorderFactory.createEmptyBorder());
 //		panel.add(seePassword);
-		
+
 		mainPanel = new PhpaySplash();
 		mainPanel.setBounds(-2, 0, 835, 452);
 		panel.add(mainPanel);
 		mainPanel.setLayout(null);
 
-		JButton resetBtn = new JButton("Forgot Password?");
-		resetBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		resetBtn.setForeground(new Color(255, 255, 255));
-		resetBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new ResetPass();
+		JButton forgotPassword = new JButton("Forgot Password?");
+		forgotPassword.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				forgotPassword.setForeground(new Color(255, 255, 255, 255));
+				forgotPassword.setFont(new Font("Segoe UI Semibold", Font.BOLD, 13));
+			}
 
+			@Override
+			public void mouseExited(MouseEvent e) {
+				forgotPassword.setForeground(new Color(255, 255, 255, 190));
+				forgotPassword.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
+			}
+		});
+		forgotPassword.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
+		forgotPassword.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		forgotPassword.setForeground(new Color(255, 255, 255, 190));
+		forgotPassword.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new ForgotPassword();
+				dispose();
 			}
 		});
 
@@ -119,7 +134,7 @@ public class Welcome extends JFrame {
 		register.setBounds(136, 385, 71, 30);
 		register.setForeground(new Color(0, 0, 0));
 		register.setHorizontalAlignment(SwingConstants.CENTER);
-		register.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 13));
+		register.setFont(new Font("Segoe UI Semibold", Font.BOLD, 13));
 		register.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		mainPanel.add(register);
 
@@ -164,30 +179,32 @@ public class Welcome extends JFrame {
 		});
 
 		ImageIcon eye = new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/see.png"));
-		ImageIcon eye2 = new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/blind.png"));
+		ImageIcon blind = new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/blind.png"));
 
-		JLabel eye_label = new JLabel("New label");
-		eye_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		eye_label.setBounds(281, 193, 25, 25);
-		eye_label.setIcon(eye2);
-		eye_label.addMouseListener(new MouseAdapter() {
+		JLabel eyeLabel = new JLabel("");
+		eyeLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		eyeLabel.setBounds(281, 192, 25, 25);
+		eyeLabel.setIcon(blind);
+		eyeLabel.setVisible(false);
+
+		eyeLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (def) {
-					eye_label.setIcon(eye);
-					eye_label.setBounds(281, 196, 25, 25);
+					eyeLabel.setIcon(eye);
+					eyeLabel.setBounds(281, 194, 25, 25);
 					passField.setEchoChar((char) 0);
 
 				} else {
-					eye_label.setIcon(eye2);
-					eye_label.setBounds(281, 193, 25, 25);
+					eyeLabel.setIcon(blind);
+					eyeLabel.setBounds(281, 192, 25, 25);
 					passField.setEchoChar('*');
 				}
 				def = !def;
 			}
 		});
 
-		mainPanel.add(eye_label);
+		mainPanel.add(eyeLabel);
 //		btnNewButton.setBounds(237, 291, 85, 21);
 //		grayPanel.add(btnNewButton);
 
@@ -215,34 +232,36 @@ public class Welcome extends JFrame {
 		JPanel passUnderline = new JPanel();
 		passUnderline.setBounds(37, 221, 273, 1);
 		mainPanel.add(passUnderline);
-		resetBtn.setBounds(122, 306, 105, 21);
-		mainPanel.add(resetBtn);
-		resetBtn.setContentAreaFilled(false); // Make the button transparent
-		resetBtn.setBorder(BorderFactory.createEmptyBorder()); // Set empty border
+		forgotPassword.setBounds(116, 306, 116, 21);
+		mainPanel.add(forgotPassword);
+		forgotPassword.setContentAreaFilled(false); // Make the button transparent
+		forgotPassword.setBorder(BorderFactory.createEmptyBorder()); // Set empty border
 
 		JLabel experienceLabel = new JLabel("Experience the convenience of cashless transactions today");
 		experienceLabel.setBackground(new Color(102, 0, 204, 225));
 		experienceLabel.setForeground(new Color(153, 0, 255));
-		experienceLabel.setBounds(347, 87, 490, 21);
+		experienceLabel.setBounds(347, 87, 488, 21);
 		mainPanel.add(experienceLabel);
 		experienceLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		experienceLabel.setFont(new Font("Bahnschrift", Font.ITALIC, 14));
+		experienceLabel.setFont(new Font("Segoe UI Semibold", Font.ITALIC, 14));
 
 		userField = new RoundedTextField(20);
+		userField.setMargin(new Insets(2, 11, 2, 11));
 		userField.setBorder(new EmptyBorder(0, 0, 0, 0));
-		userField.setText(" Username");
+		userField.setText("Username");
 		userField.setBounds(37, 119, 273, 30);
-		userField.setFont(new Font("Consolas", Font.BOLD, 14));
+		userField.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
 		mainPanel.add(userField);
 		userField.setForeground(Color.GRAY);
 
 		passField = new RoundedPasswordField(20);
+		passField.setMargin(new Insets(2, 11, 2, 11));
 		passField.setBorder(new EmptyBorder(0, 0, 0, 0));
 		passField.setBounds(37, 192, 273, 30);
-		passField.setFont(new Font("Consolas", Font.BOLD, 14));
+		passField.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
 		mainPanel.add(passField);
 		passField.setForeground(Color.GRAY);
-		passField.setText(" Password");
+		passField.setText("Password");
 		passField.setEchoChar((char) 0);
 
 		textField = new JTextField("");
@@ -250,16 +269,17 @@ public class Welcome extends JFrame {
 		textField.setForeground(Color.GRAY);
 		mainPanel.add(textField);
 
-		JButton LoginButton = new RoundedButton("LOGIN");
-		LoginButton.setEnabled(false);
-		LoginButton.setBorder(new EmptyBorder(0, 0, 0, 0));
-		LoginButton.setBounds(122, 265, 105, 30);
-		mainPanel.add(LoginButton);
-		LoginButton.setBackground(new Color(0, 128, 255));
-		LoginButton.setForeground(new Color(0, 0, 0));
-		
-		getRootPane().setDefaultButton(LoginButton);
-		LoginButton.addActionListener(new ActionListener() {
+		JButton loginButton = new RoundedButton("LOGIN");
+		loginButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		loginButton.setEnabled(false);
+		loginButton.setBorder(new EmptyBorder(0, 0, 0, 0));
+		loginButton.setBounds(90, 265, 168, 30);
+		mainPanel.add(loginButton);
+		loginButton.setBackground(new Color(0, 128, 255));
+		loginButton.setForeground(new Color(0, 0, 0));
+
+		getRootPane().setDefaultButton(loginButton);
+		loginButton.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 
@@ -274,57 +294,38 @@ public class Welcome extends JFrame {
 				} else {
 					passField.setForeground(Color.RED);
 					userField.setForeground(Color.RED);
-					System.out.println("Invalid username or password.");
-
 				}
 
-				String username = "";
-				String password = "";
-				boolean userState = false, passState = false;
-				if (userField.getText().equals(" Username")) {
-					userField.setForeground(Color.RED);
-				} else {
-					userField.setForeground(Color.RED);
-					if (username.equals(userField.getText())) {
-						userField.setForeground(Color.WHITE);
-					}
-				}
-				if (passField.getText().equals(" Password")) {
-					passField.setForeground(Color.RED);
-				} else {
-					passField.setForeground(Color.RED);
-					if (password.equals(userField.getText())) {
-						passField.setForeground(Color.BLACK);
-					}
-				}
 			}
 		});
-		LoginButton.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 15));
+		loginButton.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
 
 		JLabel dontHaveAccountYet = new JLabel("Don't have an account yet?");
 		dontHaveAccountYet.setForeground(new Color(255, 255, 255));
 		dontHaveAccountYet.setBounds(3, 358, 345, 30);
 		dontHaveAccountYet.setHorizontalAlignment(SwingConstants.CENTER);
-		dontHaveAccountYet.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 13));
+		dontHaveAccountYet.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
 		mainPanel.add(dontHaveAccountYet);
 
 		JLabel phpayLOGO = new JLabel("");
-//		phpayLOGO.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseClicked(MouseEvent e) {
-//				dispose();
-//				setVisible(false);
-//			}
-//		});
+		phpayLOGO.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Home home = new Home("admin");
+				home.setVisible(true);
+				dispose();
+				setVisible(false);
+			}
+		});
 		phpayLOGO.setBackground(new Color(0, 0, 0));
-		phpayLOGO.setBounds(347, 119, 490, 135);
+		phpayLOGO.setBounds(347, 119, 488, 135);
 		mainPanel.add(phpayLOGO);
 		phpayLOGO.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/PHPAY-BRAND-LARGE.png")));
 
 		logo = new JLabel("");
 		logo.setHorizontalAlignment(SwingConstants.CENTER);
 		logo.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/phpcard.gif")));
-		logo.setBounds(347, 242, 490, 173);
+		logo.setBounds(347, 242, 488, 173);
 		mainPanel.add(logo);
 
 		JLabel date = new JLabel("Copyright © 2023 PHPay. All Rights Reserved.");
@@ -333,10 +334,10 @@ public class Welcome extends JFrame {
 		date.setForeground(new Color(81, 81, 81));
 		date.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 10));
 
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/Background-03.png")));
-		lblNewLabel_1.setBounds(2, 0, 835, 452);
-		mainPanel.add(lblNewLabel_1);
+//		JLabel lblNewLabel_1 = new JLabel("");
+//		lblNewLabel_1.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/Background-03.png")));
+//		lblNewLabel_1.setBounds(2, 0, 835, 452);
+//		mainPanel.add(lblNewLabel_1);
 
 		JButton close = new JButton("");
 		close.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/exit.png")));
@@ -448,30 +449,27 @@ public class Welcome extends JFrame {
 		passField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				if (Arrays.equals(passField.getPassword(), " Password".toCharArray())) {
+				if (Arrays.equals(passField.getPassword(), "Password".toCharArray())) {
 					passField.setText("");
 					passField.setForeground(Color.WHITE);
 					passField.setEchoChar('*');
-					System.out.println("eye1");
 
 				}
 			}
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				if (passField.getPassword().length == 0
-						|| String.valueOf(passField.getPassword()).equals(" Password")) {
-					passField.setText(" Password");
+				if (passField.getPassword().length == 0 || String.valueOf(passField.getPassword()).equals("Password")) {
+					passField.setText("Password");
 					passField.setForeground(Color.GRAY);
 					passField.setEchoChar((char) 0);
-					System.out.println("hideeye1");
 				}
 			}
 		});
 
 		userField.addFocusListener(new FocusListener() {
 			public void focusGained(FocusEvent e) {
-				if (userField.getText().equals(" Username")) {
+				if (userField.getText().equals("Username")) {
 					userField.setText("");
 					userField.setForeground(Color.WHITE);
 				}
@@ -479,7 +477,7 @@ public class Welcome extends JFrame {
 
 			public void focusLost(FocusEvent e) {
 				if (userField.getText().isEmpty()) {
-					userField.setText(" Username");
+					userField.setText("Username");
 					userField.setForeground(Color.GRAY);
 				} else if (!userField.getText().isEmpty()) {
 					userField.setForeground(Color.WHITE);
@@ -487,39 +485,54 @@ public class Welcome extends JFrame {
 			}
 		});
 		DocumentListener documentListener = new DocumentListener() {
-		    @Override
+			@Override
 			public void insertUpdate(DocumentEvent e) {
 				setField();
 			}
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
-				setField();		
+				setField();
 			}
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
 				setField();
 			}
+
 			@SuppressWarnings("deprecation")
 			public void setField() {
 				userCheck = userField.getText();
 				passCheck = passField.getText();
-				
-				if (!userCheck.isEmpty() && !passCheck.isEmpty()) {
-					LoginButton.setForeground(new Color(213, 10, 214));
-					LoginButton.setEnabled(true);
+
+				if (passCheck.contains(" ") || passCheck.equals("Password") || passCheck.equals("")) {
+					eyeLabel.setVisible(false);
 				} else {
-					LoginButton.setForeground(new Color(0, 0, 0));
-					LoginButton.setEnabled(false);
+					eyeLabel.setVisible(true);
+				}
+
+				if (!userCheck.isEmpty() && !passCheck.isEmpty()) {
+					if (!userCheck.equals("Username") && !passCheck.equals("Password")) {
+						loginButton.setForeground(new Color(255, 255, 255));
+						loginButton.setFont(new Font("Segoe UI Semibold", Font.BOLD, 15));
+						loginButton.setEnabled(true);
+					} else {
+						loginButton.setForeground(new Color(0, 0, 0));
+						loginButton.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
+						loginButton.setEnabled(false);
+					}
+				} else {
+					loginButton.setForeground(new Color(0, 0, 0));
+					loginButton.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
+					loginButton.setEnabled(false);
 				}
 			}
 		};
 		userField.getDocument().addDocumentListener(documentListener);
 		passField.getDocument().addDocumentListener(documentListener);
-		
+
 	}
-	
+
 	public boolean accountExist(String user, String pass) {
 		SQLConnection newCon = new SQLConnection();
 		boolean userexist = false;
@@ -535,7 +548,6 @@ public class Welcome extends JFrame {
 			pst.setString(1, user);
 			ResultSet rs = pst.executeQuery();
 
-			// IF HASHED PASS DOESN'T MEET DATABASED HASH, RETURN FALSE
 			if (rs.next()) {
 				hash = rs.getString("hashed_pass");
 			}
