@@ -83,9 +83,8 @@ public class SQLQuery {
 	
 	//Transaction NAME
 	public static String getTransName(String user) {
-		String query = "SELECT `fName`, `lName` FROM `user_profile` WHERE user_id = ?";
+		String query = "SELECT `fName` FROM `user_profile` WHERE user_id = ?";
 		String Fname = "";
-		String Dname = "";
 		try {
 			PreparedStatement ps = con.getCon().prepareStatement(query);
 			ps.setString(1, user);
@@ -93,16 +92,14 @@ public class SQLQuery {
 
 			if (rs.next()) {
 				Fname = rs.getString("fName");
-				 Dname = rs.getString("lName");
 			}
 		} catch (SQLException ex) {
 			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		return Fname +" "+ Dname;
+		return Fname ;
 
 	}
 	
-
 	public static void deleteAccount(String ID) {
 
 		String query = "DELETE FROM `user_profile` WHERE user_id = ?";

@@ -146,7 +146,7 @@ public class Home extends JFrame {
 		lblNewLabel_1.setBounds(0, 0, 70, 70);
 		profilePane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Cristian Jay");
+		JLabel lblNewLabel_2 = new JLabel(SQLQuery.getTransName(ID));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 18));
 		lblNewLabel_2.setForeground(new Color(255, 255, 255));
