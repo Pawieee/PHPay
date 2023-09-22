@@ -38,11 +38,12 @@ import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import java.awt.Insets;
 import javax.swing.border.EmptyBorder;
+import javax.swing.DefaultComboBoxModel;
 
 public class Register extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private RoundedTextField firstNameField, lastNameField, phonenumberField, addressField, emailField;
+	private RoundedTextField firstnameField, lastnameField, phonenumberField, addressField, emailField;
 	private JLabel firstNameStatusLabel, lastNameStatusLabel, phoneStatusLabel, addressStatusLabel, emailStatusLabel,
 			yearLabel;
 	JButton registerButton;
@@ -218,7 +219,7 @@ public class Register extends JFrame {
 		nextButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				fName = firstNameField.getText();
+				fName = firstnameField.getText();
 				System.out.println(fName);
 				if (fName.equals("  First Name")) {
 					firstNameStatusLabel.setVisible(true);
@@ -233,8 +234,8 @@ public class Register extends JFrame {
 					firstNameEdited = true;
 				}
 
-				lName = lastNameField.getText();
-				if (lastNameField.getText().equals("  Last Name")) {
+				lName = lastnameField.getText();
+				if (lastnameField.getText().equals("  Last Name")) {
 					lastNameStatusLabel.setVisible(true);
 					lastNameStatusLabel.setToolTipText("Please type in your last name");
 					lastNameEdited = false;
@@ -403,12 +404,12 @@ public class Register extends JFrame {
 
 				if (firstNameEdited && lastNameEdited && monthEdited && dayEdited && yearEdited && phoneEdited
 						&& addressEdited && emailEdited && yearEdited) {
-					if (!firstNameField.getText().isEmpty() && !lastNameField.getText().isEmpty()
+					if (!firstnameField.getText().isEmpty() && !lastnameField.getText().isEmpty()
 							&& !phonenumberField.getText().isEmpty() && !addressField.getText().isEmpty()
 							&& !emailField.getText().isEmpty() && !(ageInt < 18)) {
 
-						String saveF = firstNameField.getText();
-						String saveL = lastNameField.getText();
+						String saveF = firstnameField.getText();
+						String saveL = lastnameField.getText();
 						String saveA = age;
 						saveM = selectedMonth;
 						saveD = selectedDay;
@@ -441,16 +442,17 @@ public class Register extends JFrame {
 		nextButton.setForeground(new Color(255, 255, 255));
 
 		RoundedComboBox<String> monthBox = new RoundedComboBox<>(months);
+		monthBox.setModel(new DefaultComboBoxModel(new String[] {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}));
 		monthBox.setBounds(57, 310, 140, 30);
 		infoPane.add(monthBox);
-		monthBox.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
+		monthBox.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
 		monthBox.setBackground(new Color(35, 0, 70));
 		monthBox.setForeground(new Color(255, 255, 255));
 		monthBox.setMaximumRowCount(4);
 		JComboBox<String> dayBox = new JComboBox<>(days);
 		dayBox.setBounds(210, 310, 98, 30);
 		infoPane.add(dayBox);
-		dayBox.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
+		dayBox.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
 		dayBox.setBackground(new Color(35, 0, 70));
 		dayBox.setForeground(new Color(255, 255, 255));
 		dayBox.setMaximumRowCount(4);
@@ -460,44 +462,44 @@ public class Register extends JFrame {
 		infoPane.add(yearBox);
 		yearBox.setForeground(new Color(255, 255, 255));
 		yearBox.setBackground(new Color(35, 0, 70));
-		yearBox.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
+		yearBox.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
 		yearBox.setMaximumRowCount(4);
 
-		firstNameField = new RoundedTextField(10);
-		firstNameField.setBounds(57, 46, 184, 30);
-		infoPane.add(firstNameField);
-		firstNameField.setMargin(new Insets(2, 7, 2, 7));
-		firstNameField.setToolTipText("");
-		firstNameField.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 13));
-		firstNameField.setForeground(new Color(192, 192, 192));
+		firstnameField = new RoundedTextField(10);
+		firstnameField.setBounds(57, 46, 184, 30);
+		infoPane.add(firstnameField);
+		firstnameField.setMargin(new Insets(2, 7, 2, 7));
+		firstnameField.setToolTipText("");
+		firstnameField.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
+		firstnameField.setForeground(new Color(255, 255, 255));
 
-		lastNameField = new RoundedTextField(10);
-		lastNameField.setBounds(251, 46, 184, 30);
-		infoPane.add(lastNameField);
-		lastNameField.setMargin(new Insets(2, 7, 2, 7));
-		lastNameField.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 13));
-		lastNameField.setForeground(new Color(192, 192, 192));
+		lastnameField = new RoundedTextField(10);
+		lastnameField.setBounds(251, 46, 184, 30);
+		infoPane.add(lastnameField);
+		lastnameField.setMargin(new Insets(2, 7, 2, 7));
+		lastnameField.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
+		lastnameField.setForeground(new Color(255, 255, 255));
 
 		phonenumberField = new RoundedTextField(10);
 		phonenumberField.setBounds(57, 112, 378, 30);
 		infoPane.add(phonenumberField);
 		phonenumberField.setMargin(new Insets(2, 7, 2, 7));
-		phonenumberField.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 13));
-		phonenumberField.setForeground(new Color(192, 192, 192));
+		phonenumberField.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
+		phonenumberField.setForeground(new Color(255, 255, 255));
 
 		addressField = new RoundedTextField(10);
 		addressField.setBounds(57, 178, 378, 30);
 		infoPane.add(addressField);
 		addressField.setMargin(new Insets(2, 7, 2, 7));
-		addressField.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 13));
-		addressField.setForeground(new Color(192, 192, 192));
+		addressField.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
+		addressField.setForeground(new Color(255, 255, 255));
 
 		emailField = new RoundedTextField(10);
 		emailField.setBounds(57, 244, 378, 30);
 		infoPane.add(emailField);
 		emailField.setMargin(new Insets(2, 7, 2, 7));
-		emailField.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 13));
-		emailField.setForeground(new Color(192, 192, 192));
+		emailField.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
+		emailField.setForeground(new Color(255, 255, 255));
 
 		lblFirstName = new JLabel("First Name");
 		lblFirstName.setIconTextGap(6);
@@ -539,6 +541,17 @@ public class Register extends JFrame {
 		infoPane.add(lblEmailAddress);
 
 		rndbtnClearAll = new PHPay.RoundedButton("");
+		rndbtnClearAll.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				firstnameField.setText("");
+				lastnameField.setText("");
+				phonenumberField.setText("");
+				addressField.setText("");
+				emailField.setText("");
+				
+				
+			}
+		});
 		rndbtnClearAll.setText("Clear All");
 		rndbtnClearAll.setForeground(Color.WHITE);
 		rndbtnClearAll.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
@@ -546,6 +559,30 @@ public class Register extends JFrame {
 		rndbtnClearAll.setBackground(Color.BLACK);
 		rndbtnClearAll.setBounds(57, 380, 69, 30);
 		infoPane.add(rndbtnClearAll);
+		
+		JLabel lblMonth = new JLabel("Month");
+		lblMonth.setIconTextGap(6);
+		lblMonth.setHorizontalAlignment(SwingConstants.LEFT);
+		lblMonth.setForeground(Color.WHITE);
+		lblMonth.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
+		lblMonth.setBounds(57, 285, 117, 23);
+		infoPane.add(lblMonth);
+		
+		JLabel lblDay = new JLabel("Day");
+		lblDay.setIconTextGap(6);
+		lblDay.setHorizontalAlignment(SwingConstants.LEFT);
+		lblDay.setForeground(Color.WHITE);
+		lblDay.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
+		lblDay.setBounds(210, 285, 98, 23);
+		infoPane.add(lblDay);
+		
+		JLabel lblDay_1 = new JLabel("Year");
+		lblDay_1.setIconTextGap(6);
+		lblDay_1.setHorizontalAlignment(SwingConstants.LEFT);
+		lblDay_1.setForeground(Color.WHITE);
+		lblDay_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
+		lblDay_1.setBounds(322, 285, 117, 23);
+		infoPane.add(lblDay_1);
 
 //		emailField.addFocusListener(new FocusListener() {
 //			public void focusGained(FocusEvent e) {

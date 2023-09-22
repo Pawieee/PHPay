@@ -9,7 +9,6 @@ public class PHPayMain extends JFrame{
 	public static void main(String[] args) {
 		Loading hello = new Loading();
 		hello.setVisible(true);
-		//
 	}
 
 }

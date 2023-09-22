@@ -102,6 +102,7 @@ public class Welcome extends JFrame {
 		mainPanel.setLayout(null);
 
 		JButton forgotPassword = new JButton("Forgot Password?");
+		forgotPassword.setToolTipText("");
 		forgotPassword.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {

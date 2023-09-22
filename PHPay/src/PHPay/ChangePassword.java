@@ -61,12 +61,12 @@ public class ChangePassword extends JFrame {
 		setLocation(centerX, centerY);
 		setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 30, 30));
 		setVisible(true);
-
-		JPanel blurPanel = new JPanel();
-		blurPanel.setBackground(new Color(0, 0, 0, 160));
-		blurPanel.setBounds(0, 0, 428, 489);
-		add(blurPanel);
-		blurPanel.setVisible(false);
+		
+				JPanel blurPanel = new JPanel();
+				blurPanel.setBackground(new Color(0, 0, 0, 160));
+				blurPanel.setBounds(0, 0, 428, 489);
+				getContentPane().add(blurPanel);
+				blurPanel.setVisible(false);
 
 		GradientPanel mainPane = new GradientPanel(Color.decode("#16002c"), Color.decode("#16002c"));
 		mainPane.setBounds(0, 0, 428, 489);
