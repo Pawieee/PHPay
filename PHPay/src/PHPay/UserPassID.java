@@ -30,7 +30,7 @@ import javax.swing.SwingWorker;
 
 import PHPay.RandomID.RandomIdGenerator;;
 
-public class UserPassID extends JFrame implements Serializable {
+public class UserPassID extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
