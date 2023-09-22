@@ -36,9 +36,20 @@ import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
+
 import java.awt.Insets;
+
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
+import javax.swing.plaf.basic.BasicComboBoxUI;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JRadioButton;
 
 public class Register extends JFrame {
 
@@ -55,6 +66,8 @@ public class Register extends JFrame {
 	boolean monthEdited = false;
 	boolean dayEdited = false;
 	boolean yearEdited = false;
+	boolean genderEdited = false;
+	boolean civilEdited = false;
 	public String selectedDay, selectedMonth, selectedYear, age;
 	private String fName, lName, ageStr, phone, address, saveM, saveD, saveY;
 	private int year, x, y;
@@ -77,6 +90,10 @@ public class Register extends JFrame {
 	private JLabel lblAddress;
 	private JLabel lblEmailAddress;
 	private PHPay.RoundedButton rndbtnClearAll;
+	private JLabel civilLabel;
+	private JLabel genderLabel;
+	Calendar calendar = Calendar.getInstance();
+	RoundedComboBox<String> civilBox, genderBox, monthBox, dayBox;
 
 	public static boolean isValidEmail(String email) {
 		String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-z"
@@ -111,16 +128,16 @@ public class Register extends JFrame {
 		int screenWidth = screenSize.width;
 		int screenHeight = screenSize.height;
 		int centerX = (screenWidth - 833) / 2;
-		int centerY = (screenHeight - 475) / 2;
+		int centerY = (screenHeight - 512) / 2;
 		setLocation(centerX, centerY);
-		setSize(833, 475);
+		setSize(833, 512);
 		getContentPane().setLayout(null);
 		setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 30, 30));
 
 		GradientPanel panel = new GradientPanel(Color.decode("#16002c"), Color.decode("#16002c"));
 		panel.setForeground(SystemColor.textHighlight);
 		panel.setBackground(new Color(0, 0, 64));
-		panel.setBounds(0, 0, 833, 475);
+		panel.setBounds(0, 0, 833, 512);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 
@@ -129,38 +146,34 @@ public class Register extends JFrame {
 		textField.setBounds(10, 22, 444, -5);
 		panel.add(textField);
 
-		String[] months = { " Month", "January", "February", "March", "April", "May", "June", "July", "August",
-				"September", "October", "November", "December" };
-
-		String[] days = new String[32];
-		days[0] = " Day";
-		for (int i = 1; i <= 31; i++) {
-			days[i] = String.valueOf(i);
-		}
-
-		int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-		String[] years = new String[106];
-		years[0] = " Year";
-		for (int i = 1; i <= 105; i++) {
-			years[i] = String.valueOf(currentYear - 17 - i);
-		}
-
 		RoundedPanel infoPane = new RoundedPanel(20);
 		infoPane.setLayout(null);
-		infoPane.setBackground(new Color(64, 0, 128, 50));
-		infoPane.setBounds(315, 23, 498, 430);
+		infoPane.setBackground(new Color(64, 0, 128, 0));
+		infoPane.setBounds(315, 23, 498, 489);
 		panel.add(infoPane);
 
 		monthLabel = new JLabel("");
 		monthLabel.setVisible(false);
-		monthLabel.setBounds(154, 315, 20, 20);
+
+		civilLabel = new JLabel("");
+		civilLabel.setIcon(new ImageIcon(Register.class.getResource("/PHPay/phpimg/warning.png")));
+		civilLabel.setVisible(false);
+
+		genderLabel = new JLabel("");
+		genderLabel.setVisible(false);
+		genderLabel.setIcon(new ImageIcon(Register.class.getResource("/PHPay/phpimg/warning.png")));
+		genderLabel.setBounds(198, 102, 20, 20);
+		infoPane.add(genderLabel);
+		civilLabel.setBounds(390, 102, 20, 20);
+		infoPane.add(civilLabel);
+		monthLabel.setBounds(155, 168, 20, 20);
 		infoPane.add(monthLabel);
 		monthLabel.setIcon(new ImageIcon(Register.class.getResource("/PHPay/phpimg/warning.png")));
 		monthLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
 
 		firstNameStatusLabel = new JLabel("");
 		firstNameStatusLabel.setVisible(false);
-		firstNameStatusLabel.setBounds(217, 51, 20, 20);
+		firstNameStatusLabel.setBounds(218, 36, 20, 20);
 		infoPane.add(firstNameStatusLabel);
 		firstNameStatusLabel.setVerifyInputWhenFocusTarget(false);
 		firstNameStatusLabel.setBackground(new Color(255, 255, 255));
@@ -169,63 +182,75 @@ public class Register extends JFrame {
 
 		lastNameStatusLabel = new JLabel("");
 		lastNameStatusLabel.setVisible(false);
-		lastNameStatusLabel.setBounds(411, 51, 20, 20);
+		lastNameStatusLabel.setBounds(412, 36, 20, 20);
 		infoPane.add(lastNameStatusLabel);
 		lastNameStatusLabel.setIcon(new ImageIcon(Register.class.getResource("/PHPay/phpimg/warning.png")));
 		lastNameStatusLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
 
 		phoneStatusLabel = new JLabel("");
 		phoneStatusLabel.setVisible(false);
-		phoneStatusLabel.setBounds(410, 117, 20, 20);
+		phoneStatusLabel.setBounds(412, 240, 20, 20);
 		infoPane.add(phoneStatusLabel);
 		phoneStatusLabel.setIcon(new ImageIcon(Register.class.getResource("/PHPay/phpimg/warning.png")));
 		phoneStatusLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
 
 		addressStatusLabel = new JLabel("");
 		addressStatusLabel.setVisible(false);
-		addressStatusLabel.setBounds(410, 183, 20, 20);
+		addressStatusLabel.setBounds(411, 309, 20, 20);
 		infoPane.add(addressStatusLabel);
 		addressStatusLabel.setIcon(new ImageIcon(Register.class.getResource("/PHPay/phpimg/warning.png")));
 		addressStatusLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
 
 		emailStatusLabel = new JLabel("");
 		emailStatusLabel.setVisible(false);
-		emailStatusLabel.setBounds(410, 249, 20, 20);
+		emailStatusLabel.setBounds(411, 378, 20, 20);
 		infoPane.add(emailStatusLabel);
 		emailStatusLabel.setIcon(new ImageIcon(Register.class.getResource("/PHPay/phpimg/warning.png")));
 		emailStatusLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
 
 		dayLabel = new JLabel("");
 		dayLabel.setVisible(false);
-		dayLabel.setBounds(266, 315, 20, 20);
+		dayLabel.setBounds(255, 168, 20, 20);
 		infoPane.add(dayLabel);
 		dayLabel.setIcon(new ImageIcon(Register.class.getResource("/PHPay/phpimg/warning.png")));
 		dayLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
 
 		yearLabel = new JLabel("");
 		yearLabel.setVisible(false);
-		yearLabel.setBounds(389, 315, 20, 20);
+		yearLabel.setBounds(390, 168, 20, 20);
 		infoPane.add(yearLabel);
 		yearLabel.setIcon(new ImageIcon(Register.class.getResource("/PHPay/phpimg/warning.png")));
 		yearLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
+
+		int currentMonth = calendar.get(Calendar.MONTH);
+		int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
+		int currentYear = calendar.get(Calendar.YEAR);
+
+		String[] months = { "January", "February", "March", "April", "May", "June", "July", "August", "September",
+				"October", "November", "December" };
+
+		String[] days = new String[31];
+		for (int i = 0; i < 31; i++) {
+			days[i] = String.valueOf(i + 1);
+		}
+
+		String[] years = new String[123];
+		for (int i = 0; i <= 122; i++) {
+			years[i] = String.valueOf(currentYear - i);
+		}
 
 		RoundedButton nextButton = new RoundedButton("");
 		nextButton.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
 		nextButton.setText("Next");
 		nextButton.setBorder(new EmptyBorder(0, 0, 0, 0));
-		nextButton.setBounds(311, 370, 124, 40);
+		nextButton.setBounds(311, 428, 124, 40);
 		infoPane.add(nextButton);
 
 		nextButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				fName = firstnameField.getText();
-				System.out.println(fName);
-				if (fName.equals("  First Name")) {
-					firstNameStatusLabel.setVisible(true);
-					firstNameStatusLabel.setToolTipText("Please type in your first name");
-					firstNameEdited = false;
-				} else if (!isValidName(fName)) {
+				if (!isValidName(fName)) {
 					firstNameStatusLabel.setVisible(true);
 					firstNameStatusLabel.setToolTipText("Invalid first name");
 					firstNameEdited = false;
@@ -235,11 +260,7 @@ public class Register extends JFrame {
 				}
 
 				lName = lastnameField.getText();
-				if (lastnameField.getText().equals("  Last Name")) {
-					lastNameStatusLabel.setVisible(true);
-					lastNameStatusLabel.setToolTipText("Please type in your last name");
-					lastNameEdited = false;
-				} else if (!isValidName(lName)) {
+				if (!isValidName(lName)) {
 					lastNameStatusLabel.setVisible(true);
 					lastNameStatusLabel.setToolTipText("Invalid last name");
 					lastNameEdited = false;
@@ -249,11 +270,7 @@ public class Register extends JFrame {
 				}
 
 				phone = phonenumberField.getText();
-				if (phone.equals("  Phone Number")) {
-					phoneStatusLabel.setVisible(true);
-					phoneStatusLabel.setToolTipText("Please type in your phone number");
-					phoneEdited = false;
-				} else if (!phone.matches("^\\d{11}$")) {
+				if (!phone.matches("^\\d{11}$")) {
 					phoneStatusLabel.setVisible(true);
 					phoneStatusLabel.setToolTipText("Invalid phone number");
 					phoneEdited = false;
@@ -271,10 +288,6 @@ public class Register extends JFrame {
 					addressStatusLabel.setVisible(true);
 					addressStatusLabel.setToolTipText("Please type in your address");
 					addressEdited = false;
-				} else if (addressField.getText().equals("  Address")) {
-					addressStatusLabel.setVisible(true);
-					addressStatusLabel.setToolTipText("Please type in your address");
-					addressEdited = false;
 				} else if (address.matches("^\\s+$")) {
 					addressStatusLabel.setVisible(true);
 					addressStatusLabel.setToolTipText("Invalid address");
@@ -289,11 +302,7 @@ public class Register extends JFrame {
 				}
 
 				String email = emailField.getText();
-				if (email.equals("  Email Address")) {
-					emailStatusLabel.setVisible(true);
-					emailStatusLabel.setToolTipText("Please type in your email");
-					emailEdited = false;
-				} else if (!isValidEmail(email)) {
+				if (!isValidEmail(email)) {
 					emailStatusLabel.setVisible(true);
 					emailStatusLabel.setToolTipText("Invalid email");
 					emailEdited = false;
@@ -302,108 +311,111 @@ public class Register extends JFrame {
 					emailEdited = true;
 				}
 
-				Map<String, Integer> monthMap = new HashMap<>();
-				monthMap.put("Month", 0);
-				monthMap.put("January", 1);
-				monthMap.put("February", 2);
-				monthMap.put("March", 3);
-				monthMap.put("April", 4);
-				monthMap.put("May", 5);
-				monthMap.put("June", 6);
-				monthMap.put("July", 7);
-				monthMap.put("August", 8);
-				monthMap.put("September", 9);
-				monthMap.put("October", 10);
-				monthMap.put("November", 11);
-				monthMap.put("December", 12);
-
-				int birthMonth = monthMap.get(selectedMonth);
-				int birthDay = Integer.parseInt(selectedDay);
-				int birthYear = Integer.parseInt(selectedYear);
-
-				if (birthMonth > 0) {
-					monthEdited = true;
-					monthLabel.setVisible(false);
+				String gender = (String) genderBox.getSelectedItem();
+				if (gender.equals(null) || gender.equals(" ")) {
+					genderLabel.setVisible(true);
+					genderEdited = false;
 				} else {
-					monthLabel.setVisible(true);
-					monthLabel.setToolTipText("Please select your birth month");
-					return;
+					genderLabel.setVisible(false);
+					genderEdited = true;
 				}
 
-				boolean isLeapYear = ((birthYear % 4 == 0 && birthYear % 100 != 0) || (birthYear % 400 == 0));
+				String civil = (String) civilBox.getSelectedItem();
+				if (civil.equals(null) || civil.equals(" ")) {
+					civilLabel.setVisible(true);
+					civilEdited = false;
+				} else {
+					civilLabel.setVisible(false);
+					civilEdited = true;
+				}
 
-				if (selectedMonth == "February") {
+				int ageThreshold = currentYear - 18;
+				String yearString = (String) yearBox.getSelectedItem();
+				int year = Integer.parseInt(yearString);
+				int monthChoice = monthBox.getSelectedIndex();
+				String dayString = (String) dayBox.getSelectedItem();
+				int day = Integer.parseInt(dayString);
 
-					if (birthDay >= 29) {
-						if (birthDay == 29) {
-							if (!isLeapYear) {
-								dayEdited = false;
-								dayLabel.setVisible(true);
-								dayLabel.setToolTipText(
-										"February 29th is only available in leap years. Please choose another date.");
-								return;
-							} else {
-								selectedYear = (String) yearBox.getSelectedItem();
-								dayLabel.setVisible(false);
-								dayEdited = true;
-							}
-						} else {
+				// BALIKAN TA NI YAWA NAA PANI BUG
+				if (year == currentYear && monthChoice == currentMonth && day == (currentDay + 1)) {
+					yearLabel.setVisible(true);
+					monthLabel.setVisible(true);
+					dayLabel.setVisible(true);
+					yearLabel.setToolTipText(
+							"<html>It looks like you entered the wrong info.<br>Please be sure to use your real birthday.</html>");
+
+					monthLabel.setToolTipText(
+							"<html>It looks like you entered the wrong info.<br>Please be sure to use your real birthday.</html>");
+					dayLabel.setToolTipText(
+							"<html>It looks like you entered the wrong info.<br>Please be sure to use your real birthday.</html>");
+				} else {
+					yearLabel.setVisible(false);
+					monthLabel.setVisible(false);
+					dayLabel.setVisible(false);
+					yearLabel.setToolTipText("");
+					yearLabel.setToolTipText("");
+					yearLabel.setToolTipText("");
+
+					System.out.println(year + " " + ageThreshold);
+					if (year > ageThreshold) {
+						yearEdited = false;
+						yearLabel.setVisible(true);
+						yearLabel.setToolTipText("We only accept individuals who are 18 years old");
+					} else {
+						yearEdited = true;
+						yearLabel.setVisible(false);
+						yearLabel.setToolTipText("");
+					}
+
+					boolean isLeapYear = ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0));
+
+					String month = (String) monthBox.getSelectedItem();
+					if (month.equals("February")) {
+						if (day < 29) {
+							dayEdited = true;
+							selectedYear = (String) yearBox.getSelectedItem();
+							dayLabel.setVisible(false);
+						} else if (day == 29 && isLeapYear) {
+							dayEdited = true;
+							selectedYear = (String) yearBox.getSelectedItem();
+							dayLabel.setVisible(false);
+						} else if (day > 29 && isLeapYear) {
+							dayLabel.setToolTipText("February " + year + " typically has "+ 29 + " days");
 							dayEdited = false;
 							dayLabel.setVisible(true);
-							dayLabel.setToolTipText(
-									"February typically has 28 days, but in leap years, it has 29 days.");
-							return;
+						} else {
+							dayLabel.setToolTipText("February " + year + " typically has 28 days");
+							dayEdited = false;
+							dayLabel.setVisible(true);
+
 						}
+
 					} else {
 						dayEdited = true;
 						selectedYear = (String) yearBox.getSelectedItem();
+						selectedMonth = (String) monthBox.getSelectedItem();
+						selectedDay = (String) dayBox.getSelectedItem();
 						dayLabel.setVisible(false);
+
 					}
+
 				}
 
-				birthYear = Integer.parseInt(selectedYear);
-				System.out.println(birthMonth + "" + birthYear + "" + birthDay);
-				LocalDate birthDate = LocalDate.of(birthYear, birthMonth, birthDay);
+				System.out.println(year + " " + currentYear);
+				System.out.println(monthChoice + " " + currentMonth);
+				System.out.println(day + " " + currentDay);
+
+				LocalDate birthDate = LocalDate.of(year, monthChoice, day);
 				LocalDate currentDate = LocalDate.now();
 				Period agePeriod = Period.between(birthDate, currentDate);
 
 				int ageInt = agePeriod.getYears();
 				age = String.valueOf(ageInt);
 
-				if (selectedDay.equals(" Day")) {
-					dayLabel.setVisible(true);
-					dayLabel.setToolTipText("Please select your birth day");
-					System.out.println("days");
-					return;
-				} else if (selectedDay.equals(null)) {
-					dayLabel.setVisible(true);
-					dayLabel.setToolTipText("Please select your birth day");
-					dayEdited = false;
-					System.out.println("days");
-				} else {
-					birthDay = Integer.parseInt(selectedDay);
-					dayLabel.setVisible(false);
-					dayEdited = true;
-					System.out.println("days");
-				}
-
-				if (selectedYear.equals(null)) {
-					yearLabel.setVisible(true);
-					yearLabel.setToolTipText("Please select your birth year");
-					yearEdited = false;
-				} else if (selectedYear.equals(" Year")) {
-					yearLabel.setVisible(true);
-					yearLabel.setToolTipText("Please select your birth year");
-					return;
-				} else {
-					birthYear = Integer.parseInt(selectedYear);
-					yearLabel.setVisible(false);
-					yearEdited = true;
-
-				}
+				System.out.println(selectedYear + " " + selectedMonth + " " + selectedDay);
 
 				if (firstNameEdited && lastNameEdited && monthEdited && dayEdited && yearEdited && phoneEdited
-						&& addressEdited && emailEdited && yearEdited) {
+						&& addressEdited && emailEdited && yearEdited && genderEdited && civilEdited) {
 					if (!firstnameField.getText().isEmpty() && !lastnameField.getText().isEmpty()
 							&& !phonenumberField.getText().isEmpty() && !addressField.getText().isEmpty()
 							&& !emailField.getText().isEmpty() && !(ageInt < 18)) {
@@ -441,32 +453,36 @@ public class Register extends JFrame {
 		nextButton.setBackground(new Color(0, 0, 0));
 		nextButton.setForeground(new Color(255, 255, 255));
 
-		RoundedComboBox<String> monthBox = new RoundedComboBox<>(months);
-		monthBox.setModel(new DefaultComboBoxModel(new String[] {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}));
-		monthBox.setBounds(57, 310, 140, 30);
+		monthBox = new RoundedComboBox<>(months);
+		monthBox.setBounds(58, 163, 140, 30);
 		infoPane.add(monthBox);
 		monthBox.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
-		monthBox.setBackground(new Color(35, 0, 70));
+		monthBox.setBackground(new Color(27, 0, 53));
 		monthBox.setForeground(new Color(255, 255, 255));
 		monthBox.setMaximumRowCount(4);
-		JComboBox<String> dayBox = new JComboBox<>(days);
-		dayBox.setBounds(210, 310, 98, 30);
+		monthBox.setSelectedIndex(currentMonth);
+
+		dayBox = new RoundedComboBox<>(days);
+		dayBox.setBounds(211, 163, 87, 30);
 		infoPane.add(dayBox);
 		dayBox.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
-		dayBox.setBackground(new Color(35, 0, 70));
+		dayBox.setBackground(new Color(27, 0, 53));
 		dayBox.setForeground(new Color(255, 255, 255));
 		dayBox.setMaximumRowCount(4);
+		dayBox.setSelectedIndex(currentDay);
 
 		yearBox = new JComboBox<>(years);
-		yearBox.setBounds(322, 310, 113, 30);
+		yearBox.setBounds(312, 163, 124, 30);
 		infoPane.add(yearBox);
 		yearBox.setForeground(new Color(255, 255, 255));
-		yearBox.setBackground(new Color(35, 0, 70));
+		yearBox.setBackground(new Color(27, 0, 53));
 		yearBox.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
 		yearBox.setMaximumRowCount(4);
+//		yearBox.setSelectedIndex(currentYear);
 
 		firstnameField = new RoundedTextField(10);
-		firstnameField.setBounds(57, 46, 184, 30);
+		firstnameField.setBackground(SystemColor.info);
+		firstnameField.setBounds(58, 31, 184, 30);
 		infoPane.add(firstnameField);
 		firstnameField.setMargin(new Insets(2, 7, 2, 7));
 		firstnameField.setToolTipText("");
@@ -474,28 +490,32 @@ public class Register extends JFrame {
 		firstnameField.setForeground(new Color(255, 255, 255));
 
 		lastnameField = new RoundedTextField(10);
-		lastnameField.setBounds(251, 46, 184, 30);
+		lastnameField.setBackground(SystemColor.info);
+		lastnameField.setBounds(252, 31, 184, 30);
 		infoPane.add(lastnameField);
 		lastnameField.setMargin(new Insets(2, 7, 2, 7));
 		lastnameField.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
 		lastnameField.setForeground(new Color(255, 255, 255));
 
 		phonenumberField = new RoundedTextField(10);
-		phonenumberField.setBounds(57, 112, 378, 30);
+		phonenumberField.setBackground(SystemColor.info);
+		phonenumberField.setBounds(58, 235, 378, 30);
 		infoPane.add(phonenumberField);
 		phonenumberField.setMargin(new Insets(2, 7, 2, 7));
 		phonenumberField.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
 		phonenumberField.setForeground(new Color(255, 255, 255));
 
 		addressField = new RoundedTextField(10);
-		addressField.setBounds(57, 178, 378, 30);
+		addressField.setBackground(SystemColor.info);
+		addressField.setBounds(58, 304, 378, 30);
 		infoPane.add(addressField);
 		addressField.setMargin(new Insets(2, 7, 2, 7));
 		addressField.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
 		addressField.setForeground(new Color(255, 255, 255));
 
 		emailField = new RoundedTextField(10);
-		emailField.setBounds(57, 244, 378, 30);
+		emailField.setBackground(SystemColor.info);
+		emailField.setBounds(58, 373, 378, 30);
 		infoPane.add(emailField);
 		emailField.setMargin(new Insets(2, 7, 2, 7));
 		emailField.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
@@ -504,40 +524,40 @@ public class Register extends JFrame {
 		lblFirstName = new JLabel("First Name");
 		lblFirstName.setIconTextGap(6);
 		lblFirstName.setHorizontalAlignment(SwingConstants.LEFT);
-		lblFirstName.setForeground(Color.WHITE);
+		lblFirstName.setForeground(new Color(192, 192, 192));
 		lblFirstName.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
-		lblFirstName.setBounds(57, 26, 156, 23);
+		lblFirstName.setBounds(58, 11, 156, 23);
 		infoPane.add(lblFirstName);
 
 		lblLastName = new JLabel("Last Name");
 		lblLastName.setHorizontalAlignment(SwingConstants.LEFT);
-		lblLastName.setForeground(Color.WHITE);
+		lblLastName.setForeground(new Color(192, 192, 192));
 		lblLastName.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
-		lblLastName.setBounds(251, 26, 156, 23);
+		lblLastName.setBounds(252, 11, 156, 23);
 		infoPane.add(lblLastName);
 
 		lblPhoneNumber = new JLabel("Phone Number");
 		lblPhoneNumber.setIconTextGap(6);
 		lblPhoneNumber.setHorizontalAlignment(SwingConstants.LEFT);
-		lblPhoneNumber.setForeground(Color.WHITE);
+		lblPhoneNumber.setForeground(new Color(192, 192, 192));
 		lblPhoneNumber.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
-		lblPhoneNumber.setBounds(57, 89, 156, 23);
+		lblPhoneNumber.setBounds(57, 212, 156, 23);
 		infoPane.add(lblPhoneNumber);
 
-		lblAddress = new JLabel("Address");
+		lblAddress = new JLabel("Full Address");
 		lblAddress.setIconTextGap(6);
 		lblAddress.setHorizontalAlignment(SwingConstants.LEFT);
-		lblAddress.setForeground(Color.WHITE);
+		lblAddress.setForeground(new Color(192, 192, 192));
 		lblAddress.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
-		lblAddress.setBounds(57, 157, 156, 23);
+		lblAddress.setBounds(58, 283, 156, 23);
 		infoPane.add(lblAddress);
 
 		lblEmailAddress = new JLabel("Email Address");
 		lblEmailAddress.setIconTextGap(6);
 		lblEmailAddress.setHorizontalAlignment(SwingConstants.LEFT);
-		lblEmailAddress.setForeground(Color.WHITE);
+		lblEmailAddress.setForeground(new Color(192, 192, 192));
 		lblEmailAddress.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
-		lblEmailAddress.setBounds(58, 223, 156, 23);
+		lblEmailAddress.setBounds(59, 352, 156, 23);
 		infoPane.add(lblEmailAddress);
 
 		rndbtnClearAll = new PHPay.RoundedButton("");
@@ -548,8 +568,7 @@ public class Register extends JFrame {
 				phonenumberField.setText("");
 				addressField.setText("");
 				emailField.setText("");
-				
-				
+
 			}
 		});
 		rndbtnClearAll.setText("Clear All");
@@ -557,32 +576,111 @@ public class Register extends JFrame {
 		rndbtnClearAll.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
 		rndbtnClearAll.setBorder(new EmptyBorder(0, 0, 0, 0));
 		rndbtnClearAll.setBackground(Color.BLACK);
-		rndbtnClearAll.setBounds(57, 380, 69, 30);
+		rndbtnClearAll.setBounds(57, 433, 69, 30);
 		infoPane.add(rndbtnClearAll);
-		
+
 		JLabel lblMonth = new JLabel("Month");
 		lblMonth.setIconTextGap(6);
 		lblMonth.setHorizontalAlignment(SwingConstants.LEFT);
-		lblMonth.setForeground(Color.WHITE);
+		lblMonth.setForeground(new Color(192, 192, 192));
 		lblMonth.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
-		lblMonth.setBounds(57, 285, 117, 23);
+		lblMonth.setBounds(58, 141, 117, 23);
 		infoPane.add(lblMonth);
-		
+
 		JLabel lblDay = new JLabel("Day");
 		lblDay.setIconTextGap(6);
 		lblDay.setHorizontalAlignment(SwingConstants.LEFT);
-		lblDay.setForeground(Color.WHITE);
+		lblDay.setForeground(new Color(192, 192, 192));
 		lblDay.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
-		lblDay.setBounds(210, 285, 98, 23);
+		lblDay.setBounds(211, 141, 98, 23);
 		infoPane.add(lblDay);
-		
+
 		JLabel lblDay_1 = new JLabel("Year");
 		lblDay_1.setIconTextGap(6);
 		lblDay_1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblDay_1.setForeground(Color.WHITE);
+		lblDay_1.setForeground(new Color(192, 192, 192));
 		lblDay_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
-		lblDay_1.setBounds(322, 285, 117, 23);
+		lblDay_1.setBounds(312, 141, 117, 23);
 		infoPane.add(lblDay_1);
+
+		JLabel lblPhoneNumber_1 = new JLabel("Gender");
+		lblPhoneNumber_1.setIconTextGap(6);
+		lblPhoneNumber_1.setHorizontalAlignment(SwingConstants.LEFT);
+		lblPhoneNumber_1.setForeground(new Color(192, 192, 192));
+		lblPhoneNumber_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
+		lblPhoneNumber_1.setBounds(58, 77, 69, 23);
+		infoPane.add(lblPhoneNumber_1);
+
+		String[] civil = { "Single", "Married", "Widowed", "Divorced", "" };
+
+		civilBox = new RoundedComboBox(civil);
+		civilBox.addPopupMenuListener(new PopupMenuListener() {
+			@Override
+			public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
+				if (civilBox.getItemCount() >= 5) {
+					civilBox.removeItemAt(4);
+				}
+				civilBox.setSelectedItem("Single");
+
+			}
+
+			@Override
+			public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
+				// You can handle any actions when the dropdown becomes invisible here if needed
+			}
+
+			@Override
+			public void popupMenuCanceled(PopupMenuEvent e) {
+				// You can handle any actions when the dropdown is canceled here if needed
+			}
+		});
+		civilBox.setMaximumRowCount(4);
+		civilBox.setModel(new DefaultComboBoxModel(new String[] { "Single", "Married", "Widowed", "Divorced", " " }));
+		civilBox.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
+		civilBox.setForeground(new Color(255, 255, 255));
+		civilBox.setBackground(new Color(27, 0, 53));
+		civilBox.setBounds(252, 97, 184, 30);
+		infoPane.add(civilBox);
+		civilBox.setSelectedItem(" ");
+
+		JLabel lblCivilStatus = new JLabel("Civil Status");
+		lblCivilStatus.setHorizontalAlignment(SwingConstants.LEFT);
+		lblCivilStatus.setForeground(new Color(192, 192, 192));
+		lblCivilStatus.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
+		lblCivilStatus.setBounds(252, 77, 98, 23);
+		infoPane.add(lblCivilStatus);
+
+		String[] gender = { "Male", "Female", "Other", "" };
+
+		genderBox = new RoundedComboBox(gender);
+		genderBox.addPopupMenuListener(new PopupMenuListener() {
+			@Override
+			public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
+				if (genderBox.getItemCount() >= 4) {
+					genderBox.removeItemAt(3);
+				}
+				genderBox.setSelectedItem("Male");
+
+			}
+
+			@Override
+			public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
+				// You can handle any actions when the dropdown becomes invisible here if needed
+			}
+
+			@Override
+			public void popupMenuCanceled(PopupMenuEvent e) {
+				// You can handle any actions when the dropdown is canceled here if needed
+			}
+		});
+		genderBox.setMaximumRowCount(3);
+		genderBox.setModel(new DefaultComboBoxModel(new String[] { "Male", "Female", "Other", " " }));
+		genderBox.setForeground(new Color(255, 255, 255));
+		genderBox.setBackground(new Color(27, 0, 53));
+		genderBox.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
+		genderBox.setBounds(58, 97, 184, 30);
+		infoPane.add(genderBox);
+		genderBox.setSelectedItem(" ");
 
 //		emailField.addFocusListener(new FocusListener() {
 //			public void focusGained(FocusEvent e) {
@@ -738,9 +836,9 @@ public class Register extends JFrame {
 		panel.add(titleBar);
 
 		RoundedPanel signupPane = new RoundedPanel(20);
-		signupPane.setBounds(-12, 0, 307, 476);
+		signupPane.setBounds(-12, 0, 307, 512);
 		panel.add(signupPane);
-		signupPane.setBackground(new Color(64, 0, 128, 150));
+		signupPane.setBackground(new Color(64, 0, 128, 120));
 		signupPane.setLayout(null);
 
 		lblNewLabel = new JLabel("Sign Up");

@@ -138,13 +138,12 @@ public class Welcome extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getButton() == MouseEvent.BUTTON1) {
-
-					Timer timer = new Timer(50, new ActionListener() {
+					
+					Timer timer = new Timer(250, new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							Register reg = new Register();
 							reg.setVisible(true);
-							reg.setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 50, 50));
 							dispose();
 						}
 					});
