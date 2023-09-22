@@ -19,6 +19,10 @@ import javax.swing.ImageIcon;
 import java.awt.SystemColor;
 import javax.swing.UIManager;
 import javax.swing.JSeparator;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.EmptyBorder;
 
 public class Home extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -35,7 +39,7 @@ public class Home extends JFrame {
 				Toolkit.getDefaultToolkit().getImage(Home.class.getResource("/PHPay/phpimg/PHPAY-BRAND-ICON2.png")));
 		setUndecorated(true);
 		getContentPane().setLayout(null);
-		setBounds(0, 0, 1200, 749);
+		setBounds(0, 0, 1444, 749);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int screenWidth = screenSize.width;
 		int screenHeight = screenSize.height;
@@ -47,74 +51,65 @@ public class Home extends JFrame {
 
 		GradientPanel panel = new GradientPanel(new Color(0x360079), new Color((0x000000)));
 		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(0, 0, 1200, 1220);
+		panel.setBounds(0, 0, 1444, 1220);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 
-		JSeparator separator = new JSeparator();
-		separator.setBackground(new Color(89, 89, 89, 1));
-		separator.setOrientation(SwingConstants.VERTICAL);
-		separator.setBounds(256, 43, 2, 69);
-		panel.add(separator);
-
-		JLabel lblWallet = new JLabel("Wallet");
-		lblWallet.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 16));
-		lblWallet.setBounds(385, 38, 70, 70);
-		panel.add(lblWallet);
-		lblWallet.addMouseListener(new MouseAdapter() {
+		JLabel wallet = new JLabel("   Wallet");
+		wallet.setIcon(new ImageIcon(Home.class.getResource("/PHPay/phpimg/wallet-.png")));
+		wallet.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 20));
+		wallet.setBounds(30, 297, 176, 70);
+		panel.add(wallet);
+		wallet.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				titleClicked(servicePanel);
 			}
 		});
-		lblWallet.setHorizontalAlignment(SwingConstants.CENTER);
-		lblWallet.setForeground(new Color(255, 255, 255));
+		wallet.setHorizontalAlignment(SwingConstants.LEFT);
+		wallet.setForeground(new Color(255, 255, 255));
 
-		JLabel lblNewLabel = new JLabel("Home");
-		lblNewLabel.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 16));
-		lblNewLabel.setBounds(302, 38, 70, 70);
-		panel.add(lblNewLabel);
-		lblNewLabel.addMouseListener(new MouseAdapter() {
+		JLabel home = new JLabel("   Home");
+		home.setIcon(new ImageIcon(Home.class.getResource("/PHPay/phpimg/home-.png")));
+		home.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 20));
+		home.setBounds(30, 217, 176, 70);
+		panel.add(home);
+		home.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				titleClicked(homePanel);
 
 			}
 		});
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setForeground(new Color(255, 255, 255));
+		home.setHorizontalAlignment(SwingConstants.LEFT);
+		home.setForeground(new Color(255, 255, 255));
 
-		JLabel lblNewLabel_1_1 = new JLabel("Activity");
-		lblNewLabel_1_1.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 16));
-		lblNewLabel_1_1.setBounds(467, 38, 70, 70);
-		panel.add(lblNewLabel_1_1);
-		lblNewLabel_1_1.addMouseListener(new MouseAdapter() {
+		JLabel activity = new JLabel("   Activity");
+		activity.setIcon(new ImageIcon(Home.class.getResource("/PHPay/phpimg/activity-.png")));
+		activity.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 20));
+		activity.setBounds(30, 378, 186, 70);
+		panel.add(activity);
+		activity.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				titleClicked(summaryPanel);
 			}
 		});
-		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_1.setForeground(new Color(255, 255, 255));
+		activity.setHorizontalAlignment(SwingConstants.LEFT);
+		activity.setForeground(new Color(255, 255, 255));
 
-		JLabel lblNewLabel_1_1_1 = new JLabel("Help");
-		lblNewLabel_1_1_1.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 16));
-		lblNewLabel_1_1_1.setBounds(547, 38, 70, 70);
-		panel.add(lblNewLabel_1_1_1);
-		lblNewLabel_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_1_1.setForeground(new Color(255, 255, 255));
+		JLabel help = new JLabel("   Help");
+		help.setIcon(new ImageIcon(Home.class.getResource("/PHPay/phpimg/help-.png")));
+		help.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 20));
+		help.setBounds(30, 458, 156, 70);
+		panel.add(help);
+		help.setHorizontalAlignment(SwingConstants.LEFT);
+		help.setForeground(new Color(255, 255, 255));
 
-		JLabel line = new JLabel("");
-		line.setBounds(37, 42, 188, 66);
-		panel.add(line);
-		line.setIcon(new ImageIcon(Home.class.getResource("/PHPay/phpimg/PHPAY-BRAND.png")));
-		line.setHorizontalAlignment(SwingConstants.CENTER);
-		line.setForeground(Color.WHITE);
-		line.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 38));
-
-		JPanel panelArea = new JPanel();
+		RoundedPanel panelArea = new RoundedPanel(20);
+		panelArea.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		panelArea.setBackground(new Color(255, 255, 255));
-		panelArea.setBounds(0, 139, 1200, 610);
+		panelArea.setBounds(234, 31, 1200, 700);
 		panel.add(panelArea);
 		panelArea.setLayout(null);
 
@@ -128,27 +123,38 @@ public class Home extends JFrame {
 
 		panelArea.add(servicePanel);
 		panelArea.add(summaryPanel);
-
-		JSeparator separator_1 = new JSeparator();
-		separator_1.setOrientation(SwingConstants.VERTICAL);
-		separator_1.setBackground(new Color(89, 89, 89, 1));
-		separator_1.setBounds(377, 57, 2, 35);
-		panel.add(separator_1);
-
-		JSeparator separator_1_1 = new JSeparator();
-		separator_1_1.setOrientation(SwingConstants.VERTICAL);
-		separator_1_1.setBackground(new Color(89, 89, 89, 1));
-		separator_1_1.setBounds(459, 57, 2, 35);
-		panel.add(separator_1_1);
-
-		JSeparator separator_1_1_1 = new JSeparator();
-		separator_1_1_1.setOrientation(SwingConstants.VERTICAL);
-		separator_1_1_1.setBackground(new Color(89, 89, 89, 1));
-		separator_1_1_1.setBounds(541, 57, 2, 35);
-		panel.add(separator_1_1_1);
+		
+		RoundedButton btnNewButton = new RoundedButton("");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		btnNewButton.setIcon(new ImageIcon(Home.class.getResource("/PHPay/phpimg/logout.png")));
+		btnNewButton.setBorder(new EmptyBorder(0, 0, 0, 0));
+		btnNewButton.setBounds(83, 668, 57, 38);
+		panel.add(btnNewButton);
+		
+		RoundedPanel profilePane = new RoundedPanel(42);
+		profilePane.setBounds(80, 34, 70, 69);
+		panel.add(profilePane);
+		profilePane.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(Home.class.getResource("/PHPay/phpimg/user1.png")));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(0, 0, 70, 70);
+		profilePane.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("Cristian Jay");
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 18));
+		lblNewLabel_2.setForeground(new Color(255, 255, 255));
+		lblNewLabel_2.setBounds(20, 112, 191, 36);
+		panel.add(lblNewLabel_2);
 
 		JPanel top = new JPanel();
-		top.setBounds(1, 0, 1200, 17);
+		top.setBounds(1, 0, 1443, 17);
 		getContentPane().add(top);
 		top.addMouseListener(new MouseAdapter() {
 			@Override
