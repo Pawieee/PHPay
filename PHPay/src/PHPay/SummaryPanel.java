@@ -257,7 +257,6 @@ public class SummaryPanel extends JPanel {
 	
 	//METHOD OVERLOADING
 	public void getTransactions(String op) {
-		System.out.println("TEst");
 		DefaultTableModel model = new DefaultTableModel(null,
 				new String[] { "Name", "Date", "Invoice ID", "Amount", "Status" }) {
 			private static final long serialVersionUID = 8961818422329199291L;

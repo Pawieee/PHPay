@@ -168,7 +168,7 @@ public class Register extends JDialog {
 				if (phone.equals("  Phone Number")) {
 					phoneStatusLabel.setVisible(true);
 					phoneStatusLabel.setToolTipText("Please type in your phone number");
-					phoneEdited = false;
+					phoneEdited = false; 
 				} else if (!phone.matches("^\\d{11}$")) {
 					phoneStatusLabel.setVisible(true);
 					phoneStatusLabel.setToolTipText("Invalid phone number");

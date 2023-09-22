@@ -175,7 +175,7 @@ public class UserPassID extends JFrame implements Serializable {
 							progressPanel.setVisible(false);
 
 							JFrame logoutFrame = new JFrame("");
-							JLabel successLabel = new JLabel(passkey);
+							JLabel successLabel = new JLabel("Account created!");
 							successLabel.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 18));
 							successLabel.setHorizontalAlignment(SwingConstants.CENTER);
 							logoutFrame.getContentPane().add(successLabel, BorderLayout.CENTER);

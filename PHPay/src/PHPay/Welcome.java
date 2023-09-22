@@ -163,8 +163,8 @@ public class Welcome extends JFrame {
 			}
 		});
 
-		ImageIcon eye = new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/see.png"));
-		ImageIcon eye2 = new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/blind.png"));
+		ImageIcon eye2 = new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/see1.png"));
+		ImageIcon eye = new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/blind2.png"));
 
 		JLabel eye_label = new JLabel("New label");
 		eye_label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -274,7 +274,6 @@ public class Welcome extends JFrame {
 				} else {
 					passField.setForeground(Color.RED);
 					userField.setForeground(Color.RED);
-					System.out.println("Invalid username or password.");
 
 				}
 
@@ -452,7 +451,6 @@ public class Welcome extends JFrame {
 					passField.setText("");
 					passField.setForeground(Color.WHITE);
 					passField.setEchoChar('*');
-					System.out.println("eye1");
 
 				}
 			}
@@ -464,7 +462,6 @@ public class Welcome extends JFrame {
 					passField.setText(" Password");
 					passField.setForeground(Color.GRAY);
 					passField.setEchoChar((char) 0);
-					System.out.println("hideeye1");
 				}
 			}
 		});
