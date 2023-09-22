@@ -63,7 +63,7 @@ class RoundedButton extends JButton {
 		setBorderPainted(false);
 		setOpaque(false);
 		setPreferredSize(new Dimension(100, 40)); // Set your preferred size here
-		backgroundColor = new Color(192, 192, 192, 50); // Set your background color
+		backgroundColor = new Color(255, 255, 255, 50); // Set your background color
 		foregroundColor = Color.BLACK; // Set your foreground (text) color
 	}
 

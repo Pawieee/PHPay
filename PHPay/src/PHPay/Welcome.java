@@ -55,6 +55,7 @@ public class Welcome extends JFrame {
 	private int x, y;
 	private final JButton ignoreThisVariable = new JButton("");
 	PhpaySplash mainPanel;
+	RoundedButton loginButton;
 
 //	private JPanel advertisementPanel; // New advertisement panel
 //	private Timer advertisementTimer; // Timer for sliding animation
@@ -79,12 +80,6 @@ public class Welcome extends JFrame {
 
 		setTitle("PHPAY - Virtual Wallet");
 		getContentPane().setLayout(null);
-		
-				JPanel blurPanel = new JPanel();
-				blurPanel.setBackground(new Color(0, 0, 0, 160));
-				blurPanel.setBounds(0, 0, 833, 475);
-				getContentPane().add(blurPanel);
-				blurPanel.setVisible(false);
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new CompoundBorder());
@@ -146,16 +141,15 @@ public class Welcome extends JFrame {
 					Timer timer = new Timer(50, new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
-							Register reg = new Register(blurPanel, logo);
+							Register reg = new Register();
 							reg.setVisible(true);
 							reg.setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 50, 50));
+							dispose();
 						}
 					});
 
 					timer.setRepeats(false);
 					timer.start();
-					blurPanel.setVisible(true);
-					logo.setVisible(false);
 				}
 			}
 
@@ -269,7 +263,7 @@ public class Welcome extends JFrame {
 		textField.setForeground(Color.GRAY);
 		mainPanel.add(textField);
 
-		JButton loginButton = new RoundedButton("LOGIN");
+		loginButton = new RoundedButton("LOGIN");
 		loginButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		loginButton.setEnabled(false);
 		loginButton.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -516,6 +510,7 @@ public class Welcome extends JFrame {
 						loginButton.setForeground(new Color(255, 255, 255));
 						loginButton.setFont(new Font("Segoe UI Semibold", Font.BOLD, 15));
 						loginButton.setEnabled(true);
+						
 					} else {
 						loginButton.setForeground(new Color(0, 0, 0));
 						loginButton.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
