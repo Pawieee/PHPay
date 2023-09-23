@@ -104,8 +104,9 @@ public class Process extends JFrame {
 				Process.this.setVisible(false); // hide the current frame
 				Process.this.dispose(); // dispose of the current frame
 
-				Wallet run = new Wallet(getSession());
-				run.setVisible(true);
+				new Receipt(session);
+//				Wallet run = new Wallet(getSession());
+//				run.setVisible(true);
 
 			}
 		};
