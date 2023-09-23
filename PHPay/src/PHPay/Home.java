@@ -29,6 +29,7 @@ public class Home extends JFrame {
 	private int x, y;
 	private ServicePanel servicePanel;
 	private SummaryPanel summaryPanel;
+	private HelpPanel helpPanel;
 	private HomePanel homePanel;
 	private String session;
 
@@ -99,6 +100,12 @@ public class Home extends JFrame {
 		activity.setForeground(new Color(255, 255, 255));
 
 		JLabel help = new JLabel("   Help");
+		help.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				titleClicked(helpPanel);
+			}
+		});
+		
 		help.setIcon(new ImageIcon(Home.class.getResource("/PHPay/phpimg/help-.png")));
 		help.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 20));
 		help.setBounds(30, 458, 156, 70);
@@ -113,14 +120,17 @@ public class Home extends JFrame {
 		panel.add(panelArea);
 		panelArea.setLayout(null);
 
+		helpPanel = new HelpPanel(session);
 		servicePanel = new ServicePanel(session);
 		summaryPanel = new SummaryPanel(session);
 
+		helpPanel.setVisible(false);
 		servicePanel.setVisible(false);
 		summaryPanel.setVisible(false);
 		homePanel = new HomePanel();
 		panelArea.add(homePanel);
 
+		panelArea.add(helpPanel);
 		panelArea.add(servicePanel);
 		panelArea.add(summaryPanel);
 		
@@ -180,6 +190,7 @@ public class Home extends JFrame {
 		summaryPanel.setVisible(false);
 		servicePanel.setVisible(false);
 		homePanel.setVisible(false);
+		helpPanel.setVisible(false);
 
 		selectedPanel.setVisible(true);
 	}
