@@ -1,10 +1,12 @@
 package PHPay;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.Toolkit;
@@ -53,6 +55,11 @@ public class Welcome extends JFrame {
 	private final JButton ignoreThisVariable = new JButton("");
 	PhpaySplash mainPanel;
 	RoundedButton loginButton;
+	private boolean isVisible = false; // Flag to track visibility state
+	private JPanel invalidPrompt;
+	private JLabel invalidMessage;
+
+//	JButton profileButton, logoutButton, deleteButton;
 
 //	private JPanel advertisementPanel; // New advertisement panel
 //	private Timer advertisementTimer; // Timer for sliding animation
@@ -110,7 +117,7 @@ public class Welcome extends JFrame {
 		forgotPassword.setForeground(new Color(255, 255, 255, 190));
 		forgotPassword.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				dispose();
 				Timer timer = new Timer(100, new ActionListener() {
 					@Override
@@ -120,9 +127,17 @@ public class Welcome extends JFrame {
 				});
 				timer.setRepeats(false);
 				timer.start();
-				
+
 			}
 		});
+
+		///////////////
+
+		invalidPrompt = new RoundedPanel(5);
+		invalidPrompt.setBackground(new Color(206, 0, 0, 120));
+		invalidPrompt.setBounds(51, -25, 249, 25);
+		// invalidPrompt.setBounds(21, 5, 311, 25);
+		mainPanel.add(invalidPrompt);
 
 		JLabel register = new JLabel("Sign Up");
 		register.setBounds(136, 385, 71, 30);
@@ -269,6 +284,7 @@ public class Welcome extends JFrame {
 		loginButton.setBackground(new Color(0, 128, 255));
 		loginButton.setForeground(new Color(0, 0, 0));
 
+		/////////////////////////
 		getRootPane().setDefaultButton(loginButton);
 		loginButton.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
@@ -288,6 +304,8 @@ public class Welcome extends JFrame {
 					passField.setForeground(Color.RED);
 					userField.setForeground(Color.RED);
 				}
+
+				togglePrompt();
 
 			}
 		});
@@ -326,6 +344,14 @@ public class Welcome extends JFrame {
 		mainPanel.add(date);
 		date.setForeground(new Color(81, 81, 81));
 		date.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 10));
+		
+		invalidMessage = new JLabel("Invalid Username or Password");
+		invalidMessage.setBounds(0, 0, 249, 25);
+		invalidPrompt.add(invalidMessage);
+		invalidMessage.setHorizontalAlignment(SwingConstants.CENTER);
+		invalidMessage.setForeground(new Color(255, 255, 255));
+		invalidMessage.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
+		invalidMessage.setBackground(new Color(255, 255, 255));
 
 //		JLabel lblNewLabel_1 = new JLabel("");
 //		lblNewLabel_1.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/Background-03.png")));
@@ -497,6 +523,8 @@ public class Welcome extends JFrame {
 			public void setField() {
 				userCheck = userField.getText();
 				passCheck = passField.getText();
+				userField.setForeground(Color.white);
+				passField.setForeground(Color.white);
 
 				if (passCheck.contains(" ") || passCheck.equals("Password") || passCheck.equals("")) {
 					eyeLabel.setVisible(false);
@@ -524,6 +552,54 @@ public class Welcome extends JFrame {
 		};
 		userField.getDocument().addDocumentListener(documentListener);
 		passField.getDocument().addDocumentListener(documentListener);
+
+		DocumentListener userListener = new DocumentListener() {
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				setField();
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				setField();
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				setField();
+			}
+
+			@SuppressWarnings("deprecation")
+			public void setField() {
+
+				userField.setForeground(Color.WHITE);
+			}
+		};
+		userField.getDocument().addDocumentListener(userListener);
+
+		DocumentListener passListener = new DocumentListener() {
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				setField();
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				setField();
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				setField();
+			}
+
+			@SuppressWarnings("deprecation")
+			public void setField() {
+				passField.setForeground(Color.WHITE);
+
+			}
+		};
+		passField.getDocument().addDocumentListener(passListener);
 
 	}
 
@@ -556,4 +632,55 @@ public class Welcome extends JFrame {
 
 	}
 
+	private void togglePrompt() {
+		// ...
+
+		Timer timer = new Timer(5, new ActionListener() {
+			int updatedYInvalid = invalidPrompt.getY();
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (updatedYInvalid < 5) {
+					updatedYInvalid += 3; // Adjust the sliding speed as needed
+					invalidPrompt.setBounds(55, updatedYInvalid, 249, 25);
+				} else {
+					((Timer) e.getSource()).stop(); // Stop the timer
+					scheduleTogglePrompt2(); // Schedule togglePrompt2 after a delay
+				}
+			}
+		});
+
+		timer.start();
+	}
+
+	private void togglePrompt2() {
+		// ...
+
+		Timer timer1 = new Timer(5, new ActionListener() {
+			int updatedYInvalid = invalidPrompt.getY();
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (updatedYInvalid > -25) {
+					updatedYInvalid -= 3; // Adjust the sliding speed as needed
+					invalidPrompt.setBounds(55, updatedYInvalid,249, 25);
+				} else {
+					((Timer) e.getSource()).stop(); // Stop the timer
+				}
+			}
+		});
+		timer1.start();
+	}
+
+	private void scheduleTogglePrompt2() {
+		Timer delayTimer = new Timer(2000, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				togglePrompt2(); // Execute togglePrompt2 after a 2-second delay
+			}
+		});
+
+		delayTimer.setRepeats(false);
+		delayTimer.start();
+	}
 }
