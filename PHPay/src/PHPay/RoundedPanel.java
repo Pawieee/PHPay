@@ -10,6 +10,7 @@ import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -17,9 +18,6 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 class RoundedPanel extends JPanel {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private int cornerRadius;
 
@@ -145,34 +143,34 @@ class RoundedComboBox<E> extends JComboBox<E> {
 
 class RoundedRadioButton extends JRadioButton {
 
-    private Shape shape;
-    private Color backgroundColor;
+	private Shape shape;
+	private Color backgroundColor;
 
-    public RoundedRadioButton(String text) {
-        super(text);
-        setOpaque(false);
-        this.backgroundColor = getBackground();
-    }
+	public RoundedRadioButton(String text) {
+		super(text);
+		setOpaque(false);
+		this.backgroundColor = getBackground();
+	}
 
-    @Override
-    protected void paintComponent(Graphics g) {
-        if (!isOpaque()) {
-            super.paintComponent(g);
-            return;
-        }
+	@Override
+	protected void paintComponent(Graphics g) {
+		if (!isOpaque()) {
+			super.paintComponent(g);
+			return;
+		}
 
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        if (shape == null || !shape.getBounds().equals(getBounds())) {
-            shape = new RoundRectangle2D.Float(0, 0, getWidth() - 1, getHeight() - 1, 15, 15);
-        }
+		if (shape == null || !shape.getBounds().equals(getBounds())) {
+			shape = new RoundRectangle2D.Float(0, 0, getWidth() - 1, getHeight() - 1, 15, 15);
+		}
 
-        g2d.setColor(backgroundColor);
-        g2d.fill(shape);
+		g2d.setColor(backgroundColor);
+		g2d.fill(shape);
 
-        super.paintComponent(g);
-    }
+		super.paintComponent(g);
+	}
 }
 
 //ROUNDED PASSWORDFIELD
@@ -242,4 +240,38 @@ class RoundedTextField extends JTextField {
 
 		super.paintComponent(g);
 	}
+
+}
+
+class RoundedCheckBox extends JCheckBox {
+
+    private static final long serialVersionUID = 1L;
+    private Shape shape;
+
+    public RoundedCheckBox(String text) {
+        super(text);
+        setOpaque(false);
+        setPreferredSize(new Dimension(80, 80)); // Adjust the dimensions as needed
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        if (!isOpaque()) {
+            super.paintComponent(g);
+            return;
+        }
+
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        if (shape == null || !shape.getBounds().equals(getBounds())) {
+            int size = Math.min(getWidth(), getHeight());
+            shape = new RoundRectangle2D.Float(0, 0, size - 1, size - 1, size / 2, size / 2); // Adjust the radius as needed
+        }
+
+        g2d.setColor(getBackground());
+        g2d.fill(shape);
+
+        super.paintComponent(g);
+    }
 }

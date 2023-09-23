@@ -92,7 +92,6 @@ public class Welcome extends JFrame {
 		mainPanel.setLayout(null);
 
 		JButton forgotPassword = new JButton("Forgot Password?");
-		forgotPassword.setToolTipText("");
 		forgotPassword.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -199,8 +198,6 @@ public class Welcome extends JFrame {
 		});
 
 		mainPanel.add(eyeLabel);
-//		btnNewButton.setBounds(237, 291, 85, 21);
-//		grayPanel.add(btnNewButton);
 
 		JLabel lblNewLabel = new JLabel("Sign In");
 		lblNewLabel.setForeground(new Color(255, 255, 255));

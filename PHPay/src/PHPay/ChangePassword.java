@@ -43,7 +43,7 @@ public class ChangePassword extends JFrame {
 	ImageIcon blind = new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/blind.png"));
 
 	public ChangePassword(String username) {
-		this.username = username;
+		ChangePassword.username = username;
 		initialize();
 	}
 
@@ -232,7 +232,9 @@ public class ChangePassword extends JFrame {
 		RoundedButton next = new RoundedButton("10");
 		next.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				@SuppressWarnings("deprecation")
 				String newPass = newPasswordField.getText();
+				@SuppressWarnings("deprecation")
 				String confirmPass = confirmPasswordField.getText();
 
 				if (newPass.equals(confirmPass)) {
@@ -244,7 +246,7 @@ public class ChangePassword extends JFrame {
 						blurPanel.setVisible(true);
 						Proceed successful = new Proceed("Password changed successfully");
 						successful.setVisible(true);
-						
+
 						Timer timer = new Timer(4000, new ActionListener() {
 							@Override
 							public void actionPerformed(ActionEvent e) {
@@ -334,19 +336,12 @@ public class ChangePassword extends JFrame {
 		lblWe_1_2.setBounds(37, 130, 219, 23);
 		mainPane.add(lblWe_1_2);
 
-		JLabel lblWe_1_3 = new JLabel("- Contain any other special characters or symbols");
+		JLabel lblWe_1_3 = new JLabel("- Contains at least one uppercase alphabetic character");
 		lblWe_1_3.setHorizontalAlignment(SwingConstants.LEFT);
 		lblWe_1_3.setForeground(new Color(192, 192, 192));
 		lblWe_1_3.setFont(new Font("Segoe UI Semibold", Font.ITALIC, 13));
 		lblWe_1_3.setBounds(37, 151, 353, 23);
 		mainPane.add(lblWe_1_3);
-
-		JLabel lblWe_1_3_1 = new JLabel("- Contains at least one uppercase alphabetic character");
-		lblWe_1_3_1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblWe_1_3_1.setForeground(new Color(192, 192, 192));
-		lblWe_1_3_1.setFont(new Font("Segoe UI Semibold", Font.ITALIC, 13));
-		lblWe_1_3_1.setBounds(37, 174, 353, 23);
-		mainPane.add(lblWe_1_3_1);
 
 		titleBar.addMouseListener(new MouseAdapter() {
 			@Override
@@ -380,15 +375,3 @@ public class ChangePassword extends JFrame {
 	}
 
 }
-
-//		String newPasst = newPass.getText();
-//		String newPassCon = newPassConfirm.getText();
-//		
-//
-
-//
-//		} 
-//	}
-//});
-//confirm.setBounds(162, 198, 85, 21);
-//frame.getContentPane().add(confirm);
