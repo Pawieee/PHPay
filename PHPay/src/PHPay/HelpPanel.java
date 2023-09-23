@@ -13,7 +13,7 @@ public class HelpPanel extends JPanel {
 		setBackground(new Color(128, 0, 255));
 		
 		
-		setBounds(0, 0, 1200, 700);
+		setBounds(0, 0, 1200, 1158);
 		setLayout(null);
 		
 		JPanel panel = new JPanel();
