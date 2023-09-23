@@ -26,7 +26,7 @@ public class HelpPanel extends JPanel {
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 30));
-		lblNewLabel.setBounds(323, 62, 494, 84);
+		lblNewLabel.setBounds(323, 49, 494, 84);
 		add(lblNewLabel);
 		
 		RoundedPanel panel_1 = new RoundedPanel(15);
