@@ -10,11 +10,8 @@ import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,8 +19,6 @@ import java.util.logging.Logger;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 public class SummaryPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -174,7 +169,7 @@ public class SummaryPanel extends JPanel {
 	
 	public void getTransactions() {
 		DefaultTableModel model = new DefaultTableModel(null,
-				new String[] { "Name", "Date", "Invoice ID", "Amount", "Status" }) {
+				new String[] { "Name", "Date", "Invoice ID", "Amount", "Status", "Receiver" }) {
 			private static final long serialVersionUID = 8961818422329199291L;
 
 			@Override
@@ -239,16 +234,16 @@ public class SummaryPanel extends JPanel {
 			PreparedStatement ps = con.getCon().prepareStatement(query);
 			ps.setString(1, session);
 			ResultSet rs = ps.executeQuery();
-			ResultSetMetaData rsm = rs.getMetaData();
 
-			String date, transaction_id, amount, status;
+			String date, transaction_id, amount, status, receiver;
 			while (rs.next()) {
 				transaction_id = rs.getString(1);
 				status = rs.getString(3);
 				date = rs.getString(4);
 				amount = rs.getString(5);
+				receiver = rs.getString(6);
 
-				model.addRow(new Object[] { session, date, transaction_id, amount, status });
+				model.addRow(new Object[] { session, date, transaction_id, amount, status, receiver});
 			}
 		} catch (SQLException ex) {
 			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
@@ -258,7 +253,7 @@ public class SummaryPanel extends JPanel {
 	//METHOD OVERLOADING
 	public void getTransactions(String op) {
 		DefaultTableModel model = new DefaultTableModel(null,
-				new String[] { "Name", "Date", "Invoice ID", "Amount", "Status" }) {
+				new String[] { "Name", "Date", "Invoice ID", "Amount", "Status", "Receiver" }) {
 			private static final long serialVersionUID = 8961818422329199291L;
 
 			@Override
@@ -323,16 +318,16 @@ public class SummaryPanel extends JPanel {
 			ps.setString(1, session);
 			ps.setString(2, op);
 			ResultSet rs = ps.executeQuery();
-			ResultSetMetaData rsm = rs.getMetaData();
 
-			String date, transaction_id, amount, status;
+			String date, transaction_id, amount, status, receiver;
 			while (rs.next()) {
 				transaction_id = rs.getString(1);
 				status = rs.getString(3);
 				date = rs.getString(4);
 				amount = rs.getString(5);
+				receiver = rs.getString(6);
 				
-				model.addRow(new Object[] { session, date, transaction_id, amount, status });
+				model.addRow(new Object[] { session, date, transaction_id, amount, status, receiver});
 			}
 		} catch (SQLException ex) {
 			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);

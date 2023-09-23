@@ -6,12 +6,14 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class SQLQuery {
 	static SQLConnection con = new SQLConnection();
+
 	public boolean IDExists(String ID) {
 
 		String query = "SELECT `user_id` FROM `users`";
@@ -80,8 +82,8 @@ public class SQLQuery {
 		}
 		return bal;
 	}
-	
-	//Transaction NAME
+
+	// Transaction NAME
 	public static String getTransName(String user) {
 		String query = "SELECT `fName` FROM `user_profile` WHERE user_id = ?";
 		String Fname = "";
@@ -96,10 +98,10 @@ public class SQLQuery {
 		} catch (SQLException ex) {
 			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		return Fname ;
+		return Fname;
 
 	}
-	
+
 	public static void deleteAccount(String ID) {
 
 		String query = "DELETE FROM `user_profile` WHERE user_id = ?";
@@ -157,43 +159,43 @@ public class SQLQuery {
 	public static void cashIn(String ID, double amount) {
 		addBalance(ID, amount);
 		String aamount = amount + "";
-		transaction(ID, "Cash-In", "+" + aamount);
+		transaction(ID, "Cash-In", "+" + aamount, "PHPay");
 	}
 
 	public static void sendMoney(String senderID, String receiverID, double amount) {
 		deductBalance(senderID, amount);
 		String aamount1 = amount + "";
-		transaction(senderID, "Sent Money", "-" + aamount1);
+		transaction(senderID, "Sent Money", "-" + aamount1, receiverID);
 		addBalance(receiverID, amount);
 		String aamount2 = amount + "";
-		transaction(receiverID, "Received Money", "+" + aamount2);
+		transaction(receiverID, "Received Money", "+" + aamount2, senderID);
 	}
 
-	public static void load(String ID, double amount) {
+	public static void load(String ID, double amount ,String receiver) {
 		deductBalance(ID, amount);
 		String aamount = amount + "";
-		transaction(ID, "Bought Load", "-" + aamount);
+		transaction(ID, "Bought Load", "-" + aamount, receiver);
 	}
 
-	public static void withdraw(String ID, double amount) {
+	public static void withdraw(String ID, double amount, String receiver) {
 		deductBalance(ID, amount);
 		String aamount = amount + "";
-		transaction(ID, "Withdraw Money", "-" + aamount);
+		transaction(ID, "Withdraw Money", "-" + aamount, receiver);
 	}
 
 	public static void payBills(String ID, double amount, String bill) {
 		deductBalance(ID, amount);
 		String aamount = amount + "";
-		transaction(ID, bill + " bill paid", "-" + aamount);
+		transaction(ID,"Paid Bill", "-" + aamount, bill);
 	}
 
-	public static void transaction(String ID, String type, String amount) {
+	public static void transaction(String ID, String type, String amount, String receiver) {
 
 		Date date = new Date();
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String currentDateTime = format.format(date);
 
-		String query = "INSERT INTO `transactions`(`user_id`, `type`, `time`, `operation`) VALUES (?, ?, ?, ?)";
+		String query = "INSERT INTO `transactions`(`user_id`, `type`, `time`, `operation`, `receiver` ) VALUES (?, ?, ?, ?, ?)";
 
 		try {
 			PreparedStatement ps = con.getCon().prepareStatement(query);
@@ -201,10 +203,41 @@ public class SQLQuery {
 			ps.setString(2, type);
 			ps.setString(3, currentDateTime);
 			ps.setString(4, amount + " ₱");
+			ps.setString(5, receiver);
 			ps.executeUpdate();
 		} catch (SQLException ex) {
 			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
-	
+
+	public static String[] getTransaction(String ID) {
+		String query = "SELECT * FROM `transactions` WHERE user_id = ?";
+
+		String[] details = new String[6];
+		try {
+			PreparedStatement ps = con.getCon().prepareStatement(query);
+			ps.setString(1, ID);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				String transaction_id = rs.getString(1);
+				String user_id = rs.getString(2);
+				String type = rs.getString(3);
+				String time = rs.getString(4);
+				String operation = rs.getString(5);
+				String receiver = rs.getString(6);
+				
+				details[0] = transaction_id;
+				details[1] = user_id;
+				details[2] = type;
+				details[3] = time;
+				details[4] = operation;
+				details[5] = receiver;
+			}
+		} catch (SQLException ex) {
+			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return details;
+	}
+
 }
