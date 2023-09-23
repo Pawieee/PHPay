@@ -39,9 +39,6 @@ import java.awt.Insets;
 
 public class Welcome extends JFrame {
 
-	/**
-	 * 
-	 */
 	private boolean def = true;
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
@@ -55,6 +52,7 @@ public class Welcome extends JFrame {
 	private int x, y;
 	private final JButton ignoreThisVariable = new JButton("");
 	PhpaySplash mainPanel;
+	RoundedButton loginButton;
 
 //	private JPanel advertisementPanel; // New advertisement panel
 //	private Timer advertisementTimer; // Timer for sliding animation
@@ -79,12 +77,6 @@ public class Welcome extends JFrame {
 
 		setTitle("PHPAY - Virtual Wallet");
 		getContentPane().setLayout(null);
-		
-				JPanel blurPanel = new JPanel();
-				blurPanel.setBackground(new Color(0, 0, 0, 160));
-				blurPanel.setBounds(0, 0, 833, 475);
-				getContentPane().add(blurPanel);
-				blurPanel.setVisible(false);
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new CompoundBorder());
@@ -94,19 +86,13 @@ public class Welcome extends JFrame {
 		panel.setLayout(null);
 		getContentPane().add(panel);
 
-//		JButton seePassword = new JButton("");
-//		seePassword.setVisible(false);
-//		seePassword.setBounds(280, 215, 30, 30);
-//		seePassword.setContentAreaFilled(false);
-//		seePassword.setBorder(BorderFactory.createEmptyBorder());
-//		panel.add(seePassword);
-
 		mainPanel = new PhpaySplash();
 		mainPanel.setBounds(-2, 0, 835, 452);
 		panel.add(mainPanel);
 		mainPanel.setLayout(null);
 
 		JButton forgotPassword = new JButton("Forgot Password?");
+		forgotPassword.setToolTipText("");
 		forgotPassword.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -125,8 +111,17 @@ public class Welcome extends JFrame {
 		forgotPassword.setForeground(new Color(255, 255, 255, 190));
 		forgotPassword.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new ForgotPassword();
+				
 				dispose();
+				Timer timer = new Timer(100, new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						new ForgotPassword();
+					}
+				});
+				timer.setRepeats(false);
+				timer.start();
+				
 			}
 		});
 
@@ -142,20 +137,19 @@ public class Welcome extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getButton() == MouseEvent.BUTTON1) {
-
-					Timer timer = new Timer(50, new ActionListener() {
+					dispose();
+					Timer timer = new Timer(100, new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
-							Register reg = new Register(blurPanel, logo);
+
+							Register reg = new Register();
 							reg.setVisible(true);
-							reg.setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 50, 50));
+
 						}
 					});
 
 					timer.setRepeats(false);
 					timer.start();
-					blurPanel.setVisible(true);
-					logo.setVisible(false);
 				}
 			}
 
@@ -269,7 +263,7 @@ public class Welcome extends JFrame {
 		textField.setForeground(Color.GRAY);
 		mainPanel.add(textField);
 
-		JButton loginButton = new RoundedButton("LOGIN");
+		loginButton = new RoundedButton("LOGIN");
 		loginButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		loginButton.setEnabled(false);
 		loginButton.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -518,6 +512,7 @@ public class Welcome extends JFrame {
 						loginButton.setForeground(new Color(255, 255, 255));
 						loginButton.setFont(new Font("Segoe UI Semibold", Font.BOLD, 15));
 						loginButton.setEnabled(true);
+
 					} else {
 						loginButton.setForeground(new Color(0, 0, 0));
 						loginButton.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));

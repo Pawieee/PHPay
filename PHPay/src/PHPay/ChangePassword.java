@@ -37,7 +37,8 @@ public class ChangePassword extends JFrame {
 	private JTextField newPassConfirm;
 	private int x, y;
 	private RoundedPasswordField newPasswordField, confirmPasswordField;
-	private boolean def = true;
+	private boolean def1 = true;
+	private boolean def2 = true;
 	ImageIcon see = new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/see.png"));
 	ImageIcon blind = new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/blind.png"));
 
@@ -61,12 +62,12 @@ public class ChangePassword extends JFrame {
 		setLocation(centerX, centerY);
 		setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 30, 30));
 		setVisible(true);
-
-		JPanel blurPanel = new JPanel();
-		blurPanel.setBackground(new Color(0, 0, 0, 160));
-		blurPanel.setBounds(0, 0, 428, 489);
-		add(blurPanel);
-		blurPanel.setVisible(false);
+		
+				JPanel blurPanel = new JPanel();
+				blurPanel.setBackground(new Color(0, 0, 0, 160));
+				blurPanel.setBounds(0, 0, 428, 489);
+				getContentPane().add(blurPanel);
+				blurPanel.setVisible(false);
 
 		GradientPanel mainPane = new GradientPanel(Color.decode("#16002c"), Color.decode("#16002c"));
 		mainPane.setBounds(0, 0, 428, 489);
@@ -122,7 +123,7 @@ public class ChangePassword extends JFrame {
 		newEye.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (def) {
+				if (def1) {
 					newEye.setIcon(see);
 					newPasswordField.setEchoChar((char) 0);
 					newEye.setBounds(289, 65, 25, 25);
@@ -131,7 +132,7 @@ public class ChangePassword extends JFrame {
 					newPasswordField.setEchoChar('*');
 					newEye.setBounds(289, 63, 25, 25);
 				}
-				def = !def;
+				def1 = !def1;
 			}
 		});
 
@@ -143,7 +144,7 @@ public class ChangePassword extends JFrame {
 		confirmeEye.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (def) {
+				if (def2) {
 					confirmeEye.setIcon(see);
 					confirmPasswordField.setEchoChar((char) 0);
 					confirmeEye.setBounds(289, 156, 25, 25);
@@ -152,7 +153,7 @@ public class ChangePassword extends JFrame {
 					confirmPasswordField.setEchoChar('*');
 					confirmeEye.setBounds(289, 154, 25, 25);
 				}
-				def = !def;
+				def2 = !def2;
 			}
 		});
 
@@ -216,14 +217,14 @@ public class ChangePassword extends JFrame {
 
 		JLabel lblWe_1_4 = new JLabel("New Password");
 		lblWe_1_4.setHorizontalAlignment(SwingConstants.LEFT);
-		lblWe_1_4.setForeground(Color.WHITE);
+		lblWe_1_4.setForeground(new Color(192, 192, 192));
 		lblWe_1_4.setFont(new Font("Segoe UI Semibold", Font.BOLD, 13));
 		lblWe_1_4.setBounds(31, 25, 113, 23);
 		pass1.add(lblWe_1_4);
 
 		JLabel lblWe_1_4_1 = new JLabel("Re-enter Your New Password");
 		lblWe_1_4_1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblWe_1_4_1.setForeground(Color.WHITE);
+		lblWe_1_4_1.setForeground(new Color(192, 192, 192));
 		lblWe_1_4_1.setFont(new Font("Segoe UI Semibold", Font.BOLD, 13));
 		lblWe_1_4_1.setBounds(31, 117, 219, 23);
 		pass1.add(lblWe_1_4_1);
@@ -319,30 +320,30 @@ public class ChangePassword extends JFrame {
 			}
 		});
 
-		JLabel lblWe_1_1 = new JLabel("Contains at least one digit");
+		JLabel lblWe_1_1 = new JLabel("- Contains at least one digit");
 		lblWe_1_1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblWe_1_1.setForeground(Color.WHITE);
+		lblWe_1_1.setForeground(new Color(192, 192, 192));
 		lblWe_1_1.setFont(new Font("Segoe UI Semibold", Font.ITALIC, 13));
 		lblWe_1_1.setBounds(37, 108, 219, 23);
 		mainPane.add(lblWe_1_1);
 
-		JLabel lblWe_1_2 = new JLabel("Is at least 8 characters long");
+		JLabel lblWe_1_2 = new JLabel("- Is at least 8 characters long");
 		lblWe_1_2.setHorizontalAlignment(SwingConstants.LEFT);
-		lblWe_1_2.setForeground(Color.WHITE);
+		lblWe_1_2.setForeground(new Color(192, 192, 192));
 		lblWe_1_2.setFont(new Font("Segoe UI Semibold", Font.ITALIC, 13));
 		lblWe_1_2.setBounds(37, 130, 219, 23);
 		mainPane.add(lblWe_1_2);
 
-		JLabel lblWe_1_3 = new JLabel("Contain any other special characters or symbols");
+		JLabel lblWe_1_3 = new JLabel("- Contain any other special characters or symbols");
 		lblWe_1_3.setHorizontalAlignment(SwingConstants.LEFT);
-		lblWe_1_3.setForeground(Color.WHITE);
+		lblWe_1_3.setForeground(new Color(192, 192, 192));
 		lblWe_1_3.setFont(new Font("Segoe UI Semibold", Font.ITALIC, 13));
 		lblWe_1_3.setBounds(37, 151, 353, 23);
 		mainPane.add(lblWe_1_3);
 
-		JLabel lblWe_1_3_1 = new JLabel("Contains at least one uppercase alphabetic character");
+		JLabel lblWe_1_3_1 = new JLabel("- Contains at least one uppercase alphabetic character");
 		lblWe_1_3_1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblWe_1_3_1.setForeground(Color.WHITE);
+		lblWe_1_3_1.setForeground(new Color(192, 192, 192));
 		lblWe_1_3_1.setFont(new Font("Segoe UI Semibold", Font.ITALIC, 13));
 		lblWe_1_3_1.setBounds(37, 174, 353, 23);
 		mainPane.add(lblWe_1_3_1);

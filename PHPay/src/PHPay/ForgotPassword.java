@@ -22,6 +22,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.JButton;
@@ -91,7 +92,7 @@ public class ForgotPassword extends JFrame {
 		desc1.setBounds(31, 181, 264, 23);
 		forgot1.add(desc1);
 		passkeyLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		passkeyLabel.setForeground(Color.WHITE);
+		passkeyLabel.setForeground(new Color(192, 192, 192));
 		passkeyLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
 		passkeyLabel.setBounds(30, 112, 156, 23);
 		forgot1.add(passkeyLabel);
@@ -100,7 +101,7 @@ public class ForgotPassword extends JFrame {
 		userLabel.setBounds(31, 83, 156, 23);
 		forgot1.add(userLabel);
 		userLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		userLabel.setForeground(Color.WHITE);
+		userLabel.setForeground(new Color(192, 192, 192));
 		userLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
 
 		usernameField = new RoundedTextField(10);
@@ -226,8 +227,15 @@ public class ForgotPassword extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();
-				Welcome getBack = new Welcome();
-				getBack.setVisible(true);
+				Timer timer = new Timer(100, new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Welcome getBack = new Welcome();
+						getBack.setVisible(true);
+					}
+				});
+				timer.setRepeats(false);
+				timer.start();
 			}
 		});
 		back.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 class RoundedPanel extends JPanel {
@@ -63,7 +64,7 @@ class RoundedButton extends JButton {
 		setBorderPainted(false);
 		setOpaque(false);
 		setPreferredSize(new Dimension(100, 40)); // Set your preferred size here
-		backgroundColor = new Color(192, 192, 192, 50); // Set your background color
+		backgroundColor = new Color(255, 255, 255, 50); // Set your background color
 		foregroundColor = Color.BLACK; // Set your foreground (text) color
 	}
 
@@ -140,6 +141,38 @@ class RoundedComboBox<E> extends JComboBox<E> {
 
 		super.paintComponent(g);
 	}
+}
+
+class RoundedRadioButton extends JRadioButton {
+
+    private Shape shape;
+    private Color backgroundColor;
+
+    public RoundedRadioButton(String text) {
+        super(text);
+        setOpaque(false);
+        this.backgroundColor = getBackground();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        if (!isOpaque()) {
+            super.paintComponent(g);
+            return;
+        }
+
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        if (shape == null || !shape.getBounds().equals(getBounds())) {
+            shape = new RoundRectangle2D.Float(0, 0, getWidth() - 1, getHeight() - 1, 15, 15);
+        }
+
+        g2d.setColor(backgroundColor);
+        g2d.fill(shape);
+
+        super.paintComponent(g);
+    }
 }
 
 //ROUNDED PASSWORDFIELD
