@@ -32,6 +32,7 @@ public class Home extends JFrame {
 	private ServicePanel servicePanel;
 	private SummaryPanel summaryPanel;
 	private HomePanel homePanel;
+	private HelpPanel helpPanel;
 	private String session;
 	private JLabel home, wallet, activity, help;
 	private JPanel movingPane;
@@ -127,14 +128,18 @@ public class Home extends JFrame {
 
 		servicePanel = new ServicePanel(session);
 		summaryPanel = new SummaryPanel(session);
-
+		helpPanel = new HelpPanel(session);
+		homePanel = new HomePanel();
+		
+		
 		servicePanel.setVisible(false);
 		summaryPanel.setVisible(false);
-		homePanel = new HomePanel();
+		helpPanel.setVisible(false);
+		
 		panelArea.add(homePanel);
-
 		panelArea.add(servicePanel);
 		panelArea.add(summaryPanel);
+		panelArea.add(helpPanel);
 		
 
 		wallet = new JLabel("   Wallet");
@@ -174,6 +179,7 @@ public class Home extends JFrame {
 		help.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				titleClicked(helpPanel);
 
 			}
 		});
@@ -296,6 +302,7 @@ public class Home extends JFrame {
 		summaryPanel.setVisible(false);
 		servicePanel.setVisible(false);
 		homePanel.setVisible(false);
+		helpPanel.setVisible(false);
 
 		selectedPanel.setVisible(true);
 	}
