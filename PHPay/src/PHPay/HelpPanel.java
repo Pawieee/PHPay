@@ -13,29 +13,31 @@ public class HelpPanel extends JPanel {
 		setBackground(new Color(128, 0, 255));
 		
 		
-		setBounds(0, 0, 1200, 1158);
+		setBounds(0, 0, 1200, 700);
 		setLayout(null);
 		
-		JPanel panel = new JPanel();
+		GradientPanel panel = new GradientPanel(new Color(0x360079), new Color((0x000000)));
 		panel.setBounds(0, 0, 1200, 68);
 		add(panel);
+		
+		
 		
 		JLabel lblNewLabel = new JLabel("How can we help you?");
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 30));
-		lblNewLabel.setBounds(323, 103, 494, 84);
+		lblNewLabel.setBounds(323, 62, 494, 84);
 		add(lblNewLabel);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(211, 189, 782, 359);
+		RoundedPanel panel_1 = new RoundedPanel(15);
+		panel_1.setBounds(201, 130, 782, 359);
 		add(panel_1);
 		
 		JLabel lblYourGuideTo = new JLabel("Your guide to PHPAY");
 		lblYourGuideTo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblYourGuideTo.setForeground(Color.WHITE);
 		lblYourGuideTo.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 30));
-		lblYourGuideTo.setBounds(323, 605, 494, 84);
+		lblYourGuideTo.setBounds(323, 500, 494, 84);
 		add(lblYourGuideTo);
 
 		
