@@ -3,20 +3,10 @@ package PHPay;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Insets;
 import java.awt.Toolkit;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.Timer;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -25,16 +15,22 @@ import java.awt.font.TextAttribute;
 import java.awt.geom.RoundRectangle2D;
 import java.util.HashMap;
 import java.util.Map;
-import java.awt.event.ActionEvent;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.Timer;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 public class ChangePassword extends JFrame {
 
+	private static final long serialVersionUID = 1L;
+
 	private static String username;
 
-	private JFrame frame;
-	private JTextField newPass;
-	private JTextField newPassConfirm;
 	private int x, y;
 	private RoundedPasswordField newPasswordField, confirmPasswordField;
 	private boolean def1 = true;
@@ -62,12 +58,12 @@ public class ChangePassword extends JFrame {
 		setLocation(centerX, centerY);
 		setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 30, 30));
 		setVisible(true);
-		
-				JPanel blurPanel = new JPanel();
-				blurPanel.setBackground(new Color(0, 0, 0, 160));
-				blurPanel.setBounds(0, 0, 428, 489);
-				getContentPane().add(blurPanel);
-				blurPanel.setVisible(false);
+
+		JPanel blurPanel = new JPanel();
+		blurPanel.setBackground(new Color(0, 0, 0, 160));
+		blurPanel.setBounds(0, 0, 428, 489);
+		getContentPane().add(blurPanel);
+		blurPanel.setVisible(false);
 
 		GradientPanel mainPane = new GradientPanel(Color.decode("#16002c"), Color.decode("#16002c"));
 		mainPane.setBounds(0, 0, 428, 489);
@@ -129,7 +125,7 @@ public class ChangePassword extends JFrame {
 					newEye.setBounds(289, 65, 25, 25);
 				} else {
 					newEye.setIcon(blind);
-					newPasswordField.setEchoChar('*');
+					newPasswordField.setEchoChar('•');
 					newEye.setBounds(289, 63, 25, 25);
 				}
 				def1 = !def1;
@@ -150,7 +146,7 @@ public class ChangePassword extends JFrame {
 					confirmeEye.setBounds(289, 156, 25, 25);
 				} else {
 					confirmeEye.setIcon(blind);
-					confirmPasswordField.setEchoChar('*');
+					confirmPasswordField.setEchoChar('•');
 					confirmeEye.setBounds(289, 154, 25, 25);
 				}
 				def2 = !def2;

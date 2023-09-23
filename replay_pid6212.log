@@ -1,7 +1,76 @@
 JvmtiExport can_access_local_variables 1
 JvmtiExport can_hotswap_or_post_breakpoint 1
 JvmtiExport can_post_on_exceptions 1
-# 148 ciObject found
+# 313 ciObject found
+ciInstanceKlass java/util/Enumeration 1 1 32 100 1 10 12 1 1 100 1 100 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+instanceKlass java/awt/geom/RoundRectIterator
+instanceKlass sun/font/SunFontManager$5
+instanceKlass javax/swing/RepaintManager$3
+instanceKlass PHPay/Welcome$17
+instanceKlass PHPay/Welcome$16
+instanceKlass PHPay/Welcome$15
+instanceKlass PHPay/Welcome$14
+instanceKlass java/awt/event/FocusAdapter
+instanceKlass java/awt/event/MouseMotionAdapter
+instanceKlass PHPay/Welcome$9
+instanceKlass PHPay/Welcome$7
+instanceKlass sun/awt/image/ImageDecoder$1
+instanceKlass sun/awt/image/GifFrame
+instanceKlass PHPay/Welcome$5
+instanceKlass javax/swing/KeyboardManager$ComponentKeyStrokePair
+instanceKlass javax/swing/KeyboardManager
+instanceKlass java/io/RandomAccessFile$1
+instanceKlass javax/swing/event/UndoableEditListener
+instanceKlass sun/swing/text/UndoableEditLockSupport
+instanceKlass javax/swing/text/DefaultCaret$1
+instanceKlass javax/swing/text/AbstractDocument$UndoRedoDocumentEvent
+instanceKlass javax/swing/event/DocumentEvent$ElementChange
+instanceKlass javax/swing/text/SegmentCache
+instanceKlass javax/swing/text/Utilities
+instanceKlass javax/swing/text/Segment
+instanceKlass javax/swing/event/DocumentEvent$EventType
+instanceKlass javax/swing/event/DocumentEvent
+instanceKlass javax/swing/undo/AbstractUndoableEdit
+instanceKlass javax/swing/undo/UndoableEdit
+instanceKlass javax/swing/BorderFactory
+instanceKlass PHPay/Welcome$2
+instanceKlass java/beans/VetoableChangeListener
+instanceKlass javax/swing/event/AncestorListener
+instanceKlass javax/swing/plaf/basic/BasicButtonListener
+instanceKlass javax/swing/AbstractButton$Handler
+instanceKlass javax/swing/DefaultButtonModel
+instanceKlass javax/swing/ButtonModel
+instanceKlass org/eclipse/jdt/launching/internal/org/objectweb/asm/Handle
+instanceKlass java/awt/ItemSelectable
+instanceKlass java/awt/LightweightDispatcher$2
+instanceKlass javax/swing/Autoscroller
+instanceKlass java/awt/Window$1DisposeAction
+instanceKlass sun/awt/SunToolkit$1
+instanceKlass java/awt/KeyboardFocusManager$2
+instanceKlass javax/swing/SwingWorker$5
+instanceKlass sun/java2d/loops/ProcessPath$Edge
+instanceKlass sun/java2d/loops/ProcessPath$ActiveEdgeList
+instanceKlass sun/java2d/loops/ProcessPath$Point
+instanceKlass sun/java2d/loops/ProcessPath$FillData
+instanceKlass sun/java2d/loops/ProcessPath$ProcessHandler
+instanceKlass sun/java2d/loops/ProcessPath$1
+instanceKlass sun/java2d/loops/ProcessPath$EndSubPathHandler
+instanceKlass sun/java2d/loops/ProcessPath
+instanceKlass java/text/AttributedString$AttributedStringIterator
+instanceKlass java/text/AttributedCharacterIterator
+instanceKlass java/text/CharacterIterator
+instanceKlass java/text/AttributedString
+instanceKlass sun/awt/im/CompositionAreaHandler
+instanceKlass javax/swing/text/JTextComponent$InputMethodRequestsHandler
+instanceKlass sun/awt/im/InputMethodAdapter
+instanceKlass java/awt/im/spi/InputMethod
+instanceKlass java/awt/im/spi/InputMethodContext
+instanceKlass java/awt/im/InputMethodRequests
+instanceKlass java/awt/im/InputContext
+instanceKlass java/awt/KeyboardFocusManager$3
+instanceKlass java/awt/KeyboardFocusManager$LightweightFocusRequest
+instanceKlass java/awt/DefaultKeyboardFocusManager$TypeAheadMarker
+instanceKlass java/awt/KeyboardFocusManager$HeavyweightFocusRequest
 instanceKlass sun/awt/KeyboardFocusManagerPeerImpl$KfmAccessor
 instanceKlass sun/java2d/loops/FontInfo
 instanceKlass java/awt/PrintGraphics
@@ -315,49 +384,49 @@ instanceKlass java/text/DontCareFieldPosition$1
 instanceKlass java/text/Format$FieldDelegate
 instanceKlass java/text/DigitList
 instanceKlass java/text/FieldPosition
-instanceKlass java/util/concurrent/ForkJoinPool$WorkQueue
-instanceKlass java/util/concurrent/ForkJoinPool$DefaultCommonPoolForkJoinWorkerThreadFactory
-instanceKlass java/util/concurrent/ForkJoinPool$1
-instanceKlass java/util/concurrent/ForkJoinPool$DefaultForkJoinWorkerThreadFactory
-instanceKlass java/util/concurrent/ForkJoinPool$ForkJoinWorkerThreadFactory
 instanceKlass java/lang/StringUTF16$CharsSpliterator
 instanceKlass java/util/stream/Sink$ChainedInt
-instanceKlass java/util/concurrent/AbstractExecutorService
-instanceKlass java/util/concurrent/ExecutorService
-instanceKlass java/util/concurrent/Executor
 instanceKlass java/util/OptionalInt
 instanceKlass java/util/stream/Sink$OfInt
 instanceKlass java/util/function/IntConsumer
-instanceKlass java/awt/TrayIcon
 instanceKlass java/util/function/IntPredicate
+instanceKlass java/util/stream/IntStream
+instanceKlass java/lang/StringLatin1$CharsSpliterator
+instanceKlass java/text/DecimalFormatSymbols
+instanceKlass java/lang/invoke/MethodHandle$1
+instanceKlass java/text/DateFormatSymbols
+instanceKlass sun/util/resources/Bundles$CacheKeyReference
+instanceKlass java/util/concurrent/ForkJoinPool$WorkQueue
+instanceKlass sun/util/resources/Bundles$CacheKey
+instanceKlass java/util/concurrent/ForkJoinPool$DefaultCommonPoolForkJoinWorkerThreadFactory
+instanceKlass java/util/concurrent/ForkJoinPool$1
+instanceKlass sun/util/resources/Bundles
+instanceKlass java/util/concurrent/ForkJoinPool$DefaultForkJoinWorkerThreadFactory
+instanceKlass java/util/concurrent/ForkJoinPool$ForkJoinWorkerThreadFactory
+instanceKlass sun/util/resources/LocaleData$LocaleDataStrategy
+instanceKlass sun/util/resources/Bundles$Strategy
+instanceKlass sun/util/resources/LocaleData$1
+instanceKlass sun/util/resources/LocaleData
+instanceKlass java/util/concurrent/AbstractExecutorService
+instanceKlass java/util/concurrent/ExecutorService
+instanceKlass java/util/concurrent/Executor
+instanceKlass sun/util/locale/provider/LocaleResources
+instanceKlass java/awt/TrayIcon
 instanceKlass java/awt/MenuComponent
 instanceKlass java/awt/EventQueue$4
-instanceKlass java/util/stream/IntStream
 instanceKlass sun/awt/dnd/SunDragSourceContextPeer
 instanceKlass java/awt/dnd/peer/DragSourceContextPeer
 instanceKlass java/awt/ModalEventFilter
 instanceKlass java/awt/EventDispatchThread$HierarchyEventFilter
-instanceKlass java/lang/StringLatin1$CharsSpliterator
 instanceKlass java/awt/EventFilter
 instanceKlass java/awt/EventDispatchThread$1
 instanceKlass java/awt/Conditional
 instanceKlass sun/awt/EventQueueItem
-instanceKlass java/text/DecimalFormatSymbols
 instanceKlass java/awt/EventQueue$6
 instanceKlass java/awt/event/InvocationEvent$1
 instanceKlass sun/awt/AWTAccessor$InvocationEventAccessor
 instanceKlass java/awt/ActiveEvent
 instanceKlass javax/swing/Timer$1
-instanceKlass java/lang/invoke/MethodHandle$1
-instanceKlass java/text/DateFormatSymbols
-instanceKlass sun/util/resources/Bundles$CacheKeyReference
-instanceKlass sun/util/resources/Bundles$CacheKey
-instanceKlass sun/util/resources/Bundles
-instanceKlass sun/util/resources/LocaleData$LocaleDataStrategy
-instanceKlass sun/util/resources/Bundles$Strategy
-instanceKlass sun/util/resources/LocaleData$1
-instanceKlass sun/util/resources/LocaleData
-instanceKlass sun/util/locale/provider/LocaleResources
 instanceKlass sun/util/locale/provider/CalendarDataUtility$CalendarWeekParameterGetter
 instanceKlass sun/util/locale/provider/LocaleServiceProviderPool$LocalizedObjectGetter
 instanceKlass sun/util/locale/provider/LocaleServiceProviderPool
@@ -421,8 +490,8 @@ instanceKlass javax/swing/TimerQueue
 instanceKlass javax/swing/Timer$DoPostEvent
 instanceKlass PHPay/PhpaySplash$1
 instanceKlass javax/swing/Timer
-instanceKlass java/awt/geom/CubicCurve2D
 instanceKlass java/awt/Graphics
+instanceKlass java/awt/geom/CubicCurve2D
 instanceKlass java/awt/event/ActionListener
 instanceKlass sun/awt/image/NativeLibLoader$1
 instanceKlass sun/awt/image/NativeLibLoader
@@ -1470,8 +1539,8 @@ instanceKlass java/lang/StringConcatHelper
 instanceKlass jdk/internal/util/SystemProps$Raw
 instanceKlass jdk/internal/util/SystemProps
 instanceKlass java/lang/System$2
-instanceKlass jdk/internal/misc/VM
 instanceKlass jdk/internal/access/JavaLangAccess
+instanceKlass jdk/internal/misc/VM
 instanceKlass java/lang/ref/Reference$1
 instanceKlass jdk/internal/access/JavaLangRefAccess
 instanceKlass java/lang/ref/ReferenceQueue$Lock
@@ -1625,6 +1694,8 @@ instanceKlass java/lang/LinkageError
 instanceKlass java/lang/ThreadDeath
 ciInstanceKlass java/lang/Error 1 1 40 10 7 12 1 1 1 10 12 1 10 12 1 10 12 1 10 12 1 100 1 1 1 1 5 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1
 ciInstanceKlass java/lang/ThreadDeath 0 0 21 10 100 12 1 1 1 100 1 1 1 1 5 0 1 1 1 1 1 1 1
+instanceKlass java/lang/InterruptedException
+instanceKlass java/sql/SQLException
 instanceKlass sun/nio/fs/WindowsException
 instanceKlass java/security/GeneralSecurityException
 instanceKlass java/io/IOException
@@ -1678,7 +1749,7 @@ instanceKlass java/lang/ref/PhantomReference
 instanceKlass java/lang/ref/FinalReference
 instanceKlass java/lang/ref/WeakReference
 instanceKlass java/lang/ref/SoftReference
-ciInstanceKlass java/lang/ref/Reference 1 1 195 9 7 12 1 1 1 9 7 12 1 1 10 12 1 1 10 12 1 1 9 12 1 1 10 12 1 1 9 12 1 1 9 12 1 1 100 1 10 12 1 10 7 12 1 1 10 12 1 10 12 1 1 10 12 1 9 12 1 10 12 1 1 10 12 1 10 12 1 9 12 1 100 1 100 1 10 12 1 9 12 1 9 12 1 100 1 10 10 12 1 10 10 7 12 1 1 10 7 12 1 1 1 10 12 1 1 10 7 12 1 1 7 1 8 1 10 12 1 10 12 1 1 10 12 1 1 10 12 1 7 1 10 10 7 12 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 100 1 1 1 100 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ciInstanceKlass java/lang/ref/Reference 1 1 195 9 7 12 1 1 1 9 7 12 1 1 10 12 1 1 10 12 1 1 9 12 1 1 10 12 1 1 9 12 1 1 9 12 1 1 7 1 10 12 1 10 7 12 1 1 10 12 1 10 12 1 1 10 12 1 9 12 1 10 12 1 1 10 12 1 10 12 1 9 12 1 100 1 100 1 10 12 1 9 12 1 9 12 1 100 1 10 10 12 1 10 10 7 12 1 1 10 7 12 1 1 1 10 12 1 1 10 7 12 1 1 7 1 8 1 10 12 1 10 12 1 1 10 12 1 1 10 12 1 7 1 10 10 7 12 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 100 1 1 1 100 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
 staticfield java/lang/ref/Reference processPendingLock Ljava/lang/Object; java/lang/Object
 staticfield java/lang/ref/Reference $assertionsDisabled Z 1
 instanceKlass sun/font/FontDesignMetrics$KeyReference
@@ -1704,11 +1775,11 @@ instanceKlass java/lang/invoke/MethodType$ConcurrentWeakInternSet$WeakEntry
 instanceKlass java/util/WeakHashMap$Entry
 ciInstanceKlass java/lang/ref/WeakReference 1 1 31 10 7 12 1 1 1 10 12 1 100 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
 instanceKlass java/lang/ref/Finalizer
-ciInstanceKlass java/lang/ref/FinalReference 1 1 47 10 100 12 1 1 1 10 100 12 1 1 1 10 12 1 1 100 1 8 1 10 12 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ciInstanceKlass java/lang/ref/FinalReference 1 1 47 10 7 12 1 1 1 10 100 12 1 1 1 10 12 1 1 100 1 8 1 10 12 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
 instanceKlass jdk/internal/ref/PhantomCleanable
 instanceKlass jdk/internal/ref/Cleaner
 ciInstanceKlass java/lang/ref/PhantomReference 1 1 39 10 100 12 1 1 1 10 7 12 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-ciInstanceKlass java/lang/ref/Finalizer 1 1 152 9 7 12 1 1 1 10 100 12 1 1 1 9 12 1 1 9 12 1 1 9 12 1 9 12 1 10 12 1 10 12 1 1 9 12 1 1 100 1 10 12 1 100 1 11 100 12 1 1 100 1 10 12 1 100 1 10 12 1 10 100 12 1 1 1 10 100 12 1 1 1 100 1 10 10 12 1 10 7 12 1 1 1 7 1 10 7 1 10 10 7 12 1 1 1 10 12 1 1 10 7 12 1 1 7 1 10 12 1 10 12 1 1 10 12 1 1 10 12 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ciInstanceKlass java/lang/ref/Finalizer 1 1 152 9 7 12 1 1 1 10 7 12 1 1 1 9 12 1 1 9 12 1 1 9 12 1 9 12 1 10 12 1 10 12 1 1 9 12 1 1 100 1 10 12 1 100 1 11 100 12 1 1 100 1 10 12 1 100 1 10 12 1 10 100 12 1 1 1 10 100 12 1 1 1 100 1 10 10 12 1 10 7 12 1 1 1 7 1 10 7 1 10 10 7 12 1 1 1 10 12 1 1 10 7 12 1 1 7 1 10 12 1 10 12 1 1 10 12 1 1 10 12 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
 staticfield java/lang/ref/Finalizer lock Ljava/lang/Object; java/lang/Object
 staticfield java/lang/ref/Finalizer $assertionsDisabled Z 1
 instanceKlass java/util/concurrent/ForkJoinWorkerThread
@@ -1833,7 +1904,7 @@ instanceKlass java/lang/invoke/ConstantCallSite
 ciInstanceKlass java/lang/invoke/CallSite 1 1 302 10 7 12 1 1 1 10 7 12 1 1 1 9 7 12 1 1 1 10 12 1 1 9 12 1 1 10 7 12 1 1 1 10 12 1 100 1 10 12 1 1 10 12 1 1 9 100 12 1 1 1 10 100 12 1 1 10 12 1 1 100 1 100 1 10 10 100 12 1 1 1 10 12 1 1 8 1 10 12 1 10 12 1 1 10 12 1 10 12 1 1 10 12 1 1 10 10 100 12 1 1 10 12 1 1 9 12 1 9 100 12 1 1 1 8 1 10 7 12 1 1 1 10 12 1 1 100 1 10 12 1 1 9 12 1 8 1 100 1 10 12 1 10 12 1 100 1 8 1 10 10 12 1 10 12 1 1 100 1 10 12 1 1 10 12 1 10 12 1 10 12 1 1 10 12 1 1 9 12 1 1 8 10 12 1 1 9 12 1 1 100 1 10 10 12 1 10 100 12 1 1 1 10 12 1 1 10 12 1 1 10 12 1 10 7 12 1 1 1 100 1 8 1 10 10 12 10 12 1 1 100 1 100 1 100 1 8 1 10 12 1 10 7 12 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
 staticfield java/lang/invoke/CallSite $assertionsDisabled Z 1
 ciInstanceKlass jdk/internal/invoke/NativeEntryPoint 0 0 92 10 100 12 1 1 1 9 100 12 1 1 1 10 100 12 1 1 1 100 1 9 12 1 9 12 1 9 12 1 1 9 12 1 1 9 12 1 1 100 1 8 1 10 12 1 11 100 12 1 1 1 10 12 1 1 10 12 1 11 100 12 1 1 11 12 1 10 12 1 1 10 12 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-ciInstanceKlass java/lang/invoke/MethodHandleNatives$CallSiteContext 1 1 49 10 7 12 1 1 1 7 1 10 10 7 12 1 1 1 10 7 12 1 1 1 10 100 12 1 1 1 100 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 100 1 1
+ciInstanceKlass java/lang/invoke/MethodHandleNatives$CallSiteContext 1 1 49 10 7 12 1 1 1 7 1 10 10 7 12 1 1 1 10 7 12 1 1 1 10 7 12 1 1 1 100 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 100 1 1
 ciInstanceKlass java/lang/invoke/ConstantCallSite 1 1 65 10 7 12 1 1 1 9 7 12 1 1 1 9 12 1 1 10 7 12 1 1 1 10 12 1 100 1 10 12 9 12 1 1 100 1 10 10 12 1 1 10 12 1 1 1 1 1 1 1 1 1 1 1 1 1 100 1 1 1 1 1 1 1 1
 staticfield java/lang/invoke/ConstantCallSite UNSAFE Ljdk/internal/misc/Unsafe; jdk/internal/misc/Unsafe
 ciInstanceKlass java/lang/invoke/MutableCallSite 0 0 63 10 100 12 1 1 1 10 12 1 9 100 12 1 1 1 10 12 1 10 12 1 1 9 12 1 1 10 100 12 1 1 1 10 100 12 1 1 1 10 12 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 100 1 1 1
@@ -2011,67 +2082,199 @@ ciInstanceKlass jdk/internal/vm/vector/VectorSupport$VectorMask 0 0 28 10 100 12
 ciInstanceKlass jdk/internal/vm/vector/VectorSupport$VectorShuffle 0 0 28 10 100 12 1 1 1 100 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 100 1 1 1 1
 ciInstanceKlass java/lang/NullPointerException 1 1 52 10 100 12 1 1 1 10 12 1 9 100 12 1 1 1 10 12 1 1 9 12 1 1 10 12 1 1 10 12 1 1 1 1 5 0 1 1 1 1 1 1 1 1 100 1 100 1 100 1 1 1
 ciInstanceKlass java/lang/ArithmeticException 1 1 26 10 100 12 1 1 1 10 12 1 100 1 1 1 1 5 0 1 1 1 1 1 1 1 1 1
-ciInstanceKlass sun/java2d/marlin/MarlinConst 1 1 211 7 1 10 7 12 1 1 1 9 12 1 1 10 12 1 9 12 1 10 12 1 9 12 1 10 12 1 9 12 1 10 12 1 9 12 1 10 12 1 9 12 1 9 12 1 9 12 1 9 12 1 10 12 1 9 12 1 10 12 1 9 12 1 10 12 1 9 12 1 9 12 1 9 12 1 10 12 1 1 9 12 1 1 10 12 1 9 12 1 9 12 1 10 12 1 9 12 1 9 12 1 10 12 1 9 12 1 10 12 1 9 12 1 10 7 12 1 1 1 9 12 1 9 12 1 9 12 1 9 12 1 1 9 12 1 10 12 1 9 12 1 9 12 1 10 12 1 9 12 1 9 12 1 10 12 1 9 12 1 9 12 1 100 1 1 1 3 1 1 1 3 1 1 1 1 5 0 1 1 3 1 1 1 1 1 1 1 3 1 1 1 1 1 1 3 1 3 1 3 1 3 1 3 1 1 1 1 1 1 1
-staticfield sun/java2d/marlin/MarlinConst ENABLE_LOGS Z 0
-staticfield sun/java2d/marlin/MarlinConst USE_LOGGER Z 0
-staticfield sun/java2d/marlin/MarlinConst LOG_CREATE_CONTEXT Z 0
-staticfield sun/java2d/marlin/MarlinConst LOG_UNSAFE_MALLOC Z 0
-staticfield sun/java2d/marlin/MarlinConst DO_STATS Z 0
-staticfield sun/java2d/marlin/MarlinConst DO_CHECKS Z 0
-staticfield sun/java2d/marlin/MarlinConst DO_LOG_WIDEN_ARRAY Z 0
-staticfield sun/java2d/marlin/MarlinConst DO_LOG_OVERSIZE Z 0
-staticfield sun/java2d/marlin/MarlinConst DO_TRACE Z 0
-staticfield sun/java2d/marlin/MarlinConst USE_SIMPLIFIER Z 0
-staticfield sun/java2d/marlin/MarlinConst USE_PATH_SIMPLIFIER Z 0
-staticfield sun/java2d/marlin/MarlinConst DO_CLIP_SUBDIVIDER Z 1
-staticfield sun/java2d/marlin/MarlinConst DO_LOG_BOUNDS Z 0
-staticfield sun/java2d/marlin/MarlinConst DO_LOG_CLIP Z 0
-staticfield sun/java2d/marlin/MarlinConst INITIAL_PIXEL_WIDTH I 4096
-staticfield sun/java2d/marlin/MarlinConst INITIAL_PIXEL_HEIGHT I 2176
-staticfield sun/java2d/marlin/MarlinConst INITIAL_AA_ARRAY I 4096
-staticfield sun/java2d/marlin/MarlinConst INITIAL_EDGES_COUNT I 4096
-staticfield sun/java2d/marlin/MarlinConst INITIAL_EDGES_CAPACITY I 98304
-staticfield sun/java2d/marlin/MarlinConst SUBPIXEL_LG_POSITIONS_X I 8
-staticfield sun/java2d/marlin/MarlinConst SUBPIXEL_LG_POSITIONS_Y I 3
-staticfield sun/java2d/marlin/MarlinConst MIN_SUBPIXEL_LG_POSITIONS I 3
-staticfield sun/java2d/marlin/MarlinConst SUBPIXEL_POSITIONS_X I 256
-staticfield sun/java2d/marlin/MarlinConst SUBPIXEL_POSITIONS_Y I 8
-staticfield sun/java2d/marlin/MarlinConst MIN_SUBPIXELS F 1090519040
-staticfield sun/java2d/marlin/MarlinConst MAX_AA_ALPHA I 2048
-staticfield sun/java2d/marlin/MarlinConst TILE_H_LG I 5
-staticfield sun/java2d/marlin/MarlinConst TILE_H I 32
-staticfield sun/java2d/marlin/MarlinConst TILE_W_LG I 5
-staticfield sun/java2d/marlin/MarlinConst TILE_W I 32
-staticfield sun/java2d/marlin/MarlinConst BLOCK_SIZE_LG I 5
-staticfield sun/java2d/marlin/MarlinConst BLOCK_SIZE I 32
-ciInstanceKlass sun/java2d/marlin/FloatMath 1 1 87 10 100 12 1 1 1 10 100 12 1 1 1 7 1 3 4 9 12 1 1 100 1 10 3 10 12 1 1 4 100 1 3 10 12 1 1 10 7 12 1 1 3 10 7 12 1 1 1 100 1 1 1 3 1 1 1 3 1 3 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-staticfield sun/java2d/marlin/FloatMath $assertionsDisabled Z 1
-ciInstanceKlass sun/java2d/marlin/IntArrayCache 1 1 169 100 1 10 7 12 1 1 1 9 7 12 1 1 1 9 12 1 1 9 12 1 1 9 12 1 100 1 10 12 1 1 18 12 1 1 10 12 1 9 12 1 1 10 12 1 1 10 12 1 1 10 100 12 1 1 1 100 1 100 1 9 12 1 1 9 12 1 1 10 12 1 10 12 1 7 1 10 12 1 10 7 12 1 1 1 9 12 1 10 12 1 10 12 1 1 18 12 1 100 1 10 10 100 12 1 1 1 10 12 1 8 1 8 1 100 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 100 1 1 1 1 1 1 1 1 1 1 100 1 1 1 1 1 15 10 100 12 1 1 8 1 8 1 1 1 1 1 1 100 1 100 1 1
-ciInstanceKlass sun/java2d/marlin/MarlinCache 1 1 406 100 1 10 7 12 1 1 1 9 7 12 1 1 1 9 12 1 1 9 12 1 1 9 12 1 9 12 1 9 12 1 9 12 1 9 12 1 1 10 7 12 1 1 1 9 12 1 1 9 12 1 1 10 12 1 1 9 12 1 1 10 12 1 1 9 12 1 1 9 7 12 1 1 9 12 1 100 1 3 9 12 1 3 9 12 1 9 12 1 9 12 1 9 12 1 9 12 1 9 12 1 9 12 1 9 12 1 3 9 12 1 9 12 1 9 12 1 9 100 12 1 1 1 10 100 12 1 1 1 10 12 1 1 10 12 1 9 12 1 9 7 12 1 1 10 12 1 1 10 12 1 1 9 12 1 9 12 1 10 12 9 12 1 10 7 12 1 1 1 10 7 12 1 1 1 9 12 1 18 12 1 1 10 100 12 1 1 1 10 12 1 9 12 1 9 12 1 1 9 12 1 9 12 1 10 7 12 1 1 1 10 12 1 1 18 12 1 10 12 1 1 5 0 9 12 1 10 12 1 10 12 1 1 10 12 1 1 9 12 1 1 10 100 1 9 12 1 9 12 1 10 12 1 9 12 1 10 100 12 1 1 1 18 10 7 12 1 1 1 10 12 1 9 12 1 10 12 1 1 10 7 1 9 12 1 9 12 1 10 12 1 1 10 12 1 9 12 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 100 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 100 1 1 1 1 1 1 15 10 100 12 1 1 8 1 8 1 8 1 1 1 100 1 100 1 1
-staticfield sun/java2d/marlin/MarlinCache FORCE_RLE Z 0
-staticfield sun/java2d/marlin/MarlinCache FORCE_NO_RLE Z 0
-staticfield sun/java2d/marlin/MarlinCache RLE_MIN_WIDTH I 64
-staticfield sun/java2d/marlin/MarlinCache INITIAL_CHUNK_ARRAY J 32768
-staticfield sun/java2d/marlin/MarlinCache ALPHA_MAP [B 4096
-staticfield sun/java2d/marlin/MarlinCache ALPHA_MAP_UNSAFE Lsun/java2d/marlin/OffHeapArray; sun/java2d/marlin/OffHeapArray
-ciInstanceKlass sun/java2d/marlin/OffHeapArray 1 1 147 10 7 12 1 1 1 9 7 12 1 1 1 10 7 12 1 1 1 9 12 1 1 9 12 1 9 12 1 1 9 7 12 1 1 1 10 100 12 1 1 1 18 12 1 1 10 100 12 1 1 1 10 7 12 1 1 1 18 12 1 1 10 7 12 1 1 1 10 12 1 1 18 10 12 1 1 18 10 12 1 1 10 12 1 10 12 1 1 9 12 1 9 12 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 15 10 100 12 1 1 8 1 15 10 7 12 1 1 1 16 15 10 12 8 1 8 1 1 100 1 1 100 1 100 1 1
-staticfield sun/java2d/marlin/OffHeapArray UNSAFE Ljdk/internal/misc/Unsafe; jdk/internal/misc/Unsafe
-staticfield sun/java2d/marlin/OffHeapArray SIZE_INT I 4
-ciMethod jdk/internal/misc/Unsafe putInt (Ljava/lang/Object;JI)V 768 0 384 0 -1
-ciMethod jdk/internal/misc/Unsafe getByte (Ljava/lang/Object;J)B 768 0 384 0 -1
-ciMethod jdk/internal/misc/Unsafe getByte (J)B 1024 0 4776 0 -1
-ciMethod jdk/internal/misc/Unsafe putInt (JI)V 698 0 9310 0 -1
-ciMethod sun/java2d/marlin/FloatMath max (II)I 526 0 2566 0 0
-ciMethod sun/java2d/marlin/FloatMath min (II)I 530 0 3576 0 0
-ciMethod sun/java2d/marlin/IntArrayCache check ([IIII)V 0 0 1 0 -1
-ciMethod sun/java2d/marlin/MarlinCache copyAARowRLE_WithBlockFlags ([I[IIII)V 236 15094 692 0 -1
-ciMethod sun/java2d/marlin/MarlinCache startRLERow (III)J 252 0 702 0 -1
-ciMethod sun/java2d/marlin/MarlinCache expandRowAAChunk (J)V 0 0 1 0 -1
-ciMethod sun/java2d/marlin/MarlinCache touchTile (IIII[I)V 256 5632 978 0 0
-ciMethodData jdk/internal/misc/Unsafe getByte (J)B 2 4879 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 79 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 21 0x3000b 0xeb 0x0 0x0 0x0 0x0 0x0 0x2 0x1 0x1 0x0 0x0 0x0 0x0 0x0 0x0 0x9 0x3 0x0 0x0 0x0 oops 0 methods 0
-ciMethodData jdk/internal/misc/Unsafe putInt (JI)V 2 9981 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 79 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 22 0x4000b 0x8f 0x0 0x0 0x0 0x0 0x0 0x2 0x1 0x1 0x0 0x0 0x0 0x0 0x0 0x0 0x9 0x4 0x0 0x0 0x0 0x0 oops 0 methods 0
-ciMethodData sun/java2d/marlin/FloatMath min (II)I 2 3936 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 79 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 12 0x20007 0x87c 0x38 0x5db 0x60003 0x5db 0x18 0x0 0x9 0x2 0x0 0x0 oops 0 methods 0
-ciMethodData sun/java2d/marlin/FloatMath max (II)I 2 2738 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 79 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 12 0x20007 0x57 0x38 0x954 0x60003 0x954 0x18 0x0 0x9 0x2 0x0 0x0 oops 0 methods 0
-ciMethodData sun/java2d/marlin/MarlinCache copyAARowRLE_WithBlockFlags ([I[IIII)V 2 48903 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 79 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 246 0x1b0002 0x240 0x2a0007 0x240 0x50 0x0 0x34000a 0x0 0x1 0x0 0x390002 0x0 0x430005 0x240 0x0 0x0 0x0 0x0 0x0 0x630007 0x240 0x58 0x0 0x690005 0x0 0x0 0x0 0x0 0x0 0x0 0xc70007 0x240 0x310 0x33b4 0xce0007 0x2e84 0x58 0x530 0xda0007 0x69 0x2b8 0x4c7 0xe10003 0x4c7 0x298 0xe80007 0x29bd 0x260 0x4c7 0xf20002 0x4c7 0x1040002 0x4c7 0x1110007 0x4c7 0x240 0x6dd3 0x11b0007 0x6155 0x1e8 0xc7e 0x1270007 0x23a 0x1c8 0xa44 0x1330007 0xa13 0x70 0x31 0x1420005 0x31 0x0 0x0 0x0 0x0 0x0 0x1450003 0x31 0xf8 0x15c0005 0xa13 0x0 0x0 0x0 0x0 0x0 0x1640005 0xa13 0x0 0x0 0x0 0x0 0x0 0x16a0007 0x166 0x38 0x8ad 0x17a0003 0x8ad 0x50 0x1880005 0x166 0x0 0x0 0x0 0x0 0x0 0x1960007 0xa44 0x58 0x0 0x1a20005 0x0 0x0 0x0 0x0 0x0 0x0 0x1b30003 0x6dd3 0xfffffffffffffdf8 0x1b90007 0x29bd 0x20 0x0 0x1c20003 0x33b4 0xfffffffffffffd08 0x1ce0007 0x23a 0x70 0x6 0x1dd0005 0x6 0x0 0x0 0x0 0x0 0x0 0x1e00003 0x6 0xf8 0x1f70005 0x23a 0x0 0x0 0x0 0x0 0x0 0x1ff0005 0x23a 0x0 0x0 0x0 0x0 0x0 0x2050007 0x1e8 0x38 0x52 0x2150003 0x52 0x50 0x2230005 0x1e8 0x0 0x0 0x0 0x0 0x0 0x2310007 0x240 0x58 0x0 0x23d0005 0x0 0x0 0x0 0x0 0x0 0x0 0x25f0007 0x240 0x90 0x0 0x2700005 0x0 0x0 0x0 0x0 0x0 0x0 0x2850005 0x0 0x0 0x0 0x0 0x0 0x0 0x2950007 0x222 0x20 0x1e 0x2af0007 0x224 0x20 0x1c 0x2c00007 0x240 0x40 0x0 0x2c90002 0x0 0x2d90002 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x9 0x6 0x0 0x0 0x0 0x0 0x0 0x0 oops 0 methods 0
-ciMethodData sun/java2d/marlin/MarlinCache touchTile (IIII[I)V 2 16138 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 79 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 42 0x110007 0x304 0x20 0xc4 0x2d0007 0x0 0x20 0x304 0x4e0007 0x2e 0x58 0x2d6 0x5b0007 0x2d6 0x38 0x340a 0x6b0003 0x340a 0xffffffffffffffe0 0x720007 0x6 0x58 0x2fe 0x880007 0x2fb 0x38 0x3 0x8d0003 0x3 0x18 0x0 0x0 0x0 0x0 0x9 0x6 0x0 0x0 0x0 0x0 0x0 0x0 oops 0 methods 0
-compile sun/java2d/marlin/MarlinCache copyAARowRLE_WithBlockFlags ([I[IIII)V 195 4 inline 11 0 -1 sun/java2d/marlin/MarlinCache copyAARowRLE_WithBlockFlags ([I[IIII)V 1 242 sun/java2d/marlin/FloatMath max (II)I 1 260 sun/java2d/marlin/FloatMath min (II)I 1 322 jdk/internal/misc/Unsafe putInt (JI)V 1 348 jdk/internal/misc/Unsafe getByte (J)B 1 356 jdk/internal/misc/Unsafe putInt (JI)V 1 392 sun/java2d/marlin/MarlinCache touchTile (IIII[I)V 1 477 jdk/internal/misc/Unsafe putInt (JI)V 1 503 jdk/internal/misc/Unsafe getByte (J)B 1 511 jdk/internal/misc/Unsafe putInt (JI)V 1 547 sun/java2d/marlin/MarlinCache touchTile (IIII[I)V
+ciInstanceKlass java/util/Comparator 1 1 288 10 100 12 1 1 1 10 100 12 1 1 1 18 12 1 1 100 1 100 1 11 12 1 1 11 12 1 11 12 1 11 12 1 1 11 12 1 1 11 12 1 1 10 12 1 9 100 12 1 1 1 100 1 10 12 1 1 18 12 1 18 12 18 12 18 12 18 12 10 100 12 1 1 1 10 100 12 1 1 1 8 1 10 12 1 1 8 1 8 1 8 1 8 1 8 1 10 12 1 10 12 1 8 10 100 1 10 12 1 8 10 12 1 8 1 10 12 1 10 12 1 8 1 10 12 1 1 100 1 8 1 100 1 8 1 8 1 100 1 8 1 8 1 100 1 100 1 8 1 10 12 1 11 12 1 1 10 100 12 1 1 11 12 1 1 10 100 12 1 1 11 12 1 1 10 100 12 1 1 11 12 1 100 1 11 12 1 11 12 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 15 10 100 12 1 1 1 16 15 11 12 3 3 15 11 12 15 11 12 15 11 12 15 11 12 15 11 12 1 100 1 1 1 100 1 100 1 1
+ciInstanceKlass java/lang/Math 1 1 395 10 100 12 1 1 1 10 7 12 1 1 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 7 1 6 0 6 0 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 10 7 12 1 1 1 100 1 3 3 3 10 7 12 1 1 1 100 1 5 0 5 0 5 0 5 0 5 0 9 100 12 1 1 1 10 100 12 1 1 1 100 1 8 1 10 12 1 8 1 10 12 1 1 10 12 1 1 100 1 5 0 5 0 100 1 3 5 0 3 5 0 10 12 1 10 12 1 8 1 10 12 1 8 1 9 12 1 1 9 12 1 10 12 1 1 6 0 10 12 1 9 12 1 1 100 1 10 10 12 1 100 1 10 12 1 10 12 1 1 10 12 1 10 12 1 10 12 1 10 12 1 1 10 12 1 1 10 12 1 1 10 12 6 0 10 12 1 1 10 12 1 1 10 12 10 12 1 4 10 12 1 1 10 12 1 10 12 1 10 12 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 5 0 6 0 4 6 0 4 6 0 4 10 12 1 1 9 12 1 1 10 12 1 9 12 1 10 7 12 1 1 1 4 6 0 1 1 6 0 1 6 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+staticfield java/lang/Math negativeZeroFloatBits J -2147483648
+staticfield java/lang/Math negativeZeroDoubleBits J -9223372036854775808
+staticfield java/lang/Math $assertionsDisabled Z 1
+ciInstanceKlass java/util/Arrays 1 1 988 10 7 12 1 1 1 10 100 12 1 1 1 10 7 12 1 1 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 10 100 12 1 1 1 100 1 100 1 10 8 1 10 12 1 1 10 12 1 8 1 8 1 10 12 1 1 10 12 1 100 1 10 12 1 9 100 12 1 1 1 10 7 12 1 1 100 1 10 12 1 1 10 7 12 1 1 10 7 12 1 1 1 100 1 10 12 1 10 12 1 1 7 1 9 7 12 1 1 1 10 12 1 1 10 7 12 1 1 10 12 1 10 12 1 1 10 12 1 10 12 1 1 7 1 11 12 1 1 10 12 1 10 7 12 1 1 1 10 12 10 12 1 10 12 1 10 12 10 12 1 11 7 12 1 1 1 10 7 12 1 1 1 100 1 10 12 1 10 100 1 10 12 1 10 100 1 10 12 1 10 100 1 10 12 1 10 10 12 1 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 10 100 12 1 1 1 10 12 1 10 100 12 1 1 1 10 12 1 10 12 1 10 7 12 1 1 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 1 10 12 1 1 10 7 12 1 1 1 10 12 1 8 1 7 1 10 12 10 12 1 10 12 1 1 10 12 1 1 9 100 12 1 1 1 100 1 10 12 1 9 100 1 100 1 10 12 1 9 100 1 100 1 10 12 1 9 100 1 100 1 10 12 1 9 100 1 100 1 10 12 1 9 100 1 100 1 10 12 1 9 100 1 10 12 1 100 1 10 12 1 10 12 1 9 12 1 100 1 10 10 12 1 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 8 1 8 1 10 12 1 10 12 1 8 1 10 12 1 10 12 1 10 12 1 10 100 12 1 1 1 3 10 100 1 10 10 12 1 1 11 100 12 1 1 10 12 1 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 11 12 1 8 1 10 11 12 1 11 100 12 1 1 1 11 100 12 1 1 1 11 12 1 1 18 12 1 1 11 12 1 1 11 100 12 1 1 1 18 12 1 11 100 12 1 1 1 18 12 1 11 100 12 1 1 1 18 12 1 100 1 10 7 12 1 1 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 1 10 12 1 10 7 12 1 1 10 12 1 10 12 1 10 12 1 1 10 12 1 10 12 1 10 12 1 1 10 12 1 10 12 1 10 12 1 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 10 12 1 10 12 10 12 10 12 1 10 12 10 12 1 10 12 1 10 12 1 1 1 1 3 1 3 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 100 1 1 15 10 100 12 1 1 1 16 15 10 12 15 10 12 15 10 12 15 10 12 1 1 100 1 100 1 1 1 1 100 1 1 1 1 1 1 100 1 1 100 1 1 100 1 1 1 100 1 100 1 1
+staticfield java/util/Arrays $assertionsDisabled Z 1
+ciInstanceKlass java/io/PrintStream 1 1 346 100 1 10 12 1 1 8 1 10 7 12 1 1 1 10 100 12 1 1 1 100 1 100 1 100 1 10 10 7 12 1 1 9 12 1 1 9 12 1 9 12 1 7 1 10 9 12 1 1 7 1 10 12 1 9 12 1 1 10 12 1 10 12 1 8 1 7 1 10 12 1 10 12 1 10 12 1 100 1 10 10 12 1 8 1 10 12 1 9 12 1 1 100 1 8 1 10 10 12 1 1 10 12 1 10 12 1 10 10 10 12 1 1 10 12 1 1 100 1 10 100 12 1 1 1 10 12 1 10 12 1 10 10 12 1 10 12 1 10 10 12 1 10 12 10 100 12 1 1 1 10 12 1 1 10 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 10 10 12 1 10 10 100 12 1 1 1 10 12 1 10 12 1 1 10 12 1 10 12 10 12 1 10 12 1 10 12 1 10 12 10 12 10 12 10 12 1 1 10 12 1 9 12 1 1 10 100 12 1 1 1 9 100 12 1 1 1 10 100 12 1 1 1 10 12 1 10 12 1 10 12 1 8 1 11 100 12 1 1 1 10 12 1 1 10 12 1 10 12 1 100 1 100 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 100 1 1 1 1 1 1 1 1 100 1 1 1 1 1 1 1 1 1 100 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 100 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ciInstanceKlass java/lang/IllegalArgumentException 1 1 35 10 100 12 1 1 1 10 12 1 10 12 1 10 12 1 100 1 1 1 1 5 0 1 1 1 1 1 1 1 1 1 1 1 1
+ciInstanceKlass java/util/Vector 1 1 493 10 7 12 1 1 1 100 1 100 1 10 8 1 10 12 1 1 10 12 1 10 12 1 1 10 12 1 7 1 9 7 12 1 1 1 9 12 1 1 10 12 1 10 12 1 11 100 12 1 1 1 9 12 1 10 12 1 1 100 1 100 10 100 12 1 1 1 10 7 12 1 1 1 9 12 1 10 12 1 10 12 1 1 10 100 12 1 1 1 7 1 10 12 1 10 12 1 1 10 12 1 1 10 12 1 100 1 8 1 10 100 1 10 10 12 1 100 1 10 10 8 1 10 12 10 12 1 1 10 12 1 10 12 1 10 12 1 1 100 1 100 1 10 12 1 10 12 1 10 12 1 1 10 12 1 10 12 1 1 10 100 12 1 1 1 18 12 1 1 10 12 1 1 18 10 12 1 1 11 100 12 1 10 12 1 1 10 12 1 1 100 1 10 10 12 1 1 10 10 12 1 1 10 10 12 1 1 10 100 12 1 1 1 10 12 1 1 10 100 12 1 1 1 8 10 100 12 1 1 1 8 10 12 1 10 12 1 1 100 1 8 1 10 100 1 8 1 10 10 10 100 12 1 1 1 8 10 100 12 1 1 1 10 12 1 10 12 1 8 1 100 1 10 12 1 100 1 10 11 100 12 1 1 1 11 100 12 1 1 10 12 1 1 100 1 10 12 1 11 12 1 100 1 100 1 100 1 100 1 1 1 1 5 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 100 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 100 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 100 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 15 10 100 12 1 1 1 16 15 10 12 15 10 12 1 1 1 1 1 1 100 1 100 1 1
+ciInstanceKlass java/util/Arrays$LegacyMergeSort 1 1 45 10 100 12 1 1 1 7 1 8 1 10 12 1 10 7 12 1 1 1 7 1 10 12 1 1 9 7 12 1 1 1 1 1 1 1 1 1 1 1 1 7 1 1 1
+staticfield java/util/Arrays$LegacyMergeSort userRequested Z 0
+ciInstanceKlass java/util/TimSort 1 1 224 10 7 12 1 1 1 7 1 9 12 1 1 9 12 1 9 12 1 1 9 12 1 1 10 12 1 1 10 7 12 1 1 10 7 12 1 1 1 7 9 12 1 9 12 1 9 12 1 3 9 12 1 1 9 12 1 9 12 1 1 100 1 10 10 12 1 1 10 12 1 1 10 12 1 10 12 1 1 10 12 1 1 10 12 1 10 12 1 11 7 12 1 1 1 10 7 12 1 1 1 10 12 1 1 10 12 1 1 10 12 1 1 10 12 1 10 12 1 1 10 12 1 10 12 1 1 100 1 8 1 10 12 1 10 7 12 1 1 10 7 12 1 1 1 10 12 1 1 1 1 3 1 1 1 1 3 1 3 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+staticfield java/util/TimSort $assertionsDisabled Z 1
+ciInstanceKlass java/lang/AssertionError 0 0 79 10 100 12 1 1 1 10 12 1 10 100 12 1 1 1 10 100 1 100 1 10 12 1 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 1 1 1 5 0 1 1 1 1 1 1 1 1 1 1 100 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ciInstanceKlass java/util/ComparableTimSort 1 1 199 10 7 12 1 1 1 7 1 9 12 1 1 9 12 1 9 12 1 1 9 12 1 9 12 1 9 12 1 3 9 12 1 1 9 12 1 9 12 1 1 100 1 10 10 12 1 1 10 12 1 1 10 12 1 10 12 1 1 10 12 1 1 10 12 1 10 12 1 7 1 11 12 1 1 10 7 12 1 1 1 10 12 1 1 10 12 1 1 10 12 1 1 10 12 1 10 12 1 1 10 12 1 10 12 1 1 100 1 8 1 10 12 1 10 100 12 1 1 10 100 12 1 1 1 10 7 12 1 1 1 1 1 3 1 3 1 3 1 1 1 1 1 1 1 1 1 1 1 1 100 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+staticfield java/util/ComparableTimSort $assertionsDisabled Z 1
+instanceKlass sun/awt/geom/Order1
+instanceKlass sun/awt/geom/Order3
+instanceKlass sun/awt/geom/Order0
+ciInstanceKlass sun/awt/geom/Curve 1 1 483 7 1 10 12 1 1 10 7 12 1 1 1 7 1 7 1 10 12 1 10 100 12 1 1 1 10 7 12 1 1 11 100 12 1 1 1 11 12 1 1 100 1 8 1 10 12 1 11 12 1 1 10 12 1 1 10 12 1 1 10 12 1 1 6 0 10 100 12 1 1 1 3 10 12 1 1 10 12 1 1 10 12 1 1 10 7 12 1 9 12 1 1 10 12 1 1 10 12 1 1 10 7 12 1 1 1 10 12 1 1 10 12 1 1 10 12 1 1 10 12 1 1 10 12 1 10 12 1 1 10 12 1 10 12 1 8 1 8 1 18 12 1 1 8 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 10 100 12 1 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 1 10 12 1 1 10 12 1 1 10 12 1 9 100 12 1 1 1 18 12 1 10 100 12 1 1 18 9 12 1 18 12 1 100 1 18 10 10 12 1 10 12 1 1 10 12 10 12 1 6 0 6 0 10 12 1 1 6 0 6 0 18 12 1 10 12 1 1 100 1 18 12 1 18 18 18 18 10 12 1 1 6 0 18 18 8 1 18 18 8 1 8 1 6 0 1 1 3 1 3 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 100 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 100 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 15 10 100 12 1 1 8 1 8 1 8 1 8 1 8 1 8 1 8 1 8 1 8 1 8 1 8 1 8 1 8 1 8 1 8 1 1 100 1 100 1 1
+ciInstanceKlass sun/awt/geom/Order0 1 1 95 7 1 10 12 1 1 9 7 12 1 1 1 9 12 1 10 100 12 1 1 1 10 12 1 10 12 1 10 12 1 10 100 12 1 1 1 100 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ciInstanceKlass sun/awt/geom/Order3 1 1 318 10 7 12 1 1 1 10 12 1 1 10 12 1 1 7 1 10 12 1 1 10 7 12 1 1 1 6 0 10 7 12 1 1 1 10 12 1 9 12 1 1 9 12 1 9 12 1 9 12 1 9 12 1 9 12 1 9 12 1 9 12 1 10 7 12 1 1 1 9 12 1 10 12 1 9 12 1 9 12 1 6 0 9 12 1 9 12 1 9 12 1 9 12 1 9 12 1 9 12 1 9 12 1 9 12 1 9 12 1 9 12 1 9 12 1 1 9 12 1 9 12 1 9 12 1 10 100 12 1 1 1 6 0 6 0 6 0 10 12 1 1 10 12 1 6 0 10 12 1 10 12 1 1 6 0 6 0 10 12 1 10 12 1 6 0 6 0 6 0 10 12 1 1 10 12 10 12 1 6 0 10 7 12 1 1 10 12 1 1 100 1 10 12 1 1 10 12 1 10 12 1 10 12 1 10 12 1 18 12 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 100 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 15 10 100 12 1 1 8 1 1 100 1 100 1 1
+ciInstanceKlass sun/awt/geom/Order1 1 1 181 10 7 12 1 1 1 9 7 12 1 1 1 9 12 1 9 12 1 9 12 1 9 12 1 9 12 1 9 12 1 1 10 100 12 1 1 1 10 12 1 10 12 1 10 12 1 10 12 1 1 10 12 1 1 10 7 12 1 1 1 10 12 1 1 10 12 1 10 12 1 1 100 1 8 1 10 12 1 10 7 12 1 1 1 18 12 1 1 10 12 1 10 12 1 1 100 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 100 1 1 1 1 1 1 15 10 100 12 1 1 8 1 1 100 1 100 1 1
+instanceKlass sun/awt/geom/AreaOp$CAGOp
+instanceKlass sun/awt/geom/AreaOp$NZWindOp
+ciInstanceKlass sun/awt/geom/AreaOp 1 1 362 10 7 12 1 1 1 7 1 10 7 1 10 12 1 1 10 12 1 1 10 12 1 1 11 7 12 1 1 1 11 12 1 1 7 1 10 12 1 1 7 1 10 12 1 10 12 1 1 10 12 1 10 12 1 1 7 1 9 12 1 1 10 7 12 1 1 1 10 12 1 1 10 12 1 1 10 12 1 10 12 1 1 10 12 1 1 10 12 1 1 100 1 18 12 1 1 10 12 1 10 12 1 10 12 1 10 12 1 10 12 1 1 10 12 1 1 10 12 1 1 7 1 10 12 1 9 100 12 1 1 1 8 1 10 100 12 1 1 18 12 1 18 18 12 1 18 8 1 10 12 1 18 10 12 1 1 10 12 1 10 12 1 10 12 1 1 10 12 1 1 10 12 1 8 1 7 1 10 12 1 1 9 12 1 1 8 1 9 12 1 1 10 12 1 10 10 12 1 1 10 12 1 10 12 1 1 10 12 1 1 7 1 10 1 1 1 3 1 3 1 1 1 3 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 100 1 1 1 1 1 1 1 1 100 1 1 1 1 1 1 1 1 1 1 1 1 1 1 100 1 1 1 1 1 1 1 1 100 1 100 1 100 1 100 1 100 1 100 1 100 1 1 15 10 100 12 1 1 8 1 8 1 8 1 8 1 8 1 8 1 1 1 1 1 1 1 1 1 100 1 100 1 1
+ciInstanceKlass sun/awt/geom/AreaOp$NZWindOp 1 1 44 10 7 12 1 1 1 9 7 12 1 1 1 10 7 12 1 1 1 10 7 12 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ciInstanceKlass sun/awt/geom/CurveLink 1 1 120 10 7 12 1 1 1 9 7 12 1 1 1 9 12 1 1 9 12 1 9 12 1 1 10 7 12 1 1 1 10 12 1 100 1 18 12 1 1 10 12 1 10 12 1 1 10 7 12 1 1 1 10 12 1 10 12 1 1 10 12 1 1 7 1 10 12 1 10 10 12 1 10 12 1 1 9 12 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 15 10 100 12 1 1 8 1 1 100 1 100 1 1
+ciInstanceKlass sun/awt/geom/ChainEnd 1 1 77 10 7 12 1 1 1 9 7 12 1 1 1 9 12 1 9 12 1 1 10 7 12 1 1 1 9 12 1 1 100 1 8 1 10 12 1 8 1 100 1 10 12 1 1 10 12 1 1 10 12 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ciInstanceKlass java/util/Vector$1 1 1 60 9 7 12 1 1 1 10 7 12 1 1 1 9 12 1 1 9 7 12 1 1 10 12 1 1 100 1 8 1 10 12 1 100 1 1 1 1 1 1 1 1 1 1 1 1 1 100 1 1 1 1 1 1 1 12 1 1 1 1
+ciInstanceKlass sun/awt/geom/Edge 1 1 115 100 1 10 7 12 1 1 1 10 7 12 1 1 9 12 1 1 9 12 1 1 9 12 1 9 12 1 9 12 1 1 9 12 1 1 9 12 1 10 7 12 1 1 1 9 12 1 8 1 8 1 8 8 1 8 1 18 12 1 1 1 1 3 1 3 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 100 1 1 1 1 15 10 100 12 1 1 8 1 1 100 1 100 1 1
+instanceKlass sun/awt/geom/AreaOp$SubOp
+ciInstanceKlass sun/awt/geom/AreaOp$CAGOp 1 1 47 10 7 12 1 1 1 9 7 12 1 1 1 9 12 1 9 12 1 10 7 12 1 1 1 10 12 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ciInstanceKlass sun/awt/geom/AreaOp$SubOp 1 1 28 10 7 12 1 1 1 100 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 100 1 1 1 1
+ciMethod java/lang/Object <init> ()V 1024 0 135998 0 128
+ciMethod java/lang/Object getClass ()Ljava/lang/Class; 768 0 384 0 -1
+ciMethod java/lang/System arraycopy (Ljava/lang/Object;ILjava/lang/Object;II)V 512 0 256 0 -1
+ciMethod java/util/AbstractList <init> ()V 62 0 7305 0 0
+ciMethod java/util/AbstractCollection <init> ()V 534 0 10738 0 0
+ciMethod java/lang/Math abs (D)D 0 0 1 0 -1
+ciMethod java/lang/Math max (DD)D 1024 0 9771 0 -1
+ciMethod java/lang/Math min (DD)D 1024 0 15054 0 -1
+ciMethod java/util/Arrays sort ([Ljava/lang/Object;)V 2 0 1 0 0
+ciMethod java/util/Arrays legacyMergeSort ([Ljava/lang/Object;)V 0 0 1 0 -1
+ciMethod java/util/Arrays sort ([Ljava/lang/Object;Ljava/util/Comparator;)V 1872 0 1162 0 0
+ciMethod java/util/Arrays legacyMergeSort ([Ljava/lang/Object;Ljava/util/Comparator;)V 0 0 1 0 -1
+ciMethod java/util/Arrays copyOf ([Ljava/lang/Object;ILjava/lang/Class;)[Ljava/lang/Object; 102 0 1962 0 -1
+ciMethod java/io/PrintStream println (Ljava/lang/String;)V 0 0 1 0 -1
+ciMethodData java/lang/Object <init> ()V 2 135998 orig 80 1 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 4 0x0 0x9 0x1 0x0 oops 0 methods 0
+ciMethodData java/util/AbstractCollection <init> ()V 2 10738 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 7 0x10002 0x28e7 0x0 0x0 0x9 0x1 0x0 oops 0 methods 0
+ciMethod java/util/Enumeration hasMoreElements ()Z 0 0 1 0 -1
+ciMethod java/util/Enumeration nextElement ()Ljava/lang/Object; 0 0 1 0 -1
+ciMethod java/util/Vector <init> (II)V 768 0 5523 0 608
+ciMethod java/util/Vector <init> (I)V 768 0 5820 0 0
+ciMethod java/util/Vector <init> ()V 784 0 5688 0 0
+ciMethod java/util/Vector grow ()[Ljava/lang/Object; 0 0 1 0 -1
+ciMethod java/util/Vector size ()I 266 0 133 0 0
+ciMethod java/util/Vector elements ()Ljava/util/Enumeration; 522 0 3465 0 0
+ciMethod java/util/Vector removeAllElements ()V 1024 2032 6677 0 640
+ciMethod java/util/Vector toArray ([Ljava/lang/Object;)[Ljava/lang/Object; 786 0 5706 0 1184
+ciMethod java/util/Vector elementData (I)Ljava/lang/Object; 560 0 14499 0 0
+ciMethod java/util/Vector add (Ljava/lang/Object;[Ljava/lang/Object;I)V 1024 0 39655 0 0
+ciMethod java/util/Vector add (Ljava/lang/Object;)Z 1024 0 39398 0 800
+ciMethod java/util/Vector clear ()V 1024 0 10411 0 0
+ciMethodData java/util/AbstractList <init> ()V 2 7305 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 9 0x10002 0x1c6a 0x0 0x0 0x0 0x0 0x9 0x1 0x0 oops 0 methods 0
+ciMethod java/util/TimSort <init> ([Ljava/lang/Object;Ljava/util/Comparator;[Ljava/lang/Object;II)V 2 0 1 0 -1
+ciMethod java/util/TimSort sort ([Ljava/lang/Object;IILjava/util/Comparator;[Ljava/lang/Object;II)V 2390 60 1165 0 0
+ciMethod java/util/TimSort binarySort ([Ljava/lang/Object;IIILjava/util/Comparator;)V 258 8442 1195 0 -1
+ciMethod java/util/TimSort countRunAndMakeAscending ([Ljava/lang/Object;IILjava/util/Comparator;)I 516 590 1195 0 -1
+ciMethod java/util/TimSort minRunLength (I)I 2 10 1 0 -1
+ciMethod java/util/TimSort pushRun (II)V 62 0 31 0 -1
+ciMethod java/util/TimSort mergeCollapse ()V 62 52 31 0 -1
+ciMethod java/util/TimSort mergeForceCollapse ()V 2 8 1 0 -1
+ciMethod java/util/ComparableTimSort sort ([Ljava/lang/Object;II[Ljava/lang/Object;II)V 2 6 1 0 -1
+ciMethodData java/util/Arrays sort ([Ljava/lang/Object;Ljava/util/Comparator;)V 1 1165 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 30 0x10007 0x103 0x48 0x0 0x50002 0x0 0x80003 0x0 0x70 0xe0007 0x103 0x48 0x0 0x130002 0x0 0x160003 0x0 0x28 0x210002 0x103 0x0 0x0 0x0 0x0 0x0 0x0 0x9 0x2 0x0 0x0 oops 0 methods 0
+ciMethod sun/awt/geom/Curve <init> (I)V 1024 0 9103 0 0
+ciMethod sun/awt/geom/Curve getDirection ()I 264 0 132 0 0
+ciMethod sun/awt/geom/Curve getWithDirection (I)Lsun/awt/geom/Curve; 520 0 4816 0 0
+ciMethod sun/awt/geom/Curve orderof (DD)I 28 0 284 0 -1
+ciMethod sun/awt/geom/Curve getYTop ()D 0 0 1 0 -1
+ciMethod sun/awt/geom/Curve getYBot ()D 0 0 1 0 -1
+ciMethod sun/awt/geom/Curve getXMin ()D 0 0 1 0 -1
+ciMethod sun/awt/geom/Curve getXMax ()D 0 0 1 0 -1
+ciMethod sun/awt/geom/Curve XforY (D)D 0 0 1 0 -1
+ciMethod sun/awt/geom/Curve TforY (D)D 0 0 1 0 -1
+ciMethod sun/awt/geom/Curve XforT (D)D 0 0 1 0 -1
+ciMethod sun/awt/geom/Curve YforT (D)D 0 0 1 0 -1
+ciMethod sun/awt/geom/Curve nextVertical (DD)D 0 0 1 0 -1
+ciMethod sun/awt/geom/Curve getReversedCurve ()Lsun/awt/geom/Curve; 0 0 1 0 -1
+ciMethod sun/awt/geom/Curve getSubCurve (DDI)Lsun/awt/geom/Curve; 0 0 1 0 -1
+ciMethod sun/awt/geom/Curve compareTo (Lsun/awt/geom/Curve;[D)I 798 0 5576 0 -1
+ciMethod sun/awt/geom/Curve findIntersect (Lsun/awt/geom/Curve;[DDIIDDDDDDDDDDDD)Z 28 0 758 0 -1
+ciMethod sun/awt/geom/Curve refineTforY (DDD)D 4 204 30 0 -1
+ciMethod sun/awt/geom/Curve fairlyClose (DD)Z 28 0 284 0 -1
+ciMethod sun/awt/geom/Order0 <init> (DD)V 520 0 1036 0 0
+ciMethod sun/awt/geom/Order3 split ([DID)V 2064 0 1008 0 -1
+ciMethod sun/awt/geom/Order3 <init> (DDDDDDDDI)V 560 0 4233 0 0
+ciMethod sun/awt/geom/Order3 getYTop ()D 476 0 238 0 0
+ciMethod sun/awt/geom/Order3 getYBot ()D 522 0 261 0 0
+ciMethod sun/awt/geom/Order3 TforY (D)D 582 0 10541 0 -1
+ciMethod sun/awt/geom/Order3 getSubCurve (DDI)Lsun/awt/geom/Curve; 144 0 72 0 0
+ciMethod sun/awt/geom/Order3 getReversedCurve ()Lsun/awt/geom/Curve; 516 0 2451 0 0
+ciMethod sun/awt/geom/Order1 <init> (DDDDI)V 776 0 3834 0 0
+ciMethod sun/awt/geom/Order1 getYTop ()D 268 0 134 0 0
+ciMethod sun/awt/geom/Order1 getYBot ()D 468 0 234 0 0
+ciMethod sun/awt/geom/Order1 XforY (D)D 524 0 5418 0 -1
+ciMethod sun/awt/geom/Order1 getSubCurve (DDI)Lsun/awt/geom/Curve; 768 0 762 0 0
+ciMethod sun/awt/geom/Order1 getReversedCurve ()Lsun/awt/geom/Curve; 512 0 1524 0 0
+ciMethod sun/awt/geom/Order1 compareTo (Lsun/awt/geom/Curve;[D)I 826 0 6569 0 -1
+ciMethod sun/awt/geom/AreaOp$NZWindOp newRow ()V 792 0 1426 0 64
+ciMethod sun/awt/geom/AreaOp$NZWindOp classify (Lsun/awt/geom/Edge;)I 792 0 5292 0 0
+ciMethod sun/awt/geom/AreaOp$NZWindOp getState ()I 792 0 2226 0 0
+ciMethod sun/awt/geom/AreaOp newRow ()V 0 0 1 0 -1
+ciMethod sun/awt/geom/AreaOp classify (Lsun/awt/geom/Edge;)I 0 0 1 0 -1
+ciMethod sun/awt/geom/AreaOp getState ()I 0 0 1 0 -1
+ciMethod sun/awt/geom/AreaOp pruneEdges (Ljava/util/Vector;)Ljava/util/Vector; 258 15912 1155 0 -1
+ciMethod sun/awt/geom/AreaOp finalizeSubCurves (Ljava/util/Vector;Ljava/util/Vector;)V 528 176 2310 0 0
+ciMethod sun/awt/geom/AreaOp resolveLinks (Ljava/util/Vector;Ljava/util/Vector;Ljava/util/Vector;)V 512 1008 4820 0 -1
+ciMethod sun/awt/geom/AreaOp obstructs (DDI)Z 76 0 726 0 -1
+ciMethod sun/awt/geom/CurveLink <init> (Lsun/awt/geom/Curve;DDI)V 672 0 6512 0 672
+ciMethod sun/awt/geom/CurveLink absorb (Lsun/awt/geom/CurveLink;)Z 776 0 7136 0 832
+ciMethod sun/awt/geom/CurveLink absorb (Lsun/awt/geom/Curve;DDI)Z 786 0 7136 0 736
+ciMethod sun/awt/geom/CurveLink getSubCurve ()Lsun/awt/geom/Curve; 792 0 5650 0 2304
+ciMethod sun/awt/geom/CurveLink getMoveto ()Lsun/awt/geom/Curve; 2116 0 1155 0 0
+ciMethod sun/awt/geom/CurveLink getXTop ()D 522 0 262 0 0
+ciMethod sun/awt/geom/CurveLink getYTop ()D 262 0 131 0 0
+ciMethod sun/awt/geom/CurveLink getX ()D 1016 0 15287 0 -1
+ciMethod sun/awt/geom/CurveLink setNext (Lsun/awt/geom/CurveLink;)V 300 0 150 0 0
+ciMethod sun/awt/geom/CurveLink getNext ()Lsun/awt/geom/CurveLink; 336 0 168 0 0
+ciMethod sun/awt/geom/ChainEnd <init> (Lsun/awt/geom/CurveLink;Lsun/awt/geom/ChainEnd;)V 392 0 3774 0 -1
+ciMethod sun/awt/geom/ChainEnd setOtherEnd (Lsun/awt/geom/ChainEnd;)V 210 0 105 0 -1
+ciMethod sun/awt/geom/ChainEnd linkTo (Lsun/awt/geom/ChainEnd;)Lsun/awt/geom/CurveLink; 196 0 1887 0 0
+ciMethod sun/awt/geom/ChainEnd addLink (Lsun/awt/geom/CurveLink;)V 696 0 5474 0 -1
+ciMethod sun/awt/geom/ChainEnd getX ()D 524 0 15335 0 -1
+ciMethod java/util/Vector$1 <init> (Ljava/util/Vector;)V 522 0 3483 0 0
+ciMethod java/util/Vector$1 hasMoreElements ()Z 528 0 12492 0 128
+ciMethod java/util/Vector$1 nextElement ()Ljava/lang/Object; 776 0 6560 0 672
+ciMethod sun/awt/geom/Edge getCurve ()Lsun/awt/geom/Curve; 278 0 139 0 0
+ciMethod sun/awt/geom/Edge getCurveTag ()I 280 0 140 0 0
+ciMethod sun/awt/geom/Edge getEquivalence ()I 264 0 132 0 0
+ciMethod sun/awt/geom/Edge setEquivalence (I)V 276 0 138 0 0
+ciMethod sun/awt/geom/Edge compareTo (Lsun/awt/geom/Edge;[D)I 518 0 5412 0 864
+ciMethod sun/awt/geom/Edge record (DI)V 672 0 10348 0 0
+ciMethod sun/awt/geom/Edge isActiveFor (DI)Z 520 0 2391 0 0
+ciMethod sun/awt/geom/AreaOp$SubOp newClassification (ZZ)Z 840 0 5578 0 0
+ciMethod sun/awt/geom/AreaOp$CAGOp newRow ()V 518 0 1293 0 96
+ciMethod sun/awt/geom/AreaOp$CAGOp classify (Lsun/awt/geom/Edge;)I 840 0 5578 0 192
+ciMethod sun/awt/geom/AreaOp$CAGOp getState ()I 812 0 5420 0 0
+ciMethod sun/awt/geom/AreaOp$CAGOp newClassification (ZZ)Z 0 0 1 0 -1
+ciMethodData java/util/TimSort sort ([Ljava/lang/Object;IILjava/util/Comparator;[Ljava/lang/Object;II)V 1 1186 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 117 0x30007 0x0 0xd0 0x0 0x70007 0x0 0xa0 0x0 0xb0007 0x0 0x80 0x0 0xf0007 0x0 0x60 0x0 0x140007 0x0 0x40 0x0 0x1a0007 0x0 0x30 0x0 0x210002 0x0 0x2d0007 0x0 0x20 0x0 0x350007 0x0 0x40 0x0 0x3c0002 0x0 0x490002 0x0 0x590002 0x0 0x600002 0x0 0x690002 0x0 0x720007 0x0 0x68 0x0 0x790007 0x0 0x38 0x0 0x7e0003 0x0 0x18 0x900002 0x0 0x9c0005 0x0 0x0 0x0 0x0 0x0 0x0 0xa10005 0x0 0x0 0x0 0x0 0x0 0x0 0xb20007 0x0 0xffffffffffffff18 0x0 0xb80007 0x0 0x50 0x0 0xbd0007 0x0 0x30 0x0 0xc40002 0x0 0xca0005 0x0 0x0 0x0 0x0 0x0 0x0 0xd00007 0x0 0x50 0x0 0xd90007 0x0 0x30 0x0 0xe00002 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x9 0x7 0x0 0x0 0x0 0x0 0x0 0x0 0x0 oops 0 methods 0
+ciMethodData java/util/Arrays sort ([Ljava/lang/Object;)V 1 1 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 20 0x30007 0x0 0x48 0x0 0x70002 0x0 0xa0003 0x0 0x28 0x140002 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x9 0x1 0xffffffffffffffff oops 0 methods 0
+ciMethodData sun/awt/geom/CurveLink getXTop ()D 1 262 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 16 0x80005 0x0 0x0 0x24b6ea93a40 0x1 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x9 0x1 0x0 oops 1 3 sun/awt/geom/Order3 methods 0
+ciMethodData sun/awt/geom/Order1 getSubCurve (DDI)Lsun/awt/geom/Curve; 1 762 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 41 0x60007 0x0 0x78 0x17a 0xf0007 0x17a 0x58 0x0 0x150005 0x0 0x0 0x0 0x0 0x0 0x0 0x220007 0x0 0x30 0x17a 0x350002 0x17a 0x810002 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x9 0x6 0x0 0x0 0x0 0x0 0x0 0x0 oops 0 methods 0
+ciMethodData java/util/Vector add (Ljava/lang/Object;[Ljava/lang/Object;I)V 2 39655 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 30 0x30007 0x98e8 0x58 0x0 0x70005 0x0 0x0 0x0 0x0 0x0 0x0 0xe0004 0x0 0x0 0x24b6ea93990 0x191d 0x24b6ea93db0 0x2cae 0x0 0x0 0x0 0x0 0x0 0x0 0x9 0x4 0x0 0x0 0x0 0x0 oops 2 14 sun/awt/geom/Edge 16 sun/awt/geom/CurveLink methods 0
+ciMethodData java/util/Vector add (Ljava/lang/Object;)Z 2 39636 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 17 0x140005 0x98d5 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x9 0x2 0x0 0x0 oops 0 methods 0
+ciMethodData java/util/Vector elementData (I)Ljava/lang/Object; 2 14499 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 8 0x0 0x0 0x0 0x0 0x9 0x2 0x0 0x0 oops 0 methods 0
+ciMethodData java/util/Vector$1 hasMoreElements ()Z 2 12492 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 14 0xb0007 0xce7 0x38 0x22dd 0xf0003 0x22dd 0x18 0x0 0x0 0x0 0x0 0x9 0x1 0x0 oops 0 methods 0
+ciMethodData sun/awt/geom/Edge compareTo (Lsun/awt/geom/Edge;[D)I 2 5412 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 46 0x50007 0x10a5 0x60 0x37c 0x100007 0x379 0x40 0x3 0x1b0007 0x3 0x20 0x0 0x2f0007 0x13d3 0x60 0x4b 0x3a0007 0x4b 0x40 0x0 0x450007 0x0 0x20 0x0 0x5f0005 0x0 0x0 0x24b6ea93af0 0xb5d 0x24b6ea93a40 0x8c1 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x9 0x3 0x0 0x0 0x0 oops 2 27 sun/awt/geom/Order1 29 sun/awt/geom/Order3 methods 0
+ciMethodData sun/awt/geom/Edge record (DI)V 2 10416 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 10 0x0 0x0 0x0 0x0 0x9 0x4 0x0 0x0 0x0 0x0 oops 0 methods 0
+ciMethodData sun/awt/geom/CurveLink <init> (Lsun/awt/geom/Curve;DDI)V 2 6512 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 47 0x10002 0x1820 0x1f0005 0x0 0x0 0x24b6ea93a40 0xd9f 0x24b6ea93af0 0xa81 0x230007 0x0 0x78 0x1820 0x2b0005 0x0 0x0 0x24b6ea93a40 0xd9f 0x24b6ea93af0 0xa81 0x2f0007 0x1820 0x60 0x0 0x3f000a 0x0 0x3 0x4 0x0 0x24b622d5a30 0x440002 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x9 0x7 0x0 0x0 0x0 0x0 0x0 0x0 0x0 oops 5 5 sun/awt/geom/Order3 7 sun/awt/geom/Order1 16 sun/awt/geom/Order3 18 sun/awt/geom/Order1 29 java/lang/String methods 0
+ciMethodData java/util/Vector toArray ([Ljava/lang/Object;)[Ljava/lang/Object; 2 5706 orig 80 1 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 36 0x60007 0x14c1 0x68 0x0 0x120005 0x0 0x0 0x0 0x0 0x0 0x0 0x150002 0x0 0x8000000600240002 0x14c2 0x2d0007 0x462 0x58 0x1060 0x360104 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x9 0x2 0x0 0x0 oops 0 methods 0
+ciMethodData java/util/Vector$1 nextElement ()Ljava/lang/Object; 2 6560 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 25 0x120007 0x0 0x58 0x181c 0x240005 0x0 0x0 0x24b6ea91a80 0x181c 0x0 0x0 0x2c0003 0x0 0x18 0x3a0002 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x9 0x1 0x0 oops 1 7 java/util/Vector methods 0
+ciMethodData sun/awt/geom/CurveLink absorb (Lsun/awt/geom/CurveLink;)Z 2 7136 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 17 0x110005 0x1a5c 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x9 0x2 0x0 0x0 oops 0 methods 0
+ciMethodData sun/awt/geom/CurveLink absorb (Lsun/awt/geom/Curve;DDI)Z 2 7136 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 65 0x50007 0xd11 0x80 0xd46 0xe0007 0x0 0x60 0xd46 0x170007 0x0 0x40 0xd46 0x210007 0xd46 0x20 0x0 0x280005 0x0 0x0 0x24b6ea93af0 0x61e 0x24b6ea93a40 0x728 0x2c0007 0x0 0x78 0xd46 0x320005 0x0 0x0 0x24b6ea93af0 0x61e 0x24b6ea93a40 0x728 0x360007 0xd46 0x60 0x0 0x41000a 0x0 0x3 0x4 0x0 0x24b622d5a30 0x460002 0x0 0x500002 0xd46 0x5d0002 0xd46 0x0 0x0 0x0 0x0 0x0 0x0 0x9 0x7 0x0 0x0 0x0 0x0 0x0 0x0 0x0 oops 5 19 sun/awt/geom/Order1 21 sun/awt/geom/Order3 30 sun/awt/geom/Order1 32 sun/awt/geom/Order3 43 java/lang/String methods 0
+ciMethodData sun/awt/geom/Curve compareTo (Lsun/awt/geom/Curve;[D)I 2 5576 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 575 0xc0005 0x0 0x0 0x24b6ea93af0 0x772 0x24b6ea93a40 0xcc7 0xf0002 0x1439 0x130005 0x0 0x0 0x24b6ea93a40 0xebf 0x24b6ea93af0 0x57a 0x160002 0x1439 0x210007 0x1439 0x178 0x0 0x28000a 0x0 0x3 0x0 0x0 0x24b622d5a30 0x2d0005 0x0 0x0 0x0 0x0 0x0 0x0 0x34000a 0x0 0x3 0x0 0x0 0x24b622d5a30 0x390005 0x0 0x0 0x0 0x0 0x0 0x0 0x45000a 0x0 0x1 0x24b622d5a30 0x4a0005 0x0 0x0 0x0 0x0 0x0 0x0 0x56000a 0x0 0x1 0x24b622d5a30 0x5b0002 0x0 0x650005 0x0 0x0 0x24b6ea93af0 0x772 0x24b6ea93a40 0xcc7 0x690005 0x0 0x0 0x24b6ea93a40 0xebf 0x24b6ea93af0 0x57a 0x6d0007 0xb75 0xb0 0x8c4 0x710005 0x0 0x0 0x24b6ea93a40 0x4c5 0x24b6ea93af0 0x3ff 0x750005 0x0 0x0 0x24b6ea93af0 0x2f3 0x24b6ea93a40 0x5d1 0x790007 0x8c4 0x20 0x0 0x810005 0x0 0x0 0x24b6ea93af0 0x373 0x24b6ea93a40 0x802 0x850005 0x0 0x0 0x24b6ea93a40 0x8ee 0x24b6ea93af0 0x287 0x890007 0x10e 0x20 0xa67 0x900005 0x0 0x0 0x24b6ea93a40 0x10e 0x0 0x0 0x980005 0x0 0x0 0x24b6ea93a40 0x10e 0x0 0x0 0xa10007 0x109 0x90 0x5 0xaa0005 0x0 0x0 0x24b6ea93a40 0x5 0x0 0x0 0xb20005 0x0 0x0 0x24b6ea93a40 0x5 0x0 0x0 0xba0005 0x0 0x0 0x24b6ea93a40 0x10e 0x0 0x0 0xc20005 0x0 0x0 0x24b6ea93a40 0x10e 0x0 0x0 0xc70007 0x10e 0x90 0x0 0xd00005 0x0 0x0 0x0 0x0 0x0 0x0 0xd40005 0x0 0x0 0x0 0x0 0x0 0x0 0xdb0005 0x0 0x0 0x24b6ea93a40 0x10e 0x0 0x0 0xe30005 0x0 0x0 0x24b6ea93a40 0x10e 0x0 0x0 0xec0007 0x102 0x90 0xc 0xf50005 0x0 0x0 0x24b6ea93a40 0xc 0x0 0x0 0xfd0005 0x0 0x0 0x24b6ea93a40 0xc 0x0 0x0 0x1050005 0x0 0x0 0x24b6ea93a40 0x10e 0x0 0x0 0x10d0005 0x0 0x0 0x24b6ea93a40 0x10e 0x0 0x0 0x1120007 0x10e 0x90 0x0 0x11b0005 0x0 0x0 0x0 0x0 0x0 0x0 0x11f0005 0x0 0x0 0x0 0x0 0x0 0x0 0x1270005 0x0 0x0 0x24b6ea93a40 0x10e 0x0 0x0 0x12f0005 0x0 0x0 0x24b6ea93a40 0x10e 0x0 0x0 0x1350002 0x10e 0x13a0002 0x10e 0x13d0002 0x10e 0x14b0002 0x10e 0x1550005 0x0 0x0 0x24b6ea93a40 0x10e 0x0 0x0 0x1580007 0x10e 0x2c0 0x0 0x16d0002 0x0 0x17d0007 0x0 0x250 0x0 0x1840005 0x0 0x0 0x0 0x0 0x0 0x0 0x18a0005 0x0 0x0 0x0 0x0 0x0 0x0 0x18d0005 0x0 0x0 0x0 0x0 0x0 0x0 0x1900007 0x0 0x58 0x0 0x19f0007 0x0 0x150 0x0 0x1a60003 0x0 0x130 0x1c40007 0x0 0x38 0x0 0x1c70003 0x0 0x110 0x1ce0005 0x0 0x0 0x0 0x0 0x0 0x0 0x1d40005 0x0 0x0 0x0 0x0 0x0 0x0 0x1d70005 0x0 0x0 0x0 0x0 0x0 0x0 0x1da0007 0x0 0x20 0x0 0x1e10003 0x0 0xffffffffffffff00 0x1eb0003 0x0 0xfffffffffffffdc8 0x1f20007 0x0 0x40 0x0 0x1fa0007 0x0 0x20 0x0 0x2080007 0x10e 0x78 0x0 0x210000a 0x0 0x1 0x24b622d5a30 0x2150005 0x0 0x0 0x0 0x0 0x0 0x0 0x21d0007 0x5 0x4e0 0x10b 0x2250007 0x3 0x4c0 0x108 0x22d0005 0x0 0x0 0x24b6ea93a40 0x108 0x0 0x0 0x2350005 0x0 0x0 0x24b6ea93a40 0x108 0x0 0x0 0x23d0005 0x0 0x0 0x24b6ea93a40 0x108 0x0 0x0 0x2470005 0x0 0x0 0x24b6ea93a40 0x108 0x0 0x0 0x24f0005 0x0 0x0 0x24b6ea93a40 0x108 0x0 0x0 0x2570005 0x0 0x0 0x24b6ea93a40 0x108 0x0 0x0 0x27b0005 0x0 0x0 0x24b6ea93a40 0x108 0x0 0x0 0x27e0007 0x108 0x38 0x0 0x2810003 0x0 0x2f8 0x2840003 0x108 0x1e0 0x28e000a 0x0 0x3 0x0 0x0 0x24b622d5a30 0x2930005 0x0 0x0 0x0 0x0 0x0 0x0 0x29f000a 0x0 0x1 0x24b622d5a30 0x2a40005 0x0 0x0 0x0 0x0 0x0 0x0 0x2ae000a 0x0 0x1 0x24b622d5a30 0x2b30005 0x0 0x0 0x0 0x0 0x0 0x0 0x2bd000a 0x0 0x1 0x24b622d5a30 0x2c20005 0x0 0x0 0x0 0x0 0x0 0x0 0x2ca000a 0x0 0x1 0x24b622d5a30 0x2cf0005 0x0 0x0 0x0 0x0 0x0 0x0 0x2d90007 0xf4 0x90 0x14 0x2e20007 0x0 0x58 0x14 0x2eb0007 0x13 0xc0 0x1 0x2f30003 0x1 0xa0 0x3020003 0x0 0x70 0x30b0007 0x2 0x58 0xf2 0x3140007 0xeb 0x50 0x7 0x31c0003 0x7 0x30 0x32b0003 0x2 0xfffffffffffffb38 0x33e0005 0x0 0x0 0x24b6ea93a40 0x10e 0x0 0x0 0x3440005 0x0 0x0 0x24b6ea93a40 0x10e 0x0 0x0 0x3470002 0x10e 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x9 0x3 0x0 0x0 0x0 oops 50 3 sun/awt/geom/Order1 5 sun/awt/geom/Order3 12 sun/awt/geom/Order3 14 sun/awt/geom/Order1 27 java/lang/String 40 java/lang/String 51 java/lang/String 62 java/lang/String 68 sun/awt/geom/Order1 70 sun/awt/geom/Order3 75 sun/awt/geom/Order3 77 sun/awt/geom/Order1 86 sun/awt/geom/Order3 88 sun/awt/geom/Order1 93 sun/awt/geom/Order1 95 sun/awt/geom/Order3 104 sun/awt/geom/Order1 106 sun/awt/geom/Order3 111 sun/awt/geom/Order3 113 sun/awt/geom/Order1 122 sun/awt/geom/Order3 129 sun/awt/geom/Order3 140 sun/awt/geom/Order3 147 sun/awt/geom/Order3 154 sun/awt/geom/Order3 161 sun/awt/geom/Order3 186 sun/awt/geom/Order3 193 sun/awt/geom/Order3 204 sun/awt/geom/Order3 211 sun/awt/geom/Order3 218 sun/awt/geom/Order3 225 sun/awt/geom/Order3 250 sun/awt/geom/Order3 257 sun/awt/geom/Order3 272 sun/awt/geom/Order3 371 java/lang/String 390 sun/awt/geom/Order3 397 sun/awt/geom/Order3 404 sun/awt/geom/Order3 411 sun/awt/geom/Order3 418 sun/awt/geom/Order3 425 sun/awt/geom/Order3 432 sun/awt/geom/Order3 451 java/lang/String 462 java/lang/String 473 java/lang/String 484 java/lang/String 495 java/lang/String 538 sun/awt/geom/Order3 545 sun/awt/geom/Order3 methods 0
+ciMethodData sun/awt/geom/AreaOp$CAGOp classify (Lsun/awt/geom/Edge;)I 2 5578 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 56 0x10005 0x1426 0x0 0x0 0x0 0x0 0x0 0x40007 0x92e 0x70 0xaf8 0xc0007 0x57c 0x38 0x57c 0x100003 0x57c 0x18 0x170003 0xaf8 0x50 0x1f0007 0x497 0x38 0x497 0x230003 0x497 0x18 0x330005 0x0 0x0 0x24b6ea93c50 0x1426 0x0 0x0 0x3c0007 0xe8c 0x20 0x59a 0x470007 0x746 0x38 0x746 0x4b0003 0x746 0x18 0x0 0x0 0x0 0x0 0x0 0x0 0x9 0x2 0x0 0x0 oops 1 31 sun/awt/geom/AreaOp$SubOp methods 0
+ciMethodData sun/awt/geom/AreaOp$SubOp newClassification (ZZ)Z 2 5578 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 17 0x10007 0x95f 0x58 0xac7 0x50007 0x381 0x38 0x746 0x90003 0x746 0x18 0x0 0x9 0x3 0x0 0x0 0x0 oops 0 methods 0
+ciMethodData java/util/Vector clear ()V 2 10475 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 16 0x10005 0x0 0x0 0x24b6ea91a80 0x26ec 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x9 0x1 0x0 oops 1 3 java/util/Vector methods 0
+ciMethodData java/util/Vector removeAllElements ()V 2 13024 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 23 0x130007 0x1816 0x70 0x2ee8 0x190104 0x0 0x0 0x0 0x0 0x0 0x0 0x1d0003 0x2ee8 0xffffffffffffffa8 0x0 0x0 0x0 0x0 0x0 0x0 0x9 0x1 0x0 oops 0 methods 0
+ciMethodData sun/awt/geom/Curve <init> (I)V 2 9103 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 10 0x10002 0x2190 0x0 0x0 0x0 0x0 0x9 0x2 0x0 0x0 oops 0 methods 0
+ciMethodData sun/awt/geom/Curve getWithDirection (I)Lsun/awt/geom/Curve; 2 4816 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 24 0x50007 0xeaf 0x38 0x31d 0x90003 0x31d 0x50 0xd0005 0x0 0x0 0x24b6ea93a40 0x90b 0x24b6ea93af0 0x5a4 0x0 0x0 0x0 0x0 0x0 0x0 0x9 0x2 0xffffffffffffffff 0x0 oops 2 10 sun/awt/geom/Order3 12 sun/awt/geom/Order1 methods 0
+ciMethodData sun/awt/geom/AreaOp resolveLinks (Ljava/util/Vector;Ljava/util/Vector;Ljava/util/Vector;)V 2 9798 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 317 0x10005 0x0 0x0 0x24b6ea91a80 0x1240 0x0 0x0 0x60007 0xf56 0x38 0x2ea 0xe0003 0x2ea 0x80 0x140007 0xf56 0x30 0x0 0x1d0002 0x0 0x2c0005 0x0 0x0 0x24b6ea91a80 0xf56 0x0 0x0 0x310005 0x0 0x0 0x24b6ea91a80 0x1240 0x0 0x0 0x380007 0xc6c 0x38 0x5d4 0x400003 0x5d4 0x80 0x470007 0xc6c 0x30 0x0 0x500002 0x0 0x600005 0x0 0x0 0x24b6ea91a80 0xc6c 0x0 0x0 0x6b0005 0x0 0x0 0x24b6ea91a80 0x1240 0x0 0x0 0x880007 0x1f8f 0x40 0x16ff 0x8d0007 0x1240 0x6f0 0x4bf 0x920007 0x223d 0x38 0x211 0x960003 0x211 0x18 0x9e0007 0x1f8f 0x38 0x4bf 0xa20003 0x4bf 0x18 0xaa0007 0x211 0x400 0x223d 0xaf0007 0x4bf 0x3e0 0x1d7e 0xb60007 0xf3d 0xc8 0xe41 0xbb0005 0xe41 0x0 0x0 0x0 0x0 0x0 0xc00005 0xe41 0x0 0x0 0x0 0x0 0x0 0xc40007 0xd98 0x38 0xa9 0xc80003 0xa9 0x18 0xd20007 0xf3d 0xc8 0xe41 0xd70005 0xe41 0x0 0x0 0x0 0x0 0x0 0xdc0005 0xe41 0x0 0x0 0x0 0x0 0x0 0xe00007 0xd2a 0x38 0x117 0xe40003 0x117 0x18 0xec0007 0xa9 0x230 0x1cd5 0xf10007 0x117 0x210 0x1bbe 0xf60005 0x1bbe 0x0 0x0 0x0 0x0 0x0 0xfd0005 0x1bbe 0x0 0x0 0x0 0x0 0x0 0x1040007 0xc1c 0xc0 0xfa2 0x10c0007 0xe2b 0xa0 0x177 0x1110005 0x177 0x0 0x0 0x0 0x0 0x0 0x1180002 0x177 0x11b0007 0x0 0x38 0x177 0x11f0003 0x177 0x18 0x1270007 0xc0e 0xc0 0xfb0 0x12f0007 0xe6b 0xa0 0x145 0x1340005 0x145 0x0 0x0 0x0 0x0 0x0 0x13b0002 0x145 0x13e0007 0x0 0x38 0x145 0x1420003 0x145 0x18 0x14a0007 0x201d 0xb0 0x431 0x1510005 0x431 0x0 0x0 0x0 0x0 0x0 0x1580007 0x2bc 0x58 0x175 0x15e0005 0x0 0x0 0x24b6ea91a80 0x175 0x0 0x0 0x1770007 0x1d33 0xe8 0x71b 0x1810002 0x71b 0x18e0002 0x71b 0x1970005 0x71b 0x0 0x0 0x0 0x0 0x0 0x19d0005 0x0 0x0 0x24b6ea91a80 0x71b 0x0 0x0 0x1a40005 0x0 0x0 0x24b6ea91a80 0x71b 0x0 0x0 0x1bd0007 0x431 0xb0 0x201d 0x1c20007 0x71b 0x90 0x1902 0x1c90005 0x1902 0x0 0x0 0x0 0x0 0x0 0x1cf0005 0x0 0x0 0x24b6ea91a80 0x1902 0x0 0x0 0x1f30003 0x244e 0xfffffffffffff908 0x1f70005 0x0 0x0 0x24b6ea91a80 0x1240 0x0 0x0 0x1fc0007 0x1240 0x58 0x0 0x2040005 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x9 0x3 0x0 0x0 0x0 oops 10 3 java/util/Vector 23 java/util/Vector 30 java/util/Vector 50 java/util/Vector 57 java/util/Vector 229 java/util/Vector 251 java/util/Vector 258 java/util/Vector 280 java/util/Vector 290 java/util/Vector methods 0
+ciMethodData sun/awt/geom/ChainEnd linkTo (Lsun/awt/geom/ChainEnd;)Lsun/awt/geom/CurveLink; 2 1887 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 85 0x40007 0x0 0x40 0x6fd 0xb0007 0x6fd 0x30 0x0 0x140002 0x0 0x200007 0x6fd 0x30 0x0 0x290002 0x0 0x320007 0x171 0x38 0x58c 0x390003 0x58c 0x18 0x520005 0x6fd 0x0 0x0 0x0 0x0 0x0 0x620007 0x2b0 0x20 0x44d 0x880005 0x2b0 0x0 0x0 0x0 0x0 0x0 0x900005 0x2b0 0x0 0x0 0x0 0x0 0x0 0x940007 0x80 0x70 0x230 0xa00005 0x230 0x0 0x0 0x0 0x0 0x0 0xac0003 0x230 0x50 0xb80005 0x80 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x9 0x2 0x0 0x0 oops 0 methods 0
+ciMethodData sun/awt/geom/Order1 compareTo (Lsun/awt/geom/Curve;[D)I 2 6569 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 118 0x10004 0xfffffffffffff5c7 0x0 0x24b6ea93af0 0xdd3 0x0 0x0 0x40007 0xdd3 0x30 0xa39 0xa0002 0xa39 0xf0004 0x0 0x0 0x24b6ea93af0 0xdd3 0x0 0x0 0x1a0007 0xdd3 0x30 0x0 0x230002 0x0 0x300002 0xdd3 0x370002 0xdd3 0x420007 0xdd3 0x50 0x0 0x4f000a 0x0 0x1 0x24b622d5a30 0x540002 0x0 0x610007 0x614 0x58 0x7bf 0x6d0007 0x34b 0x38 0x474 0x710003 0x474 0x18 0x7f0007 0x0 0x20 0x614 0xc10007 0x0 0xb0 0x0 0xf80007 0x0 0x48 0x0 0x1030002 0x0 0x1080003 0x0 0x48 0x1110007 0x0 0x20 0x0 0x1210002 0x0 0x1260003 0x0 0x28 0x1310002 0x0 0x1390005 0x0 0x0 0x0 0x0 0x0 0x0 0x13f0005 0x0 0x0 0x0 0x0 0x0 0x0 0x1420002 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x9 0x3 0x0 0x0 0x0 oops 3 3 sun/awt/geom/Order1 16 sun/awt/geom/Order1 37 java/lang/String methods 0
+ciMethodData java/util/Vector <init> (I)V 2 5820 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 8 0x30002 0x153c 0x0 0x0 0x9 0x2 0x0 0x0 oops 0 methods 0
+ciMethodData java/util/Vector <init> (II)V 2 5523 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 42 0x10002 0x1413 0x50007 0x1413 0xe8 0x0 0x100002 0x0 0x150005 0x0 0x0 0x0 0x0 0x0 0x0 0x190005 0x0 0x0 0x0 0x0 0x0 0x0 0x1c0005 0x0 0x0 0x0 0x0 0x0 0x0 0x1f0002 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x9 0x3 0x0 0x0 0x0 oops 0 methods 0
+ciMethodData java/util/Vector <init> ()V 2 5716 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 7 0x30002 0x14cc 0x0 0x0 0x9 0x1 0x0 oops 0 methods 0
+ciMethodData sun/awt/geom/Order3 <init> (DDDDDDDDI)V 2 4233 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 57 0x30002 0xf71 0xa0007 0xe8d 0x20 0xe4 0x150007 0xf52 0x20 0x1f 0x4e0002 0xf71 0x550002 0xf71 0x580002 0xf71 0x620002 0xf71 0x690002 0xf71 0x6c0002 0xf71 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x9 0x12 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 oops 0 methods 0
+ciMethodData sun/awt/geom/CurveLink getSubCurve ()Lsun/awt/geom/Curve; 2 5650 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 45 0x80005 0x0 0x0 0x24b6ea93a40 0xc34 0x24b6ea93af0 0x852 0xc0007 0x0 0xb0 0x1486 0x170005 0x0 0x0 0x24b6ea93a40 0xc34 0x24b6ea93af0 0x852 0x1b0007 0x30e 0x58 0x1178 0x260005 0x1178 0x0 0x0 0x0 0x0 0x0 0x3a0005 0x0 0x0 0x24b6ea93af0 0x2c6 0x24b6ea93a40 0x48 0x0 0x0 0x0 0x0 0x0 0x0 0x9 0x1 0x0 oops 6 3 sun/awt/geom/Order3 5 sun/awt/geom/Order1 14 sun/awt/geom/Order3 16 sun/awt/geom/Order1 32 sun/awt/geom/Order1 34 sun/awt/geom/Order3 methods 0
+ciMethodData sun/awt/geom/AreaOp$CAGOp getState ()I 2 5420 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 13 0x40007 0x1396 0x38 0x0 0x80003 0x0 0x18 0x0 0x0 0x0 0x9 0x1 0x0 oops 0 methods 0
+ciMethodData sun/awt/geom/AreaOp$NZWindOp classify (Lsun/awt/geom/Edge;)I 2 5292 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 38 0x60007 0x990 0x38 0x990 0xa0003 0x990 0x18 0x110005 0x1320 0x0 0x0 0x0 0x0 0x0 0x140005 0x1320 0x0 0x0 0x0 0x0 0x0 0x1f0007 0x990 0x38 0x990 0x230003 0x990 0x18 0x0 0x0 0x0 0x0 0x0 0x0 0x9 0x2 0x0 0x0 oops 0 methods 0
+ciMethodData java/util/Vector elements ()Ljava/util/Enumeration; 2 3483 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 8 0x50002 0xc96 0x0 0x0 0x0 0x9 0x1 0x0 oops 0 methods 0
+ciMethodData java/util/Vector$1 <init> (Ljava/util/Vector;)V 2 3483 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 10 0x60002 0xc96 0x0 0x0 0x0 0x0 0x9 0x2 0x6 0x0 oops 0 methods 0
+ciMethodData sun/awt/geom/Order3 getReversedCurve ()Lsun/awt/geom/Curve; 2 2451 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 11 0x290002 0x891 0x0 0x0 0x0 0x0 0x0 0x0 0x9 0x1 0x0 oops 0 methods 0
+ciMethodData sun/awt/geom/AreaOp$CAGOp newRow ()V 2 1293 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 7 0x0 0x0 0x0 0x0 0x9 0x1 0x0 oops 0 methods 0
+ciMethodData sun/awt/geom/Edge isActiveFor (DI)Z 2 2409 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 21 0x50007 0x622 0x58 0x243 0xe0007 0xe6 0x38 0x15d 0x120003 0x15d 0x18 0x0 0x0 0x0 0x0 0x9 0x4 0x0 0x0 0x0 0x0 oops 0 methods 0
+ciMethodData sun/awt/geom/Order1 <init> (DDDDI)V 2 3834 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 26 0x30002 0xd76 0x200007 0xd76 0x38 0x0 0x2e0003 0x0 0x18 0x0 0x0 0x0 0x0 0x0 0x9 0xa 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 oops 0 methods 0
+ciMethodData sun/awt/geom/AreaOp pruneEdges (Ljava/util/Vector;)Ljava/util/Vector; 2 68557 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 681 0x10005 0x0 0x0 0x24b6ea91a80 0x402 0x0 0x0 0x70007 0x402 0x30 0x0 0xe0002 0x0 0x170005 0x0 0x0 0x24b6ea91a80 0x402 0x0 0x0 0x1a0004 0x0 0x0 0x24b6ea93920 0x402 0x0 0x0 0x220002 0x402 0x3a0002 0x402 0x430002 0x402 0x4c0002 0x402 0x540007 0x0 0x1040 0x14a9 0x6a0007 0x14a9 0x120 0x307c 0x750005 0x307c 0x0 0x0 0x0 0x0 0x0 0x780005 0x0 0x0 0x24b6ea93a40 0x1490 0x24b6ea93af0 0x1bec 0x7e0007 0x1668 0x78 0x1a14 0x850007 0x121d 0x58 0x7f7 0x8d0004 0x0 0x0 0x24b6ea93990 0x7f7 0x0 0x0 0x940003 0x307c 0xfffffffffffffef8 0xa10007 0xb4f 0xf8 0x95a 0xa70007 0x558 0x38 0x402 0xaa0003 0x402 0xec0 0xb10005 0x558 0x0 0x0 0x0 0x0 0x0 0xb40005 0x0 0x0 0x24b6ea93a40 0x402 0x24b6ea93af0 0x156 0xc00007 0x156 0x30 0x402 0xc70002 0x402 0xd30007 0x6ae 0xe0 0x2061 0xde0005 0x2061 0x0 0x0 0x0 0x0 0x0 0xe10005 0x0 0x0 0x24b6ea93a40 0xf0e 0x24b6ea93af0 0x1153 0xe70007 0x1668 0x38 0x9f9 0xea0003 0x9f9 0x30 0xf00003 0x1668 0xffffffffffffff38 0xfa0005 0x10a7 0x0 0x0 0x0 0x0 0x0 0xfd0005 0x0 0x0 0x24b6ea93a40 0x7e7 0x24b6ea93af0 0x8c0 0x1040007 0x6ae 0xb0 0x9f9 0x10b0005 0x9f9 0x0 0x0 0x0 0x0 0x0 0x10e0005 0x0 0x0 0x24b6ea93af0 0x6a3 0x24b6ea93a40 0x356 0x11a0007 0x416 0x20 0x5e3 0x12e0007 0x10a7 0x2c0 0x307c 0x13a0005 0x307c 0x0 0x0 0x0 0x0 0x0 0x1450007 0x1477 0x218 0x2c85 0x1560005 0x2c85 0x0 0x0 0x0 0x0 0x0 0x1640007 0x2c85 0x50 0x0 0x173000a 0x0 0x1 0x24b622d5a30 0x1780002 0x0 0x17e0007 0x1080 0x120 0x1c05 0x1830007 0x173e 0x150 0x4c7 0x1880005 0x4c7 0x0 0x0 0x0 0x0 0x0 0x18f0007 0x0 0x58 0x4c7 0x19d0005 0x4c7 0x0 0x0 0x0 0x0 0x0 0x1a40005 0x4c7 0x0 0x0 0x0 0x0 0x0 0x1a70003 0x4c7 0x68 0x1af0004 0x0 0x0 0x24b6ea93990 0x1080 0x0 0x0 0x1b30003 0x1080 0xfffffffffffffe00 0x1bb0004 0x0 0x0 0x24b6ea93990 0x307c 0x0 0x0 0x1bf0003 0x307c 0xfffffffffffffd58 0x1c30005 0x0 0x0 0x24b6ea93ba0 0x7a4 0x24b6ea93c50 0x903 0x1da0007 0x10a7 0x488 0x2bb5 0x1e50005 0x2bb5 0x0 0x0 0x0 0x0 0x0 0x1ec0007 0x26ee 0x308 0x4c7 0x1f00005 0x0 0x0 0x24b6ea93c50 0x4c7 0x0 0x0 0x1f80007 0x4c7 0x38 0x0 0x1fc0003 0x0 0x18 0x2100005 0x0 0x0 0x24b6ea93c50 0x98e 0x0 0x0 0x2160007 0x156 0x78 0x838 0x21f0005 0x838 0x0 0x0 0x0 0x0 0x0 0x2220007 0x6e2 0x20 0x156 0x22b0005 0x98e 0x0 0x0 0x0 0x0 0x0 0x22e0005 0x0 0x0 0x24b6ea93af0 0x98e 0x0 0x0 0x2380007 0x2ac 0x20 0x6e2 0x24a0007 0x291 0x78 0x6fd 0x2540005 0x6fd 0x0 0x0 0x0 0x0 0x0 0x2590007 0x4c7 0xfffffffffffffe68 0x236 0x2600005 0x0 0x0 0x24b6ea93c50 0x4c7 0x0 0x0 0x2650007 0x0 0x38 0x4c7 0x26b0003 0x4c7 0x50 0x2700007 0x0 0x38 0x0 0x2750003 0x0 0x18 0x27c0003 0x4c7 0x50 0x2820005 0x0 0x0 0x24b6ea93ba0 0x1218 0x24b6ea93c50 0x14d6 0x2890007 0x7ff 0xd8 0x23b6 0x2920005 0x23b6 0x0 0x0 0x0 0x0 0x0 0x29d0005 0x23b6 0x0 0x0 0x0 0x0 0x0 0x2a60002 0x23b6 0x2a90005 0x0 0x0 0x24b6ea91a80 0x23b6 0x0 0x0 0x2b00003 0x2bb5 0xfffffffffffffb90 0x2b40005 0x0 0x0 0x24b6ea93ba0 0x7a4 0x24b6ea93c50 0x903 0x2b80007 0x10a7 0x3f0 0x0 0x2c00005 0x0 0x0 0x0 0x0 0x0 0x0 0x2cb000a 0x0 0x1 0x24b622d5a30 0x2d00005 0x0 0x0 0x0 0x0 0x0 0x0 0x2d80005 0x0 0x0 0x0 0x0 0x0 0x0 0x2db000a 0x0 0x1 0x24b622d5a30 0x2e00005 0x0 0x0 0x0 0x0 0x0 0x0 0x2ea000a 0x0 0x1 0x24b622d5a30 0x2ef0005 0x0 0x0 0x0 0x0 0x0 0x0 0x2f50007 0x0 0x100 0x0 0x2ff0005 0x0 0x0 0x0 0x0 0x0 0x0 0x3020005 0x0 0x0 0x0 0x0 0x0 0x0 0x305000a 0x0 0x1 0x24b622d5a30 0x30a0005 0x0 0x0 0x0 0x0 0x0 0x0 0x30d0003 0x0 0x50 0x3150005 0x0 0x0 0x0 0x0 0x0 0x0 0x3200007 0x0 0x120 0x0 0x32e0005 0x0 0x0 0x0 0x0 0x0 0x0 0x3330005 0x0 0x0 0x0 0x0 0x0 0x0 0x33a0007 0x0 0x78 0x0 0x342000a 0x0 0x1 0x24b622d5a30 0x3470005 0x0 0x0 0x0 0x0 0x0 0x0 0x34d0003 0x0 0xfffffffffffffef8 0x3560002 0x10a7 0x35b0005 0x0 0x0 0x24b6ea91a80 0x10a7 0x0 0x0 0x3640003 0x10a7 0xffffffffffffefd8 0x36b0002 0x402 0x3720002 0x402 0x3790005 0x0 0x0 0x24b6ea91a80 0x402 0x0 0x0 0x3800005 0x0 0x0 0x24b6ea93d00 0x804 0x0 0x0 0x3850007 0x402 0x2c0 0x402 0x38a0005 0x0 0x0 0x24b6ea93d00 0x402 0x0 0x0 0x38f0004 0x0 0x0 0x24b6ea93db0 0x402 0x0 0x0 0x3980005 0x402 0x0 0x0 0x0 0x0 0x0 0x39b0005 0x0 0x0 0x24b6ea91a80 0x402 0x0 0x0 0x3a50005 0x23b6 0x0 0x0 0x0 0x0 0x0 0x3ab0007 0x402 0x100 0x1fb4 0x3b20005 0x1fb4 0x0 0x0 0x0 0x0 0x0 0x3b50007 0xffa 0xffffffffffffff70 0xfba 0x3bc0005 0xfba 0x0 0x0 0x0 0x0 0x0 0x3bf0005 0x0 0x0 0x24b6ea91a80 0xfba 0x0 0x0 0x3c70003 0xfba 0xfffffffffffffee0 0x3ce0005 0x402 0x0 0x0 0x0 0x0 0x0 0x3d10005 0x0 0x0 0x24b6ea91a80 0x402 0x0 0x0 0x3d50003 0x402 0xfffffffffffffd20 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x9 0x2 0x0 0x0 oops 41 3 java/util/Vector 16 java/util/Vector 23 [Lsun/awt/geom/Edge; 53 sun/awt/geom/Order3 55 sun/awt/geom/Order1 68 sun/awt/geom/Edge 96 sun/awt/geom/Order3 98 sun/awt/geom/Order1 120 sun/awt/geom/Order3 122 sun/awt/geom/Order1 144 sun/awt/geom/Order3 146 sun/awt/geom/Order1 162 sun/awt/geom/Order1 164 sun/awt/geom/Order3 199 java/lang/String 241 sun/awt/geom/Edge 251 sun/awt/geom/Edge 261 sun/awt/geom/AreaOp$NZWindOp 263 sun/awt/geom/AreaOp$SubOp 283 sun/awt/geom/AreaOp$SubOp 297 sun/awt/geom/AreaOp$SubOp 326 sun/awt/geom/Order1 352 sun/awt/geom/AreaOp$SubOp 376 sun/awt/geom/AreaOp$NZWindOp 378 sun/awt/geom/AreaOp$SubOp 403 java/util/Vector 413 sun/awt/geom/AreaOp$NZWindOp 415 sun/awt/geom/AreaOp$SubOp 431 java/lang/String 449 java/lang/String 460 java/lang/String 489 java/lang/String 532 java/lang/String 548 java/util/Vector 562 java/util/Vector 569 java/util/Vector$1 580 java/util/Vector$1 587 sun/awt/geom/CurveLink 601 java/util/Vector 637 java/util/Vector 654 java/util/Vector methods 0
+ciMethodData sun/awt/geom/AreaOp finalizeSubCurves (Ljava/util/Vector;Ljava/util/Vector;)V 2 2322 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 66 0x10005 0x0 0x0 0x24b6ea91a80 0x80a 0x0 0x0 0x60007 0x2ae 0x20 0x55c 0xd0007 0x2ae 0x30 0x0 0x160002 0x0 0x210005 0x0 0x0 0x24b6ea91a80 0x2ae 0x0 0x0 0x2b0007 0x2ae 0xc8 0x2ae 0x400005 0x2ae 0x0 0x0 0x0 0x0 0x0 0x470007 0x0 0x58 0x2ae 0x4d0005 0x0 0x0 0x24b6ea91a80 0x2ae 0x0 0x0 0x540003 0x2ae 0xffffffffffffff50 0x580005 0x0 0x0 0x24b6ea91a80 0x2ae 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x9 0x2 0x0 0x0 oops 4 3 java/util/Vector 20 java/util/Vector 42 java/util/Vector 52 java/util/Vector methods 0
+ciMethodData sun/awt/geom/CurveLink getMoveto ()Lsun/awt/geom/Curve; 1 1161 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 25 0x50005 0x82 0x0 0x0 0x0 0x0 0x0 0x90005 0x82 0x0 0x0 0x0 0x0 0x0 0xc0002 0x82 0x0 0x0 0x0 0x0 0x0 0x0 0x9 0x1 0x0 oops 0 methods 0
+ciMethodData sun/awt/geom/Order0 <init> (DD)V 1 1036 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 13 0x20002 0x308 0x0 0x0 0x0 0x0 0x9 0x5 0x0 0x0 0x0 0x0 0x0 oops 0 methods 0
+ciMethodData sun/awt/geom/Order1 getReversedCurve ()Lsun/awt/geom/Curve; 2 1524 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 9 0x190002 0x4f4 0x0 0x0 0x0 0x0 0x9 0x1 0x0 oops 0 methods 0
+ciMethodData sun/awt/geom/AreaOp$NZWindOp newRow ()V 2 1426 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 6 0x0 0x0 0x0 0x9 0x1 0x0 oops 0 methods 0
+ciMethodData sun/awt/geom/AreaOp$NZWindOp getState ()I 2 2226 orig 80 0 0 0 0 0 0 0 0 0 0 0 0 212 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 data 13 0x40007 0x0 0x38 0x726 0x80003 0x726 0x18 0x0 0x0 0x0 0x9 0x1 0x0 oops 0 methods 0
+compile sun/awt/geom/AreaOp pruneEdges (Ljava/util/Vector;)Ljava/util/Vector; -1 4 inline 173 0 -1 sun/awt/geom/AreaOp pruneEdges (Ljava/util/Vector;)Ljava/util/Vector; 1 1 java/util/Vector size ()I 1 23 java/util/Vector toArray ([Ljava/lang/Object;)[Ljava/lang/Object; 1 34 java/util/Arrays sort ([Ljava/lang/Object;Ljava/util/Comparator;)V 1 58 java/util/Vector <init> ()V 2 3 java/util/Vector <init> (I)V 3 3 java/util/Vector <init> (II)V 4 1 java/util/AbstractList <init> ()V 5 1 java/util/AbstractCollection <init> ()V 6 1 java/lang/Object <init> ()V 1 67 java/util/Vector <init> ()V 2 3 java/util/Vector <init> (I)V 3 3 java/util/Vector <init> (II)V 4 1 java/util/AbstractList <init> ()V 5 1 java/util/AbstractCollection <init> ()V 6 1 java/lang/Object <init> ()V 1 76 java/util/Vector <init> ()V 2 3 java/util/Vector <init> (I)V 3 3 java/util/Vector <init> (II)V 4 1 java/util/AbstractList <init> ()V 5 1 java/util/AbstractCollection <init> ()V 6 1 java/lang/Object <init> ()V 1 117 sun/awt/geom/Edge getCurve ()Lsun/awt/geom/Curve; 1 120 sun/awt/geom/Order1 getYBot ()D 1 120 sun/awt/geom/Order3 getYBot ()D 1 177 sun/awt/geom/Edge getCurve ()Lsun/awt/geom/Curve; 1 180 sun/awt/geom/Order3 getYTop ()D 1 180 sun/awt/geom/Order1 getYTop ()D 1 199 sun/awt/geom/AreaOp finalizeSubCurves (Ljava/util/Vector;Ljava/util/Vector;)V 2 1 java/util/Vector size ()I 2 33 java/util/Vector toArray ([Ljava/lang/Object;)[Ljava/lang/Object; 2 64 sun/awt/geom/ChainEnd linkTo (Lsun/awt/geom/ChainEnd;)Lsun/awt/geom/CurveLink; 3 82 sun/awt/geom/CurveLink setNext (Lsun/awt/geom/CurveLink;)V 3 136 sun/awt/geom/CurveLink getYTop ()D 3 144 sun/awt/geom/CurveLink getYTop ()D 3 160 sun/awt/geom/CurveLink setNext (Lsun/awt/geom/CurveLink;)V 3 184 sun/awt/geom/CurveLink setNext (Lsun/awt/geom/CurveLink;)V 2 77 java/util/Vector add (Ljava/lang/Object;)Z 3 20 java/util/Vector add (Ljava/lang/Object;[Ljava/lang/Object;I)V 2 88 java/util/Vector clear ()V 3 1 java/util/Vector removeAllElements ()V 1 222 sun/awt/geom/Edge getCurve ()Lsun/awt/geom/Curve; 1 225 sun/awt/geom/Order1 getYTop ()D 1 225 sun/awt/geom/Order3 getYTop ()D 1 250 sun/awt/geom/Edge getCurve ()Lsun/awt/geom/Curve; 1 253 sun/awt/geom/Order1 getYBot ()D 1 253 sun/awt/geom/Order3 getYBot ()D 1 267 sun/awt/geom/Edge getCurve ()Lsun/awt/geom/Curve; 1 270 sun/awt/geom/Order1 getYTop ()D 1 270 sun/awt/geom/Order3 getYTop ()D 1 314 sun/awt/geom/Edge setEquivalence (I)V 1 342 sun/awt/geom/Edge compareTo (Lsun/awt/geom/Edge;[D)I 1 392 sun/awt/geom/Edge getEquivalence ()I 1 413 sun/awt/geom/Edge setEquivalence (I)V 1 420 sun/awt/geom/Edge setEquivalence (I)V 1 451 sun/awt/geom/AreaOp$CAGOp newRow ()V 1 451 sun/awt/geom/AreaOp$NZWindOp newRow ()V 1 485 sun/awt/geom/Edge getEquivalence ()I 1 496 sun/awt/geom/AreaOp$CAGOp getState ()I 1 528 sun/awt/geom/AreaOp$CAGOp classify (Lsun/awt/geom/Edge;)I 2 1 sun/awt/geom/Edge getCurveTag ()I 2 51 sun/awt/geom/AreaOp$SubOp newClassification (ZZ)Z 1 543 sun/awt/geom/Edge isActiveFor (DI)Z 1 555 sun/awt/geom/Edge getCurve ()Lsun/awt/geom/Curve; 1 558 sun/awt/geom/Order1 getYBot ()D 1 596 sun/awt/geom/Edge getEquivalence ()I 1 608 sun/awt/geom/AreaOp$CAGOp getState ()I 1 642 sun/awt/geom/AreaOp$CAGOp classify (Lsun/awt/geom/Edge;)I 2 1 sun/awt/geom/Edge getCurveTag ()I 2 51 sun/awt/geom/AreaOp$SubOp newClassification (ZZ)Z 1 642 sun/awt/geom/AreaOp$NZWindOp classify (Lsun/awt/geom/Edge;)I 2 17 sun/awt/geom/Edge getCurve ()Lsun/awt/geom/Curve; 2 20 sun/awt/geom/Curve getDirection ()I 1 658 sun/awt/geom/Edge record (DI)V 1 669 sun/awt/geom/Edge getCurve ()Lsun/awt/geom/Curve; 1 678 sun/awt/geom/CurveLink <init> (Lsun/awt/geom/Curve;DDI)V 2 1 java/lang/Object <init> ()V 2 31 sun/awt/geom/Order3 getYTop ()D 2 31 sun/awt/geom/Order1 getYTop ()D 2 43 sun/awt/geom/Order3 getYBot ()D 2 43 sun/awt/geom/Order1 getYBot ()D 1 681 java/util/Vector add (Ljava/lang/Object;)Z 2 20 java/util/Vector add (Ljava/lang/Object;[Ljava/lang/Object;I)V 1 692 sun/awt/geom/AreaOp$CAGOp getState ()I 1 692 sun/awt/geom/AreaOp$NZWindOp getState ()I 1 859 java/util/Vector clear ()V 2 1 java/util/Vector removeAllElements ()V 1 875 sun/awt/geom/AreaOp finalizeSubCurves (Ljava/util/Vector;Ljava/util/Vector;)V 2 1 java/util/Vector size ()I 2 33 java/util/Vector toArray ([Ljava/lang/Object;)[Ljava/lang/Object; 2 64 sun/awt/geom/ChainEnd linkTo (Lsun/awt/geom/ChainEnd;)Lsun/awt/geom/CurveLink; 3 82 sun/awt/geom/CurveLink setNext (Lsun/awt/geom/CurveLink;)V 3 136 sun/awt/geom/CurveLink getYTop ()D 3 144 sun/awt/geom/CurveLink getYTop ()D 3 160 sun/awt/geom/CurveLink setNext (Lsun/awt/geom/CurveLink;)V 3 184 sun/awt/geom/CurveLink setNext (Lsun/awt/geom/CurveLink;)V 2 77 java/util/Vector add (Ljava/lang/Object;)Z 3 20 java/util/Vector add (Ljava/lang/Object;[Ljava/lang/Object;I)V 2 88 java/util/Vector clear ()V 3 1 java/util/Vector removeAllElements ()V 1 882 java/util/Vector <init> ()V 2 3 java/util/Vector <init> (I)V 3 3 java/util/Vector <init> (II)V 4 1 java/util/AbstractList <init> ()V 5 1 java/util/AbstractCollection <init> ()V 6 1 java/lang/Object <init> ()V 1 889 java/util/Vector elements ()Ljava/util/Enumeration; 2 5 java/util/Vector$1 <init> (Ljava/util/Vector;)V 3 6 java/lang/Object <init> ()V 1 896 java/util/Vector$1 hasMoreElements ()Z 1 906 java/util/Vector$1 nextElement ()Ljava/lang/Object; 2 36 java/util/Vector elementData (I)Ljava/lang/Object; 1 920 sun/awt/geom/CurveLink getMoveto ()Lsun/awt/geom/Curve; 2 5 sun/awt/geom/CurveLink getXTop ()D 2 9 sun/awt/geom/CurveLink getYTop ()D 2 12 sun/awt/geom/Order0 <init> (DD)V 3 2 sun/awt/geom/Curve <init> (I)V 4 1 java/lang/Object <init> ()V 1 923 java/util/Vector add (Ljava/lang/Object;)Z 2 20 java/util/Vector add (Ljava/lang/Object;[Ljava/lang/Object;I)V 1 933 sun/awt/geom/CurveLink getNext ()Lsun/awt/geom/CurveLink; 1 946 sun/awt/geom/CurveLink absorb (Lsun/awt/geom/CurveLink;)Z 2 17 sun/awt/geom/CurveLink absorb (Lsun/awt/geom/Curve;DDI)Z 3 40 sun/awt/geom/Order3 getYTop ()D 3 40 sun/awt/geom/Order1 getYTop ()D 3 50 sun/awt/geom/Order3 getYBot ()D 3 50 sun/awt/geom/Order1 getYBot ()D 1 956 sun/awt/geom/CurveLink getSubCurve ()Lsun/awt/geom/Curve; 2 8 sun/awt/geom/Order3 getYTop ()D 2 8 sun/awt/geom/Order1 getYTop ()D 2 23 sun/awt/geom/Order3 getYBot ()D 2 23 sun/awt/geom/Order1 getYBot ()D 2 38 sun/awt/geom/Curve getWithDirection (I)Lsun/awt/geom/Curve; 3 13 sun/awt/geom/Order3 getReversedCurve ()Lsun/awt/geom/Curve; 4 41 sun/awt/geom/Order3 <init> (DDDDDDDDI)V 5 3 sun/awt/geom/Curve <init> (I)V 6 1 java/lang/Object <init> ()V 3 13 sun/awt/geom/Order1 getReversedCurve ()Lsun/awt/geom/Curve; 4 25 sun/awt/geom/Order1 <init> (DDDDI)V 5 3 sun/awt/geom/Curve <init> (I)V 6 1 java/lang/Object <init> ()V 2 58 sun/awt/geom/Order1 getSubCurve (DDI)Lsun/awt/geom/Curve; 3 53 sun/awt/geom/Order1 <init> (DDDDI)V 4 3 sun/awt/geom/Curve <init> (I)V 5 1 java/lang/Object <init> ()V 3 129 sun/awt/geom/Order1 <init> (DDDDI)V 4 3 sun/awt/geom/Curve <init> (I)V 5 1 java/lang/Object <init> ()V 1 959 java/util/Vector add (Ljava/lang/Object;)Z 2 20 java/util/Vector add (Ljava/lang/Object;[Ljava/lang/Object;I)V 1 974 sun/awt/geom/CurveLink getSubCurve ()Lsun/awt/geom/Curve; 2 8 sun/awt/geom/Order3 getYTop ()D 2 8 sun/awt/geom/Order1 getYTop ()D 2 23 sun/awt/geom/Order3 getYBot ()D 2 23 sun/awt/geom/Order1 getYBot ()D 2 38 sun/awt/geom/Curve getWithDirection (I)Lsun/awt/geom/Curve; 3 13 sun/awt/geom/Order3 getReversedCurve ()Lsun/awt/geom/Curve; 4 41 sun/awt/geom/Order3 <init> (DDDDDDDDI)V 5 3 sun/awt/geom/Curve <init> (I)V 6 1 java/lang/Object <init> ()V 3 13 sun/awt/geom/Order1 getReversedCurve ()Lsun/awt/geom/Curve; 4 25 sun/awt/geom/Order1 <init> (DDDDI)V 5 3 sun/awt/geom/Curve <init> (I)V 6 1 java/lang/Object <init> ()V 2 58 sun/awt/geom/Order1 getSubCurve (DDI)Lsun/awt/geom/Curve; 3 53 sun/awt/geom/Order1 <init> (DDDDI)V 4 3 sun/awt/geom/Curve <init> (I)V 5 1 java/lang/Object <init> ()V 3 129 sun/awt/geom/Order1 <init> (DDDDI)V 4 3 sun/awt/geom/Curve <init> (I)V 5 1 java/lang/Object <init> ()V 1 977 java/util/Vector add (Ljava/lang/Object;)Z 2 20 java/util/Vector add (Ljava/lang/Object;[Ljava/lang/Object;I)V

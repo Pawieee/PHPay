@@ -2,7 +2,7 @@ package PHPay;
 
 import javax.swing.JFrame;
 
-public class PHPayMain extends JFrame{
+public class PHPayMain extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 

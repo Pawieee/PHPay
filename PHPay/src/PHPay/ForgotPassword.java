@@ -25,7 +25,6 @@ import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.JButton;
 
 public class ForgotPassword extends JFrame {
 

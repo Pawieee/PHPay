@@ -12,7 +12,6 @@ import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -25,12 +24,11 @@ import java.awt.event.MouseMotionAdapter;
 import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.Insets;
-import javax.swing.UIManager;
 import PHPay.RandomID.RandomIdGenerator;
-import javax.swing.JCheckBox;
 
 public class UserAccount extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private int x, y;
 	private HashSet<Integer> usedIds;
 	private Random random;
@@ -162,7 +160,7 @@ public class UserAccount extends JFrame {
 		signupPane_1.setBackground(new Color(64, 0, 128, 150));
 		signupPane_1.setBounds(58, 46, 271, 103);
 		signupPane.add(signupPane_1);
-		
+
 		RandomIdGenerator generator = new RandomIdGenerator();
 		RoundedButton next = new RoundedButton("10");
 		next.setBounds(93, 446, 130, 34);
@@ -335,17 +333,16 @@ public class UserAccount extends JFrame {
 			}
 		});
 
-		
 		next.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String ID = generator.generateId() +"";
+				String ID = generator.generateId() + "";
 				String user = userField.getText();
+				@SuppressWarnings("deprecation")
 				String pass = confirmPassField.getText();
 				String passkey = RandomID.generatePassKey();
 				String hashedPasskey = AccountVerify.passkey(passkey);
-				
-				UserData newAccount = new UserData(ID, user, pass, hashedPasskey, 0,
-						account);
+
+				UserData newAccount = new UserData(ID, user, pass, hashedPasskey, 0, account);
 				if (newAccount.accountExist() == true) {
 					System.out.println("Duplicate username");
 					System.exit(0);
