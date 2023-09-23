@@ -960,7 +960,7 @@ public class Wallet extends JFrame {
 							loadbox.setForeground(new Color(0, 0, 0));
 							fEdited3 = true;
 						}
-
+						String num = Field2.getText();
 						// DEDUCTING THE USER BALANCE
 						if (!fEdited1 || (!fEdited2) || (!fEdited3)) {
 
@@ -974,7 +974,7 @@ public class Wallet extends JFrame {
 
 							// DEDUCTING THE SENDER BALANCE
 
-							SQLQuery.load(ID, amountDouble);
+							SQLQuery.load(ID, amountDouble, num);
 
 
 							fEdited1 = false;
@@ -1268,7 +1268,7 @@ public class Wallet extends JFrame {
 						double amountDouble = Double.parseDouble(amountString);
 
 						// DEDUCTING THE SENDER BALANCE
-						SQLQuery.withdraw(ID, amountDouble);
+						SQLQuery.withdraw(ID, amountDouble, "Delivery");
 
 						fEdited1 = false;
 						fEdited2 = false;
@@ -1401,7 +1401,7 @@ public class Wallet extends JFrame {
 						double amountDouble = Double.parseDouble(amountString);
 
 						// DEDUCTING THE SENDER BALANCE
-						SQLQuery.withdraw(ID, amountDouble);
+						SQLQuery.withdraw(ID, amountDouble, "Pick-up");
 
 						fEdited1 = false;
 						fEdited2 = false;

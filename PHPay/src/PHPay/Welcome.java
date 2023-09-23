@@ -287,8 +287,10 @@ public class Welcome extends JFrame {
 				passCheck = passField.getText();
 				if (accountExist(userCheck, passCheck) == true) {
 					System.out.println("Login successful.");
-					Home home = new Home(AccountVerify.sessionID(userCheck));
-					home.setVisible(true);
+//					Home home = new Home(AccountVerify.sessionID(userCheck));
+//					home.setVisible(true);
+					Wallet wallet = new Wallet(AccountVerify.sessionID(userCheck));
+					wallet.setVisible(true);
 					dispose();
 					setVisible(false);
 				} else {
