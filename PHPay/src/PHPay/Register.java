@@ -581,7 +581,7 @@ public class Register extends JFrame {
 				int day = Integer.parseInt(dayString);
 
 				// BALIKAN TA NI YAWA NAA PANI BUG
-				if (year == currentYear && monthChoice == currentMonth && day == (currentDay + 1)) {
+				if (year == currentYear && monthChoice == currentMonth && day == (currentDay)) {
 					yearLabel.setVisible(true);
 					monthLabel.setVisible(true);
 					dayLabel.setVisible(true);
@@ -702,7 +702,8 @@ public class Register extends JFrame {
 		dayBox.setBackground(new Color(27, 0, 53));
 		dayBox.setForeground(new Color(255, 255, 255));
 		dayBox.setMaximumRowCount(4);
-		dayBox.setSelectedIndex(currentDay);
+		dayBox.setSelectedIndex(currentDay-1);
+
 
 		yearBox = new JComboBox<>(years);
 		yearBox.setBounds(627, 184, 124, 30);
