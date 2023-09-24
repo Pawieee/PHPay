@@ -43,6 +43,12 @@ public class HelpPanel extends JPanel {
 	JLabel home4t;
 	JLabel home5l;
 	JLabel home5t;
+	JLabel home6l;
+	JLabel home6t;
+	JLabel home7l;
+	JLabel home7t;
+	JLabel home8l;
+    JLabel home8t;
 
 
 
@@ -152,7 +158,7 @@ public class HelpPanel extends JPanel {
 		
 		home_label = new JLabel("Common Questions");
 		home_label.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 22));
-		home_label.setBounds(10, 11, 251, 30);
+		home_label.setBounds(10, 11, 476, 30);
 		home_label.setForeground(new Color(0, 0, 0));
     
 
@@ -234,7 +240,7 @@ public class HelpPanel extends JPanel {
 
 		panel_1.add(home3l);
 		
-		home3t = new JLabel("<html>\r\n<p style='font-size: 10px;'>\r\n<br><br><br>\r\n\r\nIn a dispute, you can exchange messages with the other party in your Resolution Center to try to solve the problem.\r\n<br>\r\nIf you’re unable to settle the dispute, you can escalate it to a claim. To escalate a dispute, we often require that at least 7 days have passed since the payment date.<br>\r\n<br>\r\nBy escalating a dispute to a claim, you’re asking PayPal to investigate and decide the outcome. A dispute will automatically close after 20 days unless it’s been escalated. Closed disputes cannot be reopened or escalated to a claim.\r\n<br><br>\r\nHere's how to escalate a dispute:\r\n<br><br>\r\n1. Go to your Resolution Center.\r\n<br>2. Click View next to the dispute you want to escalate.\r\n<br>\r\n3. Click Escalate to PayPal at the bottom of the page.<br>\r\n4. Add any relevant information for escalating the dispute and click Submit.<br>\r\n\r\n<br>The time it takes us to decide the outcome can vary. It depends on how quickly both parties respond to our inquiries and whether or not we need more information.\r\n<br><br>\r\nWe usually reach a decision within 14 days, but some cases can take 30 days or longer.\r\n</p><br>\r\n</html>");
+		home3t = new JLabel("<html>\r\n<p style='font-size: 10px;'>\r\n<br><br><br>\r\n\r\nIn a dispute, you can exchange messages with the other party in your Resolution Center to try to solve the problem.\r\n<br>\r\nIf you’re unable to settle the dispute, you can escalate it to a claim. To escalate a dispute, we often require that at least 7 days have passed since the payment date.<br>\r\n<br>\r\nBy escalating a dispute to a claim, you’re asking PHPay to investigate and decide the outcome. A dispute will automatically close after 20 days unless it’s been escalated. Closed disputes cannot be reopened or escalated to a claim.\r\n<br><br>\r\nHere's how to escalate a dispute:\r\n<br><br>\r\n1. Go to your Resolution Center.\r\n<br>2. Click View next to the dispute you want to escalate.\r\n<br>\r\n3. Click Escalate to PHPay at the bottom of the page.<br>\r\n4. Add any relevant information for escalating the dispute and click Submit.<br>\r\n\r\n<br>The time it takes us to decide the outcome can vary. It depends on how quickly both parties respond to our inquiries and whether or not we need more information.\r\n<br><br>\r\nWe usually reach a decision within 14 days, but some cases can take 30 days or longer.\r\n</p><br>\r\n</html>");
 		home3t.setForeground(Color.BLACK);
 		home3t.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
 		home3t.setBounds(10, 11, 865, 378);
@@ -250,7 +256,7 @@ public class HelpPanel extends JPanel {
 
 		panel_1.add(home4l);
 		
-		home4t = new JLabel("<html>\r\n<p style='font-size: 9px;'><br>\r\nIf a payment you sent is pending or unclaimed, it means the recipient hasn’t received or hasn’t accepted the payment yet.<br><br>\r\n\r\nThe payment would be pending or unclaimed if it was sent to an email address or phone number that isn’t registered to a verified PayPal account. Check that you sent the payment to the correct email address or phone number. Or the recipient may need to set up a PayPal account or verify their account for the payment to complete. You have the option to cancel the payment.<br><br>\r\n\r\nTo cancel an unclaimed payment on the web:<br><br>\r\n\r\n1. Go to Activity.<br>\r\n2. Click Cancel under the payment in question.<br>\r\n3. Follow the steps to cancel the payment.<br>\r\n\r\n<br><br>\r\nThe payment would be pending or unclaimed if the recipient has opted not to automatically accept certain payments. These could be payments not in their preferred currency, or from buyers with unconfirmed addresses. You won't have the option to cancel the payment yourself. The recipient needs to accept or deny the payment within 30 days.\r\n<br><br>\r\nWe automatically cancel pending or unclaimed payments after 30 days and send the money back to the original payment method. Refunds to bank accounts may take up to 5 business days, while refunds to credit or debit cards may take up to 30 days.<br>\r\n</p>\r\n</html>\r\n");
+		home4t = new JLabel("<html>\r\n<p style='font-size: 9px;'><br>\r\nIf a payment you sent is pending or unclaimed, it means the recipient hasn’t received or hasn’t accepted the payment yet.<br><br>\r\n\r\nThe payment would be pending or unclaimed if it was sent to an email address or phone number that isn’t registered to a verified PHPay account. Check that you sent the payment to the correct email address or phone number. Or the recipient may need to set up a PHPay account or verify their account for the payment to complete. You have the option to cancel the payment.<br><br>\r\n\r\nTo cancel an unclaimed payment on the web:<br><br>\r\n\r\n1. Go to Activity.<br>\r\n2. Click Cancel under the payment in question.<br>\r\n3. Follow the steps to cancel the payment.<br>\r\n\r\n<br><br>\r\nThe payment would be pending or unclaimed if the recipient has opted not to automatically accept certain payments. These could be payments not in their preferred currency, or from buyers with unconfirmed addresses. You won't have the option to cancel the payment yourself. The recipient needs to accept or deny the payment within 30 days.\r\n<br><br>\r\nWe automatically cancel pending or unclaimed payments after 30 days and send the money back to the original payment method. Refunds to bank accounts may take up to 5 business days, while refunds to credit or debit cards may take up to 30 days.<br>\r\n</p>\r\n</html>\r\n");
 		home4t.setForeground(Color.BLACK);
 		home4t.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
 		home4t.setBounds(10, 11, 865, 378);
@@ -274,8 +280,55 @@ public class HelpPanel extends JPanel {
 
 		panel_1.add(home5t);
 		
+		home6l = new JLabel("<html><p style='font-size: 15px;'>How do I remove a limitation from my account?\r\n</p></html>");
+		home6l.setForeground(Color.BLACK);
+		home6l.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 22));
+		home6l.setBounds(10, 11, 589, 30);
+		home6l.setVisible(false);
 
+		panel_1.add(home6l);
+		
+		home6t = new JLabel("<html>\r\n<p style='font-size: 9px;'>\r\n<br><br>\r\nA limited account means that you won’t be able to do certain things with your PHPay account. For example, you might not be able to send or withdraw money. Usually, we ask you to complete some steps to remove your account limitation.<br><br>\r\n\r\nGo to your Resolution Center or click the bell icon at the top of your Dashboard for more info.<br><br>\r\n\r\nIf all the steps are completed and your account remains limited, it either means:<br><br>\r\n\r\n- We've already reviewed your account and sent you an email asking for more information.<br>\r\n- We're still reviewing the information you provided.<br><br>\r\n\r\nIf you're required to upload documents, review our tips for submitting documents.<br><br>\r\n\r\nThe time it takes to resolve an account limitation depends on the complexity of your specific case.<br><br>\r\n\r\nIn most cases, our customer service team can't remove your limitation over the phone. Please wait for us to contact you.<br><br>\r\n\r\nIf you received an email stating your account is limited, but don't see a limitation in the Resolution Center, you may have received a fake email. Forward it to phishing@phpay.com, and we'll investigate it for you.<br><br>\r\n\r\nAfter you forward us the email, delete it from your inbox. If you clicked any links or downloaded any attachments, log in to your account and view your payments. It's also a good idea to change your password.\r\n</p>\r\n</html>\r\n");
+		home6t.setForeground(Color.BLACK);
+		home6t.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
+		home6t.setBounds(10, 11, 865, 378);
+		home6t.setVisible(false);
 
+		panel_1.add(home6t);
+		
+		home7l = new JLabel("<html><p style='font-size: 15px;'>How do I add money to my PHPay account from my bank?</p></html>");
+		home7l.setForeground(Color.BLACK);
+		home7l.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 22));
+		home7l.setBounds(10, 11, 633, 30);
+		home7l.setVisible(false);
+
+		panel_1.add(home7l);
+		
+		home7t = new JLabel("<html>\r\n<p style='font-size: 10px;'>\r\nHow do I add money to my PHPay account from my bank?<br><br>\r\n\r\nAdding money to a PHPay account from a bank account may not be available in some countries.<br><br>\r\n\r\nHere’s how to add money to your PHPay account from a bank account using your computer:<br><br>\r\n\r\n1. Go to your Wallet.<br>\r\n2. Click Transfer Money.<br>\r\n3. Click Add money to your balance.<br>\r\n4. Follow the instructions.\r\n</p>\r\n</html>\r\n");
+		home7t.setForeground(Color.BLACK);
+		home7t.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
+		home7t.setBounds(10, 11, 865, 378);
+		home7t.setVisible(false);
+
+		panel_1.add(home7t);
+		
+		
+		home8l = new JLabel("<html><p style='font-size: 15px;'>I forgot my password. How do I reset it?\r\n</p></html>");
+		home8l.setForeground(Color.BLACK);
+		home8l.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 22));
+		home8l.setBounds(10, 11, 476, 30);
+		home8l.setVisible(false);
+
+		panel_1.add(home8l);
+		
+		home8t = new JLabel("<html>\r\n<p style='font-size: 10px;'>\r\nTo reset your password on the web:<br><br>\r\n\r\n1. Go to our login.<br>\r\n2. Click Forgot password?<br>\r\n3. Enter the email address you use for PayPal and click Next.<br>\r\n4. Choose how you want to complete our security check and click Next.<br>\r\n5. Once you complete the security check, we’ll ask you to create a new password.<br><br>\r\n\r\nTo reset your password on the app:<br><br>\r\n\r\n1. Tap Forgot password?<br>\r\n2. Enter the email address you use for PayPal and tap Next.<br>\r\n3. Choose how you want to complete our security check and tap Next.<br>\r\n4. Once you complete the security check, we’ll ask you to create a new password.\r\n</p>\r\n</html>\r\n");
+		home8t.setForeground(Color.BLACK);
+		home8t.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
+		home8t.setBounds(10, 11, 865, 378);
+		home8t.setVisible(false);
+
+		panel_1.add(home8t);
+		
 		
 		menu_list = new JList();
 		menu_list.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 25));
@@ -351,6 +404,12 @@ public class HelpPanel extends JPanel {
 			        	showh4();
 			        } else if (home_list.getSelectedValue().equals("How can I release my payment(s) on hold?")) {
 			        	showh5();
+			        } else if (home_list.getSelectedValue().equals("How do I remove a limitation from my account?")) {
+			        	showh6();
+			        } else if (home_list.getSelectedValue().equals("How do I add money to my PHPAY account from my bank?")) {
+			        	showh7();
+			        } else if (home_list.getSelectedValue().equals("I forgot my password. How do I reset it?")) {
+			        	showh8();
 			        }
 			        
 			        
@@ -359,8 +418,9 @@ public class HelpPanel extends JPanel {
 			    }
 			});
 			panel_1.add(home_list);
-			
 		
+		
+			
 			
 	    lblNewLabel_1_1 = new JLabel("How can we help you?");
 		lblNewLabel_1_1.setBounds(196, 61, 347, 39);
@@ -523,7 +583,13 @@ public class HelpPanel extends JPanel {
 		    home4t.setVisible(false);
 		    home5l.setVisible(false);
 		    home5t.setVisible(false);
-		    
+		    home6l.setVisible(false);
+		    home6t.setVisible(false);
+		    home7l.setVisible(false);
+		    home7t.setVisible(false);
+		    home8l.setVisible(false);
+		    home8t.setVisible(false);
+			 
 		 }
 		 private void showPandt() {
 				home_label.setVisible(false);
@@ -548,7 +614,13 @@ public class HelpPanel extends JPanel {
 		    home4t.setVisible(false);
 		    home5l.setVisible(false);
 		    home5t.setVisible(false);
-		    
+		    home6l.setVisible(false);
+		    home6t.setVisible(false);
+		    home7l.setVisible(false);
+		    home7t.setVisible(false);
+		    home8l.setVisible(false);
+		    home8t.setVisible(false);
+			 
 		 }
 		 private void showDal() {
 			 home_label.setVisible(false);
@@ -573,7 +645,13 @@ public class HelpPanel extends JPanel {
 		    home4t.setVisible(false);
 		    home5l.setVisible(false);
 		    home5t.setVisible(false);
-		    
+		    home6l.setVisible(false);
+		    home6t.setVisible(false);
+		    home7l.setVisible(false);
+		    home7t.setVisible(false);
+		    home8l.setVisible(false);
+		    home8t.setVisible(false);
+			 
 		 }
 		 private void showMa() {
 				home_label.setVisible(false);
@@ -598,7 +676,13 @@ public class HelpPanel extends JPanel {
     		    home4t.setVisible(false);
     		    home5l.setVisible(false);
     		    home5t.setVisible(false);
-			 
+    		    home6l.setVisible(false);
+    		    home6t.setVisible(false);
+    		    home7l.setVisible(false);
+    		    home7t.setVisible(false);
+    		    home8l.setVisible(false);
+    		    home8t.setVisible(false);
+    			 
 		 }
 		 private void showMw() {
 			 home_label.setVisible(false);
@@ -623,7 +707,13 @@ public class HelpPanel extends JPanel {
 		    home4t.setVisible(false);
 		    home5l.setVisible(false);
 		    home5t.setVisible(false);
-		    
+		    home6l.setVisible(false);
+		    home6t.setVisible(false);
+		    home7l.setVisible(false);
+		    home7t.setVisible(false);
+		    home8l.setVisible(false);
+		    home8t.setVisible(false);
+			 
 		 }
 		 private void showLands() {
 			 home_label.setVisible(false);
@@ -650,7 +740,13 @@ public class HelpPanel extends JPanel {
 		    home4t.setVisible(false);
 		    home5l.setVisible(false);
 		    home5t.setVisible(false);
-
+		    home6l.setVisible(false);
+		    home6t.setVisible(false);
+		    home7l.setVisible(false);
+		    home7t.setVisible(false);
+		    home8l.setVisible(false);
+		    home8t.setVisible(false);
+			 
 			 
 		 }
 		 
@@ -735,6 +831,58 @@ public class HelpPanel extends JPanel {
 			    home5l.setVisible(true);
 			    home5t.setVisible(true);
 			}
+		 private void showh6() {
+			    home_label.setVisible(false);
+			    pandt_label.setVisible(false);
+			    dal_label.setVisible(false);
+			    ma_label.setVisible(false);
+			    mw_label.setVisible(false);
+			    lands_label.setVisible(false);
+			    home_list.setVisible(false);
+			    pandt_list.setVisible(false);
+			    dal_list.setVisible(false);
+			    ma_list.setVisible(false);
+			    mw_list.setVisible(false);
+			    lands_list.setVisible(false);
+			    home6l.setVisible(true);
+			    home6t.setVisible(true);
+			}
+		 
+		 private void showh7() {
+			    home_label.setVisible(false);
+			    pandt_label.setVisible(false);
+			    dal_label.setVisible(false);
+			    ma_label.setVisible(false);
+			    mw_label.setVisible(false);
+			    lands_label.setVisible(false);
+			    home_list.setVisible(false);
+			    pandt_list.setVisible(false);
+			    dal_list.setVisible(false);
+			    ma_list.setVisible(false);
+			    mw_list.setVisible(false);
+			    lands_list.setVisible(false);
+			    home7l.setVisible(true);
+			    home7t.setVisible(true);
+			}
+		 
+		 private void showh8() {
+			    home_label.setVisible(false);
+			    pandt_label.setVisible(false);
+			    dal_label.setVisible(false);
+			    ma_label.setVisible(false);
+			    mw_label.setVisible(false);
+			    lands_label.setVisible(false);
+			    home_list.setVisible(false);
+			    pandt_list.setVisible(false);
+			    dal_list.setVisible(false);
+			    ma_list.setVisible(false);
+			    mw_list.setVisible(false);
+			    lands_list.setVisible(false);
+			    home8l.setVisible(true);
+			    home8t.setVisible(true);
+			}
+
+
 
 
 
