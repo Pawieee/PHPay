@@ -69,10 +69,14 @@ public class HelpPanel extends JPanel {
     JLabel ma3t;
     JLabel ma4l;
     JLabel ma4t;
-    private JLabel mwl1;
-    private JLabel mwt1;
-    private JLabel mwl2;
-    private JLabel mwt2;
+    JLabel mwl1;
+    JLabel mwt1;
+    JLabel mwl2;
+    JLabel mwt2;
+    JLabel lands1l;
+    JLabel lands1t;
+    JLabel lands2l;
+    JLabel lands2t;
 
 
 
@@ -321,7 +325,7 @@ public class HelpPanel extends JPanel {
 		lands_list = new JList();
 		lands_list.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 20));
 		lands_list.setModel(new AbstractListModel() {
-			String[] values = new String[] {"I forgot my password. How do I reset it?", "", "How do I report potential fraud, spoof or unauthorized transactions to PHPAY ?", "", "How can I access my personal data?"};
+			String[] values = new String[] {"I forgot my password. How do I reset it?", "", "How do I report potential fraud, spoof or unauthorized transactions to PHPAY?", "", "How can I access my personal data?"};
 			public int getSize() {
 				return values.length;
 			}
@@ -331,7 +335,19 @@ public class HelpPanel extends JPanel {
 		});
 		lands_list.setBounds(10, 52, 743, 280);
 		lands_list.setForeground(new Color(51, 0, 204));
-		lands_list.setVisible(false); // Initially, hide this list
+		lands_list.setVisible(false);
+		lands_list.addMouseListener(new MouseAdapter() {
+		    @Override
+		    public void mouseClicked(MouseEvent e) {
+		        if (lands_list.getSelectedValue().equals("I forgot my password. How do I reset it?")) {
+		        	showh8();
+		        } else if (lands_list.getSelectedValue().equals("How do I report potential fraud, spoof or unauthorized transactions to PHPAY?")) {
+		        	showlands1();
+		        } else if (lands_list.getSelectedValue().equals("How can I access my personal data?")) {
+		        	showlands2();
+		        } 
+		    } 
+		    	});
 		
 		panel_1.add(lands_list);
 		
@@ -587,7 +603,7 @@ public class HelpPanel extends JPanel {
 
 		panel_1.add(d1l);
 		
-		d1t = new JLabel("<html>\r\n<p style='font-size: 10px;'>\r\n<br>\r\nWe encourage sellers to ship items as soon as they receive payment. Most sellers ship items within 7 days. (Allow extra time for international shipments).<br><br>\r\n\r\nOccasionally, a seller may contact you if an item is out of stock. At that point, you can decide if you want to wait longer for that item or request a refund.<br><br>\r\n\r\nIf you have waited a reasonable time for the shipment and have no updates from the seller, you can decide to open a dispute for the missing item(s).<br><br>\r\n\r\nHere's how to open a dispute from the web:<br><br>\r\n\r\n1. Go to the Resolution Center and click Report a Problem.<br>\r\n2. Select the payment and click Continue.<br>\r\n3. Select the reason for your dispute, such as:\r\n   - Issues with your purchase.\r\n   - Issues with the Seller.\r\n   - Billing errors or Issues with subscriptions.\r\n   - Unauthorized activity in your PayPal account.<br>\r\n4. Select the option that best describes the issue you're facing and click Continue.<br><br>\r\n\r\nIf your item arrives late after receiving a refund, you should work with your seller to return it or pay for it again. You can ask the seller how they would like to proceed and stick to the instructions.<br>\r\n</p>\r\n</html>");
+		d1t = new JLabel("<html>\r\n<p style='font-size: 10px;'>\r\n<br>\r\nWe encourage sellers to ship items as soon as they receive payment. Most sellers ship items within 7 days. (Allow extra time for international shipments).<br><br>\r\n\r\nOccasionally, a seller may contact you if an item is out of stock. At that point, you can decide if you want to wait longer for that item or request a refund.<br><br>\r\n\r\nIf you have waited a reasonable time for the shipment and have no updates from the seller, you can decide to open a dispute for the missing item(s).<br><br>\r\n\r\nHere's how to open a dispute from the web:<br><br>\r\n\r\n1. Go to the Resolution Center and click Report a Problem.<br>\r\n2. Select the payment and click Continue.<br>\r\n3. Select the reason for your dispute, such as:\r\n   - Issues with your purchase.\r\n   - Issues with the Seller.\r\n   - Billing errors or Issues with subscriptions.\r\n   - Unauthorized activity in your PHPAY account.<br>\r\n4. Select the option that best describes the issue you're facing and click Continue.<br><br>\r\n\r\nIf your item arrives late after receiving a refund, you should work with your seller to return it or pay for it again. You can ask the seller how they would like to proceed and stick to the instructions.<br>\r\n</p>\r\n</html>");
 		d1t.setVerticalAlignment(SwingConstants.TOP);
 		d1t.setForeground(Color.BLACK);
 		d1t.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
@@ -596,7 +612,7 @@ public class HelpPanel extends JPanel {
 
 		panel_1.add(d1t);
 		
-		d2l = new JLabel("<html><p style='font-size: 15px;'>What should I do if I think there has been unauthorized access to my PayPal data?</p></html>");
+		d2l = new JLabel("<html><p style='font-size: 15px;'>What should I do if I think there has been unauthorized access to my PHPAY data?</p></html>");
 		d2l.setForeground(Color.BLACK);
 		d2l.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 22));
 		d2l.setBounds(10, 11, 779, 44);
@@ -715,9 +731,41 @@ public class HelpPanel extends JPanel {
 
 		panel_1.add(mwt2);
 		
+		lands1l = new JLabel("<html><p style='font-size: 15px;'>How do I report potential fraud, spoof or unauthorized transactions to PayPal?</p></html>");
+		lands1l.setForeground(Color.BLACK);
+		lands1l.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 22));
+		lands1l.setBounds(10, 11, 711, 44);
+		lands1l.setVisible(false);
+
+		panel_1.add(lands1l);
+		
+		lands1t = new JLabel("<html>\r\n  <p style='font-size: 10px;'>\r\n    It’s extremely important to report any suspected instances of fraud. If you think your account has been compromised, change your password and update your security questions right away to protect your account (we may limit what you can do on your account until you do so). Here are some types of fraudulent activity. Click on the links to learn more:\r\n    <br><br>\r\n    · <a href=\"#\">Unauthorized activity on your PayPal account</a>\r\n    <br>\r\n    · <a href=\"#\">Fake PayPal emails or spoof websites</a>\r\n    <br>\r\n    · <a href=\"#\">Items not received or a potential fraudulent seller</a>\r\n  </p>\r\n</html>");
+		lands1t.setVerticalAlignment(SwingConstants.TOP);
+		lands1t.setForeground(Color.BLACK);
+		lands1t.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
+		lands1t.setBounds(10, 60, 865, 329);
+		lands1t.setVisible(false);
+
+		panel_1.add(lands1t);
+		
+		lands2l = new JLabel("<html><p style='font-size: 15px;'>How can I access my personal data?</p></html>");
+		lands2l.setForeground(Color.BLACK);
+		lands2l.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 22));
+		lands2l.setBounds(10, 11, 671, 44);
+		lands2l.setVisible(false);
+
+		panel_1.add(lands2l);
+		
+		lands2t = new JLabel("<html>\r\n  <p style='font-size: 9px;'> \r\n    You can contact us to request a copy of your data. Personal account customers in the US, UK, or European Union may download their personal data following these steps:<br>\r\n\r\n    1. Go to Settings.<br>\r\n    2. Click Data & Privacy.<br>\r\n    3. Click Download your data.<br>\r\n    4. Select data options, and click Submit Request.<br>\r\n    5. To access specific types of data that aren’t listed, please contact us.<br>\r\n<br>\r\n    Personal account customers in the US, UK, or European Union may download their personal data following these steps in the app:<br>\r\n\r\n    1. Tap your profile icon.<br>\r\n    2. Tap Data & privacy.<br>\r\n    3. Tap Download your data.<br>\r\n    4. Select data options, and tap Submit Request.<br>\r\n<br>\r\n    If you don’t have an account, you can submit a request here by clicking I can't log in or I don't have an account. This will require verification of your identity before we can assist you.\r\n<br>\r\n    We only disclose personal data to the owner of that data or a party authorized by the account holder.\r\n<br>\r\n    As part of any request to access or change personal data, we’ll conduct reasonable identity and verification checks to make sure you’re the account holder to ensure the security of your personal data. We reserve the right to disallow access or alteration to data if we're unable to verify your identity, if there is a conflicting legal obligation, or if doing so would put PayPal or other parties at risk.\r\n  </p>\r\n</html>\r\n");
+		lands2t.setVerticalAlignment(SwingConstants.TOP);
+		lands2t.setForeground(Color.BLACK);
+		lands2t.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
+		lands2t.setBounds(10, 52, 865, 337);
+		lands2t.setVisible(false);
+
+		panel_1.add(lands2t);
 		
 		
-			
 	    lblNewLabel_1_1 = new JLabel("How can we help you?");
 		lblNewLabel_1_1.setBounds(196, 61, 347, 39);
 		panel.add(lblNewLabel_1_1);
@@ -909,6 +957,10 @@ public class HelpPanel extends JPanel {
 		    mwt1.setVisible(false);
 		    mwl2.setVisible(false);
 		    mwt2.setVisible(false);
+		    lands1l.setVisible(false);
+		    lands1t.setVisible(false);
+		    lands2l.setVisible(false);
+		    lands2t.setVisible(false);
 		 }
 		 private void showPandt() {
 				home_label.setVisible(false);
@@ -963,6 +1015,10 @@ public class HelpPanel extends JPanel {
 		    mwt1.setVisible(false);
 		    mwl2.setVisible(false);
 		    mwt2.setVisible(false);
+		    lands1l.setVisible(false);
+		    lands1t.setVisible(false);
+		    lands2l.setVisible(false);
+		    lands2t.setVisible(false);
 		 }
 		 private void showDal() {
 			 home_label.setVisible(false);
@@ -1017,6 +1073,10 @@ public class HelpPanel extends JPanel {
 		    mwt1.setVisible(false);
 		    mwl2.setVisible(false);
 		    mwt2.setVisible(false);
+		    lands1l.setVisible(false);
+		    lands1t.setVisible(false);
+		    lands2l.setVisible(false);
+		    lands2t.setVisible(false);
 		 }
 		 private void showMa() {
 				home_label.setVisible(false);
@@ -1071,6 +1131,10 @@ public class HelpPanel extends JPanel {
     		    mwt1.setVisible(false);
     		    mwl2.setVisible(false);
     		    mwt2.setVisible(false);
+    		    lands1l.setVisible(false);
+    		    lands1t.setVisible(false);
+    		    lands2l.setVisible(false);
+    		    lands2t.setVisible(false);
 		 }
 		 private void showMw() {
 			 home_label.setVisible(false);
@@ -1125,6 +1189,10 @@ public class HelpPanel extends JPanel {
 		    mwt1.setVisible(false);
 		    mwl2.setVisible(false);
 		    mwt2.setVisible(false);
+		    lands1l.setVisible(false);
+		    lands1t.setVisible(false);
+		    lands2l.setVisible(false);
+		    lands2t.setVisible(false);
 		 }
 		 private void showLands() {
 			 home_label.setVisible(false);
@@ -1181,6 +1249,10 @@ public class HelpPanel extends JPanel {
 		    mwt1.setVisible(false);
 		    mwl2.setVisible(false);
 		    mwt2.setVisible(false);
+		    lands1l.setVisible(false);
+		    lands1t.setVisible(false);
+		    lands2l.setVisible(false);
+		    lands2t.setVisible(false);
 
 			 
 			 
@@ -1514,13 +1586,42 @@ public class HelpPanel extends JPanel {
 			    mwl2.setVisible(true);
 			    mwt2.setVisible(true);
 			}
+		 
+		 private void showlands1() {
+			    home_label.setVisible(false);
+			    pandt_label.setVisible(false);
+			    dal_label.setVisible(false);
+			    ma_label.setVisible(false);
+			    mw_label.setVisible(false);
+			    lands_label.setVisible(false);
+			    home_list.setVisible(false);
+			    pandt_list.setVisible(false);
+			    dal_list.setVisible(false);
+			    ma_list.setVisible(false);
+			    mw_list.setVisible(false);
+			    lands_list.setVisible(false);
+			    lands1l.setVisible(true);
+			    lands1t.setVisible(true);
+			}
+		 private void showlands2() {
+			    home_label.setVisible(false);
+			    pandt_label.setVisible(false);
+			    dal_label.setVisible(false);
+			    ma_label.setVisible(false);
+			    mw_label.setVisible(false);
+			    lands_label.setVisible(false);
+			    home_list.setVisible(false);
+			    pandt_list.setVisible(false);
+			    dal_list.setVisible(false);
+			    ma_list.setVisible(false);
+			    mw_list.setVisible(false);
+			    lands_list.setVisible(false);
+			    lands2l.setVisible(true);
+			    lands2t.setVisible(true);
+			}
+
 
 		
-
-
-
-
-
 
 		
 }
