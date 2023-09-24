@@ -202,19 +202,19 @@ public class Welcome extends JFrame {
 		eyeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		eyeLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		eyeLabel.setBounds(281, 216, 25, 25);
-		eyeLabel.setIcon(blind);
+		eyeLabel.setIcon(eye);
 		eyeLabel.setVisible(false);
 		eyeLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (def) {
-					eyeLabel.setIcon(eye);
+					eyeLabel.setIcon(blind);
 					eyeLabel.setBounds(281, 218, 25, 25);
 					passField.setEchoChar((char) 0);
 					passField.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
 
 				} else {
-					eyeLabel.setIcon(blind);
+					eyeLabel.setIcon(eye);
 					eyeLabel.setBounds(281, 216, 25, 25);
 					passField.setEchoChar('•');
 					passField.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 17));
@@ -479,6 +479,8 @@ public class Welcome extends JFrame {
 					passField.setEchoChar('•');
 					passField.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 17));
 
+				} else {
+					passField.setForeground(Color.WHITE);
 				}
 			}
 
@@ -500,6 +502,9 @@ public class Welcome extends JFrame {
 				userUnderline.setBackground(Color.white);
 				if (userField.getText().equals("Username")) {
 					userField.setText("");
+					userField.setForeground(Color.WHITE);
+					
+				} else {
 					userField.setForeground(Color.WHITE);
 				}
 			}
@@ -561,54 +566,6 @@ public class Welcome extends JFrame {
 		};
 		userField.getDocument().addDocumentListener(documentListener);
 		passField.getDocument().addDocumentListener(documentListener);
-
-		DocumentListener userListener = new DocumentListener() {
-			@Override
-			public void insertUpdate(DocumentEvent e) {
-				setField();
-			}
-
-			@Override
-			public void removeUpdate(DocumentEvent e) {
-				setField();
-			}
-
-			@Override
-			public void changedUpdate(DocumentEvent e) {
-				setField();
-			}
-
-			public void setField() {
-
-				userField.setForeground(Color.WHITE);
-				passField.setForeground(Color.WHITE);
-			}
-		};
-		userField.getDocument().addDocumentListener(userListener);
-
-		DocumentListener passListener = new DocumentListener() {
-			@Override
-			public void insertUpdate(DocumentEvent e) {
-				setField();
-			}
-
-			@Override
-			public void removeUpdate(DocumentEvent e) {
-				setField();
-			}
-
-			@Override
-			public void changedUpdate(DocumentEvent e) {
-				setField();
-			}
-
-			public void setField() {
-				passField.setForeground(Color.WHITE);
-				userField.setForeground(Color.WHITE);
-
-			}
-		};
-		passField.getDocument().addDocumentListener(passListener);
 
 	}
 
