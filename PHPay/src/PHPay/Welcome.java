@@ -5,7 +5,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
-import java.awt.Image;
+import java.awt.Insets;
 import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -17,25 +17,29 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.font.TextAttribute;
-import java.awt.geom.RoundRectangle2D;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.Timer;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import java.awt.Insets;
 
 public class Welcome extends JFrame {
 
@@ -46,13 +50,16 @@ public class Welcome extends JFrame {
 	private JTextField userField;
 	private JPasswordField passField;
 	private JPanel focusBG, titleBar;
-	private JLabel logo;
 	private static String userCheck, passCheck;
 	// private static double angle = 0;
 	private int x, y;
 	private final JButton ignoreThisVariable = new JButton("");
 	PhpaySplash mainPanel;
 	RoundedButton loginButton;
+	private JPanel invalidPrompt;
+	private JLabel invalidMessage;
+
+//	JButton profileButton, logoutButton, deleteButton;
 
 //	private JPanel advertisementPanel; // New advertisement panel
 //	private Timer advertisementTimer; // Timer for sliding animation
@@ -110,7 +117,7 @@ public class Welcome extends JFrame {
 		forgotPassword.setForeground(new Color(255, 255, 255, 190));
 		forgotPassword.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				dispose();
 				Timer timer = new Timer(100, new ActionListener() {
 					@Override
@@ -120,78 +127,97 @@ public class Welcome extends JFrame {
 				});
 				timer.setRepeats(false);
 				timer.start();
+
+			}
+		});
 				
-			}
-		});
+						JLabel register = new JLabel("Sign Up");
+						register.setBounds(533, 291, 99, 41);
+						register.setForeground(new Color(0, 0, 0));
+						register.setHorizontalAlignment(SwingConstants.CENTER);
+						register.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
+						register.setCursor(new Cursor(Cursor.HAND_CURSOR));
+						mainPanel.add(register);
+						
+								register.addMouseListener(new MouseAdapter() {
+									@Override
+									public void mouseClicked(MouseEvent e) {
+										if (e.getButton() == MouseEvent.BUTTON1) {
+											dispose();
+											Timer timer = new Timer(100, new ActionListener() {
+												@Override
+												public void actionPerformed(ActionEvent e) {
+						
+													Register reg = new Register();
+													reg.setVisible(true);
+						
+												}
+											});
+						
+											timer.setRepeats(false);
+											timer.start();
+										}
+									}
+						
+									@Override
+									public void mouseEntered(MouseEvent e) {
+										Font font = register.getFont();
+										Map<TextAttribute, Object> attributes = new HashMap<>(font.getAttributes());
+										attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+										register.setFont(font.deriveFont(attributes));
+										register.setForeground(new Color(128, 0, 255));
+									}
+						
+									@Override
+									public void mouseExited(MouseEvent e) {
+										Font font = register.getFont();
+										Map<TextAttribute, Object> attributes = new HashMap<>(font.getAttributes());
+										attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE);
+										register.setFont(font.deriveFont(attributes));
+										register.setForeground(Color.BLACK);
+									}
+								});
+		
+				JPanel signupPanel = new RoundedPanel(15);
+				signupPanel.setBackground(new Color(255, 255, 255));
+				signupPanel.setBounds(533, 294, 99, 38);
+				mainPanel.add(signupPanel);
+		
+				JLabel dontHaveAccountYet = new JLabel("Join us now by creating your account");
+				dontHaveAccountYet.setForeground(new Color(255, 255, 255));
+				dontHaveAccountYet.setBounds(348, 259, 487, 30);
+				dontHaveAccountYet.setHorizontalAlignment(SwingConstants.CENTER);
+				dontHaveAccountYet.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
+				mainPanel.add(dontHaveAccountYet);
 
-		JLabel register = new JLabel("Sign Up");
-		register.setBounds(136, 385, 71, 30);
-		register.setForeground(new Color(0, 0, 0));
-		register.setHorizontalAlignment(SwingConstants.CENTER);
-		register.setFont(new Font("Segoe UI Semibold", Font.BOLD, 13));
-		register.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		mainPanel.add(register);
+		invalidPrompt = new RoundedPanel(5);
+		invalidPrompt.setBackground(new Color(206, 0, 0, 120));
+		invalidPrompt.setBounds(51, -25, 249, 25);
+		mainPanel.add(invalidPrompt);
 
-		register.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (e.getButton() == MouseEvent.BUTTON1) {
-					dispose();
-					Timer timer = new Timer(100, new ActionListener() {
-						@Override
-						public void actionPerformed(ActionEvent e) {
-
-							Register reg = new Register();
-							reg.setVisible(true);
-
-						}
-					});
-
-					timer.setRepeats(false);
-					timer.start();
-				}
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				Font font = register.getFont();
-				Map<TextAttribute, Object> attributes = new HashMap<>(font.getAttributes());
-				attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
-				register.setFont(font.deriveFont(attributes));
-				register.setForeground(new Color(128, 0, 255));
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				Font font = register.getFont();
-				Map<TextAttribute, Object> attributes = new HashMap<>(font.getAttributes());
-				attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE);
-				register.setFont(font.deriveFont(attributes));
-				register.setForeground(Color.BLACK);
-			}
-		});
-
-		ImageIcon eye2 = new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/see1.png"));
-		ImageIcon eye = new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/blind2.png"));
+		ImageIcon eye = new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/see1.png"));
+		ImageIcon blind = new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/blind2.png"));
 
 		JLabel eyeLabel = new JLabel("");
+		eyeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		eyeLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		eyeLabel.setBounds(281, 192, 25, 25);
-		eyeLabel.setIcon(eye);
+		eyeLabel.setBounds(281, 216, 25, 25);
+		eyeLabel.setIcon(blind);
 		eyeLabel.setVisible(false);
-
 		eyeLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (def) {
 					eyeLabel.setIcon(eye);
-					eyeLabel.setBounds(281, 194, 25, 25);
+					eyeLabel.setBounds(281, 218, 25, 25);
 					passField.setEchoChar((char) 0);
+					passField.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
 
 				} else {
-					eyeLabel.setIcon(eye2);
-					eyeLabel.setBounds(281, 192, 25, 25);
-					passField.setEchoChar('*');
+					eyeLabel.setIcon(blind);
+					eyeLabel.setBounds(281, 216, 25, 25);
+					passField.setEchoChar('•');
+					passField.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 17));
 				}
 				def = !def;
 			}
@@ -203,16 +229,12 @@ public class Welcome extends JFrame {
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setFont(new Font("Couture", Font.PLAIN, 37));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(3, 23, 345, 89);
+		lblNewLabel.setBounds(3, 70, 345, 60);
 		mainPanel.add(lblNewLabel);
 
-		JPanel signupPanel = new RoundedPanel(15);
-		signupPanel.setBackground(new Color(255, 255, 255));
-		signupPanel.setBounds(136, 388, 71, 27);
-		mainPanel.add(signupPanel);
-
 		JPanel userUnderline = new JPanel();
-		userUnderline.setBounds(35, 149, 273, 1);
+		userUnderline.setBackground(Color.gray);
+		userUnderline.setBounds(35, 173, 273, 1);
 		mainPanel.add(userUnderline);
 
 		JPanel border = new JPanel();
@@ -221,9 +243,10 @@ public class Welcome extends JFrame {
 		mainPanel.add(border);
 
 		JPanel passUnderline = new JPanel();
-		passUnderline.setBounds(37, 221, 273, 1);
+		passUnderline.setBounds(37, 245, 273, 1);
+		passUnderline.setBackground(Color.gray);
 		mainPanel.add(passUnderline);
-		forgotPassword.setBounds(116, 306, 116, 21);
+		forgotPassword.setBounds(116, 330, 116, 21);
 		mainPanel.add(forgotPassword);
 		forgotPassword.setContentAreaFilled(false); // Make the button transparent
 		forgotPassword.setBorder(BorderFactory.createEmptyBorder()); // Set empty border
@@ -231,7 +254,7 @@ public class Welcome extends JFrame {
 		JLabel experienceLabel = new JLabel("Experience the convenience of cashless transactions today");
 		experienceLabel.setBackground(new Color(102, 0, 204, 225));
 		experienceLabel.setForeground(new Color(153, 0, 255));
-		experienceLabel.setBounds(347, 87, 488, 21);
+		experienceLabel.setBounds(347, 68, 488, 21);
 		mainPanel.add(experienceLabel);
 		experienceLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		experienceLabel.setFont(new Font("Segoe UI Semibold", Font.ITALIC, 14));
@@ -240,7 +263,7 @@ public class Welcome extends JFrame {
 		userField.setMargin(new Insets(2, 11, 2, 11));
 		userField.setBorder(new EmptyBorder(0, 0, 0, 0));
 		userField.setText("Username");
-		userField.setBounds(37, 119, 273, 30);
+		userField.setBounds(37, 143, 273, 30);
 		userField.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
 		mainPanel.add(userField);
 		userField.setForeground(Color.GRAY);
@@ -248,7 +271,7 @@ public class Welcome extends JFrame {
 		passField = new RoundedPasswordField(20);
 		passField.setMargin(new Insets(2, 11, 2, 11));
 		passField.setBorder(new EmptyBorder(0, 0, 0, 0));
-		passField.setBounds(37, 192, 273, 30);
+		passField.setBounds(37, 216, 273, 30);
 		passField.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
 		mainPanel.add(passField);
 		passField.setForeground(Color.GRAY);
@@ -264,7 +287,7 @@ public class Welcome extends JFrame {
 		loginButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		loginButton.setEnabled(false);
 		loginButton.setBorder(new EmptyBorder(0, 0, 0, 0));
-		loginButton.setBounds(90, 265, 168, 30);
+		loginButton.setBounds(90, 289, 168, 30);
 		mainPanel.add(loginButton);
 		loginButton.setBackground(new Color(0, 128, 255));
 		loginButton.setForeground(new Color(0, 0, 0));
@@ -277,28 +300,34 @@ public class Welcome extends JFrame {
 				userCheck = userField.getText();
 				passCheck = passField.getText();
 				if (accountExist(userCheck, passCheck) == true) {
-					System.out.println("Login successful.");
 //					Home home = new Home(AccountVerify.sessionID(userCheck));
 //					home.setVisible(true);
-					Wallet wallet = new Wallet(AccountVerify.sessionID(userCheck));
-					wallet.setVisible(true);
-					dispose();
-					setVisible(false);
+
+					Timer timer = new Timer(150, new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							dispose();
+
+//							Wallet wallet = new Wallet(AccountVerify.sessionID(userCheck));
+//							wallet.setVisible(true);
+
+							Home home = new Home(AccountVerify.sessionID(userCheck));
+							home.setVisible(true);
+
+						}
+					});
+					timer.setRepeats(false);
+					timer.start();
 				} else {
+					togglePrompt();
 					passField.setForeground(Color.RED);
 					userField.setForeground(Color.RED);
+
 				}
 
 			}
 		});
 		loginButton.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
-
-		JLabel dontHaveAccountYet = new JLabel("Don't have an account yet?");
-		dontHaveAccountYet.setForeground(new Color(255, 255, 255));
-		dontHaveAccountYet.setBounds(3, 358, 345, 30);
-		dontHaveAccountYet.setHorizontalAlignment(SwingConstants.CENTER);
-		dontHaveAccountYet.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
-		mainPanel.add(dontHaveAccountYet);
 
 		JLabel phpayLOGO = new JLabel("");
 		phpayLOGO.addMouseListener(new MouseAdapter() {
@@ -311,15 +340,15 @@ public class Welcome extends JFrame {
 			}
 		});
 		phpayLOGO.setBackground(new Color(0, 0, 0));
-		phpayLOGO.setBounds(347, 119, 488, 135);
+		phpayLOGO.setBounds(339, 104, 488, 135);
 		mainPanel.add(phpayLOGO);
 		phpayLOGO.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/PHPAY-BRAND-LARGE.png")));
 
-		logo = new JLabel("");
-		logo.setHorizontalAlignment(SwingConstants.CENTER);
-		logo.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/phpcard.gif")));
-		logo.setBounds(347, 242, 488, 173);
-		mainPanel.add(logo);
+//		logo = new JLabel("");
+//		logo.setHorizontalAlignment(SwingConstants.CENTER);
+//		logo.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/phpcard.gif")));
+//		logo.setBounds(347, 242, 488, 173);
+//		mainPanel.add(logo);
 
 		JLabel date = new JLabel("Copyright © 2023 PHPay. All Rights Reserved.");
 		date.setBounds(592, 427, 268, 19);
@@ -327,10 +356,13 @@ public class Welcome extends JFrame {
 		date.setForeground(new Color(81, 81, 81));
 		date.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 10));
 
-//		JLabel lblNewLabel_1 = new JLabel("");
-//		lblNewLabel_1.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/Background-03.png")));
-//		lblNewLabel_1.setBounds(2, 0, 835, 452);
-//		mainPanel.add(lblNewLabel_1);
+		invalidMessage = new JLabel("Invalid Username or Password");
+		invalidMessage.setBounds(0, 0, 249, 25);
+		invalidPrompt.add(invalidMessage);
+		invalidMessage.setHorizontalAlignment(SwingConstants.CENTER);
+		invalidMessage.setForeground(new Color(255, 255, 255));
+		invalidMessage.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
+		invalidMessage.setBackground(new Color(255, 255, 255));
 
 		JButton close = new JButton("");
 		close.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/exit.png")));
@@ -368,8 +400,6 @@ public class Welcome extends JFrame {
 		titleBar.setBackground(new Color(35, 35, 35));
 		titleBar.setLayout(null);
 		titleBar.add(close);
-
-		// PHPAY COLOR HEX (134, 116, 237)
 
 		JButton minimize = new JButton("");
 		minimize.addActionListener(new ActionListener() {
@@ -442,26 +472,32 @@ public class Welcome extends JFrame {
 		passField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
+				passUnderline.setBackground(Color.white);
 				if (Arrays.equals(passField.getPassword(), "Password".toCharArray())) {
 					passField.setText("");
 					passField.setForeground(Color.WHITE);
-					passField.setEchoChar('*');
+					passField.setEchoChar('•');
+					passField.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 17));
 
 				}
 			}
 
 			@Override
 			public void focusLost(FocusEvent e) {
+				passUnderline.setBackground(Color.gray);
 				if (passField.getPassword().length == 0 || String.valueOf(passField.getPassword()).equals("Password")) {
 					passField.setText("Password");
 					passField.setForeground(Color.GRAY);
 					passField.setEchoChar((char) 0);
+					passField.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
+
 				}
 			}
 		});
 
 		userField.addFocusListener(new FocusListener() {
 			public void focusGained(FocusEvent e) {
+				userUnderline.setBackground(Color.white);
 				if (userField.getText().equals("Username")) {
 					userField.setText("");
 					userField.setForeground(Color.WHITE);
@@ -469,11 +505,12 @@ public class Welcome extends JFrame {
 			}
 
 			public void focusLost(FocusEvent e) {
+				userUnderline.setBackground(Color.gray);
 				if (userField.getText().isEmpty()) {
 					userField.setText("Username");
 					userField.setForeground(Color.GRAY);
+
 				} else if (!userField.getText().isEmpty()) {
-					userField.setForeground(Color.WHITE);
 				}
 			}
 		});
@@ -525,6 +562,54 @@ public class Welcome extends JFrame {
 		userField.getDocument().addDocumentListener(documentListener);
 		passField.getDocument().addDocumentListener(documentListener);
 
+		DocumentListener userListener = new DocumentListener() {
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				setField();
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				setField();
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				setField();
+			}
+
+			public void setField() {
+
+				userField.setForeground(Color.WHITE);
+				passField.setForeground(Color.WHITE);
+			}
+		};
+		userField.getDocument().addDocumentListener(userListener);
+
+		DocumentListener passListener = new DocumentListener() {
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				setField();
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				setField();
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				setField();
+			}
+
+			public void setField() {
+				passField.setForeground(Color.WHITE);
+				userField.setForeground(Color.WHITE);
+
+			}
+		};
+		passField.getDocument().addDocumentListener(passListener);
+
 	}
 
 	public boolean accountExist(String user, String pass) {
@@ -556,4 +641,53 @@ public class Welcome extends JFrame {
 
 	}
 
+	private void togglePrompt() {
+
+		Timer timer = new Timer(5, new ActionListener() {
+			int updatedYInvalid = invalidPrompt.getY();
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (updatedYInvalid < 24) {
+					updatedYInvalid += 3;
+					invalidPrompt.setBounds(55, updatedYInvalid, 249, 25);
+				} else {
+					((Timer) e.getSource()).stop();
+					scheduleTogglePrompt2();
+				}
+			}
+		});
+
+		timer.start();
+	}
+
+	private void togglePrompt2() {
+
+		Timer timer1 = new Timer(5, new ActionListener() {
+			int updatedYInvalid = invalidPrompt.getY();
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (updatedYInvalid > -25) {
+					updatedYInvalid -= 3;
+					invalidPrompt.setBounds(55, updatedYInvalid, 249, 25);
+				} else {
+					((Timer) e.getSource()).stop();
+				}
+			}
+		});
+		timer1.start();
+	}
+
+	private void scheduleTogglePrompt2() {
+		Timer delayTimer = new Timer(2000, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				togglePrompt2();
+			}
+		});
+
+		delayTimer.setRepeats(false);
+		delayTimer.start();
+	}
 }

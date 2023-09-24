@@ -17,15 +17,10 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 
 public class Process extends JFrame {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private String session;
 	JTextField textField;
-
-
 
 	public Process(String ID) {
 		this.session = ID;
@@ -122,10 +117,11 @@ public class Process extends JFrame {
 		Fframe.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		Fframe.setVisible(true);
 	}
-	
+
 	public String getSession() {
 		return this.session;
 	}
+
 	public Process() {
 
 		setType(Type.UTILITY);
@@ -211,11 +207,11 @@ public class Process extends JFrame {
 
 	}
 
-public void process() {
-	Process Fframe = new Process();
-	Fframe.setSize(480, 159);
-	Fframe.setResizable(false);
-	Fframe.setDefaultCloseOperation(EXIT_ON_CLOSE);
-	Fframe.setVisible(true);
-}
+	public void process() {
+		Process Fframe = new Process();
+		Fframe.setSize(480, 159);
+		Fframe.setResizable(false);
+		Fframe.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		Fframe.setVisible(true);
+	}
 }

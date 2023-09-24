@@ -17,9 +17,6 @@ import java.awt.Color;
 
 public class Profile extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JTextArea textArea;
 	private String profileID;
@@ -35,12 +32,10 @@ public class Profile extends JFrame {
 		setSize(308, 347);
 		setLocationRelativeTo(null);
 
-		// create a JPanel with a border
 		JPanel panel = new JPanel(new BorderLayout());
 		panel.setBackground(new Color(192, 192, 192));
 		panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-		// create a JTextArea to display the contents of the file
 		textArea = new JTextArea();
 		textArea.setForeground(new Color(0, 0, 0));
 		textArea.setBackground(new Color(192, 192, 192));
@@ -49,14 +44,11 @@ public class Profile extends JFrame {
 		textArea.setEditable(false);
 		textArea.setFont(new Font("Microsoft PhagsPa", Font.PLAIN, 14)); // set font and size
 
-		// create a JScrollPane to wrap the JTextArea
 		JScrollPane scrollPane = new JScrollPane(textArea);
 		scrollPane.setPreferredSize(new Dimension(350, 250));
 
-		// add the JScrollPane to the JPanel
 		panel.add(scrollPane, BorderLayout.CENTER);
 
-		// read the contents of the file and display them in the JTextArea
 		try {
 			String fileName = "ID.txt";
 			File file = new File(fileName);
@@ -91,7 +83,6 @@ public class Profile extends JFrame {
 			e.printStackTrace();
 		}
 
-		// add the JPanel to the JFrame
 		getContentPane().add(panel);
 
 		setVisible(true);

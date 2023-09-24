@@ -26,6 +26,7 @@ public class SummaryPanel extends JPanel {
 	private JScrollPane scrollPane;
 	private String session;
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public SummaryPanel(String ID) {
 		this.session = ID;
 		setBackground(new Color(255, 255, 255));
@@ -105,7 +106,7 @@ public class SummaryPanel extends JPanel {
 		lblSortBy.setBounds(1031, 49, 59, 54);
 		add(lblSortBy);
 
-		JComboBox comboBox = new JComboBox();
+		JComboBox<?> comboBox = new JComboBox();
 		comboBox.setBorder(new EmptyBorder(1, 1, 1, 1));
 		comboBox.setBackground(new Color(255, 255, 255));
 		comboBox.setFont(new Font("Nirmala UI", Font.PLAIN, 13));
@@ -118,11 +119,9 @@ public class SummaryPanel extends JPanel {
 		resizeButton.setBounds(921, 63, 84, 30);
 		add(resizeButton);
 
-		// Add an ActionListener to the button
 		resizeButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Call the method to resize rows and columns
 				resizeTableColumnsToDefault();
 			}
 		});
@@ -138,7 +137,6 @@ public class SummaryPanel extends JPanel {
 	}
 
 	private void resizeTableColumnsToDefault() {
-		// Reset column widths to their default values
 		for (int i = 0; i < table.getColumnCount(); i++) {
 			TableColumn column = table.getColumnModel().getColumn(i);
 			TableCellRenderer headerRenderer = column.getHeaderRenderer();
@@ -162,11 +160,11 @@ public class SummaryPanel extends JPanel {
 			column.setPreferredWidth(newColumnWidth);
 		}
 	}
-	
+
 	private void clearTable(DefaultTableModel model) {
-	    model.setRowCount(0);
+		model.setRowCount(0);
 	}
-	
+
 	public void getTransactions() {
 		DefaultTableModel model = new DefaultTableModel(null,
 				new String[] { "Name", "Date", "Invoice ID", "Amount", "Status", "Receiver" }) {
@@ -186,12 +184,12 @@ public class SummaryPanel extends JPanel {
 				return false;
 			}
 		};
-		
+
 		if (scrollPane != null) {
-	        remove(scrollPane);
-	    }
+			remove(scrollPane);
+		}
 		clearTable(model);
-		
+
 		table.setFont(new Font("Nirmala UI", Font.PLAIN, 17));
 		table.setRowMargin(1);
 		table.setSelectionForeground(new Color(255, 255, 255));
@@ -243,14 +241,13 @@ public class SummaryPanel extends JPanel {
 				amount = rs.getString(5);
 				receiver = rs.getString(6);
 
-				model.addRow(new Object[] { session, date, transaction_id, amount, status, receiver});
+				model.addRow(new Object[] { session, date, transaction_id, amount, status, receiver });
 			}
 		} catch (SQLException ex) {
 			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
-	
-	//METHOD OVERLOADING
+
 	public void getTransactions(String op) {
 		DefaultTableModel model = new DefaultTableModel(null,
 				new String[] { "Name", "Date", "Invoice ID", "Amount", "Status", "Receiver" }) {
@@ -271,10 +268,10 @@ public class SummaryPanel extends JPanel {
 			}
 		};
 		if (scrollPane != null) {
-	        remove(scrollPane);
-	    }
+			remove(scrollPane);
+		}
 		clearTable(model);
-		
+
 		table.setFont(new Font("Nirmala UI", Font.PLAIN, 17));
 		table.setRowMargin(1);
 		table.setSelectionForeground(new Color(255, 255, 255));
@@ -326,8 +323,8 @@ public class SummaryPanel extends JPanel {
 				date = rs.getString(4);
 				amount = rs.getString(5);
 				receiver = rs.getString(6);
-				
-				model.addRow(new Object[] { session, date, transaction_id, amount, status, receiver});
+
+				model.addRow(new Object[] { session, date, transaction_id, amount, status, receiver });
 			}
 		} catch (SQLException ex) {
 			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);

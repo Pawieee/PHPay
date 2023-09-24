@@ -11,7 +11,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Random;
@@ -34,7 +33,6 @@ public class UserPassID extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	private String randomID;
 	private JPasswordField passField;
 	private HashSet<Integer> usedIds;
 	private Random random;
@@ -88,7 +86,7 @@ public class UserPassID extends JFrame {
 		panel_1_1_1_1.setBounds(88, 32, 386, 30);
 		panel.add(panel_1_1_1_1);
 
-		this.randomID = UUID.randomUUID().toString();
+		UUID.randomUUID().toString();
 		RandomIdGenerator generator = new RandomIdGenerator();
 
 		userStatusLabel = new JLabel("");
@@ -228,6 +226,7 @@ public class UserPassID extends JFrame {
 					userFieldEdited = true;
 				}
 
+				@SuppressWarnings("deprecation")
 				String pass = passField.getText();
 				if (!isValidPass(pass)) {
 					passStatusLabel.setText("Contains a combination of letters and numbers");
@@ -320,6 +319,7 @@ public class UserPassID extends JFrame {
 				}
 			}
 
+			@SuppressWarnings("deprecation")
 			public void focusLost(FocusEvent e) {
 				if (passField.getPassword().length == 0) {
 					passField.setText("Password");

@@ -3,16 +3,10 @@ package PHPay;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.text.DecimalFormat;
-
-import javax.swing.border.BevelBorder;
-import javax.swing.border.MatteBorder;
-import javax.swing.border.EtchedBorder;
 import javax.swing.border.CompoundBorder;
 
 public class HomePanel extends JPanel {
+	private static final long serialVersionUID = 1L;
 	private JScrollPane scrollPane;
 	ScrollBarCustom phpayScroll;
 	private RoundedPanel bluePanel;
@@ -49,39 +43,26 @@ public class HomePanel extends JPanel {
 	private JLabel lblHashingTechniquesTo;
 	private JLabel lblTheHighestLevel;
 	private JLabel lbll3;
-	private int currentLabelIndex = 0;
-	private Timer timer;
-	private JLabel lblNewLabel_2;
 	private JLabel lblstockredemption;
 
 	public HomePanel() {
 		setBorder(new EmptyBorder(0, 0, 0, 0));
-		setBounds(0, 0, 1200, 1333);
+		setBounds(0, 0, 1200, 1500);
 		setBackground(new Color(0, 0, 0, 0));
 		setForeground(new Color(0, 0, 0));
 		setLayout(null);
 
 		RoundedPanel panel = new RoundedPanel(20);
-//		GradientPanel panel = new GradientPanel(new Color(0x360079), new Color((0x000000)));
-//		panel.setBorder(new EmptyBorder(0, 0, 0, 0));
-		panel.setPreferredSize(new Dimension(1200, 1332));
+		panel.setPreferredSize(new Dimension(1200, 1500));
 		panel.setBackground(new Color(30, 31, 33));
 		add(panel);
-		
-//		
-//		RoundedPanel panel_1 = new RoundedPanel(20);
-//		panel_1.setBackground(new Color(64, 0, 128));
-//		panel_1.setBounds(10, 11, 303, 115);
-//		panel.add(panel_1);
-//		panel_1.setLayout(null);
 
 		scrollPane = new JScrollPane(panel);
 		scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		panel.setLayout(null);
 
-
 		bluePanel = new RoundedPanel(25);
-		bluePanel.setBounds(10, 1011, 1180, 260);
+		bluePanel.setBounds(10, 1175, 1180, 260);
 		bluePanel.setBackground(new Color(255, 255, 255, 15));
 		bluePanel.setBorder(new EmptyBorder(0, 0, 0, 0));
 		panel.add(bluePanel);
@@ -146,7 +127,7 @@ public class HomePanel extends JPanel {
 		bluePanel.add(p6);
 
 		blackPanel = new RoundedPanel(15);
-		blackPanel.setBounds(10, 1290, 1180, 45);
+		blackPanel.setBounds(10, 1454, 1180, 45);
 		blackPanel.setBorder(new EmptyBorder(0, 0, 0, 0));
 		blackPanel.setBackground(new Color(0, 0, 0));
 		panel.add(blackPanel);
@@ -168,41 +149,9 @@ public class HomePanel extends JPanel {
 		lblstockredemption.setBounds(10, 14, 405, 21);
 		blackPanel.add(lblstockredemption);
 
-		lblPhpayValuesYour = new JLabel("PHPay values your account’s security");
-		lblPhpayValuesYour.setBounds(108, 710, 774, 61);
-		lblPhpayValuesYour.setVerticalAlignment(SwingConstants.TOP);
-		lblPhpayValuesYour.setHorizontalAlignment(SwingConstants.LEFT);
-		lblPhpayValuesYour.setForeground(new Color(255, 255, 255));
-		lblPhpayValuesYour.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 35));
-		panel.add(lblPhpayValuesYour);
-
-		lblWeAreAn = new JLabel("We are an authorized e-money issuer and remittance agent ");
-		lblWeAreAn.setBounds(118, 803, 425, 21);
-		lblWeAreAn.setVerticalAlignment(SwingConstants.TOP);
-		lblWeAreAn.setHorizontalAlignment(SwingConstants.LEFT);
-		lblWeAreAn.setForeground(new Color(255, 255, 255));
-		lblWeAreAn.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 15));
-		panel.add(lblWeAreAn);
-
-		lblLicensedByThe = new JLabel("licensed by the BSP, ensuring the security of your funds.");
-		lblLicensedByThe.setBounds(118, 824, 425, 21);
-		lblLicensedByThe.setVerticalAlignment(SwingConstants.TOP);
-		lblLicensedByThe.setHorizontalAlignment(SwingConstants.LEFT);
-		lblLicensedByThe.setForeground(new Color(255, 255, 255));
-		lblLicensedByThe.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 15));
-		panel.add(lblLicensedByThe);
-
-		lblRegulatedByThe = new JLabel("Regulated by the Bangko Sentral ng Pilipinas");
-		lblRegulatedByThe.setBounds(118, 761, 425, 21);
-		lblRegulatedByThe.setVerticalAlignment(SwingConstants.TOP);
-		lblRegulatedByThe.setHorizontalAlignment(SwingConstants.LEFT);
-		lblRegulatedByThe.setForeground(new Color(255, 255, 255));
-		lblRegulatedByThe.setFont(new Font("Segoe UI Symbol", Font.ITALIC, 15));
-		panel.add(lblRegulatedByThe);
-
 		JPanel memberPanel = new JPanel();
-		memberPanel.setBounds(0, 436, 1200, 197);
-		memberPanel.setBackground(new Color(64, 0, 128));
+		memberPanel.setBounds(0, 481, 1200, 197);
+		memberPanel.setBackground(new Color(255, 255, 255, 15));
 		panel.add(memberPanel);
 		memberPanel.setLayout(null);
 
@@ -223,7 +172,7 @@ public class HomePanel extends JPanel {
 		lblPhpayValuesGcash.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 40));
 
 		lblPaymentWorld = new JLabel("payment world");
-		lblPaymentWorld.setBounds(0, 90, 591, 90);
+		lblPaymentWorld.setBounds(0, 90, 591, 105);
 		memberPanel.add(lblPaymentWorld);
 		lblPaymentWorld.setVerticalAlignment(SwingConstants.TOP);
 		lblPaymentWorld.setHorizontalAlignment(SwingConstants.CENTER);
@@ -239,7 +188,7 @@ public class HomePanel extends JPanel {
 		lblPartner = new JLabel("1M");
 		lblPartner.setBounds(954, 39, 120, 90);
 		lblPartner.setForeground(new Color(255, 255, 255));
-		lblPartner.setVisible(false);
+		lblPartner.setVisible(true);
 		memberPanel.add(lblPartner);
 		lblPartner.setFont(new Font("Segoe UI Symbol", Font.BOLD, 43));
 
@@ -255,7 +204,7 @@ public class HomePanel extends JPanel {
 		lblUser.setBounds(713, 37, 120, 90);
 		lblUser.setForeground(new Color(255, 255, 255));
 		memberPanel.add(lblUser);
-		lblUser.setVisible(false);
+		lblUser.setVisible(true);
 		lblUser.setFont(new Font("Segoe UI Symbol", Font.BOLD, 43));
 
 		lblNewLabel_1 = new JLabel("");
@@ -271,33 +220,8 @@ public class HomePanel extends JPanel {
 		lblRegisteredUsers.setForeground(new Color(192, 192, 192));
 		lblRegisteredUsers.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 15));
 
-		lblPhpaysRobustSecurity = new JLabel("PHPAY's robust security utilizes cutting-edge encryption algorithms and");
-		lblPhpaysRobustSecurity.setBounds(118, 866, 543, 21);
-		lblPhpaysRobustSecurity.setVerticalAlignment(SwingConstants.TOP);
-		lblPhpaysRobustSecurity.setHorizontalAlignment(SwingConstants.LEFT);
-		lblPhpaysRobustSecurity.setForeground(new Color(255, 255, 255));
-		lblPhpaysRobustSecurity.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 15));
-		panel.add(lblPhpaysRobustSecurity);
-
-		lblHashingTechniquesTo = new JLabel(
-				"hashing techniques to protect your personal information and financial data with ");
-		lblHashingTechniquesTo.setBounds(118, 887, 543, 21);
-		lblHashingTechniquesTo.setVerticalAlignment(SwingConstants.TOP);
-		lblHashingTechniquesTo.setHorizontalAlignment(SwingConstants.LEFT);
-		lblHashingTechniquesTo.setForeground(new Color(255, 255, 255));
-		lblHashingTechniquesTo.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 15));
-		panel.add(lblHashingTechniquesTo);
-
-		lblTheHighestLevel = new JLabel("the highest level of assurance.");
-		lblTheHighestLevel.setBounds(118, 908, 543, 21);
-		lblTheHighestLevel.setVerticalAlignment(SwingConstants.TOP);
-		lblTheHighestLevel.setHorizontalAlignment(SwingConstants.LEFT);
-		lblTheHighestLevel.setForeground(new Color(255, 255, 255));
-		lblTheHighestLevel.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 15));
-		panel.add(lblTheHighestLevel);
-
-		scrollPane.setBounds(0, 0, 1200, 700);
-//		scrollPane.setBounds(0, 0, 1200, 1333);
+		scrollPane.setBounds(0, 0, 1200, 754);
+//		scrollPane.setBounds(0, 0, 1200, 1500);
 		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		add(scrollPane);
 
@@ -309,11 +233,11 @@ public class HomePanel extends JPanel {
 		phpayScroll.setUnitIncrement(10);
 		scrollPane.setVerticalScrollBar(phpayScroll);
 
-		countUpLabel1(lblUser);
-		countUpLabel2(lblPartner);
+//		countUpLabel1(lblUser);
+//		countUpLabel2(lblPartner);
 
 		RoundedPanel bluePanel_1 = new RoundedPanel(50);
-		bluePanel_1.setBounds(-101, 75, 1180, 260);
+		bluePanel_1.setBounds(-101, 102, 1180, 260);
 		bluePanel_1.setLayout(null);
 		bluePanel_1.setBorder(new EmptyBorder(0, 0, 0, 0));
 		bluePanel_1.setBackground(new Color(255, 255, 255, 15));
@@ -358,89 +282,86 @@ public class HomePanel extends JPanel {
 		bluePanel_1.add(lblNewLabel);
 
 		GradientPanel gradientPanel = new GradientPanel(new Color(0x360079), new Color((0x000000)));
-		gradientPanel.setBounds(0, 0, 1200, 1333);
+		gradientPanel.setBounds(0, 0, 1200, 1500);
 		gradientPanel.setBorder(new EmptyBorder(0, 0, 0, 0));
 		gradientPanel.setPreferredSize(new Dimension(1200, 1220));
 		panel.add(gradientPanel);
 		gradientPanel.setLayout(null);
-		
-				lblNewLabel_5 = new JLabel("");
-				lblNewLabel_5.setBounds(640, 656, 550, 381);
-				gradientPanel.add(lblNewLabel_5);
-				lblNewLabel_5.setIcon(new ImageIcon(HomePanel.class.getResource("/PHPay/phpimg/security.png")));
-				lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
 
-//		JLabel lblNewLabel = new JLabel("");
-//		lblNewLabel.setIcon(new ImageIcon(HomePanel.class.getResource("/PHPay/phpimg/backgroundHome.png")));
-//		lblNewLabel.setBounds(0, 0, 1200, 750);
-//		panel.add(lblNewLabel);
-//		
-//		lblNewLabel_2 = new JLabel("New label");
-//		lblNewLabel_2.setIcon(new ImageIcon(HomePanel.class.getResource("/PHPay/phpimg/backgroundHome.png")));
-//		lblNewLabel_2.setBounds(0, 749, 1200, 502);
-//		panel.add(lblNewLabel_2);
+		lblNewLabel_5 = new JLabel("");
+		lblNewLabel_5.setBounds(640, 715, 550, 381);
+		gradientPanel.add(lblNewLabel_5);
+		lblNewLabel_5.setIcon(new ImageIcon(HomePanel.class.getResource("/PHPay/phpimg/security.png")));
+		lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
+
+		lblRegulatedByThe = new JLabel("Regulated by the Bangko Sentral ng Pilipinas");
+		lblRegulatedByThe.setBounds(114, 862, 425, 21);
+		gradientPanel.add(lblRegulatedByThe);
+		lblRegulatedByThe.setVerticalAlignment(SwingConstants.TOP);
+		lblRegulatedByThe.setHorizontalAlignment(SwingConstants.LEFT);
+		lblRegulatedByThe.setForeground(new Color(255, 255, 255));
+		lblRegulatedByThe.setFont(new Font("Segoe UI Symbol", Font.ITALIC, 15));
+
+		lblPhpayValuesYour = new JLabel("PHPay values your account’s security");
+		lblPhpayValuesYour.setBounds(104, 811, 774, 61);
+		gradientPanel.add(lblPhpayValuesYour);
+		lblPhpayValuesYour.setVerticalAlignment(SwingConstants.TOP);
+		lblPhpayValuesYour.setHorizontalAlignment(SwingConstants.LEFT);
+		lblPhpayValuesYour.setForeground(new Color(255, 255, 255));
+		lblPhpayValuesYour.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 35));
+
+		lblWeAreAn = new JLabel("We are an authorized e-money issuer and remittance agent ");
+		lblWeAreAn.setBounds(114, 904, 425, 21);
+		gradientPanel.add(lblWeAreAn);
+		lblWeAreAn.setVerticalAlignment(SwingConstants.TOP);
+		lblWeAreAn.setHorizontalAlignment(SwingConstants.LEFT);
+		lblWeAreAn.setForeground(new Color(255, 255, 255));
+		lblWeAreAn.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 15));
+
+		lblLicensedByThe = new JLabel("licensed by the BSP, ensuring the security of your funds.");
+		lblLicensedByThe.setBounds(114, 925, 425, 21);
+		gradientPanel.add(lblLicensedByThe);
+		lblLicensedByThe.setVerticalAlignment(SwingConstants.TOP);
+		lblLicensedByThe.setHorizontalAlignment(SwingConstants.LEFT);
+		lblLicensedByThe.setForeground(new Color(255, 255, 255));
+		lblLicensedByThe.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 15));
+
+		lblPhpaysRobustSecurity = new JLabel("PHPAY's robust security utilizes cutting-edge encryption algorithms and");
+		lblPhpaysRobustSecurity.setBounds(114, 967, 543, 21);
+		gradientPanel.add(lblPhpaysRobustSecurity);
+		lblPhpaysRobustSecurity.setVerticalAlignment(SwingConstants.TOP);
+		lblPhpaysRobustSecurity.setHorizontalAlignment(SwingConstants.LEFT);
+		lblPhpaysRobustSecurity.setForeground(new Color(255, 255, 255));
+		lblPhpaysRobustSecurity.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 15));
+
+		lblHashingTechniquesTo = new JLabel(
+				"hashing techniques to protect your personal information and financial data with ");
+		lblHashingTechniquesTo.setBounds(114, 988, 543, 21);
+		gradientPanel.add(lblHashingTechniquesTo);
+		lblHashingTechniquesTo.setVerticalAlignment(SwingConstants.TOP);
+		lblHashingTechniquesTo.setHorizontalAlignment(SwingConstants.LEFT);
+		lblHashingTechniquesTo.setForeground(new Color(255, 255, 255));
+		lblHashingTechniquesTo.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 15));
+
+		lblTheHighestLevel = new JLabel("the highest level of assurance.");
+		lblTheHighestLevel.setBounds(114, 1009, 543, 21);
+		gradientPanel.add(lblTheHighestLevel);
+		lblTheHighestLevel.setVerticalAlignment(SwingConstants.TOP);
+		lblTheHighestLevel.setHorizontalAlignment(SwingConstants.LEFT);
+		lblTheHighestLevel.setForeground(new Color(255, 255, 255));
+		lblTheHighestLevel.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 15));
 
 	}
 
-	private void countUpLabel1(final JLabel label) {
-		Timer timer = new Timer(100, new ActionListener() {
-			long currentValue = 0;
-			final long targetValue = 11; // 11M
-			DecimalFormat formatter = new DecimalFormat("#,###M");
-			float opacity = 0.0f; // Initial opacity
+	class ScrollBarCustom extends JScrollBar {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				currentValue += 1; // Increment by 1M
-				if (currentValue <= targetValue) {
-					label.setText(formatter.format(currentValue));
+		private static final long serialVersionUID = 1L;
 
-					opacity += 0.05f; // Adjust the step size for the fade-in effect
-					if (opacity > 1.0f) {
-						opacity = 1.0f;
-					}
-					label.setOpaque(true);
-					label.setBackground(label.getBackground());
-					label.setForeground(label.getForeground());
-
-					// Apply the opacity to the label
-					label.setOpaque(false);
-					label.repaint();
-					label.setForeground(label.getForeground());
-					label.setBackground(label.getBackground());
-				} else {
-					label.setText(formatter.format(targetValue));
-					((Timer) e.getSource()).stop();
-
-				}
-			}
-		});
-
-		label.setOpaque(false);
-
-		label.setVisible(true);
-		timer.start();
-	}
-
-	private void countUpLabel2(final JLabel label) {
-		Timer timer = new Timer(80, new ActionListener() {
-			int currentValue = 0;
-			final int targetValue = 900; // 1M
-			final int stepValue = 40; // 100K
-			DecimalFormat formatter = new DecimalFormat("#,###K");
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				currentValue += stepValue; // Increment by 100K
-				if (currentValue <= targetValue) {
-					label.setText(formatter.format(currentValue));
-				} else {
-					label.setText(formatter.format(targetValue));
-					((Timer) e.getSource()).stop();
-				}
-			}
-		});
-		label.setVisible(true);
-		timer.start();
+		public ScrollBarCustom() {
+			setUI(new ModernScrollBarUI());
+			setPreferredSize(new Dimension(8, 8));
+			setForeground(new Color(48, 144, 216));
+			setBackground(Color.WHITE);
+		}
 	}
 }

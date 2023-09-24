@@ -5,9 +5,6 @@ import java.awt.*;
 
 public class GradientPanel extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private Color startColor;
 	private Color endColor;
@@ -34,5 +31,3 @@ public class GradientPanel extends JPanel {
 		g2d.dispose();
 	}
 }
-
-

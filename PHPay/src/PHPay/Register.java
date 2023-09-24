@@ -3,53 +3,33 @@ package PHPay;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Insets;
 import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.awt.geom.RoundRectangle2D;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Pattern;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
-import javax.swing.UIDefaults;
-import javax.swing.UIManager;
-
-import java.awt.Insets;
-
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
-import javax.swing.plaf.basic.BasicComboBoxUI;
-import javax.swing.BorderFactory;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JRadioButton;
 
 public class Register extends JFrame {
 
@@ -70,17 +50,10 @@ public class Register extends JFrame {
 	boolean civilEdited = false;
 	public String selectedDay, selectedMonth, selectedYear, age;
 	private String fName, lName, ageStr, phone, address, saveM, saveD, saveY;
-	private int year, x, y;
-	private JLabel proceedButton;
+	private int x, y;
 	private JLabel dayLabel;
 	private JLabel monthLabel;
-	private JPanel blurPanel;
-	private JLabel logo;
 	private JComboBox<String> yearBox;
-	private static final int LONG_PRESS_DURATION = 1000;
-	private JProgressBar progressBar;
-	private Timer longPressTimer;
-	private AtomicBoolean longPressing = new AtomicBoolean(false);
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
 	private JLabel lblCreateAnAccount;
@@ -513,7 +486,7 @@ public class Register extends JFrame {
 				if (!phone.matches("^\\d{11}$")) {
 					phoneStatusLabel.setVisible(true);
 					phoneStatusLabel.setToolTipText("Invalid phone number");
-					phoneEdited = false; 
+					phoneEdited = false;
 				} else if (!phone.matches("^\\d{11}$")) {
 					phoneStatusLabel.setVisible(true);
 					phoneStatusLabel.setToolTipText("Invalid phone number");
@@ -709,8 +682,7 @@ public class Register extends JFrame {
 		dayBox.setBackground(new Color(27, 0, 53));
 		dayBox.setForeground(new Color(255, 255, 255));
 		dayBox.setMaximumRowCount(4);
-		dayBox.setSelectedIndex(currentDay-1);
-
+		dayBox.setSelectedIndex(currentDay - 1);
 
 		yearBox = new JComboBox<>(years);
 		yearBox.setBounds(627, 184, 124, 30);
@@ -852,7 +824,7 @@ public class Register extends JFrame {
 		lblPhoneNumber_1.setForeground(new Color(192, 192, 192));
 		lblPhoneNumber_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
 
-		civilBox = new RoundedComboBox(civil);
+		civilBox = new RoundedComboBox<String>(civil);
 		civilBox.setBounds(567, 118, 184, 30);
 		panel.add(civilBox);
 		civilBox.addPopupMenuListener(new PopupMenuListener() {
@@ -876,7 +848,8 @@ public class Register extends JFrame {
 			}
 		});
 		civilBox.setMaximumRowCount(4);
-		civilBox.setModel(new DefaultComboBoxModel(new String[] { "Single", "Married", "Widowed", "Divorced", " " }));
+		civilBox.setModel(
+				new DefaultComboBoxModel<String>(new String[] { "Single", "Married", "Widowed", "Divorced", " " }));
 		civilBox.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
 		civilBox.setForeground(new Color(255, 255, 255));
 		civilBox.setBackground(new Color(27, 0, 53));
@@ -889,7 +862,7 @@ public class Register extends JFrame {
 		lblCivilStatus.setForeground(new Color(192, 192, 192));
 		lblCivilStatus.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
 
-		genderBox = new RoundedComboBox(gender);
+		genderBox = new RoundedComboBox<String>(gender);
 		genderBox.setBounds(373, 118, 184, 30);
 		panel.add(genderBox);
 		genderBox.addPopupMenuListener(new PopupMenuListener() {
@@ -913,7 +886,7 @@ public class Register extends JFrame {
 			}
 		});
 		genderBox.setMaximumRowCount(3);
-		genderBox.setModel(new DefaultComboBoxModel(new String[] { "Male", "Female", "Other", " " }));
+		genderBox.setModel(new DefaultComboBoxModel<String>(new String[] { "Male", "Female", "Other", " " }));
 		genderBox.setForeground(new Color(255, 255, 255));
 		genderBox.setBackground(new Color(27, 0, 53));
 		genderBox.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));

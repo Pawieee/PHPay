@@ -2080,6 +2080,8 @@ public class Wallet extends JFrame {
 					final int xLogout = logoutButton.getX();
 					final int xDelete = deleteButton.getX();
 					int targetX = 536;
+					
+//					profileButton.setBounds(686, 0, 150, 40);
 
 					Timer timer = new Timer(10, new ActionListener() {
 						int updatedXProfile = xProfile;
@@ -2106,7 +2108,7 @@ public class Wallet extends JFrame {
 						}
 					});
 					timer.start();
-				} else { // add this else statement
+				} else { 
 					final int xProfile = profileButton.getX();
 					final int xLogout = logoutButton.getX();
 					final int xDelete = logoutButton.getX();
@@ -2193,6 +2195,10 @@ public class Wallet extends JFrame {
 		showBalance.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 42));
 		showBalance.setText(getBal);
 		termsAndconditions.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setBounds(258, 26, 46, 14);
+		mainPanel.add(lblNewLabel);
 
 	}
 

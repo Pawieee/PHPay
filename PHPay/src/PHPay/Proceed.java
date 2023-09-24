@@ -2,29 +2,24 @@ package PHPay;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.geom.RoundRectangle2D;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JTextField;
-import javax.swing.JPanel;
 import javax.swing.JLabel;
-import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class Proceed extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private static String message;
 
 	public Proceed(String message) {
-		this.message = message;
+		Proceed.message = message;
 		initialize();
 	}
 
