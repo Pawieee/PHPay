@@ -33,8 +33,13 @@ public class HelpPanel extends JPanel {
 	JLabel ma_label;
 	JLabel mw_label;
 	JLabel lands_label;
-	JLabel h1_1;
-	JLabel h12_1;
+	JLabel home1l;
+	JLabel home1t;
+	JLabel home2l;
+	JLabel home2t;
+	JLabel home3l;
+	JLabel home3t;
+
 
 
 
@@ -54,9 +59,8 @@ public class HelpPanel extends JPanel {
 		add(panel_1);
 		panel_1.setLayout(null);
 		
-	   
 		
-		 pandt_list = new JList();
+		pandt_list = new JList();
 		pandt_list.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 20));
 		pandt_list.setForeground(new Color(51, 0, 204));
 
@@ -70,11 +74,11 @@ public class HelpPanel extends JPanel {
 			}
 		});
 		pandt_list.setBounds(10, 52, 743, 280);
-		pandt_list.setVisible(false); // Initially, hide this list
+		pandt_list.setVisible(false); 
 
 		panel_1.add(pandt_list);
 		
-		 dal_list = new JList();
+	    dal_list = new JList();
 		dal_list.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 20));
 		dal_list.setForeground(new Color(51, 0, 204));
 		dal_list.setModel(new AbstractListModel() {
@@ -87,11 +91,11 @@ public class HelpPanel extends JPanel {
 			}
 		});
 		dal_list.setBounds(10, 52, 743, 280);
-		dal_list.setVisible(false); // Initially, hide this list
+		dal_list.setVisible(false); 
 
 		panel_1.add(dal_list);
 		
-		 ma_list = new JList();
+		ma_list = new JList();
 		ma_list.setModel(new AbstractListModel() {
 			String[] values = new String[] {"Profile and Settings", "", "Account Status", "", "PayPal Basics", "", "Policies", "", "Notifications", "", "Nonprofits and Donations", "", "Tax Information"};
 			public int getSize() {
@@ -104,11 +108,11 @@ public class HelpPanel extends JPanel {
 		ma_list.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 20));
 		ma_list.setBounds(10, 52, 743, 280);
 		ma_list.setForeground(new Color(51, 0, 204));
-		ma_list.setVisible(false); // Initially, hide this list
+		ma_list.setVisible(false); 
 
 		panel_1.add(ma_list);
 		
-		 mw_list = new JList();
+		mw_list = new JList();
 		mw_list.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 20));
 		mw_list.setModel(new AbstractListModel() {
 			String[] values = new String[] {"Bank Accounts", "", "Credit and Debit Cards", "", "Balance and Currencies", "", "Store Offers, Coupons, & Gift Cards\t"};
@@ -121,11 +125,11 @@ public class HelpPanel extends JPanel {
 		});
 		mw_list.setBounds(10, 52, 743, 280);
 		mw_list.setForeground(new Color(51, 0, 204));
-		mw_list.setVisible(false); // Initially, hide this list
+		mw_list.setVisible(false); 
 
 		panel_1.add(mw_list);
 		
-		 lands_list = new JList();
+		lands_list = new JList();
 		lands_list.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 20));
 		lands_list.setModel(new AbstractListModel() {
 			String[] values = new String[] {"Password & Login Issues", "", "Fraudulent Emails & Scams", "", "Security\t"};
@@ -142,166 +146,120 @@ public class HelpPanel extends JPanel {
 		
 		panel_1.add(lands_list);
 		
-		 home_label = new JLabel("Common Questions");
+		home_label = new JLabel("Common Questions");
 		home_label.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 22));
 		home_label.setBounds(10, 11, 251, 30);
 		home_label.setForeground(new Color(0, 0, 0));
-     //   home_label.setVisible(false); // Initially, hide this label
+    
 
 
 		panel_1.add(home_label);
 		
-		 pandt_label = new JLabel("Payments and Transfers");
+		pandt_label = new JLabel("Payments and Transfers");
 		pandt_label.setForeground(new Color(0, 0, 0));
 		pandt_label.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 22));
 		pandt_label.setBounds(10, 11, 251, 30);
 		panel_1.add(pandt_label);
-		pandt_label.setVisible(false); // Initially, hide this label
+		pandt_label.setVisible(false); 
 
 		
-		 dal_label = new JLabel("Disputes and Limitations\r\n");
+		dal_label = new JLabel("Disputes and Limitations\r\n");
 		dal_label.setForeground(new Color(0, 0, 0));
 		dal_label.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 22));
 		dal_label.setBounds(10, 11, 251, 30);
-		dal_label.setVisible(false); // Initially, hide this label
+		dal_label.setVisible(false); 
 
 		panel_1.add(dal_label);
 		
-		 ma_label = new JLabel("My Account\r\n");
+		ma_label = new JLabel("My Account\r\n");
 		ma_label.setForeground(new Color(0, 0, 0));
 		ma_label.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 22));
 		ma_label.setBounds(10, 11, 251, 30);
-		ma_label.setVisible(false); // Initially, hide this label
+		ma_label.setVisible(false); 
 
 		panel_1.add(ma_label);
 		
-		 mw_label = new JLabel("My Wallet");
+		mw_label = new JLabel("My Wallet");
 		mw_label.setForeground(new Color(0, 0, 0));
 		mw_label.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 22));
 		mw_label.setBounds(10, 11, 251, 30);
-		mw_label.setVisible(false); // Initially, hide this label
+		mw_label.setVisible(false); 
 
 		panel_1.add(mw_label);
 		
-		 lands_label = new JLabel("Login & Security");
+		lands_label = new JLabel("Login & Security");
 		lands_label.setForeground(new Color(0, 0, 0));
 		lands_label.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 22));
 		lands_label.setBounds(10, 11, 251, 30);
-		lands_label.setVisible(false); // Initially, hide this label
-
+		lands_label.setVisible(false);
 		panel_1.add(lands_label);
 		
-		h1_1 = new JLabel("<html><p style='font-size: 15px;'>How do I issue a refund?</p></html>");
-		h1_1.setBounds(10, 17, 259, 24);
-		panel_1.add(h1_1);
-		h1_1.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 15));
-		h1_1.setVisible(false); // Initially, hide this label
+		home1l = new JLabel("<html><p style='font-size: 15px;'>How do I issue a refund?</p></html>");
+		home1l.setBounds(10, 17, 259, 24);
+		panel_1.add(home1l);
+		home1l.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 15));
+		home1l.setVisible(false); 
 
 		
-		 h12_1 = new JLabel("<html><p style='font-size: 10px;'>Here's how to refund a payment:<br><br>1. Go to your Activity.<br>2. Select the payment you want to refund and click Issue a refund.<br>3. Enter the amount you want to refund.<br>4. Click Continue.<br>5. Review the information and click Issue Refund.<br><br>You can issue a full or partial refund within 180 days of the original payment date. Once you’ve sent a refund, you can’t cancel it.<br>For personal payments and payments made with a coupon or gift certificate, you can only issue a full refund. If you want to issue a partial refund, go to Send Money and create a new payment. Reference the original payment in the notes and send as a personal payment.<br><br>You won’t pay any fees to refund a payment for goods or services, but we won’t return the fees you originally paid as the seller.</html>");
-		h12_1.setBounds(10, 11, 845, 378);
-		panel_1.add(h12_1);
-		h12_1.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 9));
-		h12_1.setVisible(false); // Initially, hide this label
+		home1t = new JLabel("<html><p style='font-size: 10px;'>Here's how to refund a payment:<br><br>1. Go to your Activity.<br>2. Select the payment you want to refund and click Issue a refund.<br>3. Enter the amount you want to refund.<br>4. Click Continue.<br>5. Review the information and click Issue Refund.<br><br>You can issue a full or partial refund within 180 days of the original payment date. Once you’ve sent a refund, you can’t cancel it.<br>For personal payments and payments made with a coupon or gift certificate, you can only issue a full refund. If you want to issue a partial refund, go to Send Money and create a new payment. Reference the original payment in the notes and send as a personal payment.<br><br>You won’t pay any fees to refund a payment for goods or services, but we won’t return the fees you originally paid as the seller.</html>");
+		home1t.setBounds(10, 11, 846, 378);
+		panel_1.add(home1t);
+		home1t.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 9));
+		home1t.setVisible(false); 
+		
+	    home2l = new JLabel("<html><p style='font-size: 15px;'>How do I change my password and security questions?</p></html>");
+		home2l.setForeground(Color.BLACK);
+		home2l.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 22));
+		home2l.setBounds(10, 11, 645, 30);
+		home2l.setVisible(false); 
+
+		panel_1.add(home2l);
+		
+		home2t = new JLabel("<html>\r\n<p style='font-size: 10px;'><br>Here's how to change your password:<br><br>\r\n1. Go to your Settings.<br>\r\n2. Click the Security tab above your name.<br>\r\n3. Click Update next to \"Password.\"<br>\r\n4. Confirm your current password, enter your new password twice, and click Change Password.<br>\r\n<br>\r\nHere's how to change your security questions:\r\n<br><br>\r\n1. Go to your Settings.<br>\r\n2. Click the Security tab above your name.<br>\r\n3. Click Update under \"Security questions.\"<br>\r\n4. From the \"Security question 1\" and \"Security question 2\" dropdown menus, select a question and type its answer.<br>\r\n5. Click Save.<br><br>\r\nWe recommend you change your password and security questions from time to time.<br>\r\n</p>\r\n</html>\r\n");
+		home2t.setForeground(Color.BLACK);
+		home2t.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
+		home2t.setBounds(10, 11, 865, 378);
+		home2t.setVisible(false);
+		panel_1.add(home2t);
+		
+		home3l = new JLabel("<html><p style='font-size: 15px;'>How do I escalate a PHPAY dispute to a claim?\r\n</p></html>");
+		home3l.setForeground(Color.BLACK);
+		home3l.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 22));
+		home3l.setBounds(10, 11, 540, 30);
+		home3l.setVisible(false);
+
+		panel_1.add(home3l);
+		
+		home3t = new JLabel("<html>\r\n<p style='font-size: 10px;'>\r\n<br>\r\nIn a dispute, you can exchange messages with the other party in your Resolution Center to try to solve the problem.\r\n<br>\r\nIf you’re unable to settle the dispute, you can escalate it to a claim. To escalate a dispute, we often require that at least 7 days have passed since the payment date.<br>\r\n<br>\r\nBy escalating a dispute to a claim, you’re asking PayPal to investigate and decide the outcome. A dispute will automatically close after 20 days unless it’s been escalated. Closed disputes cannot be reopened or escalated to a claim.\r\n<br>\r\nHere's how to escalate a dispute:\r\n<br>\r\n1. Go to your Resolution Center.\r\n<br>2. Click View next to the dispute you want to escalate.\r\n3. Click Escalate to PayPal at the bottom of the page.<br>\r\n4. Add any relevant information for escalating the dispute and click Submit.<br>\r\n\r\n<br>The time it takes us to decide the outcome can vary. It depends on how quickly both parties respond to our inquiries and whether or not we need more information.\r\n<br>\r\nWe usually reach a decision within 14 days, but some cases can take 30 days or longer.\r\n</p><br>\r\n</html>");
+		home3t.setForeground(Color.BLACK);
+		home3t.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
+		home3t.setBounds(10, 11, 865, 378);
+		home3t.setVisible(false);
+
+		panel_1.add(home3t);
 
 
 		
-		 menu_list = new JList();
+		menu_list = new JList();
 		menu_list.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 25));
 		menu_list.setForeground(new Color(0, 0, 0));
 		menu_list.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (menu_list.getSelectedValue().equals("Home")) {
-                    home_label.setVisible(true);
-                    pandt_label.setVisible(false);
-                    dal_label.setVisible(false);
-                    ma_label.setVisible(false);
-                    mw_label.setVisible(false);
-                    lands_label.setVisible(false);
-                    h1_1.setVisible(false);
-                    h12_1.setVisible(false);
-
-                    
-
-                    
-                    home_list.setVisible(true);
-                    pandt_list.setVisible(false);
-                    dal_list.setVisible(false);
-                    ma_list.setVisible(false);
-                    mw_list.setVisible(false);
-                    lands_list.setVisible(false);
-                    
+                 showHome();
+                 
                 } else if (menu_list.getSelectedValue().equals("Payments and Transfers")) {
-                	home_label.setVisible(false);
-                    pandt_label.setVisible(true);
-                    dal_label.setVisible(false);
-                    ma_label.setVisible(false);
-                    mw_label.setVisible(false);
-                    lands_label.setVisible(false);
-                    
-                    home_list.setVisible(false);
-                     pandt_list.setVisible(true);
-                     dal_list.setVisible(false);
-                     ma_list.setVisible(false);
-                     mw_list.setVisible(false);
-                     lands_list.setVisible(false);
+                showPandt();
                 } else if (menu_list.getSelectedValue().equals("Disputes and Limitations")) {
-                	home_label.setVisible(false);
-                    pandt_label.setVisible(false);
-                    dal_label.setVisible(true);
-                    ma_label.setVisible(false);
-                    mw_label.setVisible(false);
-                    lands_label.setVisible(false);
-                    
-                    home_list.setVisible(false);
-                 pandt_list.setVisible(false);
-                 dal_list.setVisible(true);
-                 ma_list.setVisible(false);
-                 mw_list.setVisible(false);
-                 lands_list.setVisible(false);
-            } else if (menu_list.getSelectedValue().equals("My Account")) {
-            	home_label.setVisible(false);
-                pandt_label.setVisible(false);
-                dal_label.setVisible(false);
-                ma_label.setVisible(true);
-                mw_label.setVisible(false);
-                lands_label.setVisible(false);
-                
-              	 home_list.setVisible(false);
-                pandt_list.setVisible(false);
-                dal_list.setVisible(false);
-                ma_list.setVisible(true);
-                mw_list.setVisible(false);
-                lands_list.setVisible(false);
-           } else if (menu_list.getSelectedValue().equals("My Wallet")) {
-        	   home_label.setVisible(false);
-               pandt_label.setVisible(false);
-               dal_label.setVisible(false);
-               ma_label.setVisible(false);
-               mw_label.setVisible(true);
-               lands_label.setVisible(false);
-               
-             	 home_list.setVisible(false);
-               pandt_list.setVisible(false);
-               dal_list.setVisible(false);
-               ma_list.setVisible(false);
-               mw_list.setVisible(true);
-               lands_list.setVisible(false);
-          } else if (menu_list.getSelectedValue().equals("Login & Security")) {
-        	  home_label.setVisible(false);
-              pandt_label.setVisible(false);
-              dal_label.setVisible(false);
-              ma_label.setVisible(false);
-              mw_label.setVisible(false);
-              lands_label.setVisible(true);
-              
-          	 home_list.setVisible(false);
-            pandt_list.setVisible(false);
-            dal_list.setVisible(false);
-            ma_list.setVisible(false);
-            mw_list.setVisible(false);
-            lands_list.setVisible(true);
+                	showDal();
+                } else if (menu_list.getSelectedValue().equals("My Account")) {
+            	showMa();
+                } else if (menu_list.getSelectedValue().equals("My Wallet")) {
+        	   showMw();
+                } else if (menu_list.getSelectedValue().equals("Login & Security")) {
+        	  showLands();
+        	  
        } 
         
             }
@@ -329,11 +287,11 @@ public class HelpPanel extends JPanel {
 			home_list.setForeground(new Color(51, 0, 204));
 		
 
-	      //  home_list.setVisible(false); // Initially, hide this list
+	    
 
 			home_list.setBounds(10, 52, 743, 280);
 			home_list.setModel(new AbstractListModel() {
-				String[] values = new String[] {"How do I issue a refund?", "", "How do I escalate a PHPAY dispute to a claim?", "", "Why is the payment I sent pending or unclaimed? Can I cancel it?", "", "How can I release my payment(s) on hold?", "", "How do I add and confirm, change or remove a phone number on my PHPAY account?", "", "How do I remove a limitation from my account?", "", "How do I add money to my PHPAY account from my bank?", "", "I forgot my password. How do I reset it?", "", "How do I open a dispute with a seller?"};
+				String[] values = new String[] {"How do I issue a refund?", "", "How do I change my password and security questions?", "", "How do I escalate a PHPAY dispute to a claim?", "", "Why is the payment I sent pending or unclaimed? Can I cancel it?", "", "How can I release my payment(s) on hold?", "", "How do I add and confirm, change or remove a phone number on my PHPAY account?", "", "How do I remove a limitation from my account?", "", "How do I add money to my PHPAY account from my bank?", "", "I forgot my password. How do I reset it?"};
 				public int getSize() {
 					return values.length;
 				}
@@ -345,15 +303,25 @@ public class HelpPanel extends JPanel {
 			    @Override
 			    public void mouseClicked(MouseEvent e) {
 			        if (home_list.getSelectedValue().equals("How do I issue a refund?")) {
-			            // Show the items related to issuing a refund
-			            showRefundItems();
-			        } else {
-			            // Hide the items related to issuing a refund
-			            hideRefundItems();
+			            
+			        	showh1();
+			        	
+			        } else if (home_list.getSelectedValue().equals("How do I change my password and security questions?")) {
+			        	showh2();
+			        } else if (home_list.getSelectedValue().equals("How do I escalate a PHPAY dispute to a claim?")) {
+			        	showh2();
 			        }
+			        
+			        
+			        
+			        	
 			    }
 			});
 			panel_1.add(home_list);
+			
+		
+			
+		
 		
 		
 	    lblNewLabel_1_1 = new JLabel("How can we help you?");
@@ -493,62 +461,184 @@ public class HelpPanel extends JPanel {
 		lblNewLabel_3.setBounds(71, 547, 46, 51);
 		add(lblNewLabel_3);
 	}
-		 private void toggleListVisibility() {
-		        // Toggle the visibility of the "Home" and "Payments and Transfers" lists
-		        home_list.setVisible(!home_list.isVisible());
-		        pandt_list.setVisible(!pandt_list.isVisible());
-		        dal_list.setVisible(!dal_list.isVisible());
-		        ma_list.setVisible(!ma_list.isVisible());
-		        mw_list.setVisible(!mw_list.isVisible());
-		        lands_list.setVisible(!lands_list.isVisible());
-		        home_label.setVisible(!home_label.isVisible());
-		        pandt_label.setVisible(!pandt_label.isVisible());
-		        dal_label.setVisible(!dal_label.isVisible());
-		        ma_label.setVisible(!ma_label.isVisible());
-		        mw_label.setVisible(!mw_label.isVisible());
-		        lands_label.setVisible(!lands_label.isVisible());
-		        h1_1.setVisible(!h1_1.isVisible());
-		        h12_1.setVisible(!h12_1.isVisible());
 
-		        
+		 private void showHome() {
+			   home_label.setVisible(true);
+               pandt_label.setVisible(false);
+               dal_label.setVisible(false);
+               ma_label.setVisible(false);
+               mw_label.setVisible(false);
+               lands_label.setVisible(false);
+               home_list.setVisible(true);
+               pandt_list.setVisible(false);
+               dal_list.setVisible(false);
+               ma_list.setVisible(false);
+               mw_list.setVisible(false);
+               lands_list.setVisible(false);
+               home1l.setVisible(false);
+               home1t.setVisible(false);
+               home2l.setVisible(false);
+   		    home2t.setVisible(false);
+   		  home3l.setVisible(false);
+		    home3t.setVisible(false);
+		    
+		 }
+		 private void showPandt() {
+				home_label.setVisible(false);
+                pandt_label.setVisible(true);
+                dal_label.setVisible(false);
+                ma_label.setVisible(false);
+                mw_label.setVisible(false);
+                lands_label.setVisible(false);
+                home_list.setVisible(false);
+                 pandt_list.setVisible(true);
+                 dal_list.setVisible(false);
+                 ma_list.setVisible(false);
+                 mw_list.setVisible(false);
+                 lands_list.setVisible(false);
+                 home1l.setVisible(false);
+                 home1t.setVisible(false);
+                 home2l.setVisible(false);
+     		    home2t.setVisible(false);
+     		   home3l.setVisible(false);
+   		    home3t.setVisible(false);
+		 }
+		 private void showDal() {
+			 home_label.setVisible(false);
+             pandt_label.setVisible(false);
+             dal_label.setVisible(true);
+             ma_label.setVisible(false);
+             mw_label.setVisible(false);
+             lands_label.setVisible(false);
+             home_list.setVisible(false);
+          pandt_list.setVisible(false);
+          dal_list.setVisible(true);
+          ma_list.setVisible(false);
+          mw_list.setVisible(false);
+          lands_list.setVisible(false);
+          home1l.setVisible(false);
+          home1t.setVisible(false);
+          home2l.setVisible(false);
+		    home2t.setVisible(false);
+		    home3l.setVisible(false);
+		    home3t.setVisible(false);
+          
+		 }
+		 private void showMa() {
+				home_label.setVisible(false);
+                pandt_label.setVisible(false);
+                dal_label.setVisible(false);
+                ma_label.setVisible(true);
+                mw_label.setVisible(false);
+                lands_label.setVisible(false);
+              	 home_list.setVisible(false);
+                pandt_list.setVisible(false);
+                dal_list.setVisible(false);
+                ma_list.setVisible(true);
+                mw_list.setVisible(false);
+                lands_list.setVisible(false);
+                home1l.setVisible(false);
+                home1t.setVisible(false);
+                home2l.setVisible(false);
+    		    home2t.setVisible(false);
+    		    home3l.setVisible(false);
+    		    home3t.setVisible(false);
+			 
+		 }
+		 private void showMw() {
+			 home_label.setVisible(false);
+             pandt_label.setVisible(false);
+             dal_label.setVisible(false);
+             ma_label.setVisible(false);
+             mw_label.setVisible(true);
+             lands_label.setVisible(false);
+           	 home_list.setVisible(false);
+             pandt_list.setVisible(false);
+             dal_list.setVisible(false);
+             ma_list.setVisible(false);
+             mw_list.setVisible(true);
+             lands_list.setVisible(false);
+             home1l.setVisible(false);
+             home1t.setVisible(false);
+             home2l.setVisible(false);
+ 		    home2t.setVisible(false);
+ 		   home3l.setVisible(false);
+		    home3t.setVisible(false);
+		 }
+		 private void showLands() {
+			 home_label.setVisible(false);
+             pandt_label.setVisible(false);
+             dal_label.setVisible(false);
+             ma_label.setVisible(false);
+             mw_label.setVisible(false);
+             lands_label.setVisible(true);
+         	 home_list.setVisible(false);
+           pandt_list.setVisible(false);
+           dal_list.setVisible(false);
+           ma_list.setVisible(false);
+           mw_list.setVisible(false);
+           lands_list.setVisible(true);
+           home1l.setVisible(false);
+           home1t.setVisible(false);
+           home2l.setVisible(false);
+		    home2t.setVisible(false);
+		    home3l.setVisible(false);
+		    home3t.setVisible(false);
 
-
-		    }
-		 private void showRefundItems() {
+			 
+		 }
+		 
+		 private void showh1() {
 			    home_label.setVisible(false);
 			    pandt_label.setVisible(false);
 			    dal_label.setVisible(false);
 			    ma_label.setVisible(false);
 			    mw_label.setVisible(false);
 			    lands_label.setVisible(false);
-			    
 			    home_list.setVisible(false);
 			    pandt_list.setVisible(false);
 			    dal_list.setVisible(false);
 			    ma_list.setVisible(false);
 			    mw_list.setVisible(false);
 			    lands_list.setVisible(false);
-			    
-			    h1_1.setVisible(true);
-			    h12_1.setVisible(true);
+			    home1l.setVisible(true);
+			    home1t.setVisible(true);
 			}
-
-			private void hideRefundItems() {
-			    home_label.setVisible(true);
+		 private void showh2() {
+			    home_label.setVisible(false);
 			    pandt_label.setVisible(false);
 			    dal_label.setVisible(false);
 			    ma_label.setVisible(false);
 			    mw_label.setVisible(false);
 			    lands_label.setVisible(false);
-			    
-			    home_list.setVisible(true);
+			    home_list.setVisible(false);
 			    pandt_list.setVisible(false);
 			    dal_list.setVisible(false);
 			    ma_list.setVisible(false);
 			    mw_list.setVisible(false);
 			    lands_list.setVisible(false);
-			    
-			    h1_1.setVisible(false);
-			    h12_1.setVisible(false);
+			    home2l.setVisible(true);
+			    home2t.setVisible(true);
 			}
+		 private void showh3() {
+			    home_label.setVisible(false);
+			    pandt_label.setVisible(false);
+			    dal_label.setVisible(false);
+			    ma_label.setVisible(false);
+			    mw_label.setVisible(false);
+			    lands_label.setVisible(false);
+			    home_list.setVisible(false);
+			    pandt_list.setVisible(false);
+			    dal_list.setVisible(false);
+			    ma_list.setVisible(false);
+			    mw_list.setVisible(false);
+			    lands_list.setVisible(false);
+			    home3l.setVisible(true);
+			    home3t.setVisible(true);
+			}
+
+
+
+
+		
 }
