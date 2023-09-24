@@ -75,7 +75,7 @@ public class HelpPanel extends JPanel {
 		pandt_list.setForeground(new Color(51, 0, 204));
 
 		pandt_list.setModel(new AbstractListModel() {
-			String[] values = new String[] {"Canceling a Payment", "", "Payment Holds", "", "Refunds", "", "Transfers", "", "Sending Money", "", "Receiving Money", "", "Fees\t"};
+			String[] values = new String[] {"Can I cancel a withdrawal from my PayPal account?", "", "How can I release my payment(s) on hold?", "", "How do I get a refund?", "", "How do I add money to my PHPAY account from my bank?", "", "What‘s the maximum amount I can send with my PHPAY account?", "", "How do I receive money through PHPAY?", "", "What are the fees for PHPAY accounts?"};
 			public int getSize() {
 				return values.length;
 			}
@@ -92,7 +92,7 @@ public class HelpPanel extends JPanel {
 		dal_list.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 20));
 		dal_list.setForeground(new Color(51, 0, 204));
 		dal_list.setModel(new AbstractListModel() {
-			String[] values = new String[] {"Disputes and Claims", "", "Account Limitations", "", "Unauthorized Transactions"};
+			String[] values = new String[] {"What should I do if I didn't receive all my items or if one or more were late?", "", "How do I remove a limitation from my account?", "", "What should I do if I think there has been unauthorized access to my PayPal data?"};
 			public int getSize() {
 				return values.length;
 			}
@@ -107,7 +107,7 @@ public class HelpPanel extends JPanel {
 		
 		ma_list = new JList();
 		ma_list.setModel(new AbstractListModel() {
-			String[] values = new String[] {"Profile and Settings", "", "Account Status", "", "PayPal Basics", "", "Policies", "", "Notifications", "", "Nonprofits and Donations", "", "Tax Information"};
+			String[] values = new String[] {"How do I view or edit my account information?", "", "How do I check the status of my payment?", "", "How do I verify my PayPal account?", "", "Does PayPal cover my purchase if there's a problem?", ""};
 			public int getSize() {
 				return values.length;
 			}
@@ -125,7 +125,7 @@ public class HelpPanel extends JPanel {
 		mw_list = new JList();
 		mw_list.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 20));
 		mw_list.setModel(new AbstractListModel() {
-			String[] values = new String[] {"Bank Accounts", "", "Credit and Debit Cards", "", "Balance and Currencies", "", "Store Offers, Coupons, & Gift Cards\t"};
+			String[] values = new String[] {"How do I link a bank account to my PayPal account?", "", "How do I link a debit or credit card to my PayPal account?", "", "How do I add money to my PayPal account from my bank?", ""};
 			public int getSize() {
 				return values.length;
 			}
@@ -142,7 +142,7 @@ public class HelpPanel extends JPanel {
 		lands_list = new JList();
 		lands_list.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 20));
 		lands_list.setModel(new AbstractListModel() {
-			String[] values = new String[] {"Password & Login Issues", "", "Fraudulent Emails & Scams", "", "Security\t"};
+			String[] values = new String[] {"I forgot my password. How do I reset it?", "", "How do I report potential fraud, spoof or unauthorized transactions to PayPal?", "", "How can I access my personal data?"};
 			public int getSize() {
 				return values.length;
 			}
