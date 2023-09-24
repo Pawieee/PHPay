@@ -11,7 +11,6 @@ import javax.swing.SwingConstants;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
 import java.awt.Panel;
-import javax.swing.ImageIcon;
 
 public class HelpPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
