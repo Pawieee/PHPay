@@ -39,6 +39,10 @@ public class HelpPanel extends JPanel {
 	JLabel home2t;
 	JLabel home3l;
 	JLabel home3t;
+	JLabel home4l;
+	JLabel home4t;
+	JLabel home5l;
+	JLabel home5t;
 
 
 
@@ -202,7 +206,7 @@ public class HelpPanel extends JPanel {
 
 		
 		home1t = new JLabel("<html><p style='font-size: 10px;'>Here's how to refund a payment:<br><br>1. Go to your Activity.<br>2. Select the payment you want to refund and click Issue a refund.<br>3. Enter the amount you want to refund.<br>4. Click Continue.<br>5. Review the information and click Issue Refund.<br><br>You can issue a full or partial refund within 180 days of the original payment date. Once you’ve sent a refund, you can’t cancel it.<br>For personal payments and payments made with a coupon or gift certificate, you can only issue a full refund. If you want to issue a partial refund, go to Send Money and create a new payment. Reference the original payment in the notes and send as a personal payment.<br><br>You won’t pay any fees to refund a payment for goods or services, but we won’t return the fees you originally paid as the seller.</html>");
-		home1t.setBounds(10, 11, 846, 378);
+		home1t.setBounds(20, 11, 846, 378);
 		panel_1.add(home1t);
 		home1t.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 9));
 		home1t.setVisible(false); 
@@ -237,6 +241,39 @@ public class HelpPanel extends JPanel {
 		home3t.setVisible(false);
 
 		panel_1.add(home3t);
+		
+		home4l = new JLabel("<html><p style='font-size: 15px;'>Why is the payment I sent pending or unclaimed? Can I cancel it?\r\n</p></html>");
+		home4l.setForeground(Color.BLACK);
+		home4l.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 22));
+		home4l.setBounds(10, 11, 835, 30);
+		home4l.setVisible(false);
+
+		panel_1.add(home4l);
+		
+		home4t = new JLabel("<html>\r\n<p style='font-size: 9px;'><br>\r\nIf a payment you sent is pending or unclaimed, it means the recipient hasn’t received or hasn’t accepted the payment yet.<br><br>\r\n\r\nThe payment would be pending or unclaimed if it was sent to an email address or phone number that isn’t registered to a verified PayPal account. Check that you sent the payment to the correct email address or phone number. Or the recipient may need to set up a PayPal account or verify their account for the payment to complete. You have the option to cancel the payment.<br><br>\r\n\r\nTo cancel an unclaimed payment on the web:<br><br>\r\n\r\n1. Go to Activity.<br>\r\n2. Click Cancel under the payment in question.<br>\r\n3. Follow the steps to cancel the payment.<br>\r\n\r\n<br><br>\r\nThe payment would be pending or unclaimed if the recipient has opted not to automatically accept certain payments. These could be payments not in their preferred currency, or from buyers with unconfirmed addresses. You won't have the option to cancel the payment yourself. The recipient needs to accept or deny the payment within 30 days.\r\n<br><br>\r\nWe automatically cancel pending or unclaimed payments after 30 days and send the money back to the original payment method. Refunds to bank accounts may take up to 5 business days, while refunds to credit or debit cards may take up to 30 days.<br>\r\n</p>\r\n</html>\r\n");
+		home4t.setForeground(Color.BLACK);
+		home4t.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
+		home4t.setBounds(10, 11, 865, 378);
+		home4t.setVisible(false);
+
+		panel_1.add(home4t);
+		
+		home5l = new JLabel("<html><p style='font-size: 15px;'>How can I release my payment(s) on hold?\r\n</p></html>");
+		home5l.setForeground(Color.BLACK);
+		home5l.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 22));
+		home5l.setBounds(10, 11, 462, 30);
+		home5l.setVisible(false);
+
+		panel_1.add(home5l);
+		
+		home5t = new JLabel("<html>\r\n<p style='font-size: 9px;'><br>\r\nLog in to your account to see if you can help release your payments on hold. If you don’t have this option, we’ll hold your payment for up to 21 days.<br><br>\r\n\r\nYou may be able to release eligible payments by following one of the below steps:<br><br>\r\n\r\n1. Add Tracking: Use one of our approved shipping carriers, and we’ll release the hold approximately 24 hours after the courier confirms delivery to the buyer’s address.<br>\r\n2. Update the order status if the held payment is for a service or intangible item (e.g., piano lessons, e-book). We'll release the hold 7 days after you confirm the order status as Completed.<br><br>\r\n\r\nIn rare cases, after these steps are completed, we may need to hold the payment for up to 21 days. For example, this can happen if we notice an unusual change in your selling patterns.<br><br>\r\n\r\nTo add tracking information or update an order status:<br><br>\r\n\r\n1. Go to your Activity.<br>\r\n2. Find the purchase you want to update and click Get your money. If you sold a product, choose “Product” to add tracking information or print a shipping label. If you sold an intangible item or service, choose “Service or virtual product” to update the order status. You can update the order status to Completed, Pending, or Canceled.<br>\r\n3. Click Submit.<br>\r\n</p>\r\n</html>");
+		home5t.setForeground(Color.BLACK);
+		home5t.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
+		home5t.setBounds(10, 11, 865, 378);
+		home5t.setVisible(false);
+
+		panel_1.add(home5t);
+		
 
 
 		
@@ -291,7 +328,7 @@ public class HelpPanel extends JPanel {
 
 			home_list.setBounds(10, 52, 743, 280);
 			home_list.setModel(new AbstractListModel() {
-				String[] values = new String[] {"How do I issue a refund?", "", "How do I change my password and security questions?", "", "How do I escalate a PHPAY dispute to a claim?", "", "Why is the payment I sent pending or unclaimed? Can I cancel it?", "", "How can I release my payment(s) on hold?", "", "How do I add and confirm, change or remove a phone number on my PHPAY account?", "", "How do I remove a limitation from my account?", "", "How do I add money to my PHPAY account from my bank?", "", "I forgot my password. How do I reset it?"};
+				String[] values = new String[] {"How do I issue a refund?", "", "How do I change my password and security questions?", "", "How do I escalate a PHPAY dispute to a claim?", "", "Why is the payment I sent pending or unclaimed? Can I cancel it?", "", "How can I release my payment(s) on hold?", "", "How do I remove a limitation from my account?", "", "How do I add money to my PHPAY account from my bank?", "", "I forgot my password. How do I reset it?"};
 				public int getSize() {
 					return values.length;
 				}
@@ -310,6 +347,10 @@ public class HelpPanel extends JPanel {
 			        	showh2();
 			        } else if (home_list.getSelectedValue().equals("How do I escalate a PHPAY dispute to a claim?")) {
 			        	showh3();
+			        } else if (home_list.getSelectedValue().equals("Why is the payment I sent pending or unclaimed? Can I cancel it?")) {
+			        	showh4();
+			        } else if (home_list.getSelectedValue().equals("How can I release my payment(s) on hold?")) {
+			        	showh5();
 			        }
 			        
 			        
@@ -321,9 +362,6 @@ public class HelpPanel extends JPanel {
 			
 		
 			
-		
-		
-		
 	    lblNewLabel_1_1 = new JLabel("How can we help you?");
 		lblNewLabel_1_1.setBounds(196, 61, 347, 39);
 		panel.add(lblNewLabel_1_1);
@@ -481,6 +519,10 @@ public class HelpPanel extends JPanel {
    		    home2t.setVisible(false);
    		  home3l.setVisible(false);
 		    home3t.setVisible(false);
+		    home4l.setVisible(false);
+		    home4t.setVisible(false);
+		    home5l.setVisible(false);
+		    home5t.setVisible(false);
 		    
 		 }
 		 private void showPandt() {
@@ -502,6 +544,11 @@ public class HelpPanel extends JPanel {
      		    home2t.setVisible(false);
      		   home3l.setVisible(false);
    		    home3t.setVisible(false);
+   		   home4l.setVisible(false);
+		    home4t.setVisible(false);
+		    home5l.setVisible(false);
+		    home5t.setVisible(false);
+		    
 		 }
 		 private void showDal() {
 			 home_label.setVisible(false);
@@ -522,7 +569,11 @@ public class HelpPanel extends JPanel {
 		    home2t.setVisible(false);
 		    home3l.setVisible(false);
 		    home3t.setVisible(false);
-          
+		    home4l.setVisible(false);
+		    home4t.setVisible(false);
+		    home5l.setVisible(false);
+		    home5t.setVisible(false);
+		    
 		 }
 		 private void showMa() {
 				home_label.setVisible(false);
@@ -542,7 +593,11 @@ public class HelpPanel extends JPanel {
                 home2l.setVisible(false);
     		    home2t.setVisible(false);
     		    home3l.setVisible(false);
-    		    home3t.setVisible(false);
+    		    home3t.setVisible(false);  
+    		    home4l.setVisible(false);
+    		    home4t.setVisible(false);
+    		    home5l.setVisible(false);
+    		    home5t.setVisible(false);
 			 
 		 }
 		 private void showMw() {
@@ -564,6 +619,11 @@ public class HelpPanel extends JPanel {
  		    home2t.setVisible(false);
  		   home3l.setVisible(false);
 		    home3t.setVisible(false);
+		    home4l.setVisible(false);
+		    home4t.setVisible(false);
+		    home5l.setVisible(false);
+		    home5t.setVisible(false);
+		    
 		 }
 		 private void showLands() {
 			 home_label.setVisible(false);
@@ -584,6 +644,12 @@ public class HelpPanel extends JPanel {
 		    home2t.setVisible(false);
 		    home3l.setVisible(false);
 		    home3t.setVisible(false);
+		    home4l.setVisible(false);
+		    home4t.setVisible(false);
+		    home4l.setVisible(false);
+		    home4t.setVisible(false);
+		    home5l.setVisible(false);
+		    home5t.setVisible(false);
 
 			 
 		 }
@@ -636,6 +702,40 @@ public class HelpPanel extends JPanel {
 			    home3l.setVisible(true);
 			    home3t.setVisible(true);
 			}
+		 
+		 private void showh4() {
+			    home_label.setVisible(false);
+			    pandt_label.setVisible(false);
+			    dal_label.setVisible(false);
+			    ma_label.setVisible(false);
+			    mw_label.setVisible(false);
+			    lands_label.setVisible(false);
+			    home_list.setVisible(false);
+			    pandt_list.setVisible(false);
+			    dal_list.setVisible(false);
+			    ma_list.setVisible(false);
+			    mw_list.setVisible(false);
+			    lands_list.setVisible(false);
+			    home4l.setVisible(true);
+			    home4t.setVisible(true);
+			}
+		 private void showh5() {
+			    home_label.setVisible(false);
+			    pandt_label.setVisible(false);
+			    dal_label.setVisible(false);
+			    ma_label.setVisible(false);
+			    mw_label.setVisible(false);
+			    lands_label.setVisible(false);
+			    home_list.setVisible(false);
+			    pandt_list.setVisible(false);
+			    dal_list.setVisible(false);
+			    ma_list.setVisible(false);
+			    mw_list.setVisible(false);
+			    lands_list.setVisible(false);
+			    home5l.setVisible(true);
+			    home5t.setVisible(true);
+			}
+
 
 
 
