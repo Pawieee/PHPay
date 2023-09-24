@@ -480,6 +480,7 @@ public class Welcome extends JFrame {
 					passField.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 17));
 
 				} else {
+					userField.setForeground(Color.WHITE);
 					passField.setForeground(Color.WHITE);
 				}
 			}
@@ -506,6 +507,7 @@ public class Welcome extends JFrame {
 					
 				} else {
 					userField.setForeground(Color.WHITE);
+					passField.setForeground(Color.WHITE);
 				}
 			}
 
