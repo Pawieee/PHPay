@@ -230,7 +230,7 @@ public class HelpPanel extends JPanel {
 
 		panel_1.add(home3l);
 		
-		home3t = new JLabel("<html>\r\n<p style='font-size: 10px;'>\r\n<br>\r\nIn a dispute, you can exchange messages with the other party in your Resolution Center to try to solve the problem.\r\n<br>\r\nIf you’re unable to settle the dispute, you can escalate it to a claim. To escalate a dispute, we often require that at least 7 days have passed since the payment date.<br>\r\n<br>\r\nBy escalating a dispute to a claim, you’re asking PayPal to investigate and decide the outcome. A dispute will automatically close after 20 days unless it’s been escalated. Closed disputes cannot be reopened or escalated to a claim.\r\n<br>\r\nHere's how to escalate a dispute:\r\n<br>\r\n1. Go to your Resolution Center.\r\n<br>2. Click View next to the dispute you want to escalate.\r\n3. Click Escalate to PayPal at the bottom of the page.<br>\r\n4. Add any relevant information for escalating the dispute and click Submit.<br>\r\n\r\n<br>The time it takes us to decide the outcome can vary. It depends on how quickly both parties respond to our inquiries and whether or not we need more information.\r\n<br>\r\nWe usually reach a decision within 14 days, but some cases can take 30 days or longer.\r\n</p><br>\r\n</html>");
+		home3t = new JLabel("<html>\r\n<p style='font-size: 10px;'>\r\n<br><br><br>\r\n\r\nIn a dispute, you can exchange messages with the other party in your Resolution Center to try to solve the problem.\r\n<br>\r\nIf you’re unable to settle the dispute, you can escalate it to a claim. To escalate a dispute, we often require that at least 7 days have passed since the payment date.<br>\r\n<br>\r\nBy escalating a dispute to a claim, you’re asking PayPal to investigate and decide the outcome. A dispute will automatically close after 20 days unless it’s been escalated. Closed disputes cannot be reopened or escalated to a claim.\r\n<br><br>\r\nHere's how to escalate a dispute:\r\n<br><br>\r\n1. Go to your Resolution Center.\r\n<br>2. Click View next to the dispute you want to escalate.\r\n<br>\r\n3. Click Escalate to PayPal at the bottom of the page.<br>\r\n4. Add any relevant information for escalating the dispute and click Submit.<br>\r\n\r\n<br>The time it takes us to decide the outcome can vary. It depends on how quickly both parties respond to our inquiries and whether or not we need more information.\r\n<br><br>\r\nWe usually reach a decision within 14 days, but some cases can take 30 days or longer.\r\n</p><br>\r\n</html>");
 		home3t.setForeground(Color.BLACK);
 		home3t.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
 		home3t.setBounds(10, 11, 865, 378);
@@ -309,7 +309,7 @@ public class HelpPanel extends JPanel {
 			        } else if (home_list.getSelectedValue().equals("How do I change my password and security questions?")) {
 			        	showh2();
 			        } else if (home_list.getSelectedValue().equals("How do I escalate a PHPAY dispute to a claim?")) {
-			        	showh2();
+			        	showh3();
 			        }
 			        
 			        
