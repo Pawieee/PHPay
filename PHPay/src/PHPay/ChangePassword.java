@@ -23,8 +23,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.font.TextAttribute;
 import java.awt.geom.RoundRectangle2D;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 
@@ -237,30 +242,35 @@ public class ChangePassword extends JFrame {
 				@SuppressWarnings("deprecation")
 				String confirmPass = confirmPasswordField.getText();
 
-				if (newPass.equals(confirmPass)) {
-
-					if (isValidPass(newPass)) {
-						String newPassHash = AccountVerify.passwordHash(confirmPass);
-						SQLQuery.updatePass(newPassHash, username);
-
-						blurPanel.setVisible(true);
-						Proceed successful = new Proceed("Password changed successfully");
-						successful.setVisible(true);
-
-						Timer timer = new Timer(4000, new ActionListener() {
-							@Override
-							public void actionPerformed(ActionEvent e) {
-								dispose();
-							}
-						});
-						timer.setRepeats(false);
-						timer.start();
-
+				if (!AccountVerify.passwordHash(confirmPass).equals(getPassHash(username))) {
+					
+					if (newPass.equals(confirmPass)) {
+						
+						if (isValidPass(newPass)) {
+							String newPassHash = AccountVerify.passwordHash(confirmPass);
+							SQLQuery.updatePass(newPassHash, username);
+							
+							blurPanel.setVisible(true);
+							Proceed successful = new Proceed("Password changed successfully");
+							successful.setVisible(true);
+							
+							Timer timer = new Timer(4000, new ActionListener() {
+								@Override
+								public void actionPerformed(ActionEvent e) {
+									dispose();
+								}
+							});
+							timer.setRepeats(false);
+							timer.start();
+							
+						} else {
+							lblReq.setForeground(Color.RED);
+						}
 					} else {
-						lblReq.setForeground(Color.RED);
+						lblMatch.setVisible(true);
 					}
 				} else {
-					lblMatch.setVisible(true);
+					lblReq.setForeground(Color.RED);
 				}
 
 			}
@@ -372,6 +382,25 @@ public class ChangePassword extends JFrame {
 		} else {
 			return false;
 		}
+	}
+	
+	public static String getPassHash(String ID) {
+		SQLConnection newCon = new SQLConnection();
+		String query = "SELECT `hashed_pass` FROM `users` WHERE username = ?";
+		String hash = "";
+		try {
+			PreparedStatement pst = newCon.getCon().prepareStatement(query);
+			pst.setString(1, ID);
+			ResultSet rs = pst.executeQuery();
+
+			if (rs.next()) {
+				hash = rs.getString("hashed_pass");
+			}
+
+		} catch (SQLException ex) {
+			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return hash;
 	}
 
 }

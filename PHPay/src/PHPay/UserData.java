@@ -40,20 +40,22 @@ public class UserData {
 			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		
-		String query2 = "INSERT INTO `user_profile`(`user_id`, `fName`, `lName`, `age`, `bMonth`, `bDay`, `bYear`, `phoneNum`, `address`, `email`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String query2 = "INSERT INTO `user_profile`(`user_id`, `fName`, `lName`, `gender`,`age`,`civil`, `bMonth`, `bDay`, `bYear`, `phoneNum`, `address`, `email`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try {
 			PreparedStatement pst = this.con.getCon().prepareStatement(query2);
 			pst.setString(1, this.userID);
 			pst.setString(2, account.getfName());
 			pst.setString(3, account.getlName());
-			pst.setString(4, account.getAge());
-			pst.setString(5, account.getMonth());
-			pst.setString(6, account.getDay());
-			pst.setString(7, account.getYear());
-			pst.setString(8, account.getPhoneNum());
-			pst.setString(9, account.getAddress());
-			pst.setString(10, account.getEmail());
+			pst.setString(4, account.getGender());
+			pst.setString(5, account.getAge());
+			pst.setString(6, account.getCivil());
+			pst.setString(7, account.getMonth());
+			pst.setString(8, account.getDay());
+			pst.setString(9, account.getYear());
+			pst.setString(10, account.getPhoneNum());
+			pst.setString(11, account.getAddress());
+			pst.setString(12, account.getEmail());
 			pst.executeUpdate();
 		} catch (SQLException ex) {
 			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);

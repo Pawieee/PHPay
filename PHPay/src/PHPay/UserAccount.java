@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -34,10 +36,11 @@ public class UserAccount extends JFrame {
 	private int x, y;
 	private HashSet<Integer> usedIds;
 	private Random random;
+	private static String passCheck, confirmPassCheck;
 	boolean def1 = true;
 	boolean def2 = true;
-	ImageIcon see = new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/see.png"));
-	ImageIcon blind = new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/blind.png"));
+	ImageIcon see = new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/see1.png"));
+	ImageIcon blind = new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/blind2.png"));
 	RoundedTextField userField;
 	RoundedPasswordField passField, confirmPassField;
 	RoundedCheckBox agreeBox;
@@ -93,7 +96,9 @@ public class UserAccount extends JFrame {
 		newEye.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		newEye.setIcon(blind);
 		newEye.setBounds(350, 291, 25, 25);
+		newEye.setVisible(false);
 		panel.add(newEye);
+		
 		newEye.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -114,6 +119,7 @@ public class UserAccount extends JFrame {
 		confirmEye.setBounds(350, 356, 25, 25);
 		confirmEye.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		confirmEye.setIcon(blind);
+		confirmEye.setVisible(false);
 		panel.add(confirmEye);
 		confirmEye.addMouseListener(new MouseAdapter() {
 			@Override
@@ -346,11 +352,16 @@ public class UserAccount extends JFrame {
 				
 				UserData newAccount = new UserData(ID, user, pass, hashedPasskey, 0,
 						account);
-				if (newAccount.accountExist() == true) {
+				System.out.println("awa daw");
+				if (newAccount.accountExist()) {
 					System.out.println("Duplicate username");
+					System.out.println("why dupli???");
 					System.exit(0);
 				}
 				newAccount.saveAccount();
+				dispose();
+				Welcome runFrame = new Welcome();
+				runFrame.setVisible(true);
 			}
 
 		});
@@ -378,7 +389,58 @@ public class UserAccount extends JFrame {
 		});
 
 		setVisible(true);
+		DocumentListener documentListener = new DocumentListener() {
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				setField();
+			}
+			
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				setField() ;
+			}
+			
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				setField();
+			}
+			@SuppressWarnings("deprecation")
+			public void setField() {
+				
+				passCheck= passField.getText();
+				confirmPassCheck = confirmPassField.getText();
 
+				if (passCheck.contains(" ") || passCheck.equals("Password") || passCheck.equals("")) {
+					newEye.setVisible(false);
+				} else {
+					newEye.setVisible(true);
+				}
+				if (confirmPassCheck.contains(" ") || confirmPassCheck.equals("Password") || confirmPassCheck.equals("")) {
+					confirmEye.setVisible(false);
+				} else {
+					confirmEye.setVisible(true);
+				}
+
+				if (!passCheck.isEmpty() && !confirmPassCheck.isEmpty()) {
+					if (!passCheck.equals("Username") && !passCheck.equals("Password")) {
+						next.setForeground(new Color(255, 255, 255));
+						next.setFont(new Font("Segoe UI Semibold", Font.BOLD, 15));
+						next.setEnabled(true);
+
+					} else {
+						next.setForeground(new Color(0, 0, 0));
+						next.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
+						next.setEnabled(false);
+					}
+				} else {
+					next.setForeground(new Color(0, 0, 0));
+					next.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
+					next.setEnabled(false);
+				}
+			}
+		};
+		passField.getDocument().addDocumentListener(documentListener);
+		confirmPassField.getDocument().addDocumentListener(documentListener);
 	}
 
 	public int generateId() {

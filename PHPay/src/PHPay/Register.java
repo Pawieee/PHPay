@@ -680,7 +680,7 @@ public class Register extends JFrame {
 
 					AccountInfo registerInfo = new AccountInfo(saveF, saveL, gender, civil, saveA, saveM, saveD, saveY, saveP, saveAd,
 							saveE);
-					UserPassID userpassID = new UserPassID(registerInfo);
+					UserAccount userpassID = new UserAccount(registerInfo);
 					userpassID.setVisible(true);
 					setVisible(false);
 					dispose();
