@@ -788,56 +788,32 @@ public class HelpPanel extends JPanel {
 		JLabel lblNewLabel_11 = new JLabel("Help\r\n");
 		lblNewLabel_11.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 12));
 		lblNewLabel_11.setForeground(new Color(0, 0, 0));
-		lblNewLabel_11.setBounds(127, 547, 46, 14);
+		lblNewLabel_11.setBounds(443, 584, 46, 14);
 		add(lblNewLabel_11);
 		
 		JLabel lblNewLabel_11_1 = new JLabel("Contact");
 		lblNewLabel_11_1.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 12));
 		lblNewLabel_11_1.setForeground(new Color(0, 0, 0));
-		lblNewLabel_11_1.setBounds(183, 547, 46, 14);
+		lblNewLabel_11_1.setBounds(387, 584, 46, 14);
 		add(lblNewLabel_11_1);
-		
-		JLabel lblNewLabel_11_2 = new JLabel("Fees");
-		lblNewLabel_11_2.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 12));
-		lblNewLabel_11_2.setForeground(new Color(0, 0, 0));
-		lblNewLabel_11_2.setBounds(250, 547, 46, 14);
-		add(lblNewLabel_11_2);
 		
 		JLabel lblNewLabel_11_2_1 = new JLabel("Security");
 		lblNewLabel_11_2_1.setForeground(new Color(0, 0, 0));
 		lblNewLabel_11_2_1.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 12));
-		lblNewLabel_11_2_1.setBounds(296, 547, 46, 14);
+		lblNewLabel_11_2_1.setBounds(327, 584, 46, 14);
 		add(lblNewLabel_11_2_1);
-		
-		JLabel lblNewLabel_11_2_2 = new JLabel("Apps");
-		lblNewLabel_11_2_2.setForeground(new Color(0, 0, 0));
-		lblNewLabel_11_2_2.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 12));
-		lblNewLabel_11_2_2.setBounds(363, 547, 46, 14);
-		add(lblNewLabel_11_2_2);
 		
 		JLabel lblNewLabel_11_2_3 = new JLabel("Partners");
 		lblNewLabel_11_2_3.setForeground(new Color(0, 0, 0));
 		lblNewLabel_11_2_3.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 13));
-		lblNewLabel_11_2_3.setBounds(416, 584, 46, 14);
+		lblNewLabel_11_2_3.setBounds(260, 584, 46, 14);
 		add(lblNewLabel_11_2_3);
 		
 		JLabel lblNewLabel_11_2_4 = new JLabel("Developers");
 		lblNewLabel_11_2_4.setForeground(new Color(0, 0, 0));
 		lblNewLabel_11_2_4.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 13));
-		lblNewLabel_11_2_4.setBounds(329, 584, 87, 14);
+		lblNewLabel_11_2_4.setBounds(183, 584, 87, 14);
 		add(lblNewLabel_11_2_4);
-		
-		JLabel lblNewLabel_11_2_5 = new JLabel("Jobs");
-		lblNewLabel_11_2_5.setForeground(new Color(0, 0, 0));
-		lblNewLabel_11_2_5.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 13));
-		lblNewLabel_11_2_5.setBounds(271, 583, 46, 14);
-		add(lblNewLabel_11_2_5);
-		
-		JLabel lblNewLabel_11_2_6 = new JLabel("Newsroom");
-		lblNewLabel_11_2_6.setForeground(new Color(0, 0, 0));
-		lblNewLabel_11_2_6.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 13));
-		lblNewLabel_11_2_6.setBounds(193, 583, 74, 14);
-		add(lblNewLabel_11_2_6);
 		
 		JLabel lblNewLabel_11_2_7 = new JLabel("About");
 		lblNewLabel_11_2_7.setForeground(new Color(0, 0, 0));
@@ -845,41 +821,23 @@ public class HelpPanel extends JPanel {
 		lblNewLabel_11_2_7.setBounds(127, 583, 46, 14);
 		add(lblNewLabel_11_2_7);
 		
-		JLabel lblNewLabel_11_2_8 = new JLabel("Accessibility");
-		lblNewLabel_11_2_8.setForeground(new Color(0, 0, 0));
-		lblNewLabel_11_2_8.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 12));
-		lblNewLabel_11_2_8.setBounds(832, 584, 73, 14);
-		add(lblNewLabel_11_2_8);
-		
 		JLabel lblNewLabel_11_2_9 = new JLabel("Privacy");
 		lblNewLabel_11_2_9.setForeground(new Color(0, 0, 0));
 		lblNewLabel_11_2_9.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 12));
-		lblNewLabel_11_2_9.setBounds(915, 584, 57, 14);
+		lblNewLabel_11_2_9.setBounds(923, 584, 57, 14);
 		add(lblNewLabel_11_2_9);
-		
-		JLabel lblNewLabel_11_2_10 = new JLabel("Cookies");
-		lblNewLabel_11_2_10.setForeground(new Color(0, 0, 0));
-		lblNewLabel_11_2_10.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 12));
-		lblNewLabel_11_2_10.setBounds(982, 584, 63, 14);
-		add(lblNewLabel_11_2_10);
 		
 		JLabel lblNewLabel_11_2_11 = new JLabel("Legal");
 		lblNewLabel_11_2_11.setForeground(new Color(0, 0, 0));
 		lblNewLabel_11_2_11.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 12));
-		lblNewLabel_11_2_11.setBounds(1045, 584, 46, 14);
+		lblNewLabel_11_2_11.setBounds(985, 584, 46, 14);
 		add(lblNewLabel_11_2_11);
 		
 		JLabel lblNewLabel_11_2_12 = new JLabel("©2022-2023");
 		lblNewLabel_11_2_12.setForeground(new Color(0, 0, 0));
 		lblNewLabel_11_2_12.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 12));
-		lblNewLabel_11_2_12.setBounds(740, 584, 80, 14);
+		lblNewLabel_11_2_12.setBounds(833, 584, 80, 14);
 		add(lblNewLabel_11_2_12);
-		
-		JLabel lblNewLabel_11_2_13 = new JLabel("Shop");
-		lblNewLabel_11_2_13.setForeground(new Color(0, 0, 0));
-		lblNewLabel_11_2_13.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 12));
-		lblNewLabel_11_2_13.setBounds(419, 547, 46, 14);
-		add(lblNewLabel_11_2_13);
 		
 		Panel panel_3 = new Panel();
 		panel_3.setBackground(new Color(192, 192, 192));
@@ -895,7 +853,7 @@ public class HelpPanel extends JPanel {
 		
 		JLabel lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setIcon(new ImageIcon(HelpPanel.class.getResource("/PHPay/phpimg/philippines (1).png")));
-		lblNewLabel_2.setBounds(1046, 547, 30, 14);
+		lblNewLabel_2.setBounds(1041, 584, 30, 14);
 		add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("");
