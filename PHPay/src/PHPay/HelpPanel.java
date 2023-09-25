@@ -5,6 +5,7 @@ import javax.swing.JLabel;
 import java.awt.SystemColor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.Color;
 import javax.swing.UIManager;
 import java.awt.Font;
@@ -15,6 +16,7 @@ import javax.swing.AbstractListModel;
 import javax.swing.JSeparator;
 import java.awt.Panel;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 public class HelpPanel extends JPanel {
 	GradientPanel top_panel = new GradientPanel(new Color(0x360079), new Color((0x000000)));
@@ -647,52 +649,102 @@ public class HelpPanel extends JPanel {
 		bl1 = new JLabel("About");
 		bl1.setForeground(new Color(0, 0, 0));
 		bl1.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 13));
-		bl1.setBounds(127, 583, 46, 14);
+		bl1.setBounds(127, 584, 46, 14);
+		bl1.addMouseListener(new MouseAdapter() {
+	            public void mouseClicked(MouseEvent e) {
+	                openHelpPanel1();
+	            }
+	        });
 		add(bl1);
 		bl2 = new JLabel("Developers");
 		bl2.setForeground(new Color(0, 0, 0));
 		bl2.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 13));
-		bl2.setBounds(174, 583, 87, 14);
+		bl2.setBounds(171, 584, 76, 14);
+		bl2.addMouseListener(new MouseAdapter() {
+	            public void mouseClicked(MouseEvent e) {
+	                openHelpPanel1();
+	            }
+	        });
 		add(bl2);
 		bl3 = new JLabel("Partners");
 		bl3.setForeground(new Color(0, 0, 0));
 		bl3.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 13));
-		bl3.setBounds(248, 583, 46, 14);
+		bl3.setBounds(246, 584, 46, 14);
+		bl3.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                openHelpPanel1();
+            }
+        });
 		add(bl3);
 		bl4 = new JLabel("Security");
 		bl4.setForeground(new Color(0, 0, 0));
 		bl4.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 12));
-		bl4.setBounds(305, 583, 46, 14);
+		bl4.setBounds(305, 584, 46, 14);
+		bl4.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                openHelpPanel1();
+            }
+        });
 		add(bl4);
 		bl5 = new JLabel("Contact");
 		bl5.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 12));
 		bl5.setForeground(new Color(0, 0, 0));
-		bl5.setBounds(361, 583, 46, 14);
+		bl5.setBounds(361, 584, 46, 14);
+		bl5.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                openHelpPanel1();
+            }
+        });
 		add(bl5);
 		bl6 = new JLabel("Help\r\n");
 		bl6.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 12));
 		bl6.setForeground(new Color(0, 0, 0));
-		bl6.setBounds(417, 583, 46, 14);
+		bl6.setBounds(417, 584, 46, 14);
+		bl6.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                openHelpPanel1();
+            }
+        });
 		add(bl6);
 		bl7 = new JLabel("Fees");
 		bl7.setForeground(Color.BLACK);
 		bl7.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 12));
-		bl7.setBounds(458, 583, 46, 14);
+		bl7.setBounds(458, 584, 46, 14);
+		bl7.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                openHelpPanel1();
+            }
+        });
 		add(bl7);
 		bl8 = new JLabel("©2022-2023");
 		bl8.setForeground(new Color(0, 0, 0));
 		bl8.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 12));
 		bl8.setBounds(838, 584, 80, 14);
+		bl8.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                openHelpPanel1();
+            }
+        });
 		add(bl8);
 		bl9 = new JLabel("Privacy");
 		bl9.setForeground(new Color(0, 0, 0));
 		bl9.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 12));
 		bl9.setBounds(923, 584, 57, 14);
+		bl9.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                openHelpPanel1();
+            }
+        });
 		add(bl9);
 		bl10 = new JLabel("Legal");
 		bl10.setForeground(new Color(0, 0, 0));
 		bl10.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 12));
 		bl10.setBounds(975, 584, 46, 14);
+		bl10.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                openHelpPanel1();
+            }
+        });
 		add(bl10);
 		bl11 = new JLabel("<html>PHPAY Pte Ltd is (i) licensed by the Monetary Authority of Singapore as a Major Payment Institution under the Payment Services Act 2019 and (ii) regulated by the Bangko Sentral ng Pilipinas <a href='https://www.bsp.gov.ph' style='color: #0000FF; text-decoration: underline;'>https://www.bsp.gov.ph</a> as an Operator of Payment Services in the Philippines under the National Payment Systems Act.<br><br>When you visit or interact with our sites, services, applications, tools or messaging, we or our authorised service providers may use cookies, web beacons, and other similar technologies for storing information to help provide you with a better, faster and safer experience and for advertising purposes. Learn more <a href='link_to_learn_more' style='color: #0000FF; text-decoration: underline;'>here</a>.</html>");
 		bl11.setHorizontalAlignment(SwingConstants.CENTER);
@@ -1417,4 +1469,12 @@ public class HelpPanel extends JPanel {
 			 lands2l.setVisible(true);
 			 lands2t.setVisible(true);
 		 }
+		 public void openHelpPanel1() {
+			    HelpPanel1 helpPanel1 = new HelpPanel1();
+			    helpPanel1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			    helpPanel1.setResizable(true); // Make it not resizable
+			    helpPanel1.setBounds(getBounds());
+			    helpPanel1.setLocationRelativeTo(null); // Center on screen
+			    helpPanel1.setVisible(true);
+			}
 }
