@@ -46,8 +46,8 @@ public class Loading extends JFrame {
 		Stock.setHorizontalAlignment(SwingConstants.LEFT);
 		Stock.setVerticalAlignment(SwingConstants.TOP);
 		Stock.setForeground(Color.WHITE);
-		Stock.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 12));
-		Stock.setBounds(188, 157, 118, 24);
+		Stock.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 13));
+		Stock.setBounds(195, 157, 105, 24);
 		curvesPanel1.add(Stock);
 
 		JLabel PHPAY = new JLabel("");

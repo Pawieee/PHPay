@@ -186,10 +186,10 @@ public class Home extends JFrame {
 		help.setHorizontalAlignment(SwingConstants.LEFT);
 		help.setForeground(new Color(255, 255, 255));
 
-		activity = new JLabel("   Activity");
+		activity = new JLabel("   Transactions");
 		activity.setIcon(new ImageIcon(Home.class.getResource("/PHPay/phpimg/activity-.png")));
 		activity.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 15));
-		activity.setBounds(34, 403, 115, 70);
+		activity.setBounds(34, 403, 148, 70);
 		panel.add(activity);
 		activity.addMouseListener(new MouseAdapter() {
 			@Override

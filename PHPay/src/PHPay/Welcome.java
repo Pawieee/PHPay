@@ -41,6 +41,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import com.formdev.flatlaf.intellijthemes.FlatArcDarkIJTheme;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatSolarizedDarkIJTheme;
+
 public class Welcome extends JFrame {
 
 	private boolean def = true;
@@ -81,6 +84,12 @@ public class Welcome extends JFrame {
 		int centerY = (screenHeight - 475) / 2;
 		setLocation(centerX, centerY);
 		setSize(833, 475);
+
+//		try {
+//			FlatArcDarkIJTheme.setup();
+//		} catch (Exception e) {
+//
+//		}
 
 		setTitle("PHPAY - Virtual Wallet");
 		getContentPane().setLayout(null);
@@ -130,65 +139,68 @@ public class Welcome extends JFrame {
 
 			}
 		});
-				
-						JLabel register = new JLabel("Sign Up");
-						register.setBounds(533, 291, 99, 41);
-						register.setForeground(new Color(0, 0, 0));
-						register.setHorizontalAlignment(SwingConstants.CENTER);
-						register.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
-						register.setCursor(new Cursor(Cursor.HAND_CURSOR));
-						mainPanel.add(register);
-						
-								register.addMouseListener(new MouseAdapter() {
-									@Override
-									public void mouseClicked(MouseEvent e) {
-										if (e.getButton() == MouseEvent.BUTTON1) {
-											dispose();
-											Timer timer = new Timer(100, new ActionListener() {
-												@Override
-												public void actionPerformed(ActionEvent e) {
-						
-													Register reg = new Register();
-													reg.setVisible(true);
-						
-												}
-											});
-						
-											timer.setRepeats(false);
-											timer.start();
-										}
-									}
-						
-									@Override
-									public void mouseEntered(MouseEvent e) {
-										Font font = register.getFont();
-										Map<TextAttribute, Object> attributes = new HashMap<>(font.getAttributes());
-										attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
-										register.setFont(font.deriveFont(attributes));
-										register.setForeground(new Color(128, 0, 255));
-									}
-						
-									@Override
-									public void mouseExited(MouseEvent e) {
-										Font font = register.getFont();
-										Map<TextAttribute, Object> attributes = new HashMap<>(font.getAttributes());
-										attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE);
-										register.setFont(font.deriveFont(attributes));
-										register.setForeground(Color.BLACK);
-									}
-								});
-		
-				JPanel signupPanel = new RoundedPanel(15);
-				signupPanel.setBackground(new Color(255, 255, 255));
-				signupPanel.setBounds(533, 294, 99, 38);
-				mainPanel.add(signupPanel);
-		
-				JLabel dontHaveAccountYet = new JLabel("Join us now by creating your account");
-				dontHaveAccountYet.setForeground(new Color(255, 255, 255));
-				dontHaveAccountYet.setBounds(348, 259, 487, 30);
-				dontHaveAccountYet.setHorizontalAlignment(SwingConstants.CENTER);
-				dontHaveAccountYet.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
-				mainPanel.add(dontHaveAccountYet);
+
+		JLabel register = new JLabel("Sign Up");
+		register.setBounds(533, 291, 99, 41);
+		register.setForeground(new Color(0, 0, 0));
+		register.setHorizontalAlignment(SwingConstants.CENTER);
+		register.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
+		register.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		mainPanel.add(register);
+
+		register.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getButton() == MouseEvent.BUTTON1) {
+					dispose();
+					Timer timer = new Timer(100, new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+
+//							Register reg = new Register();
+//							reg.setVisible(true);
+//							
+							SignUp sign = new SignUp();
+							sign.setVisible(true);
+
+						}
+					});
+
+					timer.setRepeats(false);
+					timer.start();
+				}
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				Font font = register.getFont();
+				Map<TextAttribute, Object> attributes = new HashMap<>(font.getAttributes());
+				attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+				register.setFont(font.deriveFont(attributes));
+				register.setForeground(new Color(128, 0, 255));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				Font font = register.getFont();
+				Map<TextAttribute, Object> attributes = new HashMap<>(font.getAttributes());
+				attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE);
+				register.setFont(font.deriveFont(attributes));
+				register.setForeground(Color.BLACK);
+			}
+		});
+
+		JPanel signupPanel = new RoundedPanel(15);
+		signupPanel.setBackground(new Color(255, 255, 255));
+		signupPanel.setBounds(533, 294, 99, 38);
+		mainPanel.add(signupPanel);
+
+		JLabel dontHaveAccountYet = new JLabel("Join us now by creating your account");
+		dontHaveAccountYet.setForeground(new Color(255, 255, 255));
+		dontHaveAccountYet.setBounds(348, 259, 487, 30);
+		dontHaveAccountYet.setHorizontalAlignment(SwingConstants.CENTER);
+		dontHaveAccountYet.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
+		mainPanel.add(dontHaveAccountYet);
 
 		invalidPrompt = new RoundedPanel(5);
 		invalidPrompt.setBackground(new Color(206, 0, 0, 120));
@@ -504,7 +516,7 @@ public class Welcome extends JFrame {
 				if (userField.getText().equals("Username")) {
 					userField.setText("");
 					userField.setForeground(Color.WHITE);
-					
+
 				} else {
 					userField.setForeground(Color.WHITE);
 					passField.setForeground(Color.WHITE);
