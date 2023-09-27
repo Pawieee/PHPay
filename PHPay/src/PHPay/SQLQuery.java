@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 public class SQLQuery {
 	static SQLConnection con = new SQLConnection();
 
-	public boolean IDExists(String ID) {
+	public static boolean IDExists(String ID) {
 
 		String query = "SELECT `user_id` FROM `users`";
 		try {
@@ -82,9 +82,10 @@ public class SQLQuery {
 	}
 
 	// Transaction NAME
-	public static String getTransName(String user) {
-		String query = "SELECT `fName` FROM `user_profile` WHERE user_id = ?";
+	public static String getFullName(String user) {
+		String query = "SELECT `fName`, `lName` FROM `user_profile` WHERE user_id = ?";
 		String Fname = "";
+		String lName = "";
 		try {
 			PreparedStatement ps = con.getCon().prepareStatement(query);
 			ps.setString(1, user);
@@ -92,11 +93,12 @@ public class SQLQuery {
 
 			if (rs.next()) {
 				Fname = rs.getString("fName");
+				lName = rs.getString("lName");
 			}
 		} catch (SQLException ex) {
 			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		return Fname;
+		return Fname + " " + lName;
 
 	}
 
