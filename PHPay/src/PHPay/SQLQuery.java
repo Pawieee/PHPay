@@ -181,27 +181,30 @@ public class SQLQuery {
 	}
 
 	public static void sendMoney(String senderID, String receiverID, double amount) {
+		amount = amount * 0.97;
 		deductBalance(senderID, amount);
-		String aamount1 = amount + "";
-		transaction(senderID, "Sent Money",aamount1, receiverID);
+		String aamount = amount + "";
+		transaction(senderID, "Sent Money", aamount, receiverID);
 		addBalance(receiverID, amount);
-		String aamount2 = amount + "";
-		transaction(receiverID, "Received Money",aamount2, senderID);
+		transaction(receiverID, "Received Money", aamount, senderID);
 	}
 
 	public static void load(String ID, double amount, String receiver) {
+		amount = amount * 0.97;
 		deductBalance(ID, amount);
 		String aamount = amount + "";
 		transaction(ID, "Bought Load", aamount, receiver);
 	}
 
 	public static void withdraw(String ID, double amount, String receiver) {
+		amount = amount * 0.97;
 		deductBalance(ID, amount);
 		String aamount = amount + "";
 		transaction(ID, "Withdraw Money", aamount, receiver);
 	}
 
 	public static void payBills(String ID, double amount, String bill) {
+		amount = amount * 0.97;
 		deductBalance(ID, amount);
 		String aamount = amount + "";
 		transaction(ID, "Paid Bill",  aamount, bill);
