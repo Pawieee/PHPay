@@ -125,10 +125,11 @@ public class SummaryPanel extends JPanel {
 				resizeTableColumnsToDefault();
 			}
 		});
+		getTransactions();
 
 	}
-
-	private static class LeftAlignedHeaderRenderer extends DefaultTableCellRenderer {
+	//CHANGED FROM PRIVATE TO PUBLIC TO ACCOMODATE ADMINPANEL
+	public static class LeftAlignedHeaderRenderer extends DefaultTableCellRenderer {
 		private static final long serialVersionUID = 1L;
 
 		public LeftAlignedHeaderRenderer() {
@@ -167,7 +168,7 @@ public class SummaryPanel extends JPanel {
 
 	public void getTransactions() {
 		DefaultTableModel model = new DefaultTableModel(null,
-				new String[] { "Name", "Date", "Invoice ID", "Amount", "Status", "Receiver" }) {
+				new String[] { "ID", "Date", "Invoice ID", "Amount", "Description", "Receiver" }) {
 			private static final long serialVersionUID = 8961818422329199291L;
 
 			@Override
@@ -246,11 +247,12 @@ public class SummaryPanel extends JPanel {
 		} catch (SQLException ex) {
 			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
 		}
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 	}
 
 	public void getTransactions(String op) {
 		DefaultTableModel model = new DefaultTableModel(null,
-				new String[] { "Name", "Date", "Invoice ID", "Amount", "Status", "Receiver" }) {
+				new String[] { "ID", "Date", "Invoice ID", "Amount", "Description", "Receiver" }) {
 			private static final long serialVersionUID = 8961818422329199291L;
 
 			@Override
@@ -324,7 +326,7 @@ public class SummaryPanel extends JPanel {
 				amount = rs.getString(5);
 				receiver = rs.getString(6);
 
-				model.addRow(new Object[] { session, date, transaction_id, amount, status, receiver });
+				model.addRow(new Object[] { session, date, transaction_id, amount+"P", status, receiver });
 			}
 		} catch (SQLException ex) {
 			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
