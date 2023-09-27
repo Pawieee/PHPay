@@ -123,10 +123,12 @@ public class adminPanel {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<String[]> tickets = SQLQuery.getTickets();
-				String getID = id.getText();
-				SQLQuery.appealProcess(getID, true, "SUCCESS", Integer.valueOf(tickets.get(index)[2]));
-				id.setText(null);
-				message.setText(null);
+				if (tickets.size() > 0) {
+					String getID = id.getText();
+					SQLQuery.appealProcess(getID, true, "SUCCESS", Integer.valueOf(tickets.get(index)[2]));
+					id.setText(null);
+					message.setText(null);
+				}
 				
 			}
 		});
@@ -137,16 +139,19 @@ public class adminPanel {
 		btnNewButton_2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<String[]> tickets = SQLQuery.getTickets();
-				String getID = id.getText();
-				SQLQuery.appealProcess(getID, false, "DENIED", Integer.valueOf(tickets.get(index)[2]));
-				id.setText(null);
-				message.setText(null);
+				if (tickets.size() > 0) {
+					String getID = id.getText();
+					SQLQuery.appealProcess(getID, false, "DENIED", Integer.valueOf(tickets.get(index)[2]));
+					id.setText(null);
+					message.setText(null);
+				}
 			}
 		});
 		btnNewButton_2_1.setBounds(339, 350, 62, 21);
 		panel.add(btnNewButton_2_1);
 		
 		id = new JTextField();
+		id.setEditable(false);
 		id.setBounds(20, 59, 96, 19);
 		panel.add(id);
 		id.setColumns(10);
@@ -159,9 +164,15 @@ public class adminPanel {
 				
 				ArrayList<String[]> tickets = SQLQuery.getTickets();
 				
-				id.setText(tickets.get(0)[0]);
+				if (tickets.size() > 0) {
+					id.setText(tickets.get(0)[0]);
+					
+					message.setText(tickets.get(0)[1]);
+					
+				} else {
+					message.setText("Such empty");
+				}
 				
-				message.setText(tickets.get(0)[1]);
 				
 			}
 		});
@@ -222,7 +233,7 @@ public class adminPanel {
 		scrollPane.getViewport().setBackground(Color.WHITE);
 		
 		SQLConnection con = new SQLConnection();
-		String query = "SELECT * FROM `transactions` WHERE operation > 250000";
+		String query = "SELECT * FROM `transactions`";
 
 		try {
 			PreparedStatement ps = con.getCon().prepareStatement(query);
