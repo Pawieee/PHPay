@@ -26,7 +26,7 @@ public class Receipt {
 		operationMessage.setBounds(177, 48, 132, 27);
 		frame.getContentPane().add(operationMessage);
 
-		JLabel cash = new JLabel(SQLQuery.getTransaction(session)[4]);
+		JLabel cash = new JLabel(SQLQuery.getTransaction(session)[4] + "P");
 		cash.setBounds(177, 106, 132, 27);
 		frame.getContentPane().add(cash);
 

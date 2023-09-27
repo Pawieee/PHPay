@@ -364,6 +364,12 @@ public class HelpPanel extends JPanel {
 		panel_2.setLayout(null);
 
 		JLabel lblNewLabel_11 = new JLabel("Help\r\n");
+		lblNewLabel_11.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				new appeal(ID);
+			}
+		});
 		lblNewLabel_11.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 12));
 		lblNewLabel_11.setForeground(new Color(0, 0, 0));
 		lblNewLabel_11.setBounds(435, 496, 46, 14);
