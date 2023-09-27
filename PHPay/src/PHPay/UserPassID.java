@@ -338,7 +338,7 @@ public class UserPassID extends JFrame {
 		backButton.setBounds(30, 32, 48, 30);
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Register run = new Register();
+				SignUp run = new SignUp();
 				run.setVisible(true);
 				UserPassID UserPassID = (UserPassID) SwingUtilities.getWindowAncestor(backButton);
 				UserPassID.dispose();

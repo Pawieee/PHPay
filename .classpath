@@ -11,5 +11,7 @@
 	<classpathentry kind="lib" path="C:/Users/Administrator/Downloads/swing-worker-1.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Administrator/Downloads/swingx-1.6.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Administrator/Downloads/TimingFramework-0.55.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Administrator/Downloads/flatlaf-3.2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Administrator/Downloads/flatlaf-intellij-themes-3.2.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

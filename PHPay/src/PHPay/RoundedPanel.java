@@ -1,5 +1,6 @@
 package PHPay;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FontMetrics;
@@ -15,6 +16,7 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 class RoundedPanel extends JPanel {
@@ -98,35 +100,43 @@ class RoundedButton extends JButton {
 }
 
 class RoundedComboBox<E> extends JComboBox<E> {
-	private static final long serialVersionUID = 1L;
-	private Shape shape;
-	private Color backgroundColor;
+    private static final long serialVersionUID = 1L;
+    private Shape shape;
+    private Color backgroundColor;
 
-	public RoundedComboBox(E[] items) {
-		super(items);
-		setOpaque(false);
-		this.backgroundColor = getBackground();
-	}
+    public RoundedComboBox(E[] items) {
+        super(items);
+        setOpaque(false);
+        this.backgroundColor = getBackground();
 
-	@Override
-	protected void paintComponent(Graphics g) {
-		if (!isOpaque()) {
-			super.paintComponent(g);
-			return;
-		}
+        // Create a JScrollPane and set it as the content of the ComboBox
+        JScrollPane scrollPane = new JScrollPane(this);
+        scrollPane.setOpaque(false);
+        scrollPane.getViewport().setOpaque(false);
 
-		Graphics2D g2d = (Graphics2D) g;
-		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        // Set the layout manager for the ComboBox to BorderLayout
+        setLayout(new BorderLayout());
+    }
+ 
+    @Override
+    protected void paintComponent(Graphics g) {
+        if (!isOpaque()) {
+            super.paintComponent(g);
+            return;
+        }
 
-		if (shape == null || !shape.getBounds().equals(getBounds())) {
-			shape = new RoundRectangle2D.Float(0, 0, getWidth() - 1, getHeight() - 1, 15, 15);
-		}
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-		g2d.setColor(backgroundColor);
-		g2d.fill(shape);
+        if (shape == null || !shape.getBounds().equals(getBounds())) {
+            shape = new RoundRectangle2D.Float(0, 0, getWidth() - 1, getHeight() - 1, 15, 15);
+        }
 
-		super.paintComponent(g);
-	}
+        g2d.setColor(backgroundColor);
+        g2d.fill(shape);
+
+        super.paintComponent(g);
+    }
 }
 
 class RoundedRadioButton extends JRadioButton {

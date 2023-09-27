@@ -73,27 +73,27 @@ public class UserAccount extends JFrame {
 		lblPrivacyPolicy.setHorizontalAlignment(SwingConstants.LEFT);
 		lblPrivacyPolicy.setForeground(new Color(0, 117, 234));
 		lblPrivacyPolicy.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 12));
-		lblPrivacyPolicy.setBounds(247, 424, 85, 30);
+		lblPrivacyPolicy.setBounds(247, 400, 85, 30);
 		panel.add(lblPrivacyPolicy);
 
 		JLabel lblTerms = new JLabel("Terms");
 		lblTerms.setHorizontalAlignment(SwingConstants.LEFT);
 		lblTerms.setForeground(new Color(0, 117, 234));
 		lblTerms.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 12));
-		lblTerms.setBounds(184, 424, 50, 30);
+		lblTerms.setBounds(184, 400, 50, 30);
 		panel.add(lblTerms);
 
 		JLabel lblConfirmPassword = new JLabel("Confirm Password");
 		lblConfirmPassword.setHorizontalAlignment(SwingConstants.LEFT);
 		lblConfirmPassword.setForeground(new Color(192, 192, 192));
 		lblConfirmPassword.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
-		lblConfirmPassword.setBounds(111, 331, 156, 23);
+		lblConfirmPassword.setBounds(111, 306, 156, 23);
 		panel.add(lblConfirmPassword);
 
 		JLabel newEye = new JLabel("");
 		newEye.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		newEye.setIcon(blind);
-		newEye.setBounds(350, 291, 25, 25);
+		newEye.setBounds(350, 266, 25, 25);
 		newEye.setVisible(false);
 		panel.add(newEye);
 		
@@ -103,18 +103,18 @@ public class UserAccount extends JFrame {
 				if (def1) {
 					newEye.setIcon(see);
 					passField.setEchoChar((char) 0);
-					newEye.setBounds(350, 293, 25, 25);
+					newEye.setBounds(350, 268, 25, 25);
 				} else {
 					newEye.setIcon(blind);
-					passField.setEchoChar('*');
-					newEye.setBounds(350, 291, 25, 25);
+					passField.setEchoChar('•');
+					newEye.setBounds(350, 266, 25, 25);
 				}
 				def1 = !def1;
 			}
 		});
 
 		JLabel confirmEye = new JLabel("");
-		confirmEye.setBounds(350, 356, 25, 25);
+		confirmEye.setBounds(350, 331, 25, 25);
 		confirmEye.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		confirmEye.setIcon(blind);
 		confirmEye.setVisible(false);
@@ -125,11 +125,11 @@ public class UserAccount extends JFrame {
 				if (def2) {
 					confirmEye.setIcon(see);
 					confirmPassField.setEchoChar((char) 0);
-					confirmEye.setBounds(350, 358, 25, 25);
+					confirmEye.setBounds(350, 333, 25, 25);
 				} else {
 					confirmEye.setIcon(blind);
-					confirmPassField.setEchoChar('*');
-					confirmEye.setBounds(350, 356, 25, 25);
+					confirmPassField.setEchoChar('•');
+					confirmEye.setBounds(350, 331, 25, 25);
 				}
 				def2 = !def2;
 			}
@@ -176,7 +176,40 @@ public class UserAccount extends JFrame {
 		next.setIconTextGap(1);
 		next.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
 		next.setText("Confirm");
-		next.setForeground(new Color(200, 200, 200));
+		next.setForeground(new Color(150, 150, 150));
+		next.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String ID = generator.generateId() + "";
+				String user = userField.getText();
+				@SuppressWarnings("deprecation")
+				String pass = confirmPassField.getText();
+				String passkey = RandomID.generatePassKey();
+				String hashedPasskey = AccountVerify.passkey(passkey);
+
+				UserData newAccount = new UserData(ID, user, pass, hashedPasskey, 0, account);
+				if (newAccount.accountExist() == true) {
+					System.out.println("Duplicate username");
+					System.exit(0);
+				}
+				newAccount.saveAccount();
+				dispose();
+				Welcome runFrame = new Welcome();
+				runFrame.setVisible(true);
+			}
+
+		});
+		next.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				next.setForeground(new Color(255, 255, 255));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				next.setForeground(new Color(150, 150, 150));
+			}
+		});
 
 		JPanel titleBar = new JPanel();
 		titleBar.setBackground(new Color(255, 255, 255, 0));
@@ -189,7 +222,7 @@ public class UserAccount extends JFrame {
 		userField.setForeground(Color.WHITE);
 		userField.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
 		userField.setBackground(SystemColor.info);
-		userField.setBounds(111, 203, 269, 30);
+		userField.setBounds(111, 179, 269, 30);
 		panel.add(userField);
 
 		passField = new RoundedPasswordField(10);
@@ -198,7 +231,7 @@ public class UserAccount extends JFrame {
 		passField.setForeground(Color.WHITE);
 		passField.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
 		passField.setBackground(SystemColor.info);
-		passField.setBounds(111, 289, 269, 30);
+		passField.setBounds(111, 264, 269, 30);
 		panel.add(passField);
 
 		confirmPassField = new RoundedPasswordField(10);
@@ -207,21 +240,21 @@ public class UserAccount extends JFrame {
 		confirmPassField.setForeground(Color.WHITE);
 		confirmPassField.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
 		confirmPassField.setBackground(SystemColor.info);
-		confirmPassField.setBounds(111, 354, 269, 30);
+		confirmPassField.setBounds(111, 329, 269, 30);
 		panel.add(confirmPassField);
 
 		JLabel lblUsername = new JLabel("Username");
 		lblUsername.setHorizontalAlignment(SwingConstants.LEFT);
 		lblUsername.setForeground(new Color(192, 192, 192));
 		lblUsername.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
-		lblUsername.setBounds(111, 180, 156, 23);
+		lblUsername.setBounds(111, 156, 156, 23);
 		panel.add(lblUsername);
 
 		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setHorizontalAlignment(SwingConstants.LEFT);
 		lblPassword.setForeground(new Color(192, 192, 192));
 		lblPassword.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
-		lblPassword.setBounds(111, 266, 156, 23);
+		lblPassword.setBounds(111, 241, 156, 23);
 		panel.add(lblPassword);
 
 		JLabel lblWe_1_1 = new JLabel("- Contains at least one digit");
@@ -252,13 +285,6 @@ public class UserAccount extends JFrame {
 		lblReq.setBounds(85, 28, 219, 23);
 		panel.add(lblReq);
 
-		JLabel lblWe_1_3_1_1 = new JLabel("Password Example:   imPaulo24");
-		lblWe_1_3_1_1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblWe_1_3_1_1.setForeground(new Color(255, 255, 206));
-		lblWe_1_3_1_1.setFont(new Font("Segoe UI Semibold", Font.ITALIC, 13));
-		lblWe_1_3_1_1.setBounds(111, 135, 327, 23);
-		panel.add(lblWe_1_3_1_1);
-
 		RoundedButton btnNewButton = new RoundedButton("");
 		btnNewButton.setBounds(11, 24, 37, 31);
 		panel.add(btnNewButton);
@@ -269,8 +295,8 @@ public class UserAccount extends JFrame {
 				Timer timer = new Timer(100, new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						Register reg = new Register();
-						reg.setVisible(true);
+						SignUp run = new SignUp();
+						run.setVisible(true);
 					}
 				});
 				timer.setRepeats(false);
@@ -299,21 +325,21 @@ public class UserAccount extends JFrame {
 				btnNewButton.setBounds(10, 23, 39, 33);
 			}
 		});
-		btnNewButton.setIcon(new ImageIcon(Register.class.getResource("/PHPay/phpimg/goback.png")));
+		btnNewButton.setIcon(new ImageIcon(SignUp.class.getResource("/PHPay/phpimg/goback.png")));
 		btnNewButton.setBorder(new EmptyBorder(0, 0, 0, 0));
 
 		JLabel descLabel = new JLabel("By clicking Yes, you agree to our");
 		descLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		descLabel.setForeground(new Color(255, 255, 255));
 		descLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 12));
-		descLabel.setBounds(184, 403, 201, 30);
+		descLabel.setBounds(184, 379, 201, 30);
 		panel.add(descLabel);
 
 		JLabel lblAnd = new JLabel("and");
 		lblAnd.setHorizontalAlignment(SwingConstants.LEFT);
 		lblAnd.setForeground(Color.WHITE);
 		lblAnd.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 12));
-		lblAnd.setBounds(222, 424, 31, 30);
+		lblAnd.setBounds(222, 400, 31, 30);
 		panel.add(lblAnd);
 
 		agreeBox = new RoundedCheckBox("");
@@ -328,7 +354,7 @@ public class UserAccount extends JFrame {
 		agreeBox.setText("Yes");
 		agreeBox.setSize(new Dimension(3, 3));
 		agreeBox.setPreferredSize(new Dimension(33, 33));
-		agreeBox.setBounds(125, 415, 46, 23);
+		agreeBox.setBounds(125, 391, 46, 23);
 		panel.add(agreeBox);
 
 		titleBar.addMouseListener(new MouseAdapter() {
