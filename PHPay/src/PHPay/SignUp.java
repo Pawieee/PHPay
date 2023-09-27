@@ -41,9 +41,6 @@ import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.plaf.basic.ComboPopup;
 
-import com.formdev.flatlaf.FlatDarkLaf;
-import com.formdev.flatlaf.FlatLightLaf;
-import com.formdev.flatlaf.ui.FlatComboBoxUI;
 
 public class SignUp extends JFrame {
 

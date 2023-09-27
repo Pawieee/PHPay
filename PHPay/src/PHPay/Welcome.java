@@ -41,8 +41,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import com.formdev.flatlaf.intellijthemes.FlatArcDarkIJTheme;
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatSolarizedDarkIJTheme;
 
 public class Welcome extends JFrame {
 
