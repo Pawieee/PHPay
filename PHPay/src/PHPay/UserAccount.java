@@ -348,6 +348,7 @@ public class UserAccount extends JFrame {
 				String passkey = RandomID.generatePassKey();
 				String hashedPasskey = AccountVerify.passkey(passkey);
 
+				System.out.println(passkey);
 				UserData newAccount = new UserData(ID, user, pass, hashedPasskey, 0, account);
 				if (newAccount.accountExist() == true) {
 					System.out.println("Duplicate username");

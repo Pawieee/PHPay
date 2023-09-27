@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -176,34 +177,34 @@ public class SQLQuery {
 	public static void cashIn(String ID, double amount) {
 		addBalance(ID, amount);
 		String aamount = amount + "";
-		transaction(ID, "Cash-In", "+" + aamount, "PHPay");
+		transaction(ID, "Cash-In", aamount, "PHPay");
 	}
 
 	public static void sendMoney(String senderID, String receiverID, double amount) {
 		deductBalance(senderID, amount);
 		String aamount1 = amount + "";
-		transaction(senderID, "Sent Money", "-" + aamount1, receiverID);
+		transaction(senderID, "Sent Money",aamount1, receiverID);
 		addBalance(receiverID, amount);
 		String aamount2 = amount + "";
-		transaction(receiverID, "Received Money", "+" + aamount2, senderID);
+		transaction(receiverID, "Received Money",aamount2, senderID);
 	}
 
 	public static void load(String ID, double amount, String receiver) {
 		deductBalance(ID, amount);
 		String aamount = amount + "";
-		transaction(ID, "Bought Load", "-" + aamount, receiver);
+		transaction(ID, "Bought Load", aamount, receiver);
 	}
 
 	public static void withdraw(String ID, double amount, String receiver) {
 		deductBalance(ID, amount);
 		String aamount = amount + "";
-		transaction(ID, "Withdraw Money", "-" + aamount, receiver);
+		transaction(ID, "Withdraw Money", aamount, receiver);
 	}
 
 	public static void payBills(String ID, double amount, String bill) {
 		deductBalance(ID, amount);
 		String aamount = amount + "";
-		transaction(ID, "Paid Bill", "-" + aamount, bill);
+		transaction(ID, "Paid Bill",  aamount, bill);
 	}
 
 	public static void transaction(String ID, String type, String amount, String receiver) {
@@ -214,12 +215,13 @@ public class SQLQuery {
 
 		String query = "INSERT INTO `transactions`(`user_id`, `type`, `time`, `operation`, `receiver` ) VALUES (?, ?, ?, ?, ?)";
 
+		double amount1 = Double.valueOf(amount);
 		try {
 			PreparedStatement ps = con.getCon().prepareStatement(query);
 			ps.setString(1, ID);
 			ps.setString(2, type);
 			ps.setString(3, currentDateTime);
-			ps.setString(4, amount + " ₱");
+			ps.setDouble(4, amount1);
 			ps.setString(5, receiver);
 			ps.executeUpdate();
 		} catch (SQLException ex) {
@@ -256,5 +258,72 @@ public class SQLQuery {
 		}
 		return details;
 	}
+	
+	//CREATES AN APPEAL TICKET
+	public static void createAppeal(String ID, String message) {
+		String query = "INSERT INTO `appeals`(`user_id`, `message`) VALUES (?, ?)";
+		
+		try {
+			PreparedStatement ps = con.getCon().prepareStatement(query);
+			ps.setString(1, ID);
+			ps.setString(2, message);
+			ps.executeUpdate();
+		} catch (SQLException ex) {
+			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
+	
+	//GET APPEAL TICKETS
+	public static ArrayList<String[]>getTickets() {
+		String query = "SELECT * FROM `appeals` WHERE `status` = ?";
+
+		ArrayList<String[]> appeals = new ArrayList<>();
+		try {
+			PreparedStatement ps = con.getCon().prepareStatement(query);
+			ps.setString(1, "PENDING");
+			ResultSet rs = ps.executeQuery();
+
+			String ticket,user_id, message, status;
+			while (rs.next()) {
+				ticket = rs.getString(1);
+				user_id = rs.getString(2);
+				message= rs.getString(3);
+				status = rs.getString(4);
+				
+				String[] appeal = {user_id, message, ticket};
+				appeals.add(appeal);
+			}
+		} catch (SQLException ex) {
+			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return appeals;
+	}
+	
+	//PROCESS APPEAL
+	public static void appealProcess(String ID, boolean op, String verdict, int ticket) {
+		String query = "UPDATE `users` SET `status` = ? WHERE `user_id` = ?";
+		
+		try {
+			PreparedStatement ps = con.getCon().prepareStatement(query);
+			ps.setBoolean(1, op);
+			ps.setString(2, ID);
+			ps.executeUpdate();
+			
+		} catch (SQLException ex) {
+			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		
+		String query2 = "UPDATE `appeals` SET `status` = ? WHERE `ticket` = ?";
+		
+		try {
+			PreparedStatement ps = con.getCon().prepareStatement(query2);
+			ps.setString(1, verdict);
+			ps.setInt(2, ticket);
+			ps.executeUpdate();
+		} catch (SQLException ex) {
+			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
+	
 
 }

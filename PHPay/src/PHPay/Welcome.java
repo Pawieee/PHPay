@@ -308,8 +308,8 @@ public class Welcome extends JFrame {
 						public void actionPerformed(ActionEvent e) {
 							dispose();
 
-//							Wallet wallet = new Wallet(AccountVerify.sessionID(userCheck));
-//							wallet.setVisible(true);
+							Wallet wallet = new Wallet(AccountVerify.sessionID(userCheck));
+							wallet.setVisible(true);
 
 							Home home = new Home(AccountVerify.sessionID(userCheck));
 							home.setVisible(true);
