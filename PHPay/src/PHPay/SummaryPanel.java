@@ -55,7 +55,7 @@ public class SummaryPanel extends JPanel {
 		lblSend.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				getTransactions("Send Money");
+				getTransactions("Sent Money");
 			}
 		});
 		lblSend.setForeground(new Color(0, 0, 0));
