@@ -26,6 +26,7 @@ import javax.swing.JButton;
 
 public class HelpPanel extends JPanel {
 	GradientPanel top_panel = new GradientPanel(new Color(0x360079), new Color((0x000000)));
+	RoundedPanel main_panel;
 	JPanel d1_panel;
 	JPanel d2_panel;
 	JPanel TPanel;
@@ -40,12 +41,11 @@ public class HelpPanel extends JPanel {
 	JLabel tl2;
 	JLabel bl1;
 	JLabel bl5;
-	JLabel bl6;
 	JLabel bl7;
 	JLabel bl8;
 	JLabel bl9;
-	JLabel bl10;
 	JLabel bl11;
+	JLabel bl12;
 	JLabel bimg1;
 	JLabel bimg2;
 	JLabel home_label;
@@ -102,17 +102,27 @@ public class HelpPanel extends JPanel {
     JButton TButton;
     JLabel TicketLabel;
     JLabel CountLabel;
+    JPanel about_panel;
+    JPanel contact_panel;
+    JLabel about_label;
+    JLabel contact_label;
+    JPanel fees_panel;
+    JLabel fees_label;
+    JPanel privacy_panel;
+    JLabel privacy_label;
 
 	public HelpPanel(String ID) {
 		setForeground(new Color(51, 0, 204));
 		setBackground(new Color(255, 255, 255));
 		setBounds(0, 0, 1200, 700);
 		setLayout(null);
-		RoundedPanel main_panel = new RoundedPanel(15);
+		
+		main_panel = new RoundedPanel(15);
 		main_panel.setBackground(new Color(255, 255, 255));
 		main_panel.setBounds(305, 107, 885, 400);
 		add(main_panel);
 		main_panel.setLayout(null);
+		
 		menu_list = new JList();
 		menu_list.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 25));
 		menu_list.setForeground(new Color(0, 0, 0));
@@ -689,91 +699,86 @@ public class HelpPanel extends JPanel {
 		top_panel.add(tl1);
 		tl1.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 20));
 		tl1.setForeground(new Color(255, 255, 255));
+		
 		tl2 = new JLabel("How can we help you?");
 		tl2.setBounds(196, 61, 347, 39);
 		top_panel.add(tl2);
 		tl2.setForeground(new Color(255, 255, 255));
 		tl2.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 35));
+		
 		d1_panel = new JPanel();
 		d1_panel.setBackground(new Color(192, 192, 192));
 		d1_panel.setBounds(127, 572, 939, 1);
 		add(d1_panel);
 		d1_panel.setLayout(null);
+		
+		d2_panel = new JPanel();
+		d2_panel.setBackground(new Color(192, 192, 192));
+		d2_panel.setBounds(298, 96, 1, 411);
+		add(d2_panel);
+		d2_panel.setLayout(null);
+		
 		bl1 = new JLabel("About");
 		bl1.setForeground(new Color(0, 0, 0));
 		bl1.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 13));
-		bl1.setBounds(127, 584, 46, 14);
+		bl1.setBounds(170, 584, 46, 14);
 		bl1.addMouseListener(new MouseAdapter() {
 	            public void mouseClicked(MouseEvent e) {
-	                openHelpPanel1();
+	            	Aboutpanel();
+	            	tl2.setText("About");
 	            }
 	        });
 		add(bl1);
 		bl5 = new JLabel("Contact");
 		bl5.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 12));
 		bl5.setForeground(new Color(0, 0, 0));
-		bl5.setBounds(172, 584, 46, 14);
+		bl5.setBounds(215, 584, 46, 14);
 		bl5.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                openHelpPanel1();
+            	Contactpanel();
+            	tl2.setText("Contact");
             }
         });
 		add(bl5);
-		bl6 = new JLabel("Help\r\n");
-		bl6.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 12));
-		bl6.setForeground(new Color(0, 0, 0));
-		bl6.setBounds(228, 584, 46, 14);
-		bl6.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-                openHelpPanel1();
-            }
-        });
-		add(bl6);
 		bl7 = new JLabel("Fees");
 		bl7.setForeground(Color.BLACK);
 		bl7.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 12));
-		bl7.setBounds(263, 584, 46, 14);
+		bl7.setBounds(267, 584, 46, 14);
 		bl7.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                openHelpPanel1();
+            	Feespanel();
+            	tl2.setText("Fees");
             }
         });
 		add(bl7);
 		bl8 = new JLabel("©2022-2023");
 		bl8.setForeground(new Color(0, 0, 0));
 		bl8.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 12));
-		bl8.setBounds(838, 584, 80, 14);
-		bl8.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-                openHelpPanel1();
-            }
-        });
+		bl8.setBounds(951, 584, 80, 14);
 		add(bl8);
 		bl9 = new JLabel("Privacy");
 		bl9.setForeground(new Color(0, 0, 0));
 		bl9.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 12));
-		bl9.setBounds(923, 584, 57, 14);
+		bl9.setBounds(305, 584, 57, 14);
 		bl9.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                openHelpPanel1();
+            	Privacypanel();
+            	tl2.setText("Privacy");
             }
         });
 		add(bl9);
-		bl10 = new JLabel("Legal");
-		bl10.setForeground(new Color(0, 0, 0));
-		bl10.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 12));
-		bl10.setBounds(975, 584, 46, 14);
-		bl10.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-                openHelpPanel1();
-            }
-        });
-		add(bl10);
 		bl11 = new JLabel("<html>PHPAY Pte Ltd is (i) licensed by the Monetary Authority of Singapore as a Major Payment Institution under the Payment Services Act 2019 and (ii) regulated by the Bangko Sentral ng Pilipinas <a href='https://www.bsp.gov.ph' style='color: #0000FF; text-decoration: underline;'>https://www.bsp.gov.ph</a> as an Operator of Payment Services in the Philippines under the National Payment Systems Act.<br><br>When you visit or interact with our sites, services, applications, tools or messaging, we or our authorised service providers may use cookies, web beacons, and other similar technologies for storing information to help provide you with a better, faster and safer experience and for advertising purposes. </html>");
 		bl11.setHorizontalAlignment(SwingConstants.CENTER);
 		bl11.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 11));
 		bl11.setBounds(33, 597, 1157, 116);
 		add(bl11);
+		
+		bl12 = new JLabel("Help");
+		bl12.setForeground(Color.BLACK);
+		bl12.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 13));
+		bl12.setBounds(127, 584, 46, 14);
+		add(bl12);
+		
 		bimg1 = new JLabel("");
 		bimg1.setIcon(new ImageIcon(HelpPanel.class.getResource("/PHPay/phpimg/PHPAY-BRAND-ICON.png")));
 		bimg1.setBounds(71, 547, 46, 51);
@@ -783,14 +788,68 @@ public class HelpPanel extends JPanel {
 		bimg2.setBounds(1041, 584, 30, 14);
 		add(bimg2);
 		
-		Panel d2_panel = new Panel();
-		d2_panel.setBackground(new Color(192, 192, 192));
-		d2_panel.setBounds(298, 96, 1, 411);
-		add(d2_panel);
-		d2_panel.setLayout(null);
+		about_panel = new JPanel();
+		about_panel.setBounds(0, 97, 1190, 410);
+		about_panel.setVisible(false);
+		add(about_panel);
+		about_panel.setLayout(null);
+		
+		about_label = new JLabel("<html>\r\n<p style='font-size: 15px; text-indent: 20px;'>\r\n    PHPAY is a user-friendly virtual wallet program designed for secure and convenient fund management. It offers quick and easy account creation, allowing users to sign up in a few steps and start using the program immediately. Users can track their balances, including incoming and outgoing transactions, and set up automatic transfers. Sending and receiving funds is simple, both within PHPAY and to external accounts, with support for multiple currencies. The program also ensures data security, allowing users to save or delete sensitive information like bank account details. PHPAY enhances security with multi-factor authentication and encryption technology. It follows the CRUD methodology (Create, Read, Update, and Delete) for easy account and transaction management, giving users flexibility and ease in managing their funds.\r\n</p>\r\n</html>\r\n");
+		about_label.setVerticalAlignment(SwingConstants.TOP);
+		about_label.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 11));
+		about_label.setBounds(39, 24, 1111, 324);
+		about_label.setVisible(false);
+		about_panel.add(about_label);
+		
+		contact_panel = new JPanel();
+		contact_panel.setBounds(0, 97, 1190, 410);
+		add(contact_panel);
+		contact_panel.setLayout(null);
+		
+		contact_label = new JLabel("<html>\r\n<p style='font-size: 12px;'>\r\nEmail:&nbsp;&nbsp;&nbsp;phpaycontact@gmail.com\r\n<br><br>\r\nLocal&nbsp;Landline:&nbsp;&nbsp;&nbsp;(02)&nbsp;7730-1000\r\n\r\n</p>\r\n</html>");
+		contact_label.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 12));
+		contact_label.setVerticalAlignment(SwingConstants.TOP);
+		contact_label.setBounds(39, 24, 1111, 324);
+		contact_label.setVisible(false);
+		contact_panel.add(contact_label);
+		
+		fees_panel = new JPanel();
+		fees_panel.setBounds(0, 97, 1190, 410);
+		add(fees_panel);
+		fees_panel.setLayout(null);
+		
+		fees_label = new JLabel("<html><p style='font-size: 12px;'>\r\n    There is a 3% fee for every transaction.\r\n</p>");
+		fees_label.setVerticalAlignment(SwingConstants.TOP);
+		fees_label.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 11));
+		fees_label.setBounds(39, 24, 1111, 324);
+		fees_label.setVisible(false);
+		fees_panel.add(fees_label);
+		
+		privacy_panel = new JPanel();
+		privacy_panel.setBounds(0, 97, 1190, 410);
+		add(privacy_panel);
+		privacy_panel.setLayout(null);
+		
+		privacy_label = new JLabel("<html>\r\n<body>\r\n  <p style='font-size: 9px;'>\r\n    Registration and Personal Data: When you create an Account, we collect necessary Personal Data - such as name, address, telephone, email, and more - to provide and fulfill requested Services.<br><br>\r\n\r\n    Transaction Details: Using our Services, like making purchases or sending money, generates transaction information, including - but not limited to - amounts, merchants, payment methods, and device data.<br><br>\r\n\r\n    Participant Info: We gather Personal Data about others involved in your transactions.<br><br>\r\n\r\n    Sending/Requesting Money: When you send/request money, we collect recipient details, which may include name, postal address, telephone number, and financial account information, depending on the specific service.<br><br>\r\n\r\n    Paying Bills: If you pay bills for others, we collect data on the account holder, such as name, postal address, telephone number, email address, and account number of the bill that you intend to pay or request to be paid.<br><br>\r\n\r\n    Adding Value: Adding value to your accounts may involve collecting information from others.<br><br>\r\n\r\n    Public Profile: Linking contacts or having a public profile enables easier transactions with friends, and other users can find your profile to send you money by searching for you by name, username, email, or mobile number on PayPal and confirm it's you by viewing your photo when your Account profile is public.<br><br>\r\n\r\n    Additional Info: Participating in optional features may require extra information.<br><br>\r\n\r\n    Unbranded Services: We collect data for unbranded transactions, associating them with your Account if you have one, for compliance and analytics purposes.<br><br>\r\n\r\n    Third-Party Data: We may obtain information from external sources, subject to legal permissions.<br><br>\r\n\r\n    Additional Usage Data: We may collect more information during communication with us, contact with our customer support teams, or response to a survey to enhance your experience and improve our Services.\r\n  </p>\r\n</body>\r\n</html>\r\n");
+		privacy_label.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 11));
+		privacy_label.setVerticalAlignment(SwingConstants.TOP);
+		privacy_label.setBounds(39, 24, 1111, 324);
+		privacy_label.setVisible(false);
+		privacy_panel.add(privacy_label);
+		
+		bl12.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+            	showHome();
+            	tl2.setText("How can we help you?");
+            }
+        });
 	}
-		 private void showHome() {
+		 void showHome() {
 			 home_label.setVisible(true);
+			 d2_panel.setVisible(true);
+			 menu_list.setVisible(true);
+			 main_panel.setVisible(true);
+			 tl1.setVisible(true);
 			 pandt_label.setVisible(false);
 			 dal_label.setVisible(false);
 			 ma_label.setVisible(false);
@@ -849,6 +908,11 @@ public class HelpPanel extends JPanel {
 			 TPanel.setVisible(false);
 			 CountLabel.setVisible(false);
 			 EPane1.setText("");
+			 about_panel.setVisible(false);
+			 contact_panel.setVisible(false);
+			 fees_panel.setVisible(false);
+			 privacy_panel.setVisible(false);
+			 tl2.setText("How can we help you?");
 		 }
 		 private void showPandt() {
 			 home_label.setVisible(false);
@@ -1589,6 +1653,334 @@ public class HelpPanel extends JPanel {
 			 lands2l.setVisible(false);
 			 lands2t.setVisible(false);
 		 }
+			 private void Aboutpanel() {
+				 about_label.setVisible(true);
+				 about_panel.setVisible(true);
+				 d2_panel.setVisible(false);
+				 tl1.setVisible(false);
+				 menu_list.setVisible(false);
+				 TPanel.setVisible(false);
+				 TicketLabel.setVisible(false);
+				 CountLabel.setVisible(false);
+				 home_label.setVisible(false);
+				 pandt_label.setVisible(false);
+				 dal_label.setVisible(false);
+				 ma_label.setVisible(false);
+				 mw_label.setVisible(false);
+				 lands_label.setVisible(false);
+				 home_list.setVisible(false);
+				 pandt_list.setVisible(false);
+				 dal_list.setVisible(false);
+				 ma_list.setVisible(false);
+				 mw_list.setVisible(false);
+				 lands_list.setVisible(false);
+				 home_label.setVisible(false);
+				 pandt_label.setVisible(false);
+				 dal_label.setVisible(false);
+				 ma_label.setVisible(false);
+				 mw_label.setVisible(false);
+				 lands_label.setVisible(false);
+				 home_list.setVisible(false);
+				 pandt_list.setVisible(false);
+				 dal_list.setVisible(false);
+				 ma_list.setVisible(false);
+				 mw_list.setVisible(false);
+				 lands_list.setVisible(false);
+				 home1l.setVisible(false);
+				 home1t.setVisible(false);
+				 home2l.setVisible(false);
+				 home2t.setVisible(false);
+				 home3l.setVisible(false);
+				 home3t.setVisible(false);
+				 home4l.setVisible(false);
+				 home4t.setVisible(false);
+				 home5l.setVisible(false);
+				 home5t.setVisible(false);
+				 home6l.setVisible(false);
+				 home6t.setVisible(false);
+				 home7l.setVisible(false);
+				 home7t.setVisible(false);
+				 home8l.setVisible(false);
+				 home8t.setVisible(false);
+				 pandtl1.setVisible(false);
+				 pandtt1.setVisible(false);
+				 pandtl2.setVisible(false);
+				 pandtt2.setVisible(false);
+				 pandtl3.setVisible(false);
+				 pandtt3.setVisible(false);
+				 pandtl4.setVisible(false);
+				 pandtt4.setVisible(false);
+				 d1l.setVisible(false);
+				 d1t.setVisible(false);
+				 d2l.setVisible(false);
+				 d2t.setVisible(false); 
+				 ma1l.setVisible(false);
+				 ma1t.setVisible(false);
+				 ma2l.setVisible(false);
+				 ma2t.setVisible(false);
+				 ma3l.setVisible(false);
+				 ma3t.setVisible(false);
+				 ma4l.setVisible(false);
+				 ma4t.setVisible(false);
+				 mwl1.setVisible(false);
+				 mwt1.setVisible(false);
+				 mwl2.setVisible(false);
+				 mwt2.setVisible(false);
+				 lands1l.setVisible(false);
+				 lands1t.setVisible(false);
+				 lands2l.setVisible(false);
+				 lands2t.setVisible(false);
+				 main_panel.setVisible(false);
+			 }
+			 private void Contactpanel() {
+				 contact_panel.setVisible(true);
+				 contact_label.setVisible(true);
+				 about_label.setVisible(false);
+				 about_panel.setVisible(false);
+				 d2_panel.setVisible(false);
+				 tl1.setVisible(false);
+				 menu_list.setVisible(false);
+				 TPanel.setVisible(false);
+				 TicketLabel.setVisible(false);
+				 CountLabel.setVisible(false);
+				 home_label.setVisible(false);
+				 pandt_label.setVisible(false);
+				 dal_label.setVisible(false);
+				 ma_label.setVisible(false);
+				 mw_label.setVisible(false);
+				 lands_label.setVisible(false);
+				 home_list.setVisible(false);
+				 pandt_list.setVisible(false);
+				 dal_list.setVisible(false);
+				 ma_list.setVisible(false);
+				 mw_list.setVisible(false);
+				 lands_list.setVisible(false);
+				 home_label.setVisible(false);
+				 pandt_label.setVisible(false);
+				 dal_label.setVisible(false);
+				 ma_label.setVisible(false);
+				 mw_label.setVisible(false);
+				 lands_label.setVisible(false);
+				 home_list.setVisible(false);
+				 pandt_list.setVisible(false);
+				 dal_list.setVisible(false);
+				 ma_list.setVisible(false);
+				 mw_list.setVisible(false);
+				 lands_list.setVisible(false);
+				 home1l.setVisible(false);
+				 home1t.setVisible(false);
+				 home2l.setVisible(false);
+				 home2t.setVisible(false);
+				 home3l.setVisible(false);
+				 home3t.setVisible(false);
+				 home4l.setVisible(false);
+				 home4t.setVisible(false);
+				 home5l.setVisible(false);
+				 home5t.setVisible(false);
+				 home6l.setVisible(false);
+				 home6t.setVisible(false);
+				 home7l.setVisible(false);
+				 home7t.setVisible(false);
+				 home8l.setVisible(false);
+				 home8t.setVisible(false);
+				 pandtl1.setVisible(false);
+				 pandtt1.setVisible(false);
+				 pandtl2.setVisible(false);
+				 pandtt2.setVisible(false);
+				 pandtl3.setVisible(false);
+				 pandtt3.setVisible(false);
+				 pandtl4.setVisible(false);
+				 pandtt4.setVisible(false);
+				 d1l.setVisible(false);
+				 d1t.setVisible(false);
+				 d2l.setVisible(false);
+				 d2t.setVisible(false); 
+				 ma1l.setVisible(false);
+				 ma1t.setVisible(false);
+				 ma2l.setVisible(false);
+				 ma2t.setVisible(false);
+				 ma3l.setVisible(false);
+				 ma3t.setVisible(false);
+				 ma4l.setVisible(false);
+				 ma4t.setVisible(false);
+				 mwl1.setVisible(false);
+				 mwt1.setVisible(false);
+				 mwl2.setVisible(false);
+				 mwt2.setVisible(false);
+				 lands1l.setVisible(false);
+				 lands1t.setVisible(false);
+				 lands2l.setVisible(false);
+				 lands2t.setVisible(false);
+				 main_panel.setVisible(false);
+			 }
+			 private void Feespanel() {
+				 fees_panel.setVisible(true);
+				 fees_label.setVisible(true);
+				 contact_panel.setVisible(false);
+				 contact_label.setVisible(false);
+				 about_label.setVisible(false);
+				 about_panel.setVisible(false);
+				 d2_panel.setVisible(false);
+				 tl1.setVisible(false);
+				 menu_list.setVisible(false);
+				 TPanel.setVisible(false);
+				 TicketLabel.setVisible(false);
+				 CountLabel.setVisible(false);
+				 home_label.setVisible(false);
+				 pandt_label.setVisible(false);
+				 dal_label.setVisible(false);
+				 ma_label.setVisible(false);
+				 mw_label.setVisible(false);
+				 lands_label.setVisible(false);
+				 home_list.setVisible(false);
+				 pandt_list.setVisible(false);
+				 dal_list.setVisible(false);
+				 ma_list.setVisible(false);
+				 mw_list.setVisible(false);
+				 lands_list.setVisible(false);
+				 home_label.setVisible(false);
+				 pandt_label.setVisible(false);
+				 dal_label.setVisible(false);
+				 ma_label.setVisible(false);
+				 mw_label.setVisible(false);
+				 lands_label.setVisible(false);
+				 home_list.setVisible(false);
+				 pandt_list.setVisible(false);
+				 dal_list.setVisible(false);
+				 ma_list.setVisible(false);
+				 mw_list.setVisible(false);
+				 lands_list.setVisible(false);
+				 home1l.setVisible(false);
+				 home1t.setVisible(false);
+				 home2l.setVisible(false);
+				 home2t.setVisible(false);
+				 home3l.setVisible(false);
+				 home3t.setVisible(false);
+				 home4l.setVisible(false);
+				 home4t.setVisible(false);
+				 home5l.setVisible(false);
+				 home5t.setVisible(false);
+				 home6l.setVisible(false);
+				 home6t.setVisible(false);
+				 home7l.setVisible(false);
+				 home7t.setVisible(false);
+				 home8l.setVisible(false);
+				 home8t.setVisible(false);
+				 pandtl1.setVisible(false);
+				 pandtt1.setVisible(false);
+				 pandtl2.setVisible(false);
+				 pandtt2.setVisible(false);
+				 pandtl3.setVisible(false);
+				 pandtt3.setVisible(false);
+				 pandtl4.setVisible(false);
+				 pandtt4.setVisible(false);
+				 d1l.setVisible(false);
+				 d1t.setVisible(false);
+				 d2l.setVisible(false);
+				 d2t.setVisible(false); 
+				 ma1l.setVisible(false);
+				 ma1t.setVisible(false);
+				 ma2l.setVisible(false);
+				 ma2t.setVisible(false);
+				 ma3l.setVisible(false);
+				 ma3t.setVisible(false);
+				 ma4l.setVisible(false);
+				 ma4t.setVisible(false);
+				 mwl1.setVisible(false);
+				 mwt1.setVisible(false);
+				 mwl2.setVisible(false);
+				 mwt2.setVisible(false);
+				 lands1l.setVisible(false);
+				 lands1t.setVisible(false);
+				 lands2l.setVisible(false);
+				 lands2t.setVisible(false);
+				 main_panel.setVisible(false);
+			 }
+			 private void Privacypanel() {
+				 privacy_panel.setVisible(true);
+				 privacy_label.setVisible(true);
+				 fees_panel.setVisible(false);
+				 fees_label.setVisible(false);
+				 contact_panel.setVisible(false);
+				 contact_label.setVisible(false);
+				 about_label.setVisible(false);
+				 about_panel.setVisible(false);
+				 d2_panel.setVisible(false);
+				 tl1.setVisible(false);
+				 menu_list.setVisible(false);
+				 TPanel.setVisible(false);
+				 TicketLabel.setVisible(false);
+				 CountLabel.setVisible(false);
+				 home_label.setVisible(false);
+				 pandt_label.setVisible(false);
+				 dal_label.setVisible(false);
+				 ma_label.setVisible(false);
+				 mw_label.setVisible(false);
+				 lands_label.setVisible(false);
+				 home_list.setVisible(false);
+				 pandt_list.setVisible(false);
+				 dal_list.setVisible(false);
+				 ma_list.setVisible(false);
+				 mw_list.setVisible(false);
+				 lands_list.setVisible(false);
+				 home_label.setVisible(false);
+				 pandt_label.setVisible(false);
+				 dal_label.setVisible(false);
+				 ma_label.setVisible(false);
+				 mw_label.setVisible(false);
+				 lands_label.setVisible(false);
+				 home_list.setVisible(false);
+				 pandt_list.setVisible(false);
+				 dal_list.setVisible(false);
+				 ma_list.setVisible(false);
+				 mw_list.setVisible(false);
+				 lands_list.setVisible(false);
+				 home1l.setVisible(false);
+				 home1t.setVisible(false);
+				 home2l.setVisible(false);
+				 home2t.setVisible(false);
+				 home3l.setVisible(false);
+				 home3t.setVisible(false);
+				 home4l.setVisible(false);
+				 home4t.setVisible(false);
+				 home5l.setVisible(false);
+				 home5t.setVisible(false);
+				 home6l.setVisible(false);
+				 home6t.setVisible(false);
+				 home7l.setVisible(false);
+				 home7t.setVisible(false);
+				 home8l.setVisible(false);
+				 home8t.setVisible(false);
+				 pandtl1.setVisible(false);
+				 pandtt1.setVisible(false);
+				 pandtl2.setVisible(false);
+				 pandtt2.setVisible(false);
+				 pandtl3.setVisible(false);
+				 pandtt3.setVisible(false);
+				 pandtl4.setVisible(false);
+				 pandtt4.setVisible(false);
+				 d1l.setVisible(false);
+				 d1t.setVisible(false);
+				 d2l.setVisible(false);
+				 d2t.setVisible(false); 
+				 ma1l.setVisible(false);
+				 ma1t.setVisible(false);
+				 ma2l.setVisible(false);
+				 ma2t.setVisible(false);
+				 ma3l.setVisible(false);
+				 ma3t.setVisible(false);
+				 ma4l.setVisible(false);
+				 ma4t.setVisible(false);
+				 mwl1.setVisible(false);
+				 mwt1.setVisible(false);
+				 mwl2.setVisible(false);
+				 mwt2.setVisible(false);
+				 lands1l.setVisible(false);
+				 lands1t.setVisible(false);
+				 lands2l.setVisible(false);
+				 lands2t.setVisible(false);
+				 main_panel.setVisible(false);
+			 }
 		  public void removeUpdate(DocumentEvent e) {
               updateCharacterCount();
           }
@@ -1604,12 +1996,4 @@ public class HelpPanel extends JPanel {
               }
               CountLabel.setText("Characters Left: " + remainingCharacters);
           }
-		 public void openHelpPanel1() {
-			    HelpPanel1 helpPanel1 = new HelpPanel1();
-			    helpPanel1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			    helpPanel1.setResizable(true);
-			    helpPanel1.setBounds(getBounds());
-			    helpPanel1.setLocationRelativeTo(null); 
-			    helpPanel1.setVisible(true);
-			}
 }

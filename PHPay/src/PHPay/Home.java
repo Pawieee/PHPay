@@ -191,6 +191,10 @@ public class Home extends JFrame {
 		servicePanel.setVisible(false);
 		homePanel.setVisible(false);
 		helpPanel.setVisible(false);
+		
+		if(selectedPanel==helpPanel) {
+			helpPanel.showHome();
+		}
 
 		selectedPanel.setVisible(true);
 	}
