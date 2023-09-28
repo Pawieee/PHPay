@@ -32,10 +32,11 @@ public class Home extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private int x, y;
 	private ServicePanel servicePanel;
-	private SummaryPanel summaryPanel;
+	private Transactions summaryPanel;
 	private HomePanel homePanel;
 	private HelpPanel helpPanel;
 	private SendMoney sendMoney;
+	private BuyLoad buyLoad;
 	private String session;
 	private JLabel home, wallet, activity, help;
 	private JPanel movingPane;
@@ -66,8 +67,8 @@ public class Home extends JFrame {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int screenWidth = screenSize.width;
 		int screenHeight = screenSize.height;
-		int centerX = (screenWidth - 1496) / 2;
-		int centerY = (screenHeight - 749) / 2;
+		int centerX = (screenWidth - 1464) / 2;
+		int centerY = (screenHeight - 754) / 2;
 		setLocation(centerX, centerY);
 		setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 50, 50));
 		setVisible(true);
@@ -130,26 +131,29 @@ public class Home extends JFrame {
 		RoundedPanel panelArea = new RoundedPanel(20);
 		panelArea.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		panelArea.setBackground(new Color(255, 255, 255));
-		panelArea.setBounds(263, 0, 1233, 754);
+		panelArea.setBounds(265, 0, 1233, 754);
 		panel.add(panelArea);
 		panelArea.setLayout(null);
 
 		servicePanel = new ServicePanel(session);
-		summaryPanel = new SummaryPanel(session);
+		summaryPanel = new Transactions(session);
 		helpPanel = new HelpPanel(session);
 		homePanel = new HomePanel();
 		sendMoney = new SendMoney(session);
+		buyLoad = new BuyLoad(session);
 		
 		servicePanel.setVisible(false);
 		summaryPanel.setVisible(false);
 		helpPanel.setVisible(false);
 		sendMoney.setVisible(false);
+		buyLoad.setVisible(false);
 		
 		panelArea.add(homePanel);
 		panelArea.add(servicePanel);
 		panelArea.add(summaryPanel);
 		panelArea.add(helpPanel);
 		panelArea.add(sendMoney);
+		panelArea.add(buyLoad);
 
 		wallet = new JLabel("   Wallet");
 		wallet.setIcon(new ImageIcon(Home.class.getResource("/PHPay/phpimg/wallet-.png")));
@@ -283,6 +287,12 @@ public class Home extends JFrame {
 		panel.add(lblSendMoney);
 
 		JLabel lblBuyLoad = new JLabel("Buy Load");
+		lblBuyLoad.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				titleClicked(buyLoad);
+			}
+		});
 		lblBuyLoad.setHorizontalAlignment(SwingConstants.LEFT);
 		lblBuyLoad.setForeground(Color.WHITE);
 		lblBuyLoad.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 14));
@@ -359,6 +369,7 @@ public class Home extends JFrame {
 		summaryPanel.setVisible(false);
 		helpPanel.setVisible(false);
 		sendMoney.setVisible(false);
+		buyLoad.setVisible(false);
 		
 		if (selectedPanel == sendMoney) {
 			sendMoney.reset();

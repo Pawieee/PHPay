@@ -17,13 +17,11 @@ public class Proceed extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private static String message;
+	private String session;
 
-	public Proceed(String message) {
+	public Proceed(String message, String ID) {
 		Proceed.message = message;
-		initialize();
-	}
-
-	private void initialize() {
+		this.session = ID;
 		setTitle("PHPAY");
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage(Home.class.getResource("/PHPay/phpimg/PHPAY-BRAND-ICON2.png")));
@@ -80,14 +78,20 @@ public class Proceed extends JFrame {
 				} else {
 					((Timer) e.getSource()).stop();
 					dispose();
-					Welcome welcome = new Welcome();
-					welcome.setVisible(true);
+					
+					Receipt receipt = new Receipt(ID);
+					receipt.setVisible(true);
+					
 				}
 			}
 		});
 
 		timer.start();
 
+	}
+
+	public String getSession() {
+		return this.session;
 	}
 
 }

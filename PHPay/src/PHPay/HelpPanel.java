@@ -694,7 +694,7 @@ public class HelpPanel extends JPanel {
 		
 		CountLabel = new JLabel("300 Characters Max");
 		CountLabel.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 11));
-		CountLabel.setBounds(10, 334, 118, 14);
+		CountLabel.setBounds(10, 334, 170, 14);
 		TPanel.add(CountLabel);
 		
 		tl1 = new JLabel("Help Center - Personal Account");

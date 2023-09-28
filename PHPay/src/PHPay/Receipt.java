@@ -38,8 +38,8 @@ public class Receipt extends JFrame {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int screenWidth = screenSize.width;
 		int screenHeight = screenSize.height;
-		int centerX = (screenWidth - 672) / 2;
-		int centerY = (screenHeight - 596) / 2;
+		int centerX = (screenWidth - 452) / 2;
+		int centerY = (screenHeight - 554) / 2;
 		setLocation(centerX, centerY);
 		setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 30, 30));
 
@@ -69,7 +69,9 @@ public class Receipt extends JFrame {
 		ok.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				
+				Home home = new Home(session);
+				home.setVisible(true);
+
 			}
 		});
 		ok.setBounds(120, 329, 115, 40);

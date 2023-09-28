@@ -139,7 +139,6 @@ public class SignUp extends JFrame {
 		int currentMonth = calendar.get(Calendar.MONTH);
 		int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
 		int currentYear = calendar.get(Calendar.YEAR);
-		
 
 		String[] months = { "January", "February", "March", "April", "May", "June", "July", "August", "September",
 				"October", "November", "December" };
@@ -450,16 +449,15 @@ public class SignUp extends JFrame {
 				}
 
 				try {
-		            birthDate = LocalDate.of(year, monthChoice, day);
-		        } catch (DateTimeException e1) {
-		            dayLabel.setToolTipText(e1.getMessage());
-		        }
+					birthDate = LocalDate.of(year, monthChoice, day);
+				} catch (DateTimeException e1) {
+					dayLabel.setToolTipText(e1.getMessage());
+				}
 				LocalDate currentDate = LocalDate.now();
 				Period agePeriod = Period.between(birthDate, currentDate);
 
 				int ageInt = agePeriod.getYears();
 				age = String.valueOf(ageInt);
-
 
 				if (firstNameEdited && lastNameEdited && monthEdited && dayEdited && yearEdited && phoneEdited
 						&& addressEdited && emailEdited && yearEdited && genderEdited && civilEdited && ageInt >= 18) {
@@ -869,7 +867,7 @@ public class SignUp extends JFrame {
 
 				@Override
 				public int getWidth() {
-					return 0; 
+					return 0;
 				}
 			};
 		}
@@ -877,26 +875,21 @@ public class SignUp extends JFrame {
 		@Override
 		protected ComboPopup createPopup() {
 			return new BasicComboPopup(comboBox) {
-				/**
-				 * 
-				 */
 				private static final long serialVersionUID = 1L;
 
 				@Override
 				protected JScrollPane createScroller() {
-					// Create a custom JScrollPane with scrollbars set to "NEVER"
 					JScrollPane scroller = new JScrollPane(list, JScrollPane.VERTICAL_SCROLLBAR_NEVER,
 							JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 					scroller.getViewport().setBackground(comboBox.getBackground());
 
-					// Add a MouseWheelListener to enable slower scrolling
 					scroller.addMouseWheelListener(new MouseWheelListener() {
 						@Override
 						public void mouseWheelMoved(MouseWheelEvent e) {
 							JScrollBar verticalScrollBar = scroller.getVerticalScrollBar();
 							int units = e.getUnitsToScroll();
-							int extent = verticalScrollBar.getBlockIncrement(1) / 5; 
-																					
+							int extent = verticalScrollBar.getBlockIncrement(1) / 5;
+
 							int currentValue = verticalScrollBar.getValue();
 							verticalScrollBar.setValue(currentValue + units * extent);
 						}

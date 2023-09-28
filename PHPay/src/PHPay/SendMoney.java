@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
@@ -28,8 +29,9 @@ public class SendMoney extends JPanel {
 	private JLabel fee;
 	private JLabel totalAmount;
 	private String amountString;
-	private PHPay.RoundedTextField idField, amountField;
+	private RoundedTextField idField, amountField;
 	private RoundedPanel previewPane;
+	private RoundedPanel blockPane;
 
 	public SendMoney(String ID) {
 		this.session = ID;
@@ -104,6 +106,12 @@ public class SendMoney extends JPanel {
 		previewPane.setBounds(622, 46, 535, 657);
 		gradientPanel.add(previewPane);
 		previewPane.setVisible(false);
+
+		RoundedPanel blockPane = new RoundedPanel(30);
+		blockPane.setBounds(592, -1, 615, 756);
+		gradientPanel.add(blockPane);
+		blockPane.setLayout(null);
+		blockPane.setBackground(new Color(0, 0, 0, 50));
 
 		receiverName = new JLabel(SQLQuery.getFullName(id));
 		receiverName.setHorizontalAlignment(SwingConstants.CENTER);
@@ -199,29 +207,22 @@ public class SendMoney extends JPanel {
 		RoundedButton confirmButton = new RoundedButton("OK");
 		confirmButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				
+				
 				JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(SendMoney.this);
-//
-//		        // Dispose of the parent frame
-//		        if (frame != null) {
-//		            frame.dispose();
-//		        }
-//		        
-				
-				
-				
-				
-				
+
+		        if (frame != null) {
+		            frame.dispose();
+		        }
+
 				dispose();
-				Process process = new Process(getSession());
-				process.setVisible(true);
+				Proceed proceed = new Proceed("Processing",getSession());
+				proceed.setVisible(true);
 				SQLQuery.sendMoney(ID, id, amount);
 
-				
 			}
 
 			private void dispose() {
-				
+
 			}
 		});
 		confirmButton.setText("Confirm");
@@ -266,26 +267,26 @@ public class SendMoney extends JPanel {
 				boolean idEdited = false, amountEdited = false;
 
 				amountString = amountField.getText();
+				amount = Double.parseDouble(amountString);
 				id = idField.getText();
 
-				if (SQLQuery.IDExists(id)) 
+				if (SQLQuery.IDExists(id))
 					idEdited = true;
-				else 
+				else
 					idEdited = false;
 
 				if (isNumeric(amountString)) {
-					amount = Double.parseDouble(amountString);
-					if (amount * 1.03 >= SQLQuery.getBalance(ID))
+					if (amount * 1.03 <= SQLQuery.getBalance(ID)) {
 						amountEdited = true;
-				} else 
+					}
+				} else
 					amountEdited = false;
 
 				if (idEdited && amountEdited) {
 					setPreview();
 					previewPane.setVisible(true);
-					SQLQuery.sendMoney(session, id, amount);
 
-				} else 
+				} else
 					System.out.println("failed");
 
 			}
@@ -298,7 +299,6 @@ public class SendMoney extends JPanel {
 		nextButton.setBounds(169, 271, 130, 34);
 		transfer.add(nextButton);
 
-		
 	}
 
 	public static boolean isNumeric(String str) {
@@ -327,13 +327,15 @@ public class SendMoney extends JPanel {
 		totalAmount.setText("₱ " + Double.toString(amount + doubleFee));
 
 	}
-	
+
 	public String getSession() {
 		return session;
 	}
+
 	public void reset() {
 		previewPane.setVisible(false);
 		idField.setText("");
 		amountField.setText("");
 	}
+
 }

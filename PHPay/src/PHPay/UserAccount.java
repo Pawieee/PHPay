@@ -266,7 +266,7 @@ public class UserAccount extends JFrame {
 		confirmButton.setForeground(new Color(150, 150, 150));
 		confirmButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Proceed successful = new Proceed("Account successfully created");
+				Proceed successful = new Proceed("Account successfully created", null);
 				successful.setVisible(true);
 
 				Timer timer = new Timer(4000, new ActionListener() {
@@ -441,7 +441,7 @@ public class UserAccount extends JFrame {
 					} else if (!pass.equals(confirmPass)) {
 						System.out.println("Password should match");
 					} else {
-						
+
 						newAccount.saveAccount();
 						hidePane.setVisible(true);
 						confirmButton.setVisible(true);
