@@ -5,7 +5,6 @@ import java.awt.EventQueue;
 import java.awt.Font;
 
 import javax.swing.JFrame;
-import javax.swing.JDesktopPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
@@ -23,9 +22,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
-import PHPay.SummaryPanel.LeftAlignedHeaderRenderer;
 
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
@@ -63,14 +60,9 @@ public class adminPanel {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JButton btnNewButton = new JButton("Sus transacts");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				getSus();
-			}
-		});
-		btnNewButton.setBounds(6, 86, 130, 21);
-		frame.getContentPane().add(btnNewButton);
+		scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(205, 47, 491, 345);
+		frame.getContentPane().add(scrollPane_1);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(211, 30, 446, 393);
@@ -78,12 +70,23 @@ public class adminPanel {
 		panel.setVisible(false);
 		panel.setLayout(null);
 		
+		JButton btnNewButton = new JButton("Sus transacts");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				getSus(scrollPane_1);
+				scrollPane_1.setVisible(true);
+				panel.setVisible(false);
+			}
+		});
+		btnNewButton.setBounds(6, 86, 130, 21);
+		frame.getContentPane().add(btnNewButton);
+		
+		
 		JButton prev = new JButton("<");
 		prev.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<String[]> tickets = SQLQuery.getTickets();
 				
-				int size = tickets.size();
 				if (index > 0) {
 					
 					index--;
@@ -160,6 +163,8 @@ public class adminPanel {
 		btnAppeals.setBounds(26, 147, 92, 21);
 		btnAppeals.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				scrollPane_1.setVisible(false);
 				panel.setVisible(true);
 				
 				ArrayList<String[]> tickets = SQLQuery.getTickets();
@@ -179,15 +184,8 @@ public class adminPanel {
 		frame.getContentPane().add(btnAppeals);
 		
 	}
-	private void clearTable(DefaultTableModel model) {
-		model.setRowCount(0);
-	}
 	
-	public void getSus() {
-		JScrollPane scrollPane;
-		scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(205, 47, 491, 345);
-		frame.getContentPane().add(scrollPane_1);
+	public void getSus(JScrollPane scrollPane) {
 		
 		
 		DefaultTableModel model = new DefaultTableModel(null,
@@ -255,25 +253,25 @@ public class adminPanel {
 		}
 	}
 	
-	public void getAppeals() {
-
-		
-		SQLConnection con = new SQLConnection();
-		String query = "SELECT * FROM `appeals`";
-
-		try {
-			PreparedStatement ps = con.getCon().prepareStatement(query);
-			ResultSet rs = ps.executeQuery();
-
-			String ticket,user_id, message, status;
-			while (rs.next()) {
-				ticket = rs.getString(1);
-				user_id = rs.getString(2);
-				message= rs.getString(3);
-				status = rs.getString(4);
-			}
-		} catch (SQLException ex) {
-			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
-		}
-	}
+//	public void getAppeals() {
+//
+//		
+//		SQLConnection con = new SQLConnection();
+//		String query = "SELECT * FROM `appeals`";
+//
+//		try {
+//			PreparedStatement ps = con.getCon().prepareStatement(query);
+//			ResultSet rs = ps.executeQuery();
+//
+//			String ticket,user_id, message, status;
+//			while (rs.next()) {
+//				ticket = rs.getString(1);
+//				user_id = rs.getString(2);
+//				message= rs.getString(3);
+//				status = rs.getString(4);
+//			}
+//		} catch (SQLException ex) {
+//			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+//		}
+//	}
 }
