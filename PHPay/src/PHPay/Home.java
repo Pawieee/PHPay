@@ -56,7 +56,6 @@ public class Home extends JFrame {
 	public Home(String ID) {
 
 		this.session = ID;
-		
 
 		setTitle("PHPAY");
 		setIconImage(
@@ -72,7 +71,7 @@ public class Home extends JFrame {
 		setLocation(centerX, centerY);
 		setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 50, 50));
 		setVisible(true);
-		
+
 		JPanel top = new JPanel();
 		top.setBackground(new Color(255, 255, 255, 0));
 		top.setBounds(1, 0, 1561, 17);
@@ -101,7 +100,7 @@ public class Home extends JFrame {
 		panel.setBounds(0, 0, 1464, 754);
 		getContentPane().add(panel);
 		panel.setLayout(null);
-		
+
 		separator = new JSeparator();
 		separator.setOrientation(SwingConstants.VERTICAL);
 		separator.setBounds(49, 359, 2, 166);
@@ -146,13 +145,11 @@ public class Home extends JFrame {
 		helpPanel.setVisible(false);
 		sendMoney.setVisible(false);
 		
-		
 		panelArea.add(homePanel);
 		panelArea.add(servicePanel);
 		panelArea.add(summaryPanel);
 		panelArea.add(helpPanel);
 		panelArea.add(sendMoney);
-		
 
 		wallet = new JLabel("   Wallet");
 		wallet.setIcon(new ImageIcon(Home.class.getResource("/PHPay/phpimg/wallet-.png")));
@@ -250,28 +247,28 @@ public class Home extends JFrame {
 		btnNewButton.setBorder(new EmptyBorder(0, 0, 0, 0));
 		btnNewButton.setBounds(28, 701, 46, 30);
 		panel.add(btnNewButton);
-		
+
 		JLabel lblLogout = new JLabel("Log Out");
 		lblLogout.setHorizontalAlignment(SwingConstants.LEFT);
 		lblLogout.setForeground(Color.WHITE);
 		lblLogout.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 15));
 		lblLogout.setBounds(84, 697, 70, 36);
 		panel.add(lblLogout);
-		
+
 		lblLogout_1 = new JLabel(SQLQuery.getID(ID));
 		lblLogout_1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblLogout_1.setForeground(Color.WHITE);
 		lblLogout_1.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
 		lblLogout_1.setBounds(131, 56, 94, 36);
 		panel.add(lblLogout_1);
-		
+
 		lblLogout_2 = new JLabel("ID");
 		lblLogout_2.setHorizontalAlignment(SwingConstants.LEFT);
 		lblLogout_2.setForeground(Color.WHITE);
 		lblLogout_2.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
 		lblLogout_2.setBounds(110, 56, 22, 36);
 		panel.add(lblLogout_2);
-		
+
 		JLabel lblSendMoney = new JLabel("Send Money");
 		lblSendMoney.addMouseListener(new MouseAdapter() {
 			@Override
@@ -284,28 +281,28 @@ public class Home extends JFrame {
 		lblSendMoney.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 14));
 		lblSendMoney.setBounds(72, 355, 115, 30);
 		panel.add(lblSendMoney);
-		
+
 		JLabel lblBuyLoad = new JLabel("Buy Load");
 		lblBuyLoad.setHorizontalAlignment(SwingConstants.LEFT);
 		lblBuyLoad.setForeground(Color.WHITE);
 		lblBuyLoad.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 14));
 		lblBuyLoad.setBounds(72, 390, 115, 30);
 		panel.add(lblBuyLoad);
-		
+
 		JLabel lblPayBills = new JLabel("Pay Bills");
 		lblPayBills.setHorizontalAlignment(SwingConstants.LEFT);
 		lblPayBills.setForeground(Color.WHITE);
 		lblPayBills.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 14));
 		lblPayBills.setBounds(72, 425, 115, 30);
 		panel.add(lblPayBills);
-		
+
 		JLabel lblCashIn = new JLabel("Cash In");
 		lblCashIn.setHorizontalAlignment(SwingConstants.LEFT);
 		lblCashIn.setForeground(Color.WHITE);
 		lblCashIn.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 14));
 		lblCashIn.setBounds(72, 460, 115, 30);
 		panel.add(lblCashIn);
-		
+
 		JLabel lblTransfer = new JLabel("Transfer");
 		lblTransfer.setHorizontalAlignment(SwingConstants.LEFT);
 		lblTransfer.setForeground(Color.WHITE);
@@ -317,10 +314,10 @@ public class Home extends JFrame {
 		int interval = 5000; 
 
 		Timer timer = new Timer(interval, new ActionListener() {
-		    @Override
-		    public void actionPerformed(ActionEvent e) {
-		        updateBalanceLabelFromFile();
-		    }
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				updateBalanceLabelFromFile();
+			}
 		});
 
 		timer.start();

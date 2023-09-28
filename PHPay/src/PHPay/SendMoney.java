@@ -8,7 +8,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+
 import java.awt.Insets;
 import javax.swing.UIManager;
 import java.awt.event.ActionListener;
@@ -80,7 +83,7 @@ public class SendMoney extends JPanel {
 		idField.setBounds(46, 61, 376, 47);
 		transfer.add(idField);
 
-		 amountField = new PHPay.RoundedTextField(10);
+		amountField = new PHPay.RoundedTextField(10);
 		amountField.setName("");
 		amountField.setMargin(new Insets(2, 7, 2, 7));
 		amountField.setForeground(Color.WHITE);
@@ -196,12 +199,28 @@ public class SendMoney extends JPanel {
 		RoundedButton confirmButton = new RoundedButton("OK");
 		confirmButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+//				
+				JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(SendMoney.this);
+//
+//		        // Dispose of the parent frame
+//		        if (frame != null) {
+//		            frame.dispose();
+//		        }
+//		        
+				
+				
+				
+				
+				
+				dispose();
 				Process process = new Process(getSession());
 				process.setVisible(true);
 				SQLQuery.sendMoney(ID, id, amount);
-				idField.setText("");
-				amountField.setText("");
-				previewPane.setVisible(false);
+
+				
+			}
+
+			private void dispose() {
 				
 			}
 		});
@@ -260,7 +279,6 @@ public class SendMoney extends JPanel {
 						amountEdited = true;
 				} else 
 					amountEdited = false;
-				
 
 				if (idEdited && amountEdited) {
 					setPreview();
@@ -279,8 +297,8 @@ public class SendMoney extends JPanel {
 		nextButton.setAlignmentY(0.0f);
 		nextButton.setBounds(169, 271, 130, 34);
 		transfer.add(nextButton);
-		
 
+		
 	}
 
 	public static boolean isNumeric(String str) {
