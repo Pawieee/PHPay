@@ -1,6 +1,7 @@
 package PHPay;
 
 import javax.swing.JPanel;
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import java.awt.SystemColor;
 import java.awt.event.MouseAdapter;
@@ -8,6 +9,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.Color;
 import javax.swing.UIManager;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JList;
@@ -17,11 +21,14 @@ import javax.swing.JSeparator;
 import java.awt.Panel;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JEditorPane;
+import javax.swing.JButton;
 
 public class HelpPanel extends JPanel {
 	GradientPanel top_panel = new GradientPanel(new Color(0x360079), new Color((0x000000)));
 	JPanel d1_panel;
 	JPanel d2_panel;
+	JPanel TPanel;
 	JList menu_list;
 	JList home_list;
 	JList pandt_list;
@@ -32,9 +39,6 @@ public class HelpPanel extends JPanel {
 	JLabel tl1;
 	JLabel tl2;
 	JLabel bl1;
-	JLabel bl2;
-	JLabel bl3;
-	JLabel bl4;
 	JLabel bl5;
 	JLabel bl6;
 	JLabel bl7;
@@ -94,6 +98,10 @@ public class HelpPanel extends JPanel {
     JLabel lands1t;
     JLabel lands2l;
     JLabel lands2t;
+    JEditorPane EPane1;
+    JButton TButton;
+    JLabel TicketLabel;
+    JLabel CountLabel;
 
 	public HelpPanel(String ID) {
 		setForeground(new Color(51, 0, 204));
@@ -122,6 +130,8 @@ public class HelpPanel extends JPanel {
 					showMw();
 				} else if (menu_list.getSelectedValue().equals("Login & Security")) {
 					showLands();
+				} else if (menu_list.getSelectedValue().equals("Create a Ticket")) {
+					showTp1();
 				} 
 			}
 		});
@@ -161,7 +171,7 @@ public class HelpPanel extends JPanel {
 		});
 		main_panel.add(home_list);
 		menu_list.setModel(new AbstractListModel() {
-			String[] values = new String[] {"Home", "", "", "", "", "", "", "", "", "", "", "Payments and Transfers", "", "", "", "", "", "", "", "", "", "", "Disputes and Limitations", "", "", "", "", "", "", "", "", "", "", "My Account", "", "", "", "", "", "", "", "", "", "", "My Wallet", "", "", "", "", "", "", "", "", "", "", "Login & Security", "", "", "", "", "", ""};
+			String[] values = new String[] {"Home", "", "", "", "", "", "", "", "", "", "", "Payments and Transfers", "", "", "", "", "", "", "", "", "", "", "Disputes and Limitations", "", "", "", "", "", "", "", "", "", "", "My Account", "", "", "", "", "", "", "", "", "", "", "My Wallet", "", "", "", "", "", "", "", "", "", "", "Login & Security", "", "", "", "", "", "", "", "", "Create a Ticket", "", "", "", ""};
 			public int getSize() {
 				return values.length;
 			}
@@ -169,7 +179,7 @@ public class HelpPanel extends JPanel {
 				return values[index];
 			}
 		});
-		menu_list.setBounds(10, 123, 271, 316);
+		menu_list.setBounds(10, 123, 271, 384);
 		add(menu_list);
 		top_panel.setBackground(SystemColor.controlHighlight);
 		top_panel.setBounds(-184, -15, 1470, 111);
@@ -631,6 +641,49 @@ public class HelpPanel extends JPanel {
 		lands2t.setBounds(10, 52, 865, 337);
 		lands2t.setVisible(false);
 		main_panel.add(lands2t);
+		
+		TPanel = new JPanel();
+		TPanel.setBackground(new Color(255, 255, 255));
+		TPanel.setBounds(0, 11, 885, 389);
+		main_panel.add(TPanel);
+		TPanel.setVisible(false);
+		TPanel.setLayout(null);
+		
+		EPane1 = new JEditorPane();
+		EPane1.setBounds(10, 48, 865, 282);
+		EPane1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		TPanel.add(EPane1);
+		EPane1.getDocument().addDocumentListener(new DocumentListener() {
+	            @Override
+	            public void insertUpdate(DocumentEvent e) {
+	                updateCharacterCount();
+	            }
+
+				@Override
+				public void removeUpdate(DocumentEvent e) {
+					 updateCharacterCount();
+				}
+
+				@Override
+				public void changedUpdate(DocumentEvent e) {
+					
+				}
+		  });
+		 
+		TButton = new JButton("Submit Ticket");
+		TButton.setBounds(746, 355, 129, 23);
+		TPanel.add(TButton);
+		
+		TicketLabel = new JLabel("Create your Ticket");
+		TicketLabel.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 25));
+		TicketLabel.setBounds(10, 0, 335, 37);
+		TPanel.add(TicketLabel);
+		
+		CountLabel = new JLabel("Characters Left: 300");
+		CountLabel.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 11));
+		CountLabel.setBounds(10, 334, 118, 14);
+		TPanel.add(CountLabel);
+		
 		tl1 = new JLabel("Help Center - Personal Account");
 		tl1.setBounds(197, 29, 332, 31);
 		top_panel.add(tl1);
@@ -656,40 +709,10 @@ public class HelpPanel extends JPanel {
 	            }
 	        });
 		add(bl1);
-		bl2 = new JLabel("Developers");
-		bl2.setForeground(new Color(0, 0, 0));
-		bl2.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 13));
-		bl2.setBounds(171, 584, 76, 14);
-		bl2.addMouseListener(new MouseAdapter() {
-	            public void mouseClicked(MouseEvent e) {
-	                openHelpPanel1();
-	            }
-	        });
-		add(bl2);
-		bl3 = new JLabel("Partners");
-		bl3.setForeground(new Color(0, 0, 0));
-		bl3.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 13));
-		bl3.setBounds(246, 584, 46, 14);
-		bl3.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-                openHelpPanel1();
-            }
-        });
-		add(bl3);
-		bl4 = new JLabel("Security");
-		bl4.setForeground(new Color(0, 0, 0));
-		bl4.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 12));
-		bl4.setBounds(305, 584, 46, 14);
-		bl4.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-                openHelpPanel1();
-            }
-        });
-		add(bl4);
 		bl5 = new JLabel("Contact");
 		bl5.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 12));
 		bl5.setForeground(new Color(0, 0, 0));
-		bl5.setBounds(361, 584, 46, 14);
+		bl5.setBounds(172, 584, 46, 14);
 		bl5.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 openHelpPanel1();
@@ -699,7 +722,7 @@ public class HelpPanel extends JPanel {
 		bl6 = new JLabel("Help\r\n");
 		bl6.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 12));
 		bl6.setForeground(new Color(0, 0, 0));
-		bl6.setBounds(417, 584, 46, 14);
+		bl6.setBounds(228, 584, 46, 14);
 		bl6.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 openHelpPanel1();
@@ -709,7 +732,7 @@ public class HelpPanel extends JPanel {
 		bl7 = new JLabel("Fees");
 		bl7.setForeground(Color.BLACK);
 		bl7.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 12));
-		bl7.setBounds(458, 584, 46, 14);
+		bl7.setBounds(263, 584, 46, 14);
 		bl7.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 openHelpPanel1();
@@ -746,7 +769,7 @@ public class HelpPanel extends JPanel {
             }
         });
 		add(bl10);
-		bl11 = new JLabel("<html>PHPAY Pte Ltd is (i) licensed by the Monetary Authority of Singapore as a Major Payment Institution under the Payment Services Act 2019 and (ii) regulated by the Bangko Sentral ng Pilipinas <a href='https://www.bsp.gov.ph' style='color: #0000FF; text-decoration: underline;'>https://www.bsp.gov.ph</a> as an Operator of Payment Services in the Philippines under the National Payment Systems Act.<br><br>When you visit or interact with our sites, services, applications, tools or messaging, we or our authorised service providers may use cookies, web beacons, and other similar technologies for storing information to help provide you with a better, faster and safer experience and for advertising purposes. Learn more <a href='link_to_learn_more' style='color: #0000FF; text-decoration: underline;'>here</a>.</html>");
+		bl11 = new JLabel("<html>PHPAY Pte Ltd is (i) licensed by the Monetary Authority of Singapore as a Major Payment Institution under the Payment Services Act 2019 and (ii) regulated by the Bangko Sentral ng Pilipinas <a href='https://www.bsp.gov.ph' style='color: #0000FF; text-decoration: underline;'>https://www.bsp.gov.ph</a> as an Operator of Payment Services in the Philippines under the National Payment Systems Act.<br><br>When you visit or interact with our sites, services, applications, tools or messaging, we or our authorised service providers may use cookies, web beacons, and other similar technologies for storing information to help provide you with a better, faster and safer experience and for advertising purposes. </html>");
 		bl11.setHorizontalAlignment(SwingConstants.CENTER);
 		bl11.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 11));
 		bl11.setBounds(33, 597, 1157, 116);
@@ -759,9 +782,10 @@ public class HelpPanel extends JPanel {
 		bimg2.setIcon(new ImageIcon(HelpPanel.class.getResource("/PHPay/phpimg/philippines (1).png")));
 		bimg2.setBounds(1041, 584, 30, 14);
 		add(bimg2);
+		
 		Panel d2_panel = new Panel();
 		d2_panel.setBackground(new Color(192, 192, 192));
-		d2_panel.setBounds(298, 96, 1, 367);
+		d2_panel.setBounds(298, 96, 1, 411);
 		add(d2_panel);
 		d2_panel.setLayout(null);
 	}
@@ -822,6 +846,9 @@ public class HelpPanel extends JPanel {
 			 lands1t.setVisible(false);
 			 lands2l.setVisible(false);
 			 lands2t.setVisible(false);
+			 TPanel.setVisible(false);
+			 CountLabel.setVisible(false);
+			 EPane1.setText("");
 		 }
 		 private void showPandt() {
 			 home_label.setVisible(false);
@@ -880,6 +907,10 @@ public class HelpPanel extends JPanel {
 			 lands1t.setVisible(false);
 			 lands2l.setVisible(false);
 			 lands2t.setVisible(false);
+			 TPanel.setVisible(false);
+			 TicketLabel.setVisible(false);
+			 CountLabel.setVisible(false);
+			 EPane1.setText("");
 		 }
 		 private void showDal() {
 			 home_label.setVisible(false);
@@ -938,6 +969,10 @@ public class HelpPanel extends JPanel {
 			 lands1t.setVisible(false);
 			 lands2l.setVisible(false);
 			 lands2t.setVisible(false);
+			 TPanel.setVisible(false);
+			 TicketLabel.setVisible(false);
+			 CountLabel.setVisible(false);
+			 EPane1.setText("");
 		 }
 		 private void showMa() {
 			 home_label.setVisible(false);
@@ -996,6 +1031,10 @@ public class HelpPanel extends JPanel {
 			 lands1t.setVisible(false);
 			 lands2l.setVisible(false);
 			 lands2t.setVisible(false);
+			 TPanel.setVisible(false);
+			 TicketLabel.setVisible(false);
+			 CountLabel.setVisible(false);
+			 EPane1.setText("");
 		 }
 		 private void showMw() {
 			 home_label.setVisible(false);
@@ -1054,6 +1093,10 @@ public class HelpPanel extends JPanel {
 			 lands1t.setVisible(false);
 			 lands2l.setVisible(false);
 			 lands2t.setVisible(false);
+			 TPanel.setVisible(false);
+			 TicketLabel.setVisible(false);
+			 CountLabel.setVisible(false);
+			 EPane1.setText("");
 		 }
 		 private void showLands() {
 			 home_label.setVisible(false);
@@ -1114,6 +1157,10 @@ public class HelpPanel extends JPanel {
 			 lands1t.setVisible(false);
 			 lands2l.setVisible(false);
 			 lands2t.setVisible(false);
+			 TPanel.setVisible(false);
+			 TicketLabel.setVisible(false);
+			 CountLabel.setVisible(false);
+			 EPane1.setText("");
 		 }
 		 private void showh1() {
 			 home_label.setVisible(false);
@@ -1469,12 +1516,100 @@ public class HelpPanel extends JPanel {
 			 lands2l.setVisible(true);
 			 lands2t.setVisible(true);
 		 }
+		 private void showTp1() {
+			 TPanel.setVisible(true);
+			 TicketLabel.setVisible(true);
+			 CountLabel.setVisible(true);
+			 home_label.setVisible(false);
+			 pandt_label.setVisible(false);
+			 dal_label.setVisible(false);
+			 ma_label.setVisible(false);
+			 mw_label.setVisible(false);
+			 lands_label.setVisible(false);
+			 home_list.setVisible(false);
+			 pandt_list.setVisible(false);
+			 dal_list.setVisible(false);
+			 ma_list.setVisible(false);
+			 mw_list.setVisible(false);
+			 lands_list.setVisible(false);
+			 home_label.setVisible(false);
+			 pandt_label.setVisible(false);
+			 dal_label.setVisible(false);
+			 ma_label.setVisible(false);
+			 mw_label.setVisible(false);
+			 lands_label.setVisible(false);
+			 home_list.setVisible(false);
+			 pandt_list.setVisible(false);
+			 dal_list.setVisible(false);
+			 ma_list.setVisible(false);
+			 mw_list.setVisible(false);
+			 lands_list.setVisible(false);
+			 home1l.setVisible(false);
+			 home1t.setVisible(false);
+			 home2l.setVisible(false);
+			 home2t.setVisible(false);
+			 home3l.setVisible(false);
+			 home3t.setVisible(false);
+			 home4l.setVisible(false);
+			 home4t.setVisible(false);
+			 home5l.setVisible(false);
+			 home5t.setVisible(false);
+			 home6l.setVisible(false);
+			 home6t.setVisible(false);
+			 home7l.setVisible(false);
+			 home7t.setVisible(false);
+			 home8l.setVisible(false);
+			 home8t.setVisible(false);
+			 pandtl1.setVisible(false);
+			 pandtt1.setVisible(false);
+			 pandtl2.setVisible(false);
+			 pandtt2.setVisible(false);
+			 pandtl3.setVisible(false);
+			 pandtt3.setVisible(false);
+			 pandtl4.setVisible(false);
+			 pandtt4.setVisible(false);
+			 d1l.setVisible(false);
+			 d1t.setVisible(false);
+			 d2l.setVisible(false);
+			 d2t.setVisible(false); 
+			 ma1l.setVisible(false);
+			 ma1t.setVisible(false);
+			 ma2l.setVisible(false);
+			 ma2t.setVisible(false);
+			 ma3l.setVisible(false);
+			 ma3t.setVisible(false);
+			 ma4l.setVisible(false);
+			 ma4t.setVisible(false);
+			 mwl1.setVisible(false);
+			 mwt1.setVisible(false);
+			 mwl2.setVisible(false);
+			 mwt2.setVisible(false);
+			 lands1l.setVisible(false);
+			 lands1t.setVisible(false);
+			 lands2l.setVisible(false);
+			 lands2t.setVisible(false);
+		 }
+		  public void removeUpdate(DocumentEvent e) {
+              updateCharacterCount();
+          }
+
+          public void changedUpdate(DocumentEvent e) {
+              updateCharacterCount();
+          }
+
+          private void updateCharacterCount() {
+              int remainingCharacters = 300 - EPane1.getText().length();
+              if (remainingCharacters < 0) {
+                  remainingCharacters = 0; 
+              }
+              CountLabel.setText("Characters Left: " + remainingCharacters);
+          }
 		 public void openHelpPanel1() {
 			    HelpPanel1 helpPanel1 = new HelpPanel1();
 			    helpPanel1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			    helpPanel1.setResizable(true); // Make it not resizable
+			    helpPanel1.setResizable(true);
 			    helpPanel1.setBounds(getBounds());
-			    helpPanel1.setLocationRelativeTo(null); // Center on screen
+			    helpPanel1.setLocationRelativeTo(null); 
 			    helpPanel1.setVisible(true);
 			}
 }
