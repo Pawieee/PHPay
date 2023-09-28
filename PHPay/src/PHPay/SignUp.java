@@ -29,7 +29,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
@@ -696,7 +695,7 @@ public class SignUp extends JFrame {
 		civilBox.setBackground(new Color(27, 0, 53));
 		civilBox.setSelectedItem(" ");
 
-		genderBox = new RoundedComboBox(gender);
+		genderBox = new RoundedComboBox<String>(gender);
 		genderBox.setBounds(373, 118, 184, 30);
 		panel.add(genderBox);
 		genderBox.addPopupMenuListener(new PopupMenuListener() {
@@ -720,7 +719,7 @@ public class SignUp extends JFrame {
 			}
 		});
 		genderBox.setMaximumRowCount(3);
-		genderBox.setModel(new DefaultComboBoxModel(new String[] { "Male", "Female", "Other", " " }));
+		genderBox.setModel(new DefaultComboBoxModel<String>(new String[] { "Male", "Female", "Other", " " }));
 		genderBox.setForeground(new Color(255, 255, 255));
 		genderBox.setBackground(new Color(27, 0, 53));
 		genderBox.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
@@ -872,6 +871,11 @@ public class SignUp extends JFrame {
 		@Override
 		protected JButton createArrowButton() {
 			return new JButton() {
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
 				@Override
 				public int getWidth() {
 					return 0; // Remove the arrow button by making it have no width
@@ -882,6 +886,11 @@ public class SignUp extends JFrame {
 		@Override
 		protected ComboPopup createPopup() {
 			return new BasicComboPopup(comboBox) {
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
 				@Override
 				protected JScrollPane createScroller() {
 					// Create a custom JScrollPane with scrollbars set to "NEVER"

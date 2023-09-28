@@ -829,7 +829,7 @@ public class Wallet extends JFrame {
 								// the input is 0 or a negative number
 								Field1.setForeground(Color.RED);
 								fEdited1 = false;
-							} else if (amount >= currentBal) {
+							} else if (amount*1.03 >= currentBal) {
 								Field1.setForeground(Color.RED);
 								fEdited1 = false;
 							} else {
