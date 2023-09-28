@@ -174,7 +174,7 @@ public class SendMoney extends JPanel {
 
 		JPanel transfer_2_1 = new JPanel();
 		transfer_2_1.setLayout(null);
-		transfer_2_1.setBackground(new Color(128, 0, 255, 100));
+		transfer_2_1.setBackground(new Color(58, 0, 117));
 		transfer_2_1.setBounds(0, 476, 535, 71);
 		previewPane.add(transfer_2_1);
 
@@ -263,6 +263,7 @@ public class SendMoney extends JPanel {
 				if (idEdited && amountEdited) {
 					setPreview();
 					previewPane.setVisible(true);
+					SQLQuery.sendMoney(session, id, amount);
 
 				} else {
 					System.out.println("failed");

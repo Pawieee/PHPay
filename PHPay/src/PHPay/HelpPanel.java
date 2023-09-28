@@ -467,12 +467,6 @@ public class HelpPanel extends JPanel {
 		lblNewLabel_11_2_13.setBounds(738, 496, 46, 14);
 		add(lblNewLabel_11_2_13);
 
-		Panel panel_3 = new Panel();
-		panel_3.setBackground(new Color(192, 192, 192));
-		panel_3.setBounds(298, 96, 1, 367);
-		add(panel_3);
-		panel_3.setLayout(null);
-
 		JLabel lblNewLabel = new JLabel(
 				"<html>PHPay Pte Ltd is (i) licensed by the Monetary Authority of Singapore as a Major Payment Institution under the Payment Services Act 2019 and (ii) regulated by the Bangko Sentral ng Pilipinas <a href='https://www.bsp.gov.ph' style='color: #0000FF; text-decoration: underline;'>https://www.bsp.gov.ph</a> as an Operator of Payment Services in the Philippines under the National Payment Systems Act.<br><br>When you visit or interact with our sites, services, applications, tools or messaging, we or our authorised service providers may use cookies, web beacons, and other similar technologies for storing information to help provide you with a better, faster and safer experience and for advertising purposes. Learn more <a href='link_to_learn_more' style='color: #0000FF; text-decoration: underline;'>here</a>.</html>");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -485,6 +479,7 @@ public class HelpPanel extends JPanel {
 		lblNewLabel_2.setBounds(579, 471, 30, 14);
 		add(lblNewLabel_2);
 		
+
 		JButton btnNewButton = new JButton("Himoa ni");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -494,6 +489,12 @@ public class HelpPanel extends JPanel {
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
 		btnNewButton.setBounds(20, 438, 172, 34);
 		add(btnNewButton);
+
+		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(new Color(0, 0, 0));
+		panel_3.setBounds(290, 107, 2, 337);
+		add(panel_3);
+
 	}
 
 	@SuppressWarnings("unused")
