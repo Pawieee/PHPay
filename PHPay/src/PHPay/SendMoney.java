@@ -100,7 +100,7 @@ public class SendMoney extends JPanel {
 		gradientPanel.add(previewPane);
 		previewPane.setVisible(false);
 
-		receiverName = new JLabel("Cristian Jay");
+		receiverName = new JLabel(SQLQuery.getFullName(id));
 		receiverName.setHorizontalAlignment(SwingConstants.CENTER);
 		receiverName.setForeground(Color.WHITE);
 		receiverName.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 19));
@@ -196,6 +196,11 @@ public class SendMoney extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				Process process = new Process(getSession());
 				process.setVisible(true);
+				SQLQuery.sendMoney(ID, id, amount);
+				idField.setText("");
+				amountField.setText("");
+				previewPane.setVisible(false);
+				
 			}
 		});
 		confirmButton.setText("Confirm");

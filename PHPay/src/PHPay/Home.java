@@ -22,6 +22,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.BevelBorder;
@@ -40,9 +41,9 @@ public class Home extends JFrame {
 	private JLabel balance;
 	private JLabel lblNewLabel;
 	private String getBal;
-	private double currentBal;
 	private JLabel lblLogout_1;
 	private JLabel lblLogout_2;
+	private GradientPanel panel;
 
 	public static String addCommaSeparator(String value) {
 		DecimalFormat formatter = new DecimalFormat("#,###.0");
@@ -93,7 +94,7 @@ public class Home extends JFrame {
 			}
 		});
 
-		GradientPanel panel = new GradientPanel(new Color(0x360079), new Color((0x000000)));
+		panel = new GradientPanel(new Color(0x360079), new Color((0x000000)));
 		panel.setBackground(new Color(255, 255, 255));
 		panel.setBounds(0, 0, 1464, 754);
 		getContentPane().add(panel);
@@ -311,9 +312,19 @@ public class Home extends JFrame {
 		lblTransfer.setBounds(72, 495, 115, 30);
 		panel.add(lblTransfer);
 
+		
+		int interval = 5000; 
+
+		Timer timer = new Timer(interval, new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        updateBalanceLabelFromFile();
+		    }
+		});
+
+		timer.start();
+		
 		updateBalanceLabelFromFile();
-		currentBal = SQLQuery.getBalance(session);
-		getBal = currentBal + "";
 
 	}
 
@@ -352,6 +363,8 @@ public class Home extends JFrame {
 		homePanel.setVisible(false);
 		helpPanel.setVisible(false);
 		sendMoney.setVisible(false);
+		
+		
 
 		selectedPanel.setVisible(true);
 	}

@@ -187,6 +187,7 @@ public class SQLQuery {
 		deductBalance(senderID, amount);
 		String aamount = amount + "";
 		transaction(senderID, "Sent Money", aamount, receiverID);
+		amount = amount / 1.03;
 		addBalance(receiverID, amount);
 		transaction(receiverID, "Received Money", aamount, senderID);
 	}

@@ -189,7 +189,7 @@ public class adminPanel {
 		
 		
 		DefaultTableModel model = new DefaultTableModel(null,
-				new String[] { "Ticket", "USER ID", "Message", "Status" }) {
+				new String[] { "USER ID", "Time", "Ticket ID", "Cash" }) {
 			private static final long serialVersionUID = 8961818422329199291L;
 
 			@Override
@@ -198,7 +198,7 @@ public class adminPanel {
 			}
 		};
 		table = new JTable(model);
-		scrollPane_1.setViewportView(table);
+		scrollPane.setViewportView(table);
 		for (int i = 0; i < table.getColumnCount(); i++) {
 			table.getColumnModel().getColumn(i).setPreferredWidth(30);
 		}
