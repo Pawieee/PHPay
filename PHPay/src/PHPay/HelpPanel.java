@@ -699,7 +699,6 @@ public class HelpPanel extends JPanel {
 		bl1.setBounds(127, 584, 46, 14);
 		bl1.addMouseListener(new MouseAdapter() {
 	            public void mouseClicked(MouseEvent e) {
-	                openHelpPanel1();
 	            }
 	        });
 		add(bl1);
@@ -709,7 +708,6 @@ public class HelpPanel extends JPanel {
 		bl5.setBounds(172, 584, 46, 14);
 		bl5.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                openHelpPanel1();
             }
         });
 		add(bl5);
@@ -719,7 +717,6 @@ public class HelpPanel extends JPanel {
 		bl6.setBounds(228, 584, 46, 14);
 		bl6.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                openHelpPanel1();
             }
         });
 		add(bl6);
@@ -729,7 +726,6 @@ public class HelpPanel extends JPanel {
 		bl7.setBounds(263, 584, 46, 14);
 		bl7.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                openHelpPanel1();
             }
         });
 		add(bl7);
@@ -739,7 +735,6 @@ public class HelpPanel extends JPanel {
 		bl8.setBounds(838, 584, 80, 14);
 		bl8.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                openHelpPanel1();
             }
         });
 		add(bl8);
@@ -749,7 +744,6 @@ public class HelpPanel extends JPanel {
 		bl9.setBounds(923, 584, 57, 14);
 		bl9.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                openHelpPanel1();
             }
         });
 		add(bl9);
@@ -759,7 +753,6 @@ public class HelpPanel extends JPanel {
 		bl10.setBounds(975, 584, 46, 14);
 		bl10.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                openHelpPanel1();
             }
         });
 		add(bl10);
@@ -1591,12 +1584,4 @@ public class HelpPanel extends JPanel {
               }
               CountLabel.setText("Characters Left: " + remainingCharacters);
           }
-		 public void openHelpPanel1() {
-			    HelpPanel1 helpPanel1 = new HelpPanel1();
-			    helpPanel1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			    helpPanel1.setResizable(true);
-			    helpPanel1.setBounds(getBounds());
-			    helpPanel1.setLocationRelativeTo(null); 
-			    helpPanel1.setVisible(true);
-			}
 }
