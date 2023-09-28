@@ -11,6 +11,9 @@ import javax.swing.SwingConstants;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
 import java.awt.Panel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class HelpPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -52,12 +55,9 @@ public class HelpPanel extends JPanel {
 		panel_1.setLayout(null);
 
 		JList home_list = new JList();
+		home_list.setBounds(10, 52, 743, 280);
 		home_list.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 20));
 		home_list.setForeground(new Color(51, 0, 204));
-
-		// home_list.setVisible(false); // Initially, hide this list
-
-		home_list.setBounds(10, 52, 743, 280);
 		home_list.setModel(new AbstractListModel() {
 			String[] values = new String[] { "How do I issue a refund?", "",
 					"How do I escalate a PHPAY dispute to a claim?", "",
@@ -79,6 +79,7 @@ public class HelpPanel extends JPanel {
 		panel_1.add(home_list);
 
 		JList pandt_list = new JList();
+		pandt_list.setBounds(10, 52, 743, 280);
 		pandt_list.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 20));
 		pandt_list.setForeground(new Color(51, 0, 204));
 
@@ -94,12 +95,12 @@ public class HelpPanel extends JPanel {
 				return values[index];
 			}
 		});
-		pandt_list.setBounds(10, 52, 743, 280);
 		pandt_list.setVisible(false); // Initially, hide this list
 
 		panel_1.add(pandt_list);
 
 		JList dal_list = new JList();
+		dal_list.setBounds(10, 52, 743, 280);
 		dal_list.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 20));
 		dal_list.setForeground(new Color(51, 0, 204));
 		dal_list.setModel(new AbstractListModel() {
@@ -114,12 +115,12 @@ public class HelpPanel extends JPanel {
 				return values[index];
 			}
 		});
-		dal_list.setBounds(10, 52, 743, 280);
 		dal_list.setVisible(false); // Initially, hide this list
 
 		panel_1.add(dal_list);
 
 		JList ma_list = new JList();
+		ma_list.setBounds(10, 52, 743, 280);
 		ma_list.setModel(new AbstractListModel() {
 			String[] values = new String[] { "Profile and Settings", "", "Account Status", "", "PayPal Basics", "",
 					"Policies", "", "Notifications", "", "Nonprofits and Donations", "", "Tax Information" };
@@ -133,13 +134,13 @@ public class HelpPanel extends JPanel {
 			}
 		});
 		ma_list.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 20));
-		ma_list.setBounds(10, 52, 743, 280);
 		ma_list.setForeground(new Color(51, 0, 204));
 		ma_list.setVisible(false); // Initially, hide this list
 
 		panel_1.add(ma_list);
 
 		JList mw_list = new JList();
+		mw_list.setBounds(10, 52, 743, 280);
 		mw_list.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 20));
 		mw_list.setModel(new AbstractListModel() {
 			String[] values = new String[] { "Bank Accounts", "", "Credit and Debit Cards", "",
@@ -153,13 +154,13 @@ public class HelpPanel extends JPanel {
 				return values[index];
 			}
 		});
-		mw_list.setBounds(10, 52, 743, 280);
 		mw_list.setForeground(new Color(51, 0, 204));
 		mw_list.setVisible(false); // Initially, hide this list
 
 		panel_1.add(mw_list);
 
 		JList lands_list = new JList();
+		lands_list.setBounds(10, 52, 743, 280);
 		lands_list.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 20));
 		lands_list.setModel(new AbstractListModel() {
 			String[] values = new String[] { "Password & Login Issues", "", "Fraudulent Emails & Scams", "",
@@ -173,55 +174,54 @@ public class HelpPanel extends JPanel {
 				return values[index];
 			}
 		});
-		lands_list.setBounds(10, 52, 743, 280);
 		lands_list.setForeground(new Color(51, 0, 204));
 		lands_list.setVisible(false); // Initially, hide this list
 
 		panel_1.add(lands_list);
 
 		JLabel home_label = new JLabel("Common Questions");
-		home_label.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 20));
 		home_label.setBounds(10, 11, 251, 30);
+		home_label.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 20));
 		home_label.setForeground(new Color(0, 0, 0));
 		// home_label.setVisible(false); // Initially, hide this label
 
 		panel_1.add(home_label);
 
 		JLabel pandt_label = new JLabel("Payments and Transfers");
+		pandt_label.setBounds(10, 11, 251, 30);
 		pandt_label.setForeground(new Color(0, 0, 0));
 		pandt_label.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 20));
-		pandt_label.setBounds(10, 11, 251, 30);
 		panel_1.add(pandt_label);
 		pandt_label.setVisible(false); // Initially, hide this label
 
 		JLabel dal_label = new JLabel("Disputes and Limitations\r\n");
+		dal_label.setBounds(10, 11, 251, 30);
 		dal_label.setForeground(new Color(0, 0, 0));
 		dal_label.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 20));
-		dal_label.setBounds(10, 11, 251, 30);
 		dal_label.setVisible(false); // Initially, hide this label
 
 		panel_1.add(dal_label);
 
 		JLabel ma_label = new JLabel("My Account\r\n");
+		ma_label.setBounds(10, 11, 251, 30);
 		ma_label.setForeground(new Color(0, 0, 0));
 		ma_label.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 20));
-		ma_label.setBounds(10, 11, 251, 30);
 		ma_label.setVisible(false); // Initially, hide this label
 
 		panel_1.add(ma_label);
 
 		JLabel mw_label = new JLabel("My Wallet");
+		mw_label.setBounds(10, 11, 251, 30);
 		mw_label.setForeground(new Color(0, 0, 0));
 		mw_label.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 20));
-		mw_label.setBounds(10, 11, 251, 30);
 		mw_label.setVisible(false); // Initially, hide this label
 
 		panel_1.add(mw_label);
 
 		JLabel lands_label = new JLabel("Login & Security");
+		lands_label.setBounds(10, 11, 251, 30);
 		lands_label.setForeground(new Color(0, 0, 0));
 		lands_label.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 20));
-		lands_label.setBounds(10, 11, 251, 30);
 		lands_label.setVisible(false); // Initially, hide this label
 
 		panel_1.add(lands_label);
@@ -317,6 +317,8 @@ public class HelpPanel extends JPanel {
 					ma_list.setVisible(false);
 					mw_list.setVisible(false);
 					lands_list.setVisible(true);
+				} else if  (list.getSelectedValue().equals("Appeals")) {
+					
 				}
 
 			}
@@ -482,6 +484,16 @@ public class HelpPanel extends JPanel {
 //		lblNewLabel_2.setIcon(new ImageIcon(HelpPanel.class.getResource("/PHPay/phpimg/philippines (1).png")));
 		lblNewLabel_2.setBounds(579, 471, 30, 14);
 		add(lblNewLabel_2);
+		
+		JButton btnNewButton = new JButton("Himoa ni");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new appeal(ID);
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
+		btnNewButton.setBounds(20, 438, 172, 34);
+		add(btnNewButton);
 	}
 
 	@SuppressWarnings("unused")
