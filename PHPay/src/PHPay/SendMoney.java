@@ -25,6 +25,8 @@ public class SendMoney extends JPanel {
 	private JLabel fee;
 	private JLabel totalAmount;
 	private String amountString;
+	private PHPay.RoundedTextField idField, amountField;
+	private RoundedPanel previewPane;
 
 	public SendMoney(String ID) {
 		this.session = ID;
@@ -69,7 +71,7 @@ public class SendMoney extends JPanel {
 		lblNewLabel_1_1_1_1_1_1.setBounds(46, 23, 181, 27);
 		transfer.add(lblNewLabel_1_1_1_1_1_1);
 
-		PHPay.RoundedTextField idField = new PHPay.RoundedTextField(10);
+		idField = new PHPay.RoundedTextField(10);
 		idField.setName("");
 		idField.setMargin(new Insets(2, 7, 2, 7));
 		idField.setForeground(Color.WHITE);
@@ -78,7 +80,7 @@ public class SendMoney extends JPanel {
 		idField.setBounds(46, 61, 376, 47);
 		transfer.add(idField);
 
-		PHPay.RoundedTextField amountField = new PHPay.RoundedTextField(10);
+		 amountField = new PHPay.RoundedTextField(10);
 		amountField.setName("");
 		amountField.setMargin(new Insets(2, 7, 2, 7));
 		amountField.setForeground(Color.WHITE);
@@ -93,7 +95,7 @@ public class SendMoney extends JPanel {
 		lblNewLabel_1_1_1_1_1_1_1.setBounds(46, 153, 181, 27);
 		transfer.add(lblNewLabel_1_1_1_1_1_1_1);
 
-		RoundedPanel previewPane = new RoundedPanel(30);
+		previewPane = new RoundedPanel(30);
 		previewPane.setLayout(null);
 		previewPane.setBackground(new Color(0, 0, 0, 50));
 		previewPane.setBounds(622, 46, 535, 657);
@@ -278,6 +280,7 @@ public class SendMoney extends JPanel {
 		nextButton.setAlignmentY(0.0f);
 		nextButton.setBounds(169, 271, 130, 34);
 		transfer.add(nextButton);
+		
 
 	}
 
@@ -311,5 +314,9 @@ public class SendMoney extends JPanel {
 	public String getSession() {
 		return session;
 	}
-
+	public void reset() {
+		previewPane.setVisible(false);
+		idField.setText("");
+		amountField.setText("");
+	}
 }

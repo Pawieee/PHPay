@@ -141,11 +141,11 @@ public class Home extends JFrame {
 		homePanel = new HomePanel();
 		sendMoney = new SendMoney(session);
 		
-		
 		servicePanel.setVisible(false);
 		summaryPanel.setVisible(false);
 		helpPanel.setVisible(false);
 		sendMoney.setVisible(false);
+		
 		
 		panelArea.add(homePanel);
 		panelArea.add(servicePanel);
@@ -163,9 +163,6 @@ public class Home extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				titleClicked(servicePanel);
-				
-				
-				
 			}
 		});
 		wallet.setHorizontalAlignment(SwingConstants.LEFT);
@@ -180,7 +177,6 @@ public class Home extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				titleClicked(homePanel);
-
 			}
 		});
 		home.setHorizontalAlignment(SwingConstants.LEFT);
@@ -195,7 +191,6 @@ public class Home extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				titleClicked(helpPanel);
-
 			}
 		});
 		help.setHorizontalAlignment(SwingConstants.LEFT);
@@ -210,7 +205,6 @@ public class Home extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				titleClicked(summaryPanel);
-
 			}
 
 		});
@@ -319,7 +313,7 @@ public class Home extends JFrame {
 		lblTransfer.setBounds(72, 495, 115, 30);
 		panel.add(lblTransfer);
 
-		
+		updateBalanceLabelFromFile();
 		int interval = 5000; 
 
 		Timer timer = new Timer(interval, new ActionListener() {
@@ -331,8 +325,6 @@ public class Home extends JFrame {
 
 		timer.start();
 		
-		updateBalanceLabelFromFile();
-
 	}
 
 	public void updateBalanceLabelFromFile() {
@@ -365,14 +357,15 @@ public class Home extends JFrame {
 	}
 
 	private void titleClicked(JPanel selectedPanel) {
-		summaryPanel.setVisible(false);
-		servicePanel.setVisible(false);
 		homePanel.setVisible(false);
+		servicePanel.setVisible(false);
+		summaryPanel.setVisible(false);
 		helpPanel.setVisible(false);
 		sendMoney.setVisible(false);
 		
-		
-
+		if (selectedPanel == sendMoney) {
+			sendMoney.reset();
+		}
 		selectedPanel.setVisible(true);
 	}
 }
