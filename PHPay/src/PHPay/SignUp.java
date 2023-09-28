@@ -14,6 +14,7 @@ import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.awt.geom.RoundRectangle2D;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Calendar;
@@ -39,7 +40,6 @@ import javax.swing.event.PopupMenuListener;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.plaf.basic.ComboPopup;
-
 
 public class SignUp extends JFrame {
 
@@ -78,10 +78,12 @@ public class SignUp extends JFrame {
 	RoundedComboBox<String> civilBox, genderBox, monthBox, dayBox;
 	int centerX;
 	private AccountInfo registerInfo;
+	private LocalDate birthDate;
 	private static final long serialVersionUID = 1L;
 
 	public SignUp() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(SignUp.class.getResource("/PHPay/phpimg/PHPAY-BRAND-ICON2.png")));
+		setIconImage(
+				Toolkit.getDefaultToolkit().getImage(SignUp.class.getResource("/PHPay/phpimg/PHPAY-BRAND-ICON2.png")));
 		setSize(811, 512);
 		setUndecorated(true);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -101,7 +103,7 @@ public class SignUp extends JFrame {
 		panel.setLayout(null);
 
 		dayLabel = new JLabel("");
-		dayLabel.setBounds(570, 189, 20, 20);
+		dayLabel.setBounds(590, 189, 20, 20);
 		panel.add(dayLabel);
 		dayLabel.setVisible(false);
 		dayLabel.setIcon(new ImageIcon(SignUp.class.getResource("/PHPay/phpimg/warning.png")));
@@ -115,14 +117,14 @@ public class SignUp extends JFrame {
 		addressStatusLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
 
 		yearLabel = new JLabel("");
-		yearLabel.setBounds(705, 189, 20, 20);
+		yearLabel.setBounds(727, 189, 20, 20);
 		panel.add(yearLabel);
 		yearLabel.setVisible(false);
 		yearLabel.setIcon(new ImageIcon(SignUp.class.getResource("/PHPay/phpimg/warning.png")));
 		yearLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
 
 		monthLabel = new JLabel("");
-		monthLabel.setBounds(470, 189, 20, 20);
+		monthLabel.setBounds(489, 189, 20, 20);
 		panel.add(monthLabel);
 		monthLabel.setVisible(false);
 		monthLabel.setIcon(new ImageIcon(SignUp.class.getResource("/PHPay/phpimg/warning.png")));
@@ -137,6 +139,8 @@ public class SignUp extends JFrame {
 		int currentMonth = calendar.get(Calendar.MONTH);
 		int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
 		int currentYear = calendar.get(Calendar.YEAR);
+		
+		System.out.println(currentMonth);
 
 		String[] months = { "January", "February", "March", "April", "May", "June", "July", "August", "September",
 				"October", "November", "December" };
@@ -251,7 +255,7 @@ public class SignUp extends JFrame {
 		lblDay_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
 
 		civilLabel = new JLabel("");
-		civilLabel.setBounds(705, 123, 20, 20);
+		civilLabel.setBounds(727, 123, 20, 20);
 		panel.add(civilLabel);
 		civilLabel.setIcon(new ImageIcon(SignUp.class.getResource("/PHPay/phpimg/warning.png")));
 		civilLabel.setVisible(false);
@@ -373,19 +377,21 @@ public class SignUp extends JFrame {
 				int ageThreshold = currentYear - 18;
 				String yearString = (String) yearBox.getSelectedItem();
 				int year = Integer.parseInt(yearString);
-				int monthChoice = monthBox.getSelectedIndex();
+				int monthChoice = 1 + monthBox.getSelectedIndex();
 				String dayString = (String) dayBox.getSelectedItem();
 				int day = Integer.parseInt(dayString);
+				int monthInt = 1 + calendar.get(Calendar.MONTH);
+				System.out.println(year + " " + currentYear + " " + monthChoice + " " + currentMonth + " " + day + " "
+						+ (currentDay));
 
 				// BALIKAN TA NI YAWA NAA PANI BUG
-				if (year == currentYear && monthChoice == currentMonth && day == (currentDay)) {
+				if (year == currentYear && monthChoice == monthInt && day == (currentDay)) {
 					yearLabel.setVisible(true);
 					monthLabel.setVisible(true);
 					dayLabel.setVisible(true);
 					monthEdited = true;
 					yearLabel.setToolTipText(
 							"<html>It looks like you entered the wrong info.<br>Please be sure to use your real birthday.</html>");
-
 					monthLabel.setToolTipText(
 							"<html>It looks like you entered the wrong info.<br>Please be sure to use your real birthday.</html>");
 					dayLabel.setToolTipText(
@@ -415,10 +421,14 @@ public class SignUp extends JFrame {
 						if (day < 29) {
 							dayEdited = true;
 							selectedYear = (String) yearBox.getSelectedItem();
+							selectedMonth = (String) monthBox.getSelectedItem();
+							selectedDay = (String) dayBox.getSelectedItem();
 							dayLabel.setVisible(false);
 						} else if (day == 29 && isLeapYear) {
 							dayEdited = true;
 							selectedYear = (String) yearBox.getSelectedItem();
+							selectedDay = (String) dayBox.getSelectedItem();
+							selectedMonth = (String) monthBox.getSelectedItem();
 							dayLabel.setVisible(false);
 						} else if (day > 29 && isLeapYear) {
 							dayLabel.setToolTipText("February " + year + " typically has " + 29 + " days");
@@ -446,7 +456,11 @@ public class SignUp extends JFrame {
 				// System.out.println(year + " " + currentYear);
 				// System.out.println(monthChoice + " " + currentMonth);
 				// System.out.println(day + " " + currentDay);
-				LocalDate birthDate = LocalDate.of(year, monthChoice, day);
+				try {
+		            birthDate = LocalDate.of(year, monthChoice, day);
+		        } catch (DateTimeException e1) {
+		            dayLabel.setToolTipText(e1.getMessage());
+		        }
 				LocalDate currentDate = LocalDate.now();
 				Period agePeriod = Period.between(birthDate, currentDate);
 
@@ -454,6 +468,7 @@ public class SignUp extends JFrame {
 				age = String.valueOf(ageInt);
 
 				System.out.println(selectedYear + " " + selectedMonth + " " + selectedDay);
+				System.out.println(day + " " + monthChoice + " " + selectedDay);
 
 				if (firstNameEdited && lastNameEdited && monthEdited && dayEdited && yearEdited && phoneEdited
 						&& addressEdited && emailEdited && yearEdited && genderEdited && civilEdited && ageInt >= 18) {
@@ -564,7 +579,7 @@ public class SignUp extends JFrame {
 		lblPhoneNumber.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
 
 		genderLabel = new JLabel("");
-		genderLabel.setBounds(513, 123, 20, 20);
+		genderLabel.setBounds(533, 123, 20, 20);
 		panel.add(genderLabel);
 		genderLabel.setVisible(false);
 		genderLabel.setIcon(new ImageIcon(SignUp.class.getResource("/PHPay/phpimg/warning.png")));
@@ -651,18 +666,6 @@ public class SignUp extends JFrame {
 		emailStatusLabel.setIcon(new ImageIcon(SignUp.class.getResource("/PHPay/phpimg/warning.png")));
 		emailStatusLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
 
-		civilLabel = new JLabel("");
-		civilLabel.setBounds(705, 123, 20, 20);
-		panel.add(civilLabel);
-		civilLabel.setIcon(new ImageIcon(SignUp.class.getResource("/PHPay/phpimg/warning.png")));
-		civilLabel.setVisible(false);
-
-		genderLabel = new JLabel("");
-		genderLabel.setBounds(513, 123, 20, 20);
-		panel.add(genderLabel);
-		genderLabel.setVisible(false);
-		genderLabel.setIcon(new ImageIcon(SignUp.class.getResource("/PHPay/phpimg/warning.png")));
-
 //		FlatDarkLaf.setup();
 
 		civilBox = new RoundedComboBox<String>(civil);
@@ -725,7 +728,6 @@ public class SignUp extends JFrame {
 		genderBox.setBackground(new Color(27, 0, 53));
 		genderBox.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
 		genderBox.setSelectedItem(" ");
-		civilLabel.setVisible(false);
 
 		monthBox = new RoundedComboBox<>(months);
 		monthBox.setMaximumRowCount(6);

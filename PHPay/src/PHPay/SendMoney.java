@@ -8,7 +8,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+
 import java.awt.Insets;
 import javax.swing.UIManager;
 import java.awt.event.ActionListener;
@@ -25,6 +28,8 @@ public class SendMoney extends JPanel {
 	private JLabel fee;
 	private JLabel totalAmount;
 	private String amountString;
+	private RoundedTextField idField, amountField;
+	private RoundedPanel previewPane;
 
 	public SendMoney(String ID) {
 		this.session = ID;
@@ -69,7 +74,7 @@ public class SendMoney extends JPanel {
 		lblNewLabel_1_1_1_1_1_1.setBounds(46, 23, 181, 27);
 		transfer.add(lblNewLabel_1_1_1_1_1_1);
 
-		PHPay.RoundedTextField idField = new PHPay.RoundedTextField(10);
+		idField = new PHPay.RoundedTextField(10);
 		idField.setName("");
 		idField.setMargin(new Insets(2, 7, 2, 7));
 		idField.setForeground(Color.WHITE);
@@ -78,7 +83,7 @@ public class SendMoney extends JPanel {
 		idField.setBounds(46, 61, 376, 47);
 		transfer.add(idField);
 
-		PHPay.RoundedTextField amountField = new PHPay.RoundedTextField(10);
+		amountField = new PHPay.RoundedTextField(10);
 		amountField.setName("");
 		amountField.setMargin(new Insets(2, 7, 2, 7));
 		amountField.setForeground(Color.WHITE);
@@ -93,7 +98,7 @@ public class SendMoney extends JPanel {
 		lblNewLabel_1_1_1_1_1_1_1.setBounds(46, 153, 181, 27);
 		transfer.add(lblNewLabel_1_1_1_1_1_1_1);
 
-		RoundedPanel previewPane = new RoundedPanel(30);
+	 previewPane = new RoundedPanel(30);
 		previewPane.setLayout(null);
 		previewPane.setBackground(new Color(0, 0, 0, 50));
 		previewPane.setBounds(622, 46, 535, 657);
@@ -194,12 +199,28 @@ public class SendMoney extends JPanel {
 		RoundedButton confirmButton = new RoundedButton("OK");
 		confirmButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+//				
+				JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(SendMoney.this);
+//
+//		        // Dispose of the parent frame
+//		        if (frame != null) {
+//		            frame.dispose();
+//		        }
+//		        
+				
+				
+				
+				
+				
+				dispose();
 				Process process = new Process(getSession());
 				process.setVisible(true);
 				SQLQuery.sendMoney(ID, id, amount);
-				idField.setText("");
-				amountField.setText("");
-				previewPane.setVisible(false);
+
+				
+			}
+
+			private void dispose() {
 				
 			}
 		});
@@ -279,6 +300,8 @@ public class SendMoney extends JPanel {
 		nextButton.setBounds(169, 271, 130, 34);
 		transfer.add(nextButton);
 
+		update();
+		
 	}
 
 	public static boolean isNumeric(String str) {
@@ -310,6 +333,12 @@ public class SendMoney extends JPanel {
 	
 	public String getSession() {
 		return session;
+	}
+	
+	private void update() {
+		idField.setText(" ");
+		amountField.setText(" ");
+		previewPane.setVisible(false);
 	}
 
 }

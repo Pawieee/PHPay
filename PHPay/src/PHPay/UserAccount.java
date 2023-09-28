@@ -27,6 +27,8 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.Insets;
 import PHPay.RandomID.RandomIdGenerator;
+import java.awt.FlowLayout;
+import javax.swing.JTextField;
 
 public class UserAccount extends JFrame {
 
@@ -96,7 +98,7 @@ public class UserAccount extends JFrame {
 		newEye.setBounds(350, 266, 25, 25);
 		newEye.setVisible(false);
 		panel.add(newEye);
-		
+
 		newEye.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -168,30 +170,18 @@ public class UserAccount extends JFrame {
 		signupPane.add(signupPane_1);
 
 		RandomIdGenerator generator = new RandomIdGenerator();
-		RoundedButton next = new RoundedButton("10");
-		next.setBounds(93, 446, 130, 34);
-		signupPane.add(next);
-		next.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		next.setAlignmentY(0.0f);
-		next.setIconTextGap(1);
-		next.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
-		next.setText("Confirm");
-		next.setForeground(new Color(150, 150, 150));
-		next.addActionListener(new ActionListener() {
+		RoundedButton confirmButton = new RoundedButton("10");
+		confirmButton.setBounds(93, 446, 130, 34);
+		signupPane.add(confirmButton);
+		confirmButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		confirmButton.setAlignmentY(0.0f);
+		confirmButton.setIconTextGap(1);
+		confirmButton.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
+		confirmButton.setText("Confirm");
+		confirmButton.setVisible(false);
+		confirmButton.setForeground(new Color(150, 150, 150));
+		confirmButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String ID = generator.generateId() + "";
-				String user = userField.getText();
-				@SuppressWarnings("deprecation")
-				String pass = confirmPassField.getText();
-				String passkey = RandomID.generatePassKey();
-				String hashedPasskey = AccountVerify.passkey(passkey);
-
-				UserData newAccount = new UserData(ID, user, pass, hashedPasskey, 0, account);
-				if (newAccount.accountExist() == true) {
-					System.out.println("Duplicate username");
-				}
-				newAccount.saveAccount();
-				
 				Proceed successful = new Proceed("Congratulations! Your account has been successfully created");
 				successful.setVisible(true);
 
@@ -205,21 +195,19 @@ public class UserAccount extends JFrame {
 				});
 				timer.setRepeats(false);
 				timer.start();
-				
-			
 			}
 
 		});
-		next.addMouseListener(new MouseAdapter() {
+		confirmButton.addMouseListener(new MouseAdapter() {
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				next.setForeground(new Color(255, 255, 255));
+				confirmButton.setForeground(new Color(255, 255, 255));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				next.setForeground(new Color(150, 150, 150));
+				confirmButton.setForeground(new Color(150, 150, 150));
 			}
 		});
 
@@ -269,33 +257,33 @@ public class UserAccount extends JFrame {
 		lblPassword.setBounds(111, 241, 156, 23);
 		panel.add(lblPassword);
 
-		JLabel lblWe_1_1 = new JLabel("- Contains at least one digit");
-		lblWe_1_1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblWe_1_1.setForeground(new Color(192, 192, 192));
-		lblWe_1_1.setFont(new Font("Segoe UI Semibold", Font.ITALIC, 13));
-		lblWe_1_1.setBounds(85, 62, 219, 23);
-		panel.add(lblWe_1_1);
+		JLabel lbl2 = new JLabel("- Contains at least one digit");
+		lbl2.setHorizontalAlignment(SwingConstants.LEFT);
+		lbl2.setForeground(new Color(192, 192, 192));
+		lbl2.setFont(new Font("Segoe UI Semibold", Font.ITALIC, 13));
+		lbl2.setBounds(85, 62, 219, 23);
+		panel.add(lbl2);
 
-		JLabel lblWe_1_2 = new JLabel("- Is at least 8 characters long");
-		lblWe_1_2.setHorizontalAlignment(SwingConstants.LEFT);
-		lblWe_1_2.setForeground(new Color(192, 192, 192));
-		lblWe_1_2.setFont(new Font("Segoe UI Semibold", Font.ITALIC, 13));
-		lblWe_1_2.setBounds(85, 84, 219, 23);
-		panel.add(lblWe_1_2);
+		JLabel lbl3 = new JLabel("- Is at least 8 characters long");
+		lbl3.setHorizontalAlignment(SwingConstants.LEFT);
+		lbl3.setForeground(new Color(192, 192, 192));
+		lbl3.setFont(new Font("Segoe UI Semibold", Font.ITALIC, 13));
+		lbl3.setBounds(85, 84, 219, 23);
+		panel.add(lbl3);
 
-		JLabel lblWe_1_3 = new JLabel("- Contains at least one uppercase alphabetic character");
-		lblWe_1_3.setHorizontalAlignment(SwingConstants.LEFT);
-		lblWe_1_3.setForeground(new Color(192, 192, 192));
-		lblWe_1_3.setFont(new Font("Segoe UI Semibold", Font.ITALIC, 13));
-		lblWe_1_3.setBounds(85, 105, 353, 23);
-		panel.add(lblWe_1_3);
+		JLabel lbl4 = new JLabel("- Contains at least one uppercase alphabetic character");
+		lbl4.setHorizontalAlignment(SwingConstants.LEFT);
+		lbl4.setForeground(new Color(192, 192, 192));
+		lbl4.setFont(new Font("Segoe UI Semibold", Font.ITALIC, 13));
+		lbl4.setBounds(85, 105, 353, 23);
+		panel.add(lbl4);
 
-		JLabel lblReq = new JLabel("Please verify that your password:");
-		lblReq.setHorizontalAlignment(SwingConstants.LEFT);
-		lblReq.setForeground(Color.WHITE);
-		lblReq.setFont(new Font("Segoe UI Semibold", Font.BOLD, 13));
-		lblReq.setBounds(85, 28, 219, 23);
-		panel.add(lblReq);
+		JLabel lbl1 = new JLabel("Please verify that your password:");
+		lbl1.setHorizontalAlignment(SwingConstants.LEFT);
+		lbl1.setForeground(Color.WHITE);
+		lbl1.setFont(new Font("Segoe UI Semibold", Font.BOLD, 13));
+		lbl1.setBounds(85, 28, 219, 23);
+		panel.add(lbl1);
 
 		RoundedButton btnNewButton = new RoundedButton("");
 		btnNewButton.setBounds(11, 24, 37, 31);
@@ -369,6 +357,127 @@ public class UserAccount extends JFrame {
 		agreeBox.setBounds(125, 391, 46, 23);
 		panel.add(agreeBox);
 
+		GradientPanel hidePane = new GradientPanel(Color.decode("#16002c"), Color.decode("#16002c"));
+		hidePane.setBounds(0, 24, 492, 488);
+		hidePane.setVisible(false);
+
+		RoundedButton nextButton = new RoundedButton("10");
+		nextButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				String ID = generator.generateId() + "";
+				String user = userField.getText();
+				@SuppressWarnings("deprecation")
+				String pass = confirmPassField.getText();
+				String confirmPass = confirmPassField.getText();
+
+				if (userEdited && passEdited && confirmPassEdited && agreeEdited) {
+					String passkey = RandomID.generatePassKey();
+					String hashedPasskey = AccountVerify.passkey(passkey);
+					UserData newAccount = new UserData(ID, user, pass, hashedPasskey, 0, account);
+
+					if (newAccount.accountExist() == true) {
+						System.out.println("Duplicate username");
+					} else if (pass.equals(confirmPass)) {
+						System.out.println("Password should match");
+					} else {
+						newAccount.saveAccount();
+						hidePane.setVisible(true);
+						nextButton.setVisible(false);
+						confirmButton.setVisible(true);
+					}
+
+				} else {
+					// wont accept
+				}
+
+			}
+		});
+		nextButton.setBounds(180, 440, 130, 34);
+		panel.add(nextButton);
+		nextButton.setText("Next");
+		nextButton.setIconTextGap(1);
+		nextButton.setForeground(new Color(150, 150, 150));
+		nextButton.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
+		nextButton.setAlignmentY(0.0f);
+		panel.add(hidePane);
+		nextButton.setEnabled(false);
+		hidePane.setLayout(null);
+
+		JLabel lblUsername_1 = new JLabel("Username");
+		lblUsername_1.setHorizontalAlignment(SwingConstants.LEFT);
+		lblUsername_1.setForeground(Color.LIGHT_GRAY);
+		lblUsername_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
+		lblUsername_1.setBounds(103, 211, 75, 23);
+		hidePane.add(lblUsername_1);
+
+		JLabel lblUsername_1_1 = new JLabel("Account Information");
+		lblUsername_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUsername_1_1.setForeground(new Color(255, 255, 255));
+		lblUsername_1_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
+		lblUsername_1_1.setBounds(168, 25, 156, 23);
+		hidePane.add(lblUsername_1_1);
+
+		JLabel lblUsername_1_2 = new JLabel("jack4304123");
+		lblUsername_1_2.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblUsername_1_2.setForeground(new Color(255, 255, 255));
+		lblUsername_1_2.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
+		lblUsername_1_2.setBounds(252, 211, 137, 23);
+		hidePane.add(lblUsername_1_2);
+
+		JLabel lblUsername_1_3 = new JLabel("Password");
+		lblUsername_1_3.setHorizontalAlignment(SwingConstants.LEFT);
+		lblUsername_1_3.setForeground(Color.LIGHT_GRAY);
+		lblUsername_1_3.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
+		lblUsername_1_3.setBounds(103, 257, 75, 23);
+		hidePane.add(lblUsername_1_3);
+
+		JLabel lblUsername_1_4 = new JLabel("Username");
+		lblUsername_1_4.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblUsername_1_4.setForeground(new Color(255, 255, 255));
+		lblUsername_1_4.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
+		lblUsername_1_4.setBounds(252, 257, 137, 23);
+		hidePane.add(lblUsername_1_4);
+
+		RoundedPanel signupPane_1_1 = new RoundedPanel(20);
+		signupPane_1_1.setLayout(null);
+		signupPane_1_1.setBackground(new Color(64, 0, 128, 150));
+		signupPane_1_1.setBounds(47, 76, 398, 103);
+		hidePane.add(signupPane_1_1);
+
+		JLabel lblUsername_1_5 = new JLabel("Passkey");
+		lblUsername_1_5.setBounds(161, 11, 75, 23);
+		signupPane_1_1.add(lblUsername_1_5);
+		lblUsername_1_5.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUsername_1_5.setForeground(Color.LIGHT_GRAY);
+		lblUsername_1_5.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
+
+		JLabel lblUsername_1_6 = new JLabel("23eqdf12j-12d-e12eqwd-");
+		lblUsername_1_6.setBounds(10, 34, 378, 58);
+		signupPane_1_1.add(lblUsername_1_6);
+		lblUsername_1_6.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUsername_1_6.setForeground(new Color(255, 255, 255));
+		lblUsername_1_6.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 23));
+
+		JLabel lblUsername_1_7 = new JLabel(
+				"<html>Your passkey is a critical requirement for resetting your password, so be sure to save it securely, as it will help protect your account. <html>");
+		lblUsername_1_7.setHorizontalAlignment(SwingConstants.LEFT);
+		lblUsername_1_7.setVerticalAlignment(SwingConstants.TOP);
+		lblUsername_1_7.setForeground(new Color(128, 255, 128));
+		lblUsername_1_7.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
+		lblUsername_1_7.setBounds(66, 325, 362, 85);
+		hidePane.add(lblUsername_1_7);
+
+		RoundedCheckBox rndchckbxIHaveSaved = new RoundedCheckBox("");
+		rndchckbxIHaveSaved.setText("I've stored my passkey.");
+		rndchckbxIHaveSaved.setSize(new Dimension(3, 3));
+		rndchckbxIHaveSaved.setPreferredSize(new Dimension(33, 33));
+		rndchckbxIHaveSaved.setForeground(Color.WHITE);
+		rndchckbxIHaveSaved.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
+		rndchckbxIHaveSaved.setBackground(Color.WHITE);
+		rndchckbxIHaveSaved.setBounds(159, 408, 174, 23);
+		hidePane.add(rndchckbxIHaveSaved);
+
 		titleBar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -377,38 +486,22 @@ public class UserAccount extends JFrame {
 			}
 		});
 
-		next.addActionListener(new ActionListener() {
+		confirmButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String ID = generator.generateId() + "";
-				String user = userField.getText();
-				@SuppressWarnings("deprecation")
-				String pass = confirmPassField.getText();
-				String passkey = RandomID.generatePassKey();
-				String hashedPasskey = AccountVerify.passkey(passkey);
 
-				System.out.println(passkey);
-				UserData newAccount = new UserData(ID, user, pass, hashedPasskey, 0, account);
-				if (newAccount.accountExist() == true) {
-					System.out.println("Duplicate username");
-					System.exit(0);
-				}
-				newAccount.saveAccount();
-				dispose();
-				Welcome runFrame = new Welcome();
-				runFrame.setVisible(true);
 			}
 
 		});
-		next.addMouseListener(new MouseAdapter() {
+		confirmButton.addMouseListener(new MouseAdapter() {
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				next.setForeground(new Color(255, 255, 255));
+				confirmButton.setForeground(new Color(255, 255, 255));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				next.setForeground(new Color(150, 150, 150));
+				confirmButton.setForeground(new Color(150, 150, 150));
 			}
 		});
 		titleBar.addMouseMotionListener(new MouseMotionAdapter() {
@@ -428,20 +521,21 @@ public class UserAccount extends JFrame {
 			public void insertUpdate(DocumentEvent e) {
 				setField();
 			}
-			
+
 			@Override
 			public void removeUpdate(DocumentEvent e) {
-				setField() ;
+				setField();
 			}
-			
+
 			@Override
 			public void changedUpdate(DocumentEvent e) {
 				setField();
 			}
+
 			@SuppressWarnings("deprecation")
 			public void setField() {
-				
-				passCheck= passField.getText();
+
+				passCheck = passField.getText();
 				confirmPassCheck = confirmPassField.getText();
 
 				if (passCheck.contains(" ") || passCheck.equals("Password") || passCheck.equals("")) {
@@ -449,7 +543,8 @@ public class UserAccount extends JFrame {
 				} else {
 					newEye.setVisible(true);
 				}
-				if (confirmPassCheck.contains(" ") || confirmPassCheck.equals("Password") || confirmPassCheck.equals("")) {
+				if (confirmPassCheck.contains(" ") || confirmPassCheck.equals("Password")
+						|| confirmPassCheck.equals("")) {
 					confirmEye.setVisible(false);
 				} else {
 					confirmEye.setVisible(true);
@@ -457,19 +552,19 @@ public class UserAccount extends JFrame {
 
 				if (!passCheck.isEmpty() && !confirmPassCheck.isEmpty()) {
 					if (!passCheck.equals("Username") && !passCheck.equals("Password")) {
-						next.setForeground(new Color(255, 255, 255));
-						next.setFont(new Font("Segoe UI Semibold", Font.BOLD, 15));
-						next.setEnabled(true);
+						nextButton.setForeground(new Color(255, 255, 255));
+						nextButton.setFont(new Font("Segoe UI Semibold", Font.BOLD, 15));
+						nextButton.setEnabled(true);
 
 					} else {
-						next.setForeground(new Color(0, 0, 0));
-						next.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
-						next.setEnabled(false);
+						nextButton.setForeground(new Color(0, 0, 0));
+						nextButton.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
+						nextButton.setEnabled(false);
 					}
 				} else {
-					next.setForeground(new Color(0, 0, 0));
-					next.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
-					next.setEnabled(false);
+					nextButton.setForeground(new Color(0, 0, 0));
+					nextButton.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
+					nextButton.setEnabled(false);
 				}
 			}
 		};

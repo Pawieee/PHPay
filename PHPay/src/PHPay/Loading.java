@@ -45,7 +45,7 @@ public class Loading extends JFrame {
 		JLabel Stock = new JLabel("5StockRedemption");
 		Stock.setHorizontalAlignment(SwingConstants.LEFT);
 		Stock.setVerticalAlignment(SwingConstants.TOP);
-		Stock.setForeground(new Color(105, 105, 105));
+		Stock.setForeground(new Color(255, 255, 255));
 		Stock.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 12));
 		Stock.setBounds(195, 157, 105, 24);
 		curvesPanel1.add(Stock);
