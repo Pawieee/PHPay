@@ -249,27 +249,26 @@ public class SendMoney extends JPanel {
 				amountString = amountField.getText();
 				id = idField.getText();
 
-				if (SQLQuery.IDExists(id)) {
+				if (SQLQuery.IDExists(id)) 
 					idEdited = true;
-				} else {
+				else 
 					idEdited = false;
-				}
 
 				if (isNumeric(amountString)) {
 					amount = Double.parseDouble(amountString);
-					amountEdited = true;
-				} else {
+					if (amount * 1.03 >= SQLQuery.getBalance(ID))
+						amountEdited = true;
+				} else 
 					amountEdited = false;
-				}
+				
 
 				if (idEdited && amountEdited) {
 					setPreview();
 					previewPane.setVisible(true);
 					SQLQuery.sendMoney(session, id, amount);
 
-				} else {
+				} else 
 					System.out.println("failed");
-				}
 
 			}
 		});

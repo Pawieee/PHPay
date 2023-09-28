@@ -34,7 +34,7 @@ public class UserAccount extends JFrame {
 	private int x, y;
 	private HashSet<Integer> usedIds;
 	private Random random;
-	private static String passCheck, confirmPassCheck;
+	private static String passCheck, confirmPassCheck, userCheck;
 	boolean def1 = true;
 	boolean def2 = true;
 	ImageIcon see = new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/see1.png"));
@@ -187,25 +187,13 @@ public class UserAccount extends JFrame {
 				String hashedPasskey = AccountVerify.passkey(passkey);
 
 				UserData newAccount = new UserData(ID, user, pass, hashedPasskey, 0, account);
-				if (newAccount.accountExist() == true) {
+				if (newAccount.accountExist() == true) 
 					System.out.println("Duplicate username");
-				}
 				newAccount.saveAccount();
 				
+				dispose();
 				Proceed successful = new Proceed("Congratulations! Your account has been successfully created");
 				successful.setVisible(true);
-
-				Timer timer = new Timer(4000, new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						dispose();
-						Welcome runFrame = new Welcome();
-						runFrame.setVisible(true);
-					}
-				});
-				timer.setRepeats(false);
-				timer.start();
-				
 			
 			}
 
@@ -376,29 +364,6 @@ public class UserAccount extends JFrame {
 				y = e.getY();
 			}
 		});
-
-		next.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String ID = generator.generateId() + "";
-				String user = userField.getText();
-				@SuppressWarnings("deprecation")
-				String pass = confirmPassField.getText();
-				String passkey = RandomID.generatePassKey();
-				String hashedPasskey = AccountVerify.passkey(passkey);
-
-				System.out.println(passkey);
-				UserData newAccount = new UserData(ID, user, pass, hashedPasskey, 0, account);
-				if (newAccount.accountExist() == true) {
-					System.out.println("Duplicate username");
-					System.exit(0);
-				}
-				newAccount.saveAccount();
-				dispose();
-				Welcome runFrame = new Welcome();
-				runFrame.setVisible(true);
-			}
-
-		});
 		next.addMouseListener(new MouseAdapter() {
 
 			@Override
@@ -443,6 +408,7 @@ public class UserAccount extends JFrame {
 				
 				passCheck= passField.getText();
 				confirmPassCheck = confirmPassField.getText();
+				userCheck = userField.getText();
 
 				if (passCheck.contains(" ") || passCheck.equals("Password") || passCheck.equals("")) {
 					newEye.setVisible(false);
@@ -455,11 +421,15 @@ public class UserAccount extends JFrame {
 					confirmEye.setVisible(true);
 				}
 
-				if (!passCheck.isEmpty() && !confirmPassCheck.isEmpty()) {
+				if (!passCheck.isEmpty() && !confirmPassCheck.isEmpty() && !userCheck.isEmpty()) {
 					if (!passCheck.equals("Username") && !passCheck.equals("Password")) {
-						next.setForeground(new Color(255, 255, 255));
-						next.setFont(new Font("Segoe UI Semibold", Font.BOLD, 15));
-						next.setEnabled(true);
+						if (passCheck.equals(confirmPassCheck) && (AccountVerify.accountExist(userCheck) == false) && (isValidUser(userCheck) == true) && (isValidPass(passCheck) == true)) {
+							next.setForeground(new Color(255, 255, 255));
+							next.setFont(new Font("Segoe UI Semibold", Font.BOLD, 15));
+							next.setEnabled(true);
+						} else {
+							next.setEnabled(false);
+						}
 
 					} else {
 						next.setForeground(new Color(0, 0, 0));
@@ -473,8 +443,10 @@ public class UserAccount extends JFrame {
 				}
 			}
 		};
+		userField.getDocument().addDocumentListener(documentListener);
 		passField.getDocument().addDocumentListener(documentListener);
 		confirmPassField.getDocument().addDocumentListener(documentListener);
+		
 	}
 
 	public int generateId() {

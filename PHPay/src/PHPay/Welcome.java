@@ -154,6 +154,7 @@ public class Welcome extends JFrame {
 					Timer timer = new Timer(100, new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
+							dispose();
 
 //							Register reg = new Register();
 //							reg.setVisible(true);
@@ -350,12 +351,6 @@ public class Welcome extends JFrame {
 		phpayLOGO.setBounds(339, 104, 488, 135);
 		mainPanel.add(phpayLOGO);
 		phpayLOGO.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/PHPAY-BRAND-LARGE.png")));
-
-//		logo = new JLabel("");
-//		logo.setHorizontalAlignment(SwingConstants.CENTER);
-//		logo.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/phpcard.gif")));
-//		logo.setBounds(347, 242, 488, 173);
-//		mainPanel.add(logo);
 
 		JLabel date = new JLabel("Copyright © 2023 PHPay. All Rights Reserved.");
 		date.setBounds(592, 427, 268, 19);
