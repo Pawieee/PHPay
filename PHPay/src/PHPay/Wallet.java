@@ -81,7 +81,7 @@ public class Wallet extends JFrame {
 	public Wallet(String ID) {
 		this.session = ID;
 		
-		System.out.println(SQLQuery.getTransName(session));
+		System.out.println(SQLQuery.getFullName(session));
 
 		setBackground(new Color(128, 0, 255));
 		setLocationRelativeTo(null);
@@ -2195,10 +2195,6 @@ public class Wallet extends JFrame {
 		showBalance.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 42));
 		showBalance.setText(getBal);
 		termsAndconditions.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(258, 26, 46, 14);
-		mainPanel.add(lblNewLabel);
 
 	}
 

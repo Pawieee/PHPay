@@ -33,6 +33,7 @@ public class Home extends JFrame {
 	private SummaryPanel summaryPanel;
 	private HomePanel homePanel;
 	private HelpPanel helpPanel;
+	private SendMoney sendMoney;
 	private String session;
 	private JLabel home, wallet, activity, help;
 	private JPanel movingPane;
@@ -130,27 +131,33 @@ public class Home extends JFrame {
 		summaryPanel = new SummaryPanel(session);
 		helpPanel = new HelpPanel(session);
 		homePanel = new HomePanel();
+		sendMoney = new SendMoney(session);
 		
 		
 		servicePanel.setVisible(false);
 		summaryPanel.setVisible(false);
 		helpPanel.setVisible(false);
+		sendMoney.setVisible(false);
 		
 		panelArea.add(homePanel);
 		panelArea.add(servicePanel);
 		panelArea.add(summaryPanel);
 		panelArea.add(helpPanel);
+		panelArea.add(sendMoney);
 		
 
 		wallet = new JLabel("   Wallet");
 		wallet.setIcon(new ImageIcon(Home.class.getResource("/PHPay/phpimg/wallet-.png")));
 		wallet.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 15));
-		wallet.setBounds(34, 330, 115, 70);
+		wallet.setBounds(28, 302, 115, 50);
 		panel.add(wallet);
 		wallet.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				titleClicked(servicePanel);
+				
+				
+				
 			}
 		});
 		wallet.setHorizontalAlignment(SwingConstants.LEFT);
@@ -159,7 +166,7 @@ public class Home extends JFrame {
 		home = new JLabel("   Home");
 		home.setIcon(new ImageIcon(Home.class.getResource("/PHPay/phpimg/home-.png")));
 		home.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 15));
-		home.setBounds(34, 257, 115, 70);
+		home.setBounds(28, 238, 115, 50);
 		panel.add(home);
 		home.addMouseListener(new MouseAdapter() {
 			@Override
@@ -174,7 +181,7 @@ public class Home extends JFrame {
 		help = new JLabel("   Help");
 		help.setIcon(new ImageIcon(Home.class.getResource("/PHPay/phpimg/help-.png")));
 		help.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 15));
-		help.setBounds(34, 476, 115, 70);
+		help.setBounds(28, 601, 115, 50);
 		panel.add(help);
 		help.addMouseListener(new MouseAdapter() {
 			@Override
@@ -189,7 +196,7 @@ public class Home extends JFrame {
 		activity = new JLabel("   Transactions");
 		activity.setIcon(new ImageIcon(Home.class.getResource("/PHPay/phpimg/activity-.png")));
 		activity.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 15));
-		activity.setBounds(34, 403, 148, 70);
+		activity.setBounds(28, 540, 148, 50);
 		panel.add(activity);
 		activity.addMouseListener(new MouseAdapter() {
 			@Override
@@ -222,7 +229,7 @@ public class Home extends JFrame {
 		lblNewLabel_1.setBounds(-1, -1, 70, 70);
 		profilePane.add(lblNewLabel_1);
 
-		JLabel nameLabel = new JLabel(SQLQuery.getTransName(ID));
+		JLabel nameLabel = new JLabel(SQLQuery.getFullName(ID));
 		nameLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		nameLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 18));
 		nameLabel.setForeground(new Color(255, 255, 255));
@@ -239,14 +246,14 @@ public class Home extends JFrame {
 		});
 		btnNewButton.setIcon(new ImageIcon(Home.class.getResource("/PHPay/phpimg/logout.png")));
 		btnNewButton.setBorder(new EmptyBorder(0, 0, 0, 0));
-		btnNewButton.setBounds(30, 688, 57, 38);
+		btnNewButton.setBounds(28, 711, 46, 30);
 		panel.add(btnNewButton);
 		
 		JLabel lblLogout = new JLabel("Log Out");
 		lblLogout.setHorizontalAlignment(SwingConstants.LEFT);
 		lblLogout.setForeground(Color.WHITE);
-		lblLogout.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 15));
-		lblLogout.setBounds(97, 690, 104, 36);
+		lblLogout.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 12));
+		lblLogout.setBounds(95, 705, 104, 36);
 		panel.add(lblLogout);
 		
 		lblLogout_1 = new JLabel(SQLQuery.getID(ID));
@@ -262,6 +269,47 @@ public class Home extends JFrame {
 		lblLogout_2.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
 		lblLogout_2.setBounds(110, 56, 22, 36);
 		panel.add(lblLogout_2);
+		
+		JLabel lblSendMoney = new JLabel("Send Money");
+		lblSendMoney.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				titleClicked(sendMoney);
+			}
+		});
+		lblSendMoney.setHorizontalAlignment(SwingConstants.LEFT);
+		lblSendMoney.setForeground(Color.WHITE);
+		lblSendMoney.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 14));
+		lblSendMoney.setBounds(72, 355, 115, 30);
+		panel.add(lblSendMoney);
+		
+		JLabel lblBuyLoad = new JLabel("Buy Load");
+		lblBuyLoad.setHorizontalAlignment(SwingConstants.LEFT);
+		lblBuyLoad.setForeground(Color.WHITE);
+		lblBuyLoad.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 14));
+		lblBuyLoad.setBounds(72, 390, 115, 30);
+		panel.add(lblBuyLoad);
+		
+		JLabel lblPayBills = new JLabel("Pay Bills");
+		lblPayBills.setHorizontalAlignment(SwingConstants.LEFT);
+		lblPayBills.setForeground(Color.WHITE);
+		lblPayBills.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 14));
+		lblPayBills.setBounds(72, 425, 115, 30);
+		panel.add(lblPayBills);
+		
+		JLabel lblCashIn = new JLabel("Cash In");
+		lblCashIn.setHorizontalAlignment(SwingConstants.LEFT);
+		lblCashIn.setForeground(Color.WHITE);
+		lblCashIn.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 14));
+		lblCashIn.setBounds(72, 460, 115, 30);
+		panel.add(lblCashIn);
+		
+		JLabel lblTransfer = new JLabel("Transfer");
+		lblTransfer.setHorizontalAlignment(SwingConstants.LEFT);
+		lblTransfer.setForeground(Color.WHITE);
+		lblTransfer.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 14));
+		lblTransfer.setBounds(72, 495, 115, 30);
+		panel.add(lblTransfer);
 
 		updateBalanceLabelFromFile();
 		currentBal = SQLQuery.getBalance(session);
@@ -303,6 +351,7 @@ public class Home extends JFrame {
 		servicePanel.setVisible(false);
 		homePanel.setVisible(false);
 		helpPanel.setVisible(false);
+		sendMoney.setVisible(false);
 
 		selectedPanel.setVisible(true);
 	}
