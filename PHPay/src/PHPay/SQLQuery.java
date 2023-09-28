@@ -286,12 +286,11 @@ public class SQLQuery {
 			ps.setString(1, "PENDING");
 			ResultSet rs = ps.executeQuery();
 
-			String ticket,user_id, message, status;
+			String ticket,user_id, message;
 			while (rs.next()) {
 				ticket = rs.getString(1);
 				user_id = rs.getString(2);
 				message= rs.getString(3);
-				status = rs.getString(4);
 				
 				String[] appeal = {user_id, message, ticket};
 				appeals.add(appeal);
