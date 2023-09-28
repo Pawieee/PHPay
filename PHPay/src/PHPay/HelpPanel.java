@@ -654,19 +654,13 @@ public class HelpPanel extends JPanel {
 		EPane1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		TPanel.add(EPane1);
 		EPane1.getDocument().addDocumentListener(new DocumentListener() {
-	            @Override
 	            public void insertUpdate(DocumentEvent e) {
 	                updateCharacterCount();
 	            }
-
-				@Override
 				public void removeUpdate(DocumentEvent e) {
 					 updateCharacterCount();
 				}
-
-				@Override
 				public void changedUpdate(DocumentEvent e) {
-					
 				}
 		  });
 		 
@@ -1589,14 +1583,7 @@ public class HelpPanel extends JPanel {
 			 lands2l.setVisible(false);
 			 lands2t.setVisible(false);
 		 }
-		  public void removeUpdate(DocumentEvent e) {
-              updateCharacterCount();
-          }
-
-          public void changedUpdate(DocumentEvent e) {
-              updateCharacterCount();
-          }
-
+		
           private void updateCharacterCount() {
               int remainingCharacters = 300 - EPane1.getText().length();
               if (remainingCharacters < 0) {
