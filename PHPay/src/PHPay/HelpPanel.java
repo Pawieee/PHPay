@@ -7,7 +7,13 @@ import java.awt.SystemColor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Desktop;
+
 import javax.swing.UIManager;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -771,6 +777,29 @@ public class HelpPanel extends JPanel {
 		bl11.setHorizontalAlignment(SwingConstants.CENTER);
 		bl11.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 11));
 		bl11.setBounds(33, 597, 1157, 116);
+		bl11.addMouseListener(new MouseAdapter() {
+		    @Override
+		    public void mouseClicked(MouseEvent e) {
+		        // Open the link in a web browser when clicked
+		        try {
+		            Desktop.getDesktop().browse(new URI("https://www.bsp.gov.ph"));
+		        } catch (IOException | URISyntaxException ex) {
+		            ((Throwable) ex).printStackTrace();
+		        }
+		    }
+
+		    @Override
+		    public void mouseEntered(MouseEvent e) {
+		        // Change the cursor to a hand when hovering over the link
+		        bl11.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		    }
+
+		    @Override
+		    public void mouseExited(MouseEvent e) {
+		        // Change the cursor back to the default cursor when not hovering over the link
+		        bl11.setCursor(Cursor.getDefaultCursor());
+		    }
+		});
 		add(bl11);
 		
 		bl12 = new JLabel("Help");
