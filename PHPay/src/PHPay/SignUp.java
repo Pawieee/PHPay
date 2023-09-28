@@ -85,6 +85,7 @@ public class SignUp extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	public SignUp() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(SignUp.class.getResource("/PHPay/phpimg/PHPAY-BRAND-ICON2.png")));
 		setSize(811, 512);
 		setUndecorated(true);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

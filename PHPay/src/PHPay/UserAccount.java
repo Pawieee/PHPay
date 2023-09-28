@@ -189,12 +189,24 @@ public class UserAccount extends JFrame {
 				UserData newAccount = new UserData(ID, user, pass, hashedPasskey, 0, account);
 				if (newAccount.accountExist() == true) {
 					System.out.println("Duplicate username");
-					System.exit(0);
 				}
 				newAccount.saveAccount();
-				dispose();
-				Welcome runFrame = new Welcome();
-				runFrame.setVisible(true);
+				
+				Proceed successful = new Proceed("Congratulations! Your account has been successfully created");
+				successful.setVisible(true);
+
+				Timer timer = new Timer(4000, new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+						Welcome runFrame = new Welcome();
+						runFrame.setVisible(true);
+					}
+				});
+				timer.setRepeats(false);
+				timer.start();
+				
+			
 			}
 
 		});

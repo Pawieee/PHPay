@@ -35,8 +35,8 @@ public class ChangePassword extends JFrame {
 	private RoundedPasswordField newPasswordField, confirmPasswordField;
 	private boolean def1 = true;
 	private boolean def2 = true;
-	ImageIcon see = new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/see.png"));
-	ImageIcon blind = new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/blind.png"));
+	ImageIcon see = new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/see1.png"));
+	ImageIcon blind = new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/blind2.png"));
 
 	public ChangePassword(String username) {
 		ChangePassword.username = username;

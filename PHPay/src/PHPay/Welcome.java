@@ -221,7 +221,7 @@ public class Welcome extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				if (def) {
 					eyeLabel.setIcon(blind);
-					eyeLabel.setBounds(281, 218, 25, 25);
+					eyeLabel.setBounds(281, 215, 25, 25);
 					passField.setEchoChar((char) 0);
 					passField.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 14));
 

@@ -25,6 +25,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.BevelBorder;
+import javax.swing.JSeparator;
 
 public class Home extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -43,6 +44,7 @@ public class Home extends JFrame {
 	private double currentBal;
 	private JLabel lblLogout_1;
 	private JLabel lblLogout_2;
+	private JSeparator separator;
 
 	public static String addCommaSeparator(String value) {
 		DecimalFormat formatter = new DecimalFormat("#,###.0");
@@ -98,6 +100,11 @@ public class Home extends JFrame {
 		panel.setBounds(0, 0, 1464, 754);
 		getContentPane().add(panel);
 		panel.setLayout(null);
+		
+		separator = new JSeparator();
+		separator.setOrientation(SwingConstants.VERTICAL);
+		separator.setBounds(49, 359, 2, 166);
+		panel.add(separator);
 
 		RoundedPanel idPane = new RoundedPanel(10);
 		idPane.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -246,14 +253,14 @@ public class Home extends JFrame {
 		});
 		btnNewButton.setIcon(new ImageIcon(Home.class.getResource("/PHPay/phpimg/logout.png")));
 		btnNewButton.setBorder(new EmptyBorder(0, 0, 0, 0));
-		btnNewButton.setBounds(28, 711, 46, 30);
+		btnNewButton.setBounds(28, 701, 46, 30);
 		panel.add(btnNewButton);
 		
 		JLabel lblLogout = new JLabel("Log Out");
 		lblLogout.setHorizontalAlignment(SwingConstants.LEFT);
 		lblLogout.setForeground(Color.WHITE);
-		lblLogout.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 12));
-		lblLogout.setBounds(95, 705, 104, 36);
+		lblLogout.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 15));
+		lblLogout.setBounds(84, 697, 70, 36);
 		panel.add(lblLogout);
 		
 		lblLogout_1 = new JLabel(SQLQuery.getID(ID));
