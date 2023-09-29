@@ -77,10 +77,6 @@ public class Proceed extends JFrame {
 				} else {
 					((Timer) e.getSource()).stop();
 					dispose();
-					
-//					Receipt receipt = new Receipt(ID);
-//					receipt.setVisible(true);
-					
 				}
 			}
 		});

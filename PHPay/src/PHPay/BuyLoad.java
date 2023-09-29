@@ -270,16 +270,12 @@ public class BuyLoad extends JPanel {
 					frame.dispose();
 				}
 
-				dispose();
 				Proceed proceed = new Proceed("Processing", getSession());
 				proceed.setVisible(true);
 				SQLQuery.load(ID, amount, number);
 
 			}
 
-			private void dispose() {
-
-			}
 		});
 		confirmButton.setText("Confirm");
 		confirmButton.setIconTextGap(1);
@@ -368,7 +364,7 @@ public class BuyLoad extends JPanel {
 	}
 
 	private void setPreview() {
-		double doubleFee = amount * 0.03;
+		double doubleFee = (double)Math.round((amount * 0.03)*100)/100;
 		String completNum = (type + "" + number);
 
 		receiverLabel.setText(completNum);

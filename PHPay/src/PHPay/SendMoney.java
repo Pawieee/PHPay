@@ -214,14 +214,9 @@ public class SendMoney extends JPanel {
 		            frame.dispose();
 		        }
 
-				dispose();
 				Proceed proceed = new Proceed("Processing",getSession());
 				proceed.setVisible(true);
 				SQLQuery.sendMoney(ID, id, amount);
-
-			}
-
-			private void dispose() {
 
 			}
 		});
@@ -329,7 +324,7 @@ public class SendMoney extends JPanel {
 	}
 
 	private void setPreview() {
-		double doubleFee = amount * 0.03;
+		double doubleFee = (double)Math.round((amount * 0.03)*100)/100;
 
 		receiverName.setText(SQLQuery.getFullName(id));
 		receiverID.setText(id);

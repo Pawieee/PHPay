@@ -35,7 +35,6 @@ public class SQLQuery {
 	public static void updatePass(String newPass, String user) {
 
 		String query = "UPDATE `users` SET `hashed_pass` = ? WHERE username = ?";
-		// FINISH THIS
 		try {
 			PreparedStatement ps = con.getCon().prepareStatement(query);
 			ps.setString(1, newPass);
@@ -214,7 +213,7 @@ public class SQLQuery {
 		amount = (double)Math.round((amount * 1.03)*100)/100;
 		deductBalance(ID, amount);
 		String aamount = amount + "";
-		transaction(ID, "Bought Load", aamount, receiver);
+		transaction(ID, "Bought Load", aamount, "+63"+receiver);
 	}
 
 	public static void withdraw(String ID, double amount, String receiver) {

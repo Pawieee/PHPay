@@ -82,12 +82,6 @@ public class Welcome extends JFrame {
 		setLocation(centerX, centerY);
 		setSize(833, 475);
 
-//		try {
-//			FlatArcDarkIJTheme.setup();
-//		} catch (Exception e) {
-//
-//		}
-
 		setTitle("PHPAY - Virtual Wallet");
 		getContentPane().setLayout(null);
 
@@ -154,13 +148,9 @@ public class Welcome extends JFrame {
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							dispose();
-
-//							Register reg = new Register();
-//							reg.setVisible(true);
-//							
+						
 							SignUp sign = new SignUp();
 							sign.setVisible(true);
-
 						}
 					});
 
@@ -310,9 +300,6 @@ public class Welcome extends JFrame {
 				userCheck = userField.getText();
 				passCheck = passField.getText();
 				if (accountExist(userCheck, passCheck) == true) {
-//					Home home = new Home(AccountVerify.sessionID(userCheck));
-//					home.setVisible(true);
-
 					Timer timer = new Timer(150, new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
@@ -320,7 +307,6 @@ public class Welcome extends JFrame {
 
 							Home home = new Home(AccountVerify.sessionID(userCheck));
 							home.setVisible(true);
-
 						}
 					});
 					timer.setRepeats(false);
@@ -329,9 +315,7 @@ public class Welcome extends JFrame {
 					togglePrompt();
 					passField.setForeground(Color.RED);
 					userField.setForeground(Color.RED);
-
 				}
-
 			}
 		});
 		loginButton.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));

@@ -42,9 +42,9 @@ public class Home extends JFrame {
 	private JPanel movingPane;
 	private JLabel balance;
 	private JLabel lblNewLabel;
-	private String getBal;
 	private JLabel lblLogout_1;
 	private JLabel lblLogout_2;
+	private JLabel lblSendMoney, lblBuyLoad, lblPayBills, lblCashIn, lblTransfer ;
 	private GradientPanel panel;
 	private JSeparator separator;
 
@@ -223,17 +223,6 @@ public class Home extends JFrame {
 		profilePane.setBounds(28, 25, 70, 69);
 		panel.add(profilePane);
 		profilePane.setLayout(null);
-
-		Timer status = new Timer(10000, new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (SQLQuery.getStatus(ID) == false) 
-					profilePane.setBackground(Color.RED);
-				else
-					profilePane.setBackground(Color.GREEN);
-			}
-		});
-		status.start();
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
@@ -284,11 +273,12 @@ public class Home extends JFrame {
 		lblLogout_2.setBounds(110, 56, 22, 36);
 		panel.add(lblLogout_2);
 
-		JLabel lblSendMoney = new JLabel("Send Money");
+		lblSendMoney = new JLabel("Send Money");
 		lblSendMoney.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				titleClicked(sendMoney);
+				if (!SQLQuery.getStatus(ID) == false) 
+					titleClicked(sendMoney);
 			}
 		});
 		lblSendMoney.setHorizontalAlignment(SwingConstants.LEFT);
@@ -297,11 +287,12 @@ public class Home extends JFrame {
 		lblSendMoney.setBounds(72, 355, 115, 30);
 		panel.add(lblSendMoney);
 
-		JLabel lblBuyLoad = new JLabel("Buy Load");
+		lblBuyLoad = new JLabel("Buy Load");
 		lblBuyLoad.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				titleClicked(buyLoad);
+				if (!SQLQuery.getStatus(ID) == false) 
+					titleClicked(buyLoad);
 			}
 		});
 		lblBuyLoad.setHorizontalAlignment(SwingConstants.LEFT);
@@ -310,27 +301,48 @@ public class Home extends JFrame {
 		lblBuyLoad.setBounds(72, 390, 115, 30);
 		panel.add(lblBuyLoad);
 
-		JLabel lblPayBills = new JLabel("Pay Bills");
+		lblPayBills = new JLabel("Pay Bills");
 		lblPayBills.setHorizontalAlignment(SwingConstants.LEFT);
 		lblPayBills.setForeground(Color.WHITE);
 		lblPayBills.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 14));
 		lblPayBills.setBounds(72, 425, 115, 30);
 		panel.add(lblPayBills);
 
-		JLabel lblCashIn = new JLabel("Cash In");
+		lblCashIn = new JLabel("Cash In");
 		lblCashIn.setHorizontalAlignment(SwingConstants.LEFT);
 		lblCashIn.setForeground(Color.WHITE);
 		lblCashIn.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 14));
 		lblCashIn.setBounds(72, 460, 115, 30);
 		panel.add(lblCashIn);
 
-		JLabel lblTransfer = new JLabel("Transfer");
+		lblTransfer = new JLabel("Transfer");
 		lblTransfer.setHorizontalAlignment(SwingConstants.LEFT);
 		lblTransfer.setForeground(Color.WHITE);
 		lblTransfer.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 14));
 		lblTransfer.setBounds(72, 495, 115, 30);
 		panel.add(lblTransfer);
 
+		//AUTOMATICALLY SET STATUS AT LOG-IN
+		if (SQLQuery.getStatus(ID) == false)  {
+			profilePane.setBackground(Color.RED);
+			setDisabled(true);
+		}
+
+		//TIMER TO UPDATE STATUS
+		Timer status = new Timer(10000, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (SQLQuery.getStatus(ID) == false)  {
+					profilePane.setBackground(Color.RED);
+					setDisabled(true);
+				} else {
+					profilePane.setBackground(Color.GREEN);
+					setDisabled(false);
+				}
+			}
+		});
+		status.start();
+		
 		updateBalanceLabelFromFile();
 		int interval = 5000; 
 
@@ -380,9 +392,26 @@ public class Home extends JFrame {
 		sendMoney.setVisible(false);
 		buyLoad.setVisible(false);
 		
-		if (selectedPanel == sendMoney) {
+		if (selectedPanel == sendMoney) 
 			sendMoney.reset();
-		}
+		else if (selectedPanel == buyLoad)
+			buyLoad.reset();
+
 		selectedPanel.setVisible(true);
+	}
+	private void setDisabled(boolean disable) {
+		if (disable == true) {
+			lblSendMoney.setForeground(Color.GRAY);
+			lblBuyLoad.setForeground(Color.GRAY);
+			lblPayBills.setForeground(Color.GRAY);
+			lblCashIn.setForeground(Color.GRAY);
+			lblTransfer.setForeground(Color.GRAY);
+		} else {
+			lblSendMoney.setForeground(Color.WHITE);
+			lblBuyLoad.setForeground(Color.WHITE);
+			lblPayBills.setForeground(Color.WHITE);
+			lblCashIn.setForeground(Color.WHITE);
+			lblTransfer.setForeground(Color.WHITE);
+		}
 	}
 }
