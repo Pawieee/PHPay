@@ -36,7 +36,7 @@ public class UserAccount extends JFrame {
 	private int x, y;
 	private HashSet<Integer> usedIds;
 	private Random random;
-	private static String passCheck, confirmPassCheck, passkey;
+	private static String passCheck, confirmPassCheck, passkeyf;
 	boolean def1 = true;
 	boolean def2 = true;
 	ImageIcon see = new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/see1.png"));
@@ -128,13 +128,6 @@ public class UserAccount extends JFrame {
 		lblUsername_1_5.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUsername_1_5.setForeground(Color.LIGHT_GRAY);
 		lblUsername_1_5.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
-
-		JLabel lblUsername_1_6 = new JLabel(passkey);
-		lblUsername_1_6.setBounds(10, 34, 378, 58);
-		signupPane_1_1.add(lblUsername_1_6);
-		lblUsername_1_6.setHorizontalAlignment(SwingConstants.CENTER);
-		lblUsername_1_6.setForeground(new Color(255, 255, 255));
-		lblUsername_1_6.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 23));
 
 		JLabel lblUsername_1_7 = new JLabel(
 				"<html>Your passkey is a critical requirement for resetting your password, so be sure to save it securely, as it will help protect your account. <html>");
@@ -441,7 +434,7 @@ public class UserAccount extends JFrame {
 					} else if (!pass.equals(confirmPass)) {
 						System.out.println("Password should match");
 					} else {
-						
+						setPasskey(passkey);
 						newAccount.saveAccount();
 						hidePane.setVisible(true);
 						confirmButton.setVisible(true);
@@ -450,6 +443,13 @@ public class UserAccount extends JFrame {
 				}
 			}
 		});
+		JLabel lblUsername_1_6 = new JLabel(getPasskey());
+		lblUsername_1_6.setBounds(10, 34, 378, 58);
+		signupPane_1_1.add(lblUsername_1_6);
+		lblUsername_1_6.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUsername_1_6.setForeground(new Color(255, 255, 255));
+		lblUsername_1_6.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 23));
+		
 		nextButton.setBounds(180, 440, 130, 34);
 		panel.add(nextButton);
 		nextButton.setText("Next");
@@ -714,6 +714,13 @@ public class UserAccount extends JFrame {
 		} else {
 			return false;
 		}
+	}
+	
+	public  void setPasskey(String passkey) {
+		this.passkeyf = passkey;
+	}
+	public String getPasskey() {
+		return this.passkeyf;
 	}
 
 }
