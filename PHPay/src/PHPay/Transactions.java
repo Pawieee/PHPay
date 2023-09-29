@@ -19,105 +19,51 @@ import java.util.logging.Logger;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
 
-public class SummaryPanel extends JPanel {
+public class Transactions extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private JScrollPane scrollPane;
 	private String session;
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public SummaryPanel(String ID) {
+	public Transactions(String ID) {
 		this.session = ID;
-		setBackground(new Color(255, 255, 255));
-		setBounds(0, 0, 1200, 610);
+		setBackground(new Color(64, 0, 128));
+		setBounds(0, 0, 1200, 754);
 		setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Transactions");
-		lblNewLabel.setForeground(new Color(51, 0, 204));
-		lblNewLabel.setFont(new Font("Oswald", Font.PLAIN, 36));
-		lblNewLabel.setBounds(20, 11, 178, 54);
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 36));
+		lblNewLabel.setBounds(25, 31, 318, 54);
 		add(lblNewLabel);
 
-		JLabel lblAll = new JLabel("All");
-		lblAll.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				getTransactions();
-			}
-		});
-		lblAll.setForeground(new Color(0, 0, 0));
-		lblAll.setFont(new Font("Oswald", Font.PLAIN, 16));
-		lblAll.setBounds(285, 49, 43, 54);
-		add(lblAll);
-
-		JLabel lblSend = new JLabel("Send");
-		lblSend.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				getTransactions("Sent Money");
-			}
-		});
-		lblSend.setForeground(new Color(0, 0, 0));
-		lblSend.setFont(new Font("Oswald", Font.PLAIN, 16));
-		lblSend.setBounds(332, 49, 43, 54);
-		add(lblSend);
-
-		JLabel lblReceive = new JLabel("Receive");
-		lblReceive.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				getTransactions("Received Money");
-			}
-		});
-		lblReceive.setForeground(new Color(0, 0, 0));
-		lblReceive.setFont(new Font("Oswald", Font.PLAIN, 16));
-		lblReceive.setBounds(385, 49, 59, 54);
-		add(lblReceive);
-
-		JLabel lblPayment = new JLabel("Payment");
-		lblPayment.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				getTransactions("?bill paid");
-			}
-		});
-		lblPayment.setForeground(new Color(0, 0, 0));
-		lblPayment.setFont(new Font("Oswald", Font.PLAIN, 16));
-		lblPayment.setBounds(454, 49, 59, 54);
-		add(lblPayment);
-
-		JLabel lblWithdraw = new JLabel("Withdraw");
-		lblWithdraw.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				getTransactions("Withdraw Money");
-			}
-		});
-
-		lblWithdraw.setForeground(new Color(0, 0, 0));
-		lblWithdraw.setFont(new Font("Oswald", Font.PLAIN, 16));
-		lblWithdraw.setBounds(523, 49, 59, 54);
-		add(lblWithdraw);
-
 		JLabel lblSortBy = new JLabel("Sort By:");
-		lblSortBy.setForeground(new Color(0, 0, 0));
-		lblSortBy.setFont(new Font("Oswald", Font.PLAIN, 16));
-		lblSortBy.setBounds(1031, 49, 59, 54);
+		lblSortBy.setForeground(new Color(255, 255, 255));
+		lblSortBy.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		lblSortBy.setBounds(1023, 121, 59, 54);
 		add(lblSortBy);
 
-		JComboBox<?> comboBox = new JComboBox();
+		String[] types = { "Date", "Transactions", "Name" };
+
+		RoundedComboBox<?> comboBox = new RoundedComboBox(types);
 		comboBox.setBorder(new EmptyBorder(1, 1, 1, 1));
 		comboBox.setBackground(new Color(255, 255, 255));
 		comboBox.setFont(new Font("Nirmala UI", Font.PLAIN, 13));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] { "Date", "Transactions", "Name" }));
-		comboBox.setBounds(1087, 63, 91, 30);
+		comboBox.setBounds(1092, 135, 91, 30);
 		add(comboBox);
 
-		JButton resizeButton = new JButton("Resize Table");
-		resizeButton.setFont(new Font("Oswald", Font.PLAIN, 10));
-		resizeButton.setBounds(921, 63, 84, 30);
+		RoundedButton resizeButton = new RoundedButton("Resize");
+		resizeButton.setForeground(new Color(255, 255, 255));
+		resizeButton.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		resizeButton.setBounds(920, 133, 81, 30);
 		add(resizeButton);
+
 
 		resizeButton.addActionListener(new ActionListener() {
 			@Override
@@ -128,7 +74,8 @@ public class SummaryPanel extends JPanel {
 		getTransactions();
 
 	}
-	//CHANGED FROM PRIVATE TO PUBLIC TO ACCOMODATE ADMINPANEL
+
+	// CHANGED FROM PRIVATE TO PUBLIC TO ACCOMODATE ADMINPANEL
 	public static class LeftAlignedHeaderRenderer extends DefaultTableCellRenderer {
 		private static final long serialVersionUID = 1L;
 
@@ -191,7 +138,7 @@ public class SummaryPanel extends JPanel {
 		}
 		clearTable(model);
 
-		table.setFont(new Font("Nirmala UI", Font.PLAIN, 17));
+		table.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 16));
 		table.setRowMargin(1);
 		table.setSelectionForeground(new Color(255, 255, 255));
 		table.setSelectionBackground(new Color(255, 255, 255));
@@ -215,14 +162,15 @@ public class SummaryPanel extends JPanel {
 
 		JTableHeader header = table.getTableHeader();
 		header.setDefaultRenderer(new LeftAlignedHeaderRenderer());
-		header.setBackground(Color.WHITE);
-		header.setForeground(new Color(128, 0, 128));
+		header.setBackground(Color.BLUE); // Change to your preferred background color
+		header.setForeground(Color.WHITE); // Change to your preferred text color
 		header.setReorderingAllowed(false);
 		scrollPane = new JScrollPane(table);
+		scrollPane.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 16));
 		scrollPane.setColumnHeaderView(header);
-		scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
-		scrollPane.setBackground(Color.WHITE);
-		scrollPane.setBounds(285, 104, 893, 484);
+		scrollPane.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		scrollPane.setBackground(new Color(192, 192, 192));
+		scrollPane.setBounds(0, 172, 1222, 582);
 		scrollPane.getViewport().setBackground(Color.WHITE);
 		add(scrollPane);
 
@@ -242,12 +190,89 @@ public class SummaryPanel extends JPanel {
 				amount = rs.getString(5);
 				receiver = rs.getString(6);
 
-				model.addRow(new Object[] { session, date, transaction_id, amount, status, receiver });
+				model.addRow(new Object[] { session, date, transaction_id, "₱ " + amount, status, receiver });
 			}
 		} catch (SQLException ex) {
 			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+
+		JLabel lblAll = new JLabel("All");
+		lblAll.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAll.setForeground(Color.WHITE);
+		lblAll.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		lblAll.setBounds(3, 126, 81, 45);
+		add(lblAll);
+		lblAll.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				getTransactions();
+				resizeTableColumnsToDefault();
+			}
+		});
+
+		JLabel lblSend = new JLabel("Send");
+		lblSend.setBounds(80, 126, 92, 45);
+		add(lblSend);
+		lblSend.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSend.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				getTransactions("Sent Money");
+				resizeTableColumnsToDefault();
+			}
+		});
+		lblSend.setForeground(new Color(255, 255, 255));
+		lblSend.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+
+		JLabel lblReceive = new JLabel("Receive");
+		lblReceive.setBounds(181, 126, 92, 45);
+		add(lblReceive);
+		lblReceive.setHorizontalAlignment(SwingConstants.CENTER);
+		lblReceive.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				getTransactions("Received Money");
+				resizeTableColumnsToDefault();
+			}
+		});
+		lblReceive.setForeground(new Color(255, 255, 255));
+		lblReceive.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+
+		JLabel lblPayment = new JLabel("Payment");
+		lblPayment.setBounds(392, 126, 92, 45);
+		add(lblPayment);
+		lblPayment.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPayment.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				getTransactions("?bill paid");
+				resizeTableColumnsToDefault();
+			}
+		});
+		lblPayment.setForeground(new Color(255, 255, 255));
+		lblPayment.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+
+		JLabel lblWithdraw = new JLabel("Withdraw");
+		lblWithdraw.setBounds(292, 126, 92, 45);
+		add(lblWithdraw);
+		lblWithdraw.setHorizontalAlignment(SwingConstants.CENTER);
+		lblWithdraw.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				getTransactions("Withdraw Money");
+				resizeTableColumnsToDefault();
+			}
+		});
+
+		lblWithdraw.setForeground(new Color(255, 255, 255));
+		lblWithdraw.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+
+		JSeparator separator = new JSeparator();
+		separator.setBounds(31, 132, 31, 4);
+		add(separator);
+		
+		resizeTableColumnsToDefault();
 	}
 
 	public void getTransactions(String op) {
@@ -274,7 +299,7 @@ public class SummaryPanel extends JPanel {
 		}
 		clearTable(model);
 
-		table.setFont(new Font("Nirmala UI", Font.PLAIN, 17));
+		table.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 16));
 		table.setRowMargin(1);
 		table.setSelectionForeground(new Color(255, 255, 255));
 		table.setSelectionBackground(new Color(255, 255, 255));
@@ -299,13 +324,13 @@ public class SummaryPanel extends JPanel {
 		JTableHeader header = table.getTableHeader();
 		header.setDefaultRenderer(new LeftAlignedHeaderRenderer());
 		header.setBackground(Color.WHITE);
-		header.setForeground(new Color(128, 0, 128));
+		header.setForeground(new Color(0, 0, 0));
 		header.setReorderingAllowed(false);
 		scrollPane = new JScrollPane(table);
 		scrollPane.setColumnHeaderView(header);
-		scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+		scrollPane.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		scrollPane.setBackground(Color.WHITE);
-		scrollPane.setBounds(285, 104, 893, 484);
+		scrollPane.setBounds(0, 172, 1222, 582);
 		scrollPane.getViewport().setBackground(Color.WHITE);
 		add(scrollPane);
 
@@ -326,7 +351,7 @@ public class SummaryPanel extends JPanel {
 				amount = rs.getString(5);
 				receiver = rs.getString(6);
 
-				model.addRow(new Object[] { session, date, transaction_id, amount+"P", status, receiver });
+				model.addRow(new Object[] { session, date, transaction_id, "₱ " + amount, status, receiver });
 			}
 		} catch (SQLException ex) {
 			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);

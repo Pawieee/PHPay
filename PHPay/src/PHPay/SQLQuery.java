@@ -74,7 +74,6 @@ public class SQLQuery {
 
 			if (rs.next()) {
 				bal = rs.getDouble("balance");
-				System.out.println(bal);
 			}
 		} catch (SQLException ex) {
 			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
@@ -120,6 +119,24 @@ public class SQLQuery {
 		}
 		return userID;
 
+	}
+	
+	public static boolean getStatus(String ID) {
+		String query = "SELECT `status` FROM `users` WHERE user_id = ?";
+		
+		boolean ok = true;
+		try {
+			PreparedStatement ps = con.getCon().prepareStatement(query);
+			ps.setString(1, ID);
+			ResultSet rs = ps.executeQuery();
+			
+			if (rs.next()) 
+				ok = rs.getBoolean("status");
+			
+		} catch (SQLException ex) {
+			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return ok;
 	}
 
 	public static void deleteAccount(String ID) {
@@ -183,31 +200,32 @@ public class SQLQuery {
 	}
 
 	public static void sendMoney(String senderID, String receiverID, double amount) {
-		amount = amount * 1.03;
+		amount = (double)Math.round((amount * 1.03)* 100)/100;
 		deductBalance(senderID, amount);
 		String aamount = amount + "";
 		transaction(senderID, "Sent Money", aamount, receiverID);
-		amount = amount / 1.03;
+		
+		amount = (double)Math.round((amount / 1.03) * 100)/100;
 		addBalance(receiverID, amount);
 		transaction(receiverID, "Received Money", aamount, senderID);
 	}
 
 	public static void load(String ID, double amount, String receiver) {
-		amount = amount * 1.03;
+		amount = (double)Math.round((amount * 1.03)*100)/100;
 		deductBalance(ID, amount);
 		String aamount = amount + "";
 		transaction(ID, "Bought Load", aamount, receiver);
 	}
 
 	public static void withdraw(String ID, double amount, String receiver) {
-		amount = amount * 1.03;
+		amount = (double)Math.round((amount * 1.03)*100)/100;
 		deductBalance(ID, amount);
 		String aamount = amount + "";
 		transaction(ID, "Withdraw Money", aamount, receiver);
 	}
 
 	public static void payBills(String ID, double amount, String bill) {
-		amount = amount * 1.03;
+		amount = (double)Math.round((amount * 1.03)*100)/100;
 		deductBalance(ID, amount);
 		String aamount = amount + "";
 		transaction(ID, "Paid Bill",  aamount, bill);
@@ -325,6 +343,20 @@ public class SQLQuery {
 			ps.setString(1, verdict);
 			ps.setInt(2, ticket);
 			ps.executeUpdate();
+		} catch (SQLException ex) {
+			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
+	
+	//BAN USer
+	public static void disableUser(String ID) {
+		String query = "UPDATE `users` SET `status` = ? WHERE `user_id` = ?";
+		try {
+			PreparedStatement ps = con.getCon().prepareStatement(query);
+			ps.setBoolean(1, false);
+			ps.setString(2, ID);
+			ps.executeUpdate();
+			
 		} catch (SQLException ex) {
 			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
 		}

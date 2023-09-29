@@ -41,7 +41,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-
 public class Welcome extends JFrame {
 
 	private boolean def = true;
@@ -365,6 +364,16 @@ public class Welcome extends JFrame {
 		invalidMessage.setForeground(new Color(255, 255, 255));
 		invalidMessage.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
 		invalidMessage.setBackground(new Color(255, 255, 255));
+		
+		JButton btnNewButton = new JButton("Auto fill");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				userField.setText("jay123");
+				passField.setText("Qweqwe123");
+			}
+		});
+		btnNewButton.setBounds(125, 264, 89, 23);
+		mainPanel.add(btnNewButton);
 
 		JButton close = new JButton("");
 		close.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/exit.png")));

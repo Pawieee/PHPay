@@ -24,7 +24,7 @@ public class SQLConnection {
 	public void setCon(String url, String username, String password) {
 		try {
 			this.connection = DriverManager.getConnection(url, username, password);
-		} catch (SQLException e) {
+		} catch (RuntimeException | SQLException e) {
 			e.printStackTrace();
 		}
 	}

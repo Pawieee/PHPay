@@ -25,6 +25,7 @@ import javax.swing.table.JTableHeader;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.JLabel;
 
 public class adminPanel {
 
@@ -34,6 +35,7 @@ public class adminPanel {
 	private JTextField message;
 	private JTextField id;
 	private int index = 0;
+	private JTextField userToBan;
 
 
 	public static void main(String[] args) {
@@ -60,6 +62,32 @@ public class adminPanel {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(205, 41, 455, 351);
+		frame.getContentPane().add(panel_1);
+		panel_1.setLayout(null);
+		panel_1.setVisible(false);
+		
+		JButton btnNewButton_3 = new JButton("Ban");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String ID = userToBan.getText();
+				SQLQuery.disableUser(ID);
+				userToBan.setText("");
+			}
+		});
+		btnNewButton_3.setBounds(274, 286, 71, 39);
+		panel_1.add(btnNewButton_3);
+		
+		userToBan = new JTextField();
+		userToBan.setBounds(155, 145, 161, 39);
+		panel_1.add(userToBan);
+		userToBan.setColumns(10);
+		
+		JLabel lblNewLabel = new JLabel("USER ID");
+		lblNewLabel.setBounds(149, 109, 58, 13);
+		panel_1.add(lblNewLabel);
+		
 		scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(205, 47, 491, 345);
 		frame.getContentPane().add(scrollPane_1);
@@ -76,6 +104,7 @@ public class adminPanel {
 				getSus(scrollPane_1);
 				scrollPane_1.setVisible(true);
 				panel.setVisible(false);
+				panel_1.setVisible(false);
 			}
 		});
 		btnNewButton.setBounds(6, 86, 130, 21);
@@ -160,11 +189,12 @@ public class adminPanel {
 		id.setColumns(10);
 		
 		JButton btnAppeals = new JButton("Appeals");
-		btnAppeals.setBounds(26, 147, 92, 21);
+		btnAppeals.setBounds(28, 189, 92, 21);
 		btnAppeals.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				scrollPane_1.setVisible(false);
+				panel_1.setVisible(false);
 				panel.setVisible(true);
 				
 				ArrayList<String[]> tickets = SQLQuery.getTickets();
@@ -182,6 +212,17 @@ public class adminPanel {
 			}
 		});
 		frame.getContentPane().add(btnAppeals);
+		
+		JButton btnNewButton_1 = new JButton("Ban");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				scrollPane_1.setVisible(false);
+				panel.setVisible(false);
+				panel_1.setVisible(true);
+			}
+		});
+		btnNewButton_1.setBounds(23, 143, 85, 21);
+		frame.getContentPane().add(btnNewButton_1);
 		
 	}
 	
@@ -252,26 +293,4 @@ public class adminPanel {
 			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
-	
-//	public void getAppeals() {
-//
-//		
-//		SQLConnection con = new SQLConnection();
-//		String query = "SELECT * FROM `appeals`";
-//
-//		try {
-//			PreparedStatement ps = con.getCon().prepareStatement(query);
-//			ResultSet rs = ps.executeQuery();
-//
-//			String ticket,user_id, message, status;
-//			while (rs.next()) {
-//				ticket = rs.getString(1);
-//				user_id = rs.getString(2);
-//				message= rs.getString(3);
-//				status = rs.getString(4);
-//			}
-//		} catch (SQLException ex) {
-//			Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
-//		}
-//	}
 }

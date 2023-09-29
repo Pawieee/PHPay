@@ -240,7 +240,7 @@ public class ChangePassword extends JFrame {
 						SQLQuery.updatePass(newPassHash, username);
 
 						blurPanel.setVisible(true);
-						Proceed successful = new Proceed("Password changed successfully");
+						Proceed successful = new Proceed("Password changed successfully",null);
 						successful.setVisible(true);
 
 						Timer timer = new Timer(4000, new ActionListener() {
