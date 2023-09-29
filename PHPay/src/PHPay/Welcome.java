@@ -59,11 +59,6 @@ public class Welcome extends JFrame {
 	private JPanel invalidPrompt;
 	private JLabel invalidMessage;
 
-//	JButton profileButton, logoutButton, deleteButton;
-
-//	private JPanel advertisementPanel; // New advertisement panel
-//	private Timer advertisementTimer; // Timer for sliding animation
-
 	public Welcome() {
 
 		setType(Type.POPUP);
@@ -82,11 +77,6 @@ public class Welcome extends JFrame {
 		setLocation(centerX, centerY);
 		setSize(833, 475);
 
-//		try {
-//			FlatArcDarkIJTheme.setup();
-//		} catch (Exception e) {
-//
-//		}
 
 		setTitle("PHPAY - Virtual Wallet");
 		getContentPane().setLayout(null);
@@ -310,8 +300,6 @@ public class Welcome extends JFrame {
 				userCheck = userField.getText();
 				passCheck = passField.getText();
 				if (accountExist(userCheck, passCheck) == true) {
-//					Home home = new Home(AccountVerify.sessionID(userCheck));
-//					home.setVisible(true);
 
 					Timer timer = new Timer(150, new ActionListener() {
 						@Override
@@ -368,8 +356,8 @@ public class Welcome extends JFrame {
 		JButton btnNewButton = new JButton("Auto fill");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				userField.setText("jay123");
-				passField.setText("Qweqwe123");
+				userField.setText("qweqwe");
+				passField.setText("Qwe123123");
 			}
 		});
 		btnNewButton.setBounds(125, 264, 89, 23);

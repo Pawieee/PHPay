@@ -53,7 +53,6 @@ public class appeal {
 		    frame.getContentPane().add(btnNewButton);
 		    
 
-		    // Create a DocumentFilter to limit the number of characters
 		    AbstractDocument doc = (AbstractDocument) textPane.getDocument();
 		    doc.setDocumentFilter(new DocumentSizeFilter(maxChar));
 		    
