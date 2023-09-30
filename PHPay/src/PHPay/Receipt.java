@@ -94,7 +94,7 @@ public class Receipt extends JFrame {
 		extraPane.add(transactID);
 		transactID.setForeground(new Color(255, 255, 255));
 
-		JLabel lblTime = new JLabel("Date & Time");
+		JLabel lblTime = new JLabel("Date / Time");
 		lblTime.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
 		lblTime.setBounds(31, 171, 98, 27);
 		extraPane.add(lblTime);

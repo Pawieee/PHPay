@@ -304,7 +304,6 @@ public class Home extends JFrame {
 		panel.add(lblBuyLoad);
 
 		lblPayBills = new JLabel("Pay Bills");
-		JLabel lblPayBills = new JLabel("Pay Bills");
 		lblPayBills.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -432,7 +431,8 @@ public class Home extends JFrame {
 			sendMoney.reset();
 		else if (selectedPanel == buyLoad) 
 			buyLoad.reset();
-//		else if (selectedPanel == payBills)
+		else if (selectedPanel == payBills)
+			payBills.reset();
 		
 		
 		selectedPanel.setVisible(true);

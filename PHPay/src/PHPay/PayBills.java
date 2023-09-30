@@ -795,5 +795,16 @@ public class PayBills extends JPanel {
 	
 	public void reset() {
 		billerLabel.setVisible(true);
+		electricityBox.setVisible(false);
+		waterBox.setVisible(false);
+		cableBox.setVisible(false);
+		healthBox.setVisible(false);
+		schoolBox.setVisible(false);
+		travelBox.setVisible(false);
+		loanBox.setVisible(false);
+		telecomBox.setVisible(false);
+		previewPane.setVisible(false);
+		billerLabel.setVisible(true);
+		amountField.setText("");
 	}
 }
