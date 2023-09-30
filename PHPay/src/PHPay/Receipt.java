@@ -153,7 +153,7 @@ public class Receipt extends JFrame {
 		lblTime_2.setBounds(31, 278, 167, 27);
 		extraPane.add(lblTime_2);
 
-		JLabel time_1 = new JLabel("₱ " + (double)Math.round(Double.valueOf(SQLQuery.getTransaction(session)[4])*.03));
+		JLabel time_1 = new JLabel("₱ " + (double)Math.round(((Double.valueOf(SQLQuery.getTransaction(session)[4]) /1.03) * 0.03)*100)/100);
 		time_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		time_1.setForeground(Color.WHITE);
 		time_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));

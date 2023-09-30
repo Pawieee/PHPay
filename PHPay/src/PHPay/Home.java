@@ -27,6 +27,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.BevelBorder;
 import javax.swing.JSeparator;
+import javax.swing.border.CompoundBorder;
 
 public class Home extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -36,6 +37,7 @@ public class Home extends JFrame {
 	private HomePanel homePanel;
 	private HelpPanel helpPanel;
 	private SendMoney sendMoney;
+	private PayBills payBills;
 	private BuyLoad buyLoad;
 	private String session;
 	private JLabel home, wallet, activity, help;
@@ -47,6 +49,7 @@ public class Home extends JFrame {
 	private JLabel lblSendMoney, lblBuyLoad, lblPayBills, lblCashIn, lblTransfer ;
 	private GradientPanel panel;
 	private JSeparator separator;
+	private RoundedPanel accountStatus;
 
 	public static String addCommaSeparator(String value) {
 		DecimalFormat formatter = new DecimalFormat("#,###.0");
@@ -104,7 +107,7 @@ public class Home extends JFrame {
 
 		separator = new JSeparator();
 		separator.setOrientation(SwingConstants.VERTICAL);
-		separator.setBounds(49, 359, 2, 166);
+		separator.setBounds(49, 357, 2, 175);
 		panel.add(separator);
 
 		RoundedPanel idPane = new RoundedPanel(10);
@@ -141,19 +144,22 @@ public class Home extends JFrame {
 		homePanel = new HomePanel();
 		sendMoney = new SendMoney(session);
 		buyLoad = new BuyLoad(session);
-		
+		payBills = new PayBills(session);
+
 		servicePanel.setVisible(false);
 		summaryPanel.setVisible(false);
 		helpPanel.setVisible(false);
 		sendMoney.setVisible(false);
 		buyLoad.setVisible(false);
-		
+		payBills.setVisible(false);
+
 		panelArea.add(homePanel);
 		panelArea.add(servicePanel);
 		panelArea.add(summaryPanel);
 		panelArea.add(helpPanel);
 		panelArea.add(sendMoney);
 		panelArea.add(buyLoad);
+		panelArea.add(payBills);
 
 		wallet = new JLabel("   Wallet");
 		wallet.setIcon(new ImageIcon(Home.class.getResource("/PHPay/phpimg/wallet-.png")));
@@ -218,25 +224,21 @@ public class Home extends JFrame {
 		movingPane.setBackground(new Color(0, 0, 0, 100));
 
 		RoundedPanel profilePane = new RoundedPanel(42);
-		profilePane.setBackground(Color.GREEN);
+		profilePane.setBackground(new Color(128, 0, 255, 150));
 		profilePane.setBorder(new EmptyBorder(0, 0, 0, 0));
-		profilePane.setBounds(28, 25, 70, 69);
+		profilePane.setBounds(16, 25, 70, 69);
 		panel.add(profilePane);
 		profilePane.setLayout(null);
-		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setForeground(new Color(255, 255, 255));
-		lblNewLabel_1.setBackground(new Color(255, 255, 255));
-		lblNewLabel_1.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 35));
+		JLabel lblNewLabel_1 = new JLabel("CJ");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setBounds(-1, -1, 70, 70);
 		profilePane.add(lblNewLabel_1);
 
 		JLabel nameLabel = new JLabel(SQLQuery.getFullName(ID));
 		nameLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		nameLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 18));
+		nameLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 17));
 		nameLabel.setForeground(new Color(255, 255, 255));
-		nameLabel.setBounds(109, 30, 191, 36);
+		nameLabel.setBounds(93, 30, 191, 36);
 		panel.add(nameLabel);
 
 		RoundedButton btnNewButton = new RoundedButton("");
@@ -263,14 +265,14 @@ public class Home extends JFrame {
 		lblLogout_1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblLogout_1.setForeground(Color.WHITE);
 		lblLogout_1.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		lblLogout_1.setBounds(131, 56, 94, 36);
+		lblLogout_1.setBounds(132, 56, 82, 36);
 		panel.add(lblLogout_1);
 
 		lblLogout_2 = new JLabel("ID");
 		lblLogout_2.setHorizontalAlignment(SwingConstants.LEFT);
 		lblLogout_2.setForeground(Color.WHITE);
 		lblLogout_2.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		lblLogout_2.setBounds(110, 56, 22, 36);
+		lblLogout_2.setBounds(113, 56, 22, 36);
 		panel.add(lblLogout_2);
 
 		lblSendMoney = new JLabel("Send Money");
@@ -284,7 +286,7 @@ public class Home extends JFrame {
 		lblSendMoney.setHorizontalAlignment(SwingConstants.LEFT);
 		lblSendMoney.setForeground(Color.WHITE);
 		lblSendMoney.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 14));
-		lblSendMoney.setBounds(72, 355, 115, 30);
+		lblSendMoney.setBounds(72, 352, 115, 30);
 		panel.add(lblSendMoney);
 
 		lblBuyLoad = new JLabel("Buy Load");
@@ -298,28 +300,36 @@ public class Home extends JFrame {
 		lblBuyLoad.setHorizontalAlignment(SwingConstants.LEFT);
 		lblBuyLoad.setForeground(Color.WHITE);
 		lblBuyLoad.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 14));
-		lblBuyLoad.setBounds(72, 390, 115, 30);
+		lblBuyLoad.setBounds(72, 389, 115, 30);
 		panel.add(lblBuyLoad);
 
 		lblPayBills = new JLabel("Pay Bills");
+		JLabel lblPayBills = new JLabel("Pay Bills");
+		lblPayBills.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (!SQLQuery.getStatus(ID) == false)
+					titleClicked(payBills);
+			}
+		});
 		lblPayBills.setHorizontalAlignment(SwingConstants.LEFT);
 		lblPayBills.setForeground(Color.WHITE);
 		lblPayBills.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 14));
-		lblPayBills.setBounds(72, 425, 115, 30);
+		lblPayBills.setBounds(72, 427, 115, 30);
 		panel.add(lblPayBills);
 
 		lblCashIn = new JLabel("Cash In");
 		lblCashIn.setHorizontalAlignment(SwingConstants.LEFT);
 		lblCashIn.setForeground(Color.WHITE);
 		lblCashIn.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 14));
-		lblCashIn.setBounds(72, 460, 115, 30);
+		lblCashIn.setBounds(72, 465, 115, 30);
 		panel.add(lblCashIn);
 
 		lblTransfer = new JLabel("Transfer");
 		lblTransfer.setHorizontalAlignment(SwingConstants.LEFT);
 		lblTransfer.setForeground(Color.WHITE);
 		lblTransfer.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 14));
-		lblTransfer.setBounds(72, 495, 115, 30);
+		lblTransfer.setBounds(72, 501, 115, 30);
 		panel.add(lblTransfer);
 
 		//AUTOMATICALLY SET STATUS AT LOG-IN
@@ -343,8 +353,26 @@ public class Home extends JFrame {
 		});
 		status.start();
 		
+		accountStatus = new RoundedPanel(42);
+		accountStatus.setToolTipText("Account Status: Active");
+		accountStatus.setLayout(null);
+		accountStatus.setBorder(new EmptyBorder(0, 0, 0, 0));
+		accountStatus.setBackground(new Color(255, 255, 255));
+		accountStatus.setBounds(95, 70, 10, 10);
+		panel.add(accountStatus);
+
+		checkStatus(ID);
+		
+		Timer status1 = new Timer(10000, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				checkStatus(ID);
+			}
+		});
+		status1.start();
+
 		updateBalanceLabelFromFile();
-		int interval = 5000; 
+		int interval = 5000;
 
 		Timer timer = new Timer(interval, new ActionListener() {
 			@Override
@@ -354,7 +382,7 @@ public class Home extends JFrame {
 		});
 
 		timer.start();
-		
+
 	}
 
 	public void updateBalanceLabelFromFile() {
@@ -379,6 +407,13 @@ public class Home extends JFrame {
 		}
 
 	}
+	
+	public void checkStatus(String ID) {
+		if (SQLQuery.getStatus(ID) == false)
+			accountStatus.setBackground(Color.RED);
+		else
+			accountStatus.setBackground(Color.GREEN);
+	}
 
 	public String getSession() {
 		return session;
@@ -391,12 +426,15 @@ public class Home extends JFrame {
 		helpPanel.setVisible(false);
 		sendMoney.setVisible(false);
 		buyLoad.setVisible(false);
+		payBills.setVisible(false);
 		
 		if (selectedPanel == sendMoney) 
 			sendMoney.reset();
-		else if (selectedPanel == buyLoad)
+		else if (selectedPanel == buyLoad) 
 			buyLoad.reset();
-
+//		else if (selectedPanel == payBills)
+		
+		
 		selectedPanel.setVisible(true);
 	}
 	private void setDisabled(boolean disable) {

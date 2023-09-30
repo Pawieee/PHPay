@@ -59,11 +59,6 @@ public class Welcome extends JFrame {
 	private JPanel invalidPrompt;
 	private JLabel invalidMessage;
 
-//	JButton profileButton, logoutButton, deleteButton;
-
-//	private JPanel advertisementPanel; // New advertisement panel
-//	private Timer advertisementTimer; // Timer for sliding animation
-
 	public Welcome() {
 
 		setType(Type.POPUP);
