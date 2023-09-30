@@ -193,6 +193,7 @@ public class Home extends JFrame {
 		home.setForeground(new Color(255, 255, 255));
 
 		help = new JLabel("   Help");
+		help.setBackground(new Color(240, 240, 240));
 		help.setIcon(new ImageIcon(Home.class.getResource("/PHPay/phpimg/help-.png")));
 		help.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 15));
 		help.setBounds(28, 601, 115, 50);

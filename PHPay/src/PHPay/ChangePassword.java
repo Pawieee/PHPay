@@ -246,6 +246,8 @@ public class ChangePassword extends JFrame {
 						Timer timer = new Timer(4000, new ActionListener() {
 							@Override
 							public void actionPerformed(ActionEvent e) {
+								Welcome runFrame = new Welcome();
+								runFrame.setVisible(true);
 								dispose();
 							}
 						});
