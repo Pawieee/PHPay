@@ -43,25 +43,12 @@ public class Transactions extends JPanel {
 		lblNewLabel.setBounds(25, 31, 318, 54);
 		add(lblNewLabel);
 
-		JLabel lblSortBy = new JLabel("Sort By:");
-		lblSortBy.setForeground(new Color(255, 255, 255));
-		lblSortBy.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		lblSortBy.setBounds(1023, 121, 59, 54);
-		add(lblSortBy);
-
 		String[] types = { "Date", "Transactions", "Name" };
-
-		RoundedComboBox<?> comboBox = new RoundedComboBox(types);
-		comboBox.setBorder(new EmptyBorder(1, 1, 1, 1));
-		comboBox.setBackground(new Color(255, 255, 255));
-		comboBox.setFont(new Font("Nirmala UI", Font.PLAIN, 13));
-		comboBox.setBounds(1092, 135, 91, 30);
-		add(comboBox);
 
 		RoundedButton resizeButton = new RoundedButton("Resize");
 		resizeButton.setForeground(new Color(255, 255, 255));
 		resizeButton.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		resizeButton.setBounds(920, 133, 81, 30);
+		resizeButton.setBounds(1098, 133, 81, 30);
 		add(resizeButton);
 
 
@@ -115,7 +102,7 @@ public class Transactions extends JPanel {
 
 	public void getTransactions() {
 		DefaultTableModel model = new DefaultTableModel(null,
-				new String[] { "ID", "Date", "Invoice ID", "Amount", "Description", "Receiver" }) {
+				new String[] { "ID", "Date", "Invoice ID", "Amount", "Description", "Receipient" }) {
 			private static final long serialVersionUID = 8961818422329199291L;
 
 			@Override

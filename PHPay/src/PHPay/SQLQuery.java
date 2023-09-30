@@ -204,7 +204,7 @@ public class SQLQuery {
 		String aamount = amount + "";
 		transaction(senderID, "Sent Money", aamount, receiverID);
 		
-		amount = (double)Math.round((amount / 1.03) * 100)/100;
+		amount = (double)Math.round(amount * 100)/100;
 		addBalance(receiverID, amount);
 		transaction(receiverID, "Received Money", aamount, senderID);
 	}
