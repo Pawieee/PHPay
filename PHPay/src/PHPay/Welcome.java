@@ -46,18 +46,17 @@ public class Welcome extends JFrame {
 	private boolean def = true;
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
-	// private JTextField textField_1;
 	private JTextField userField;
 	private JPasswordField passField;
 	private JPanel focusBG, titleBar;
 	private static String userCheck, passCheck;
-	// private static double angle = 0;
 	private int x, y;
 	private final JButton ignoreThisVariable = new JButton("");
 	PhpaySplash mainPanel;
 	RoundedButton loginButton;
 	private JPanel invalidPrompt;
 	private JLabel invalidMessage;
+	private static JLabel timeoutLabel;
 
 	public Welcome() {
 
@@ -143,7 +142,7 @@ public class Welcome extends JFrame {
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							dispose();
-						
+
 							SignUp sign = new SignUp();
 							sign.setVisible(true);
 						}
@@ -343,7 +342,7 @@ public class Welcome extends JFrame {
 		invalidMessage.setForeground(new Color(255, 255, 255));
 		invalidMessage.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
 		invalidMessage.setBackground(new Color(255, 255, 255));
-		
+
 		JButton btnNewButton = new JButton("Auto fill");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -353,6 +352,14 @@ public class Welcome extends JFrame {
 		});
 		btnNewButton.setBounds(125, 264, 89, 23);
 		mainPanel.add(btnNewButton);
+
+		timeoutLabel = new JLabel("Session timeout");
+		timeoutLabel.setVisible(false);
+		timeoutLabel.setForeground(new Color(255, 0, 0));
+		timeoutLabel.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 12));
+		timeoutLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		timeoutLabel.setBounds(388, 19, 412, 29);
+		mainPanel.add(timeoutLabel);
 
 		JButton close = new JButton("");
 		close.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/exit.png")));
@@ -638,5 +645,17 @@ public class Welcome extends JFrame {
 
 		delayTimer.setRepeats(false);
 		delayTimer.start();
+	}
+
+	public void timeoutVisible() {
+		timeoutLabel.setVisible(true);
+		Timer timer = new Timer(5000, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				timeoutLabel.setVisible(false);
+			}
+		});
+		timer.setRepeats(false);
+		timer.start();
 	}
 }

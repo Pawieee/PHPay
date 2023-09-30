@@ -25,7 +25,7 @@ import javax.swing.table.JTableHeader;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-public class adminPanel {
+public class Admin {
 
 	private JFrame frame;
 	private JTable table;
@@ -43,7 +43,7 @@ public class adminPanel {
 			public void run() {
 				try {
 					UIManager.setLookAndFeel(laf);
-					adminPanel window = new adminPanel();
+					Admin window = new Admin();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,7 +53,7 @@ public class adminPanel {
 	}
 
 
-	public adminPanel() {
+	public Admin() {
 		initialize();
 	}
 

@@ -603,7 +603,6 @@ public class SignUp extends JFrame {
 		phonenumberField.setMargin(new Insets(2, 7, 2, 7));
 		phonenumberField.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
 		phonenumberField.setForeground(new Color(255, 255, 255));
-// yearBox.setSelectedIndex(currentYear);
 
 		firstnameField = new RoundedTextField(10);
 		firstnameField.setBounds(373, 52, 184, 30);

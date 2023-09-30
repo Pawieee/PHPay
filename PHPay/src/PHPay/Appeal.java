@@ -7,13 +7,13 @@ import javax.swing.text.*;
 import javax.swing.event.*;
 
 
-public class appeal {
+public class Appeal {
 
 	private String session;
 	private JFrame frame;
 	private final int maxChar = 300;
 
-	public appeal(String ID) {
+	public Appeal(String ID) {
 		this.session = ID;
 		initialize();
 	}

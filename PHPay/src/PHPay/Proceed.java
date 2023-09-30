@@ -82,8 +82,9 @@ public class Proceed extends JFrame {
 		timer.start();
 
 	}
-	//OVERLOAD ANOTHER PROCEED FOR TRANSACTION PURPOSES	
-	public Proceed(String message, String ID, boolean op) {
+	
+	
+	public Proceed(String message, String ID, boolean op, boolean op1) {
 		this.session = ID;
 		setTitle("PHPAY");
 		setIconImage(
@@ -127,6 +128,9 @@ public class Proceed extends JFrame {
 		countdownLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
 		countdownLabel.setBounds(84, 65, 134, 33);
 		panel_1.add(countdownLabel);
+		
+		Home.inactive.stop();
+    	Home.inactive.setRepeats(false);
 
 		Timer timer = new Timer(1000, new ActionListener() {
 			int count = 3;
@@ -142,9 +146,13 @@ public class Proceed extends JFrame {
 					} else {
 						((Timer) e.getSource()).stop();
 						dispose();
-						
-						Receipt receipt = new Receipt(ID);
-						receipt.setVisible(true);
+						if (op1 == true){
+							Receipt receipt = new Receipt(ID, true);
+							receipt.setVisible(true);
+						} else {
+							Receipt receipt = new Receipt(ID, false);
+							receipt.setVisible(true);
+						}
 					}
 				} else {
 					if (count > 0) {
