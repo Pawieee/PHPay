@@ -36,7 +36,6 @@ public class Admin {
 	private JTextField accToDisable;
 	private JButton disable;
 
-
 	public static void main(String[] args) {
 		String laf = "com.jtattoo.plaf.smart.SmartLookAndFeel";
 		EventQueue.invokeLater(new Runnable() {
@@ -51,7 +50,6 @@ public class Admin {
 			}
 		});
 	}
-
 
 	public Admin() {
 		initialize();
@@ -68,7 +66,6 @@ public class Admin {
 		frame.getContentPane().add(panel);
 		panel.setVisible(false);
 		panel.setLayout(null);
-		
 		
 		JButton prev = new JButton("<");
 		prev.addActionListener(new ActionListener() {
@@ -194,14 +191,10 @@ public class Admin {
 				
 				if (tickets.size() > 0) {
 					id.setText(tickets.get(0)[0]);
-					
 					message.setText(tickets.get(0)[1]);
-					
 				} else {
 					message.setText("Such empty");
 				}
-				
-				
 			}
 		});
 		frame.getContentPane().add(btnAppeals);
@@ -209,7 +202,6 @@ public class Admin {
 	}
 	
 	public void getSus(JScrollPane scrollPane) {
-		
 		
 		DefaultTableModel model = new DefaultTableModel(null,
 		new String[] { "USER ID", "Time", "Transaction ID", "Amount", "Description", "Receiver"}) {
@@ -243,8 +235,6 @@ public class Admin {
 		
 		table.setFont(new Font("Nirmala UI", Font.PLAIN, 17));
 		table.setRowMargin(1);
-		table.setSelectionForeground(new Color(255, 255, 255));
-		table.setSelectionBackground(new Color(255, 255, 255));
 		
 		table.setGridColor(new Color(0, 0, 0, 20));
 		table.setRowHeight(30);

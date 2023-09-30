@@ -269,7 +269,7 @@ public class BuyLoad extends JPanel {
 					frame.dispose();
 				}
 
-				Proceed proceed = new Proceed("Processing", getSession(), true);
+				Proceed proceed = new Proceed("Processing", getSession(), true, true);
 				proceed.setVisible(true);
 				SQLQuery.load(ID, amount, number);
 

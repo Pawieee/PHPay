@@ -535,7 +535,7 @@ public class Wallet extends JFrame {
 				updateBalanceLabelFromFile();
 				termsCheck.setSelected(false);
 
-				Proceed run = new Proceed("hello",getSession(), true);
+				Proceed run = new Proceed("hello",getSession(), true, false);
 				run.setVisible(true);
 				dispose();
 

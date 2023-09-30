@@ -29,7 +29,6 @@ import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.plaf.basic.ComboPopup;
 
-import PHPay.PayBills.CustomComboBoxUI;
 
 public class CashOut extends JPanel {
 	private String choice;
@@ -383,6 +382,16 @@ public class CashOut extends JPanel {
 		confirmButton.setBounds(202, 598, 130, 34);
 		previewPane.add(confirmButton);
 
+		confirmBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (confirmBox.isSelected()) {
+					confirmButton.setEnabled(true);
+				} else {
+					confirmButton.setEnabled(false);
+				}
+			}
+		});
+		
 		JLabel lblNewLabel_2_2 = new JLabel("");
 		lblNewLabel_2_2.setIcon(new ImageIcon(CashOut.class.getResource("/PHPay/phpimg/PHPAY-BRAND-LARGE.png")));
 		lblNewLabel_2_2.setBounds(26, 76, 486, 113);

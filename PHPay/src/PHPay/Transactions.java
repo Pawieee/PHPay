@@ -227,7 +227,7 @@ public class Transactions extends JPanel {
 		lblPayment.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				getTransactions("?bill paid");
+				getTransactions("Paid Bill");
 				resizeTableColumnsToDefault();
 			}
 		});
