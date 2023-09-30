@@ -331,6 +331,13 @@ public class Home extends JFrame {
 		lblTransfer.setBounds(72, 501, 115, 30);
 		panel.add(lblTransfer);
 
+		accountStatus = new RoundedPanel(42);
+		accountStatus.setToolTipText("Account Status: Active");
+		accountStatus.setLayout(null);
+		accountStatus.setBorder(new EmptyBorder(0, 0, 0, 0));
+		accountStatus.setBackground(new Color(255, 255, 255));
+		accountStatus.setBounds(72, 70, 10, 10);
+		panel.add(accountStatus);
 		//AUTOMATICALLY SET STATUS AT LOG-IN
 		if (SQLQuery.getStatus(ID) == false)  {
 			checkStatus(ID);
@@ -352,13 +359,6 @@ public class Home extends JFrame {
 		});
 		status.start();
 		
-		accountStatus = new RoundedPanel(42);
-		accountStatus.setToolTipText("Account Status: Active");
-		accountStatus.setLayout(null);
-		accountStatus.setBorder(new EmptyBorder(0, 0, 0, 0));
-		accountStatus.setBackground(new Color(255, 255, 255));
-		accountStatus.setBounds(72, 70, 10, 10);
-		panel.add(accountStatus);
 
 		checkStatus(ID);
 		
