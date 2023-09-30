@@ -30,7 +30,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class PayBills extends JPanel {
-	private String choice; 
+	private String choice;
 	private static final long serialVersionUID = 1L;
 	private double amount;
 	private JLabel receiverID;
@@ -51,7 +51,7 @@ public class PayBills extends JPanel {
 	private RoundedComboBox<String> travelBox;
 	private RoundedComboBox<String> loanBox;
 	private RoundedComboBox<String> telecomBox;
-	
+
 	private JComboBox<String> getBox;
 
 	public PayBills(String ID) {
@@ -81,7 +81,7 @@ public class PayBills extends JPanel {
 		JLabel send = new JLabel("");
 		send.setIcon(new ImageIcon(PayBills.class.getResource("/PHPay/phpimg/bills.png")));
 		send.setHorizontalAlignment(SwingConstants.CENTER);
-		send.setBounds(108, 35, 179, 108);
+		send.setBounds(106, 35, 179, 108);
 		gradientPanel.add(send);
 
 		transfer = new RoundedPanel(30);
@@ -497,15 +497,15 @@ public class PayBills extends JPanel {
 		nextButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				choice = (String) getBox.getSelectedItem();
-				
-				if (!(choice==null) || !choice.isEmpty()) {
-					
+
+				if (!(choice == null) || !choice.isEmpty()) {
+
 					amountString = amountField.getText();
-					amount = Double.parseDouble(amountString);
-					
+
 					boolean amountEdited = false;
-					
+
 					if (isNumeric(amountString)) {
+						amount = Double.parseDouble(amountString);
 						if (amount * 1.03 <= SQLQuery.getBalance(ID)) {
 							amountEdited = true;
 						}
@@ -519,7 +519,7 @@ public class PayBills extends JPanel {
 					} else
 						System.out.println("failed");
 				}
-				
+
 			}
 		});
 		nextButton.setText("Next");
@@ -620,21 +620,21 @@ public class PayBills extends JPanel {
 		electricityButton.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		electricityButton.setBounds(46, 66, 70, 70);
 		transfer.add(electricityButton);
-		
-				JLabel lblNewLabel_1_1_1_1_1_1_1 = new JLabel("Amount");
-				lblNewLabel_1_1_1_1_1_1_1.setBounds(46, 396, 87, 27);
-				transfer.add(lblNewLabel_1_1_1_1_1_1_1);
-				lblNewLabel_1_1_1_1_1_1_1.setForeground(Color.WHITE);
-				lblNewLabel_1_1_1_1_1_1_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-				
-						amountField = new RoundedTextField(10);
-						amountField.setBounds(46, 433, 376, 47);
-						transfer.add(amountField);
-						amountField.setName("");
-						amountField.setMargin(new Insets(2, 7, 2, 7));
-						amountField.setForeground(Color.WHITE);
-						amountField.setFont(new Font("Segoe UI Semibold", Font.BOLD, 15));
-						amountField.setColumns(10);
+
+		JLabel lblNewLabel_1_1_1_1_1_1_1 = new JLabel("Amount");
+		lblNewLabel_1_1_1_1_1_1_1.setBounds(46, 396, 87, 27);
+		transfer.add(lblNewLabel_1_1_1_1_1_1_1);
+		lblNewLabel_1_1_1_1_1_1_1.setForeground(Color.WHITE);
+		lblNewLabel_1_1_1_1_1_1_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+
+		amountField = new RoundedTextField(10);
+		amountField.setBounds(46, 433, 376, 47);
+		transfer.add(amountField);
+		amountField.setName("");
+		amountField.setMargin(new Insets(2, 7, 2, 7));
+		amountField.setForeground(Color.WHITE);
+		amountField.setFont(new Font("Segoe UI Semibold", Font.BOLD, 15));
+		amountField.setColumns(10);
 
 		JPanel transfer_2_1 = new JPanel();
 		transfer_2_1.setLayout(null);
@@ -671,11 +671,11 @@ public class PayBills extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(PayBills.this);
 
-		        if (frame != null) {
-		            frame.dispose();
-		        }
+				if (frame != null) {
+					frame.dispose();
+				}
 
-				Proceed proceed = new Proceed("Processing",ID, true);
+				Proceed proceed = new Proceed("Processing", ID, true);
 				proceed.setVisible(true);
 				SQLQuery.payBills(ID, amount, choice);
 			}
@@ -688,7 +688,7 @@ public class PayBills extends JPanel {
 		confirmButton.setAlignmentY(0.0f);
 		confirmButton.setBounds(202, 654, 130, 34);
 		previewPane.add(confirmButton);
-		
+
 		confirmBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (confirmBox.isSelected()) {
@@ -715,9 +715,9 @@ public class PayBills extends JPanel {
 		box.setVisible(true);
 		getBox = box;
 	}
-	
+
 	private void setPreview(String choice) {
-		double doubleFee = (double)Math.round((amount * 0.03)*100)/100;
+		double doubleFee = (double) Math.round((amount * 0.03) * 100) / 100;
 
 		receiverID.setText(choice);
 		amountLabel.setText("₱ " + amountString);
@@ -773,7 +773,7 @@ public class PayBills extends JPanel {
 			comboBox.setBorder(BorderFactory.createLineBorder(Color.WHITE));
 		}
 	}
-	
+
 	public static boolean isNumeric(String str) {
 		if (str == null) {
 			return false;
@@ -789,7 +789,7 @@ public class PayBills extends JPanel {
 
 		return false;
 	}
-	
+
 	public void reset() {
 		billerLabel.setVisible(true);
 		electricityBox.setVisible(false);

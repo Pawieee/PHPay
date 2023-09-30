@@ -82,7 +82,8 @@ public class Proceed extends JFrame {
 		timer.start();
 
 	}
-	//OVERLOAD ANOTHER PROCEED FOR TRANSACTION PURPOSES	
+	
+	
 	public Proceed(String message, String ID, boolean op) {
 		this.session = ID;
 		setTitle("PHPAY");
@@ -127,6 +128,9 @@ public class Proceed extends JFrame {
 		countdownLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
 		countdownLabel.setBounds(84, 65, 134, 33);
 		panel_1.add(countdownLabel);
+		
+		Home.inactive.stop();
+    	Home.inactive.setRepeats(false);
 
 		Timer timer = new Timer(1000, new ActionListener() {
 			int count = 3;

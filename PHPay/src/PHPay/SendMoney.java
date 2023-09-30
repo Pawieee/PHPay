@@ -5,6 +5,8 @@ import java.awt.Dimension;
 
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -31,6 +33,7 @@ public class SendMoney extends JPanel {
 	private String amountString;
 	private RoundedTextField idField, amountField;
 	private RoundedPanel previewPane;
+	private JLabel sendError, amountError;
 
 	public SendMoney(String ID) {
 		this.session = ID;
@@ -69,13 +72,13 @@ public class SendMoney extends JPanel {
 		transfer.setBounds(43, 281, 468, 350);
 		gradientPanel.add(transfer);
 
-		JLabel lblNewLabel_1_1_1_1_1_1 = new JLabel("Send to");
+		JLabel lblNewLabel_1_1_1_1_1_1 = new JLabel("Send to (ID)");
 		lblNewLabel_1_1_1_1_1_1.setForeground(new Color(255, 255, 255));
 		lblNewLabel_1_1_1_1_1_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		lblNewLabel_1_1_1_1_1_1.setBounds(46, 23, 181, 27);
+		lblNewLabel_1_1_1_1_1_1.setBounds(46, 23, 96, 27);
 		transfer.add(lblNewLabel_1_1_1_1_1_1);
 
-		idField = new PHPay.RoundedTextField(10);
+		idField = new RoundedTextField(10);
 		idField.setName("");
 		idField.setMargin(new Insets(2, 7, 2, 7));
 		idField.setForeground(Color.WHITE);
@@ -83,6 +86,27 @@ public class SendMoney extends JPanel {
 		idField.setColumns(10);
 		idField.setBounds(46, 61, 376, 47);
 		transfer.add(idField);
+		idField.getDocument().addDocumentListener(new DocumentListener() {
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				set();
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				set();
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				set();
+			}
+
+			public void set() {
+				idField.setForeground(Color.WHITE);
+
+			}
+		});
 
 		amountField = new PHPay.RoundedTextField(10);
 		amountField.setName("");
@@ -92,6 +116,27 @@ public class SendMoney extends JPanel {
 		amountField.setColumns(10);
 		amountField.setBounds(46, 191, 376, 47);
 		transfer.add(amountField);
+		amountField.getDocument().addDocumentListener(new DocumentListener() {
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				set();
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				set();
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				set();
+			}
+
+			public void set() {
+				amountField.setForeground(Color.WHITE);
+
+			}
+		});
 
 		JLabel lblNewLabel_1_1_1_1_1_1_1 = new JLabel("Amount");
 		lblNewLabel_1_1_1_1_1_1_1.setForeground(Color.WHITE);
@@ -206,14 +251,14 @@ public class SendMoney extends JPanel {
 		RoundedButton confirmButton = new RoundedButton("OK");
 		confirmButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(SendMoney.this);
 
-		        if (frame != null) {
-		            frame.dispose();
-		        }
+				if (frame != null) {
+					frame.dispose();
+				}
 
-				Proceed proceed = new Proceed("Processing",getSession(), true);
+				Proceed proceed = new Proceed("Processing", getSession(), true);
 				proceed.setVisible(true);
 				SQLQuery.sendMoney(ID, id, amount);
 
@@ -247,11 +292,11 @@ public class SendMoney extends JPanel {
 		confirmBox.setBackground(Color.WHITE);
 		confirmBox.setBounds(157, 565, 221, 23);
 		previewPane.add(confirmBox);
-		
+
 		Timer status = new Timer(1000, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (SQLQuery.getStatus(ID) == false) 
+				if (SQLQuery.getStatus(ID) == false)
 					confirmBox.setEnabled(false);
 				else
 					confirmBox.setEnabled(true);
@@ -272,7 +317,7 @@ public class SendMoney extends JPanel {
 				boolean idEdited, amountEdited = false;
 
 				amountString = amountField.getText();
-				amount = Double.parseDouble(amountString);
+
 				id = idField.getText();
 
 				if (SQLQuery.IDExists(id))
@@ -281,6 +326,7 @@ public class SendMoney extends JPanel {
 					idEdited = false;
 
 				if (isNumeric(amountString)) {
+					amount = Double.parseDouble(amountString);
 					if (amount * 1.03 <= SQLQuery.getBalance(ID)) {
 						amountEdited = true;
 					}
@@ -303,6 +349,22 @@ public class SendMoney extends JPanel {
 		nextButton.setAlignmentY(0.0f);
 		nextButton.setBounds(169, 271, 130, 34);
 		transfer.add(nextButton);
+		
+		sendError = new JLabel("ID does not exist");
+		sendError.setVerticalAlignment(SwingConstants.BOTTOM);
+		sendError.setHorizontalAlignment(SwingConstants.LEFT);
+		sendError.setForeground(new Color(255, 0, 0));
+		sendError.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
+		sendError.setBounds(45, 109, 119, 18);
+		transfer.add(sendError);
+		
+		amountError = new JLabel("ID does not exist");
+		amountError.setVerticalAlignment(SwingConstants.BOTTOM);
+		amountError.setHorizontalAlignment(SwingConstants.LEFT);
+		amountError.setForeground(Color.RED);
+		amountError.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
+		amountError.setBounds(46, 239, 119, 18);
+		transfer.add(amountError);
 
 	}
 
@@ -323,7 +385,7 @@ public class SendMoney extends JPanel {
 	}
 
 	private void setPreview() {
-		double doubleFee = (double)Math.round((amount * 0.03)*100)/100;
+		double doubleFee = (double) Math.round((amount * 0.03) * 100) / 100;
 
 		receiverName.setText(SQLQuery.getFullName(id));
 		receiverID.setText(id);

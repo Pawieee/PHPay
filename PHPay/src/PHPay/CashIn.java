@@ -41,16 +41,16 @@ public class CashIn extends JPanel {
 		add(gradientPanel);
 		gradientPanel.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("Cash - In");
+		JLabel lblNewLabel = new JLabel("Cash In");
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setFont(new Font("Segoe UI Historic", Font.BOLD, 55));
-		lblNewLabel.setBounds(55, 28, 249, 81);
+		lblNewLabel.setBounds(55, 35, 218, 81);
 		gradientPanel.add(lblNewLabel);
 
 		JLabel send = new JLabel("");
-		send.setIcon(new ImageIcon(CashIn.class.getResource("/PHPay/phpimg/cash-in.png")));
+		send.setIcon(new ImageIcon(CashIn.class.getResource("/PHPay/phpimg/cash in icon.png")));
 		send.setHorizontalAlignment(SwingConstants.CENTER);
-		send.setBounds(55, 79, 249, 135);
+		send.setBounds(226, 31, 129, 112);
 		gradientPanel.add(send);
 
 		RoundedPanel transfer = new RoundedPanel(30);
@@ -212,9 +212,9 @@ public class CashIn extends JPanel {
 				boolean amountEdited = false;
 
 				amountString = amountField.getText();
-				amount = Double.parseDouble(amountString);
 
 				if (isNumeric(amountString)) {
+					amount = Double.parseDouble(amountString);
 					amountEdited = true;
 				} else
 					amountEdited = false;

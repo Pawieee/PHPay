@@ -15,12 +15,11 @@ import javax.swing.UIManager;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JSeparator;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Receipt extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private String session;
 
@@ -30,16 +29,21 @@ public class Receipt extends JFrame {
 	}
 
 	private void initialize() {
+		
+		Home homeInstance = new Home(session); 
+		homeInstance.dispose();
+		homeInstance.stopInactiveTimer(); 
+		
 		getContentPane().setBackground(new Color(255, 255, 255, 0));
-		setBounds(100, 100, 495, 599);
+		setBounds(100, 100, 495, 594);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		setUndecorated(true);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int screenWidth = screenSize.width;
 		int screenHeight = screenSize.height;
-		int centerX = (screenWidth - 452) / 2;
-		int centerY = (screenHeight - 554) / 2;
+		int centerX = (screenWidth - 495) / 2;
+		int centerY = (screenHeight - 599) / 2;
 		setLocation(centerX, centerY);
 		setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 30, 30));
 
@@ -64,7 +68,27 @@ public class Receipt extends JFrame {
 		panel.add(extraPane);
 
 		RoundedButton ok = new RoundedButton("Done");
-		ok.setBackground(new Color(64, 0, 128));
+		ok.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				ok.setBounds(152, 388, 113, 38);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				ok.setBounds(153, 389, 115, 40);
+			}
+			@Override
+			public void mousePressed(MouseEvent e) {
+				ok.setBounds(153, 389, 115, 40);
+			}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				ok.setBounds(152, 388, 113, 38);
+			}
+			
+		});
+		ok.setForeground(new Color(255, 255, 255));
+		ok.setBackground(new Color(255, 255, 255));
 		ok.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
 		ok.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -108,8 +132,8 @@ public class Receipt extends JFrame {
 		time.setForeground(new Color(255, 255, 255));
 
 		JLabel lblReceiver = new JLabel("Sent to");
-		lblReceiver.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
-		lblReceiver.setBounds(34, 24, 85, 27);
+		lblReceiver.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
+		lblReceiver.setBounds(31, 33, 123, 40);
 		extraPane.add(lblReceiver);
 		lblReceiver.setForeground(new Color(255, 255, 255));
 
@@ -181,5 +205,7 @@ public class Receipt extends JFrame {
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setIcon(new ImageIcon(Receipt.class.getResource("/PHPay/phpimg/checking.png")));
 		setVisible(true);
+		
+	
 	}
 }
