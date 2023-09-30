@@ -847,24 +847,20 @@ public class HelpPanel extends JPanel {
 
 		    @Override
 		    public void mouseEntered(MouseEvent e) {
-		        // Change the cursor to a hand when hovering over the link
 		        bl11.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		    }
 
 		    @Override
 		    public void mouseExited(MouseEvent e) {
-		        // Change the cursor back to the default cursor when not hovering over the link
 		        bl11.setCursor(Cursor.getDefaultCursor());
 		    }
 		});
 		add(bl11);
-		
 		bl12 = new JLabel("Help");
 		bl12.setForeground(Color.BLACK);
 		bl12.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 13));
 		bl12.setBounds(127, 584, 46, 14);
 		add(bl12);
-		
 		bimg1 = new JLabel("");
 		bimg1.setIcon(new ImageIcon(HelpPanel.class.getResource("/PHPay/phpimg/PHPAY-BRAND-ICON.png")));
 		bimg1.setBounds(71, 547, 46, 51);
@@ -873,56 +869,47 @@ public class HelpPanel extends JPanel {
 		bimg2.setIcon(new ImageIcon(HelpPanel.class.getResource("/PHPay/phpimg/philippines (1).png")));
 		bimg2.setBounds(1041, 584, 30, 14);
 		add(bimg2);
-		
 		about_panel = new JPanel();
 		about_panel.setBounds(0, 97, 1190, 410);
 		about_panel.setVisible(false);
 		add(about_panel);
 		about_panel.setLayout(null);
-		
 		about_label = new JLabel("<html>\r\n<p style='font-size: 11px; text-indent: 20px;'>\r\n    PHPAY is a user-friendly virtual wallet program designed for secure and convenient fund management. It offers quick and easy account creation, allowing users to sign up in a few steps and start using the program immediately. Users can track their balances, including incoming and outgoing transactions, and set up automatic transfers. Sending and receiving funds is simple, both within PHPAY and to external accounts, with support for multiple currencies. The program also ensures data security, allowing users to save or delete sensitive information like bank account details. PHPAY enhances security with multi-factor authentication and encryption technology. It follows the CRUD methodology (Create, Read, Update, and Delete) for easy account and transaction management, giving users flexibility and ease in managing their funds.\r\n</p>\r\n</html>\r\n");
 		about_label.setVerticalAlignment(SwingConstants.TOP);
 		about_label.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 11));
 		about_label.setBounds(39, 24, 1111, 324);
 		about_label.setVisible(false);
 		about_panel.add(about_label);
-		
 		contact_panel = new JPanel();
 		contact_panel.setBounds(0, 97, 1190, 410);
 		add(contact_panel);
 		contact_panel.setLayout(null);
-		
 		contact_label = new JLabel("<html>\r\n<p style='font-size: 12px;'>\r\nEmail:&nbsp;&nbsp;&nbsp;phpaycontact@gmail.com\r\n<br><br>\r\nLocal&nbsp;Landline:&nbsp;&nbsp;&nbsp;(02)&nbsp;7730-1000\r\n\r\n</p>\r\n</html>");
 		contact_label.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 12));
 		contact_label.setVerticalAlignment(SwingConstants.TOP);
 		contact_label.setBounds(39, 24, 1111, 324);
 		contact_label.setVisible(false);
 		contact_panel.add(contact_label);
-		
 		fees_panel = new JPanel();
 		fees_panel.setBounds(0, 97, 1190, 410);
 		add(fees_panel);
 		fees_panel.setLayout(null);
-		
 		fees_label = new JLabel("<html>\r\n  <p style='font-size: 12px;'>\r\n    There is a 3% fee for every transaction.\r\n    <br><br>\r\n    Example: &nbsp;3% of 1000 = 30 (1030)\r\n  </p>\r\n</html>\r\n");
 		fees_label.setVerticalAlignment(SwingConstants.TOP);
 		fees_label.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 11));
 		fees_label.setBounds(39, 24, 1111, 324);
 		fees_label.setVisible(false);
 		fees_panel.add(fees_label);
-		
 		privacy_panel = new JPanel();
 		privacy_panel.setBounds(0, 97, 1190, 410);
 		add(privacy_panel);
 		privacy_panel.setLayout(null);
-		
 		privacy_label = new JLabel("<html>\r\n  <head>\r\n    <style>\r\n      p {\r\n        font-size: 9px;\r\n      }\r\n\r\n      .highlight {\r\n        font-size: 11px; /* Change this to your desired font size */\r\n      }\r\n    </style>\r\n  </head>\r\n  <body>\r\n    <p>\r\n      <span class=\"highlight\">Registration and Personal Data:</span> When you create an Account, we collect necessary Personal Data - such as name, address, telephone, email, and more - to provide and fulfill requested Services.<br /><br />\r\n\r\n      <span class=\"highlight\">Transaction Details:</span> Using our Services, like making purchases or sending money, generates transaction information, including - but not limited to - amounts, merchants, payment methods, and device data.<br /><br />\r\n\r\n      <span class=\"highlight\">Participant Info:</span> We gather Personal Data about others involved in your transactions.<br /><br />\r\n\r\n      <span class=\"highlight\">Sending/Requesting Money:</span> When you send/request money, we collect recipient details, which may include name, postal address, telephone number, and financial account information, depending on the specific service.<br /><br />\r\n\r\n      <span class=\"highlight\">Paying Bills:</span> If you pay bills for others, we collect data on the account holder, such as name, postal address, telephone number, email address, and account number of the bill that you intend to pay or request to be paid.<br /><br />\r\n\r\n      <span class=\"highlight\">Adding Value:</span> Adding value to your accounts may involve collecting information from others.<br /><br />\r\n\r\n      <span class=\"highlight\">Public Profile:</span> Linking contacts or having a public profile enables easier transactions with friends, and other users can find your profile to send you money by searching for you by name, username, email, or mobile number on PayPal and confirm it's you by viewing your photo when your Account profile is public.<br /><br />\r\n\r\n      <span class=\"highlight\">Additional Info:</span> Participating in optional features may require extra information.<br /><br />\r\n\r\n      <span class=\"highlight\">Unbranded Services:</span> We collect data for unbranded transactions, associating them with your Account if you have one, for compliance and analytics purposes.<br /><br />\r\n\r\n      <span class=\"highlight\">Third-Party Data:</span> We may obtain information from external sources, subject to legal permissions.<br /><br />\r\n\r\n      <span class=\"highlight\">Additional Usage Data:</span> We may collect more information during communication with us, contact with our customer support teams, or response to a survey to enhance your experience and improve our Services.\r\n    </p>\r\n  </body>\r\n</html>\r\n");
 		privacy_label.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 11));
 		privacy_label.setVerticalAlignment(SwingConstants.TOP);
 		privacy_label.setBounds(39, 24, 1111, 324);
 		privacy_label.setVisible(false);
 		privacy_panel.add(privacy_label);
-		
 		bl12.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
             	showHome();
@@ -1489,7 +1476,6 @@ public class HelpPanel extends JPanel {
 			 pandtl3.setVisible(true);
 			 pandtt3.setVisible(true);
 		 }
-
 		 private void showp4() {
 			 home_label.setVisible(false);
 			 pandt_label.setVisible(false);
