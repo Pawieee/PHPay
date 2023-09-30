@@ -218,13 +218,6 @@ public class SendMoney extends JPanel {
 		transfer_2.setLayout(null);
 		transfer_2.setBackground(new Color(128, 0, 255, 100));
 
-		String fullName = SQLQuery.getFullName(id);
-		char first;
-		String firstInitial = null;
-
-		first = fullName.charAt(0);
-		firstInitial = String.valueOf(first);
-		
 		JLabel receiverInitials = new JLabel("CJ");
 		receiverInitials.setBounds(26, 0, 110, 71);
 		transfer_2.add(receiverInitials);

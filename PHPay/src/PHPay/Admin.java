@@ -22,6 +22,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+
+
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
@@ -60,6 +62,7 @@ public class Admin {
 		frame.setBounds(100, 100, 900, 588);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setLocationRelativeTo(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(177, 76, 564, 393);
@@ -225,7 +228,7 @@ public class Admin {
 		}
 
 		DefaultTableCellRenderer whiteBackgroundRenderer = new DefaultTableCellRenderer();
-		whiteBackgroundRenderer.setBackground(Color.WHITE);
+//		whiteBackgroundRenderer.setBackground(Color.BLACK);
 
 		DefaultTableCellRenderer centerRender = new DefaultTableCellRenderer();
 		centerRender.setHorizontalAlignment(SwingConstants.CENTER);
@@ -235,8 +238,11 @@ public class Admin {
 		
 		table.setFont(new Font("Nirmala UI", Font.PLAIN, 17));
 		table.setRowMargin(1);
+
+//		table.setSelectionForeground(new Color(255, 255, 255));
+//		table.setSelectionBackground(new Color(255, 255, 255));
 		
-		table.setGridColor(new Color(0, 0, 0, 20));
+		table.setGridColor(new Color(0, 0, 0));
 		table.setRowHeight(30);
 		table.setOpaque(false);
 		table.getColumnModel().getColumn(0).setCellRenderer(whiteBackgroundRenderer);
@@ -247,8 +253,8 @@ public class Admin {
 		
 		scrollPane.setColumnHeaderView(header);
 		scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
-		scrollPane.setBackground(Color.WHITE);
-		scrollPane.getViewport().setBackground(Color.WHITE);
+		scrollPane.setBackground(Color.black);
+		scrollPane.getViewport().setBackground(Color.black);
 		
 		SQLConnection con = new SQLConnection();
 		String query = "SELECT * FROM `transactions`";
