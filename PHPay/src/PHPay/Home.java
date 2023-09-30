@@ -27,7 +27,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.BevelBorder;
 import javax.swing.JSeparator;
-import javax.swing.border.CompoundBorder;
 
 public class Home extends JFrame {
 	private static final long serialVersionUID = 1L;

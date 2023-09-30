@@ -27,8 +27,6 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.Insets;
 import PHPay.RandomID.RandomIdGenerator;
-import java.awt.FlowLayout;
-import javax.swing.JTextField;
 
 public class UserAccount extends JFrame {
 
@@ -369,6 +367,7 @@ public class UserAccount extends JFrame {
 				String user = userField.getText();
 				@SuppressWarnings("deprecation")
 				String pass = passField.getText();
+				@SuppressWarnings("deprecation")
 				String confirmPass = confirmPassField.getText();
 
 				if (isValidUser(user)) {

@@ -16,7 +16,6 @@ import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.awt.FlowLayout;
 
 public class ServicePanel extends JPanel {
 	@SuppressWarnings("unused")

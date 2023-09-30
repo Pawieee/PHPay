@@ -21,7 +21,6 @@ import java.awt.event.ActionEvent;
 public class CashIn extends JPanel {
 	private String session;
 	private static final long serialVersionUID = 1L;
-	private String id;
 	private double amount;
 	private JLabel receiverID;
 	private JLabel amountLabel;
@@ -29,7 +28,6 @@ public class CashIn extends JPanel {
 	private String amountString;
 	private RoundedTextField amountField;
 	private RoundedPanel previewPane;
-	private RoundedPanel blockPane;
 
 	public CashIn(String ID) {
 		this.session = ID;

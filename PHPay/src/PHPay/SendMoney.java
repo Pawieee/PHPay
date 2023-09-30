@@ -31,7 +31,6 @@ public class SendMoney extends JPanel {
 	private String amountString;
 	private RoundedTextField idField, amountField;
 	private RoundedPanel previewPane;
-	private RoundedPanel blockPane;
 
 	public SendMoney(String ID) {
 		this.session = ID;

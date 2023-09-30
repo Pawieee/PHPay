@@ -22,7 +22,6 @@ import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.plaf.basic.ComboPopup;
 
-import PHPay.SignUp.CustomComboBoxUI;
 
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -36,10 +35,10 @@ public class BuyLoad extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private String session;
 	private RoundedTextField numField;
-	private RoundedComboBox telcoBox;
+	private RoundedComboBox<String> telcoBox;
 	private String number;
 	private String telco;
-	private RoundedComboBox numberType;
+	private RoundedComboBox<String> numberType;
 	private RoundedTextField amountField;
 	private String type;
 	private String amountString;

@@ -16,11 +16,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.swing.border.EmptyBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.LineBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
 
@@ -30,7 +27,6 @@ public class Transactions extends JPanel {
 	private JScrollPane scrollPane;
 	private String session;
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Transactions(String ID) {
 		this.session = ID;
 		setBackground(new Color(64, 0, 128));
@@ -42,8 +38,6 @@ public class Transactions extends JPanel {
 		lblNewLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 36));
 		lblNewLabel.setBounds(25, 31, 318, 54);
 		add(lblNewLabel);
-
-		String[] types = { "Date", "Transactions", "Name" };
 
 		RoundedButton resizeButton = new RoundedButton("Resize");
 		resizeButton.setForeground(new Color(255, 255, 255));

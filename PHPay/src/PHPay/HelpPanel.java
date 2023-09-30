@@ -6,7 +6,6 @@ import javax.swing.JLabel;
 import java.awt.SystemColor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -14,7 +13,6 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Desktop;
 
-import javax.swing.UIManager;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.AbstractDocument;
@@ -22,29 +20,36 @@ import javax.swing.text.AbstractDocument;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JList;
-import javax.swing.JMenuItem;
 import javax.swing.AbstractListModel;
-import javax.swing.JSeparator;
 import javax.swing.JTextPane;
 
-import java.awt.Panel;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JEditorPane;
 import javax.swing.JButton;
 
 public class HelpPanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	GradientPanel top_panel = new GradientPanel(new Color(0x360079), new Color((0x000000)));
 	RoundedPanel main_panel;
 	JPanel d1_panel;
 	JPanel d2_panel;
 	JPanel TPanel;
+	@SuppressWarnings("rawtypes")
 	JList menu_list;
+	@SuppressWarnings("rawtypes")
 	JList home_list;
+	@SuppressWarnings("rawtypes")
 	JList pandt_list;
+	@SuppressWarnings("rawtypes")
 	JList dal_list;
+	@SuppressWarnings("rawtypes")
 	JList ma_list;
+	@SuppressWarnings("rawtypes")
 	JList mw_list;
+	@SuppressWarnings("rawtypes")
 	JList lands_list;
 	JLabel tl1;
 	JLabel tl2;
@@ -120,6 +125,7 @@ public class HelpPanel extends JPanel {
     JPanel privacy_panel;
     JLabel privacy_label;
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public HelpPanel(String ID) {
 		setForeground(new Color(51, 0, 204));
 		setBackground(new Color(255, 255, 255));
@@ -159,6 +165,10 @@ public class HelpPanel extends JPanel {
 		home_list.setForeground(new Color(51, 0, 204));
 		home_list.setBounds(10, 52, 743, 280);
 		home_list.setModel(new AbstractListModel() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 			String[] values = new String[] {"How do I issue a refund?", "", "How do I change my password and security questions?", "", "How do I escalate a PHPAY dispute to a claim?", "", "Why is the payment I sent pending or unclaimed? Can I cancel it?", "", "How can I release my payment(s) on hold?", "", "How do I remove a limitation from my account?", "", "How do I add money to my PHPAY account from my bank?", "", "I forgot my password. How do I reset it?"};
 			public int getSize() {
 				return values.length;
@@ -190,6 +200,10 @@ public class HelpPanel extends JPanel {
 		});
 		main_panel.add(home_list);
 		menu_list.setModel(new AbstractListModel() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 			String[] values = new String[] {"Home", "", "", "", "", "", "", "", "", "", "", "Payments and Transfers", "", "", "", "", "", "", "", "", "", "", "Disputes and Limitations", "", "", "", "", "", "", "", "", "", "", "My Account", "", "", "", "", "", "", "", "", "", "", "My Wallet", "", "", "", "", "", "", "", "", "", "", "Login & Security", "", "", "", "", "", "", "", "", "Create a Ticket", "", "", "", ""};
 			public int getSize() {
 				return values.length;
@@ -208,6 +222,10 @@ public class HelpPanel extends JPanel {
 		pandt_list.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 20));
 		pandt_list.setForeground(new Color(51, 0, 204));
 		pandt_list.setModel(new AbstractListModel() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 			String[] values = new String[] {"Can I cancel a withdrawal from my PHPAY account?", "", "How can I release my payment(s) on hold?", "", "How do I issue a refund?", "", "How do I add money to my PHPAY account from my bank?", "", "What‘s the maximum amount I can send with my PHPAY account?", "", "How do I receive money through PHPAY?", "", "What are the fees for PHPAY accounts?"};
 			public int getSize() {
 				return values.length;
@@ -241,6 +259,10 @@ public class HelpPanel extends JPanel {
 		dal_list.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 20));
 		dal_list.setForeground(new Color(51, 0, 204));
 		dal_list.setModel(new AbstractListModel() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 			String[] values = new String[] {"What should I do if I didn't receive all my items or if one or more were late?", "", "How do I remove a limitation from my account?", "", "What should I do if I think there has been unauthorized access to my PHPAY data?"};
 			public int getSize() {
 				return values.length;
@@ -265,6 +287,10 @@ public class HelpPanel extends JPanel {
 		main_panel.add(dal_list);
 		ma_list = new JList();
 		ma_list.setModel(new AbstractListModel() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 			String[] values = new String[] {"How do I view or edit my account information?", "", "How do I check the status of my payment?", "", "How do I verify my PHPAY account?", "", "Does PHPAY cover my purchase if there's a problem?"};
 			public int getSize() {
 				return values.length;
@@ -294,6 +320,10 @@ public class HelpPanel extends JPanel {
 		mw_list = new JList();
 		mw_list.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 20));
 		mw_list.setModel(new AbstractListModel() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 			String[] values = new String[] {"How do I link a bank account to my PHPAY account?", "", "How do I link a debit or credit card to my PHPAY account?", "", "How do I add money to my PHPAY account from my bank?", ""};
 			public int getSize() {
 				return values.length;
@@ -321,6 +351,10 @@ public class HelpPanel extends JPanel {
 		lands_list = new JList();
 		lands_list.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 20));
 		lands_list.setModel(new AbstractListModel() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 			String[] values = new String[] {"I forgot my password. How do I reset it?", "", "How do I report potential fraud, spoof or unauthorized transactions to PHPAY?", "", "How can I access my personal data?"};
 			public int getSize() {
 				return values.length;

@@ -22,10 +22,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-import javax.swing.table.TableColumn;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.JLabel;
 
 public class adminPanel {
 
@@ -253,7 +251,6 @@ public class adminPanel {
 		table.setOpaque(false);
 		table.getColumnModel().getColumn(0).setCellRenderer(whiteBackgroundRenderer);
 				
-		TableColumn column = table.getColumnModel().getColumn(0);
 		JTableHeader header = table.getTableHeader();
 		scrollPane = new JScrollPane(table);
 		scrollPane_1.setViewportView(scrollPane);

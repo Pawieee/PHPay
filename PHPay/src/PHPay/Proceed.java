@@ -16,11 +16,9 @@ import javax.swing.Timer;
 public class Proceed extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private static String message;
 	private String session;
 
 	public Proceed(String message) {
-		Proceed.message = message;
 		setTitle("PHPAY");
 		setIconImage(
 				Toolkit.getDefaultToolkit().getImage(Home.class.getResource("/PHPay/phpimg/PHPAY-BRAND-ICON2.png")));
@@ -86,7 +84,6 @@ public class Proceed extends JFrame {
 	}
 	//OVERLOAD ANOTHER PROCEED FOR TRANSACTION PURPOSES	
 	public Proceed(String message, String ID, boolean op) {
-		Proceed.message = message;
 		this.session = ID;
 		setTitle("PHPAY");
 		setIconImage(

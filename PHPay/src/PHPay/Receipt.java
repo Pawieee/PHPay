@@ -2,16 +2,12 @@ package PHPay;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JButton;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.Color;
 import javax.swing.JPanel;
-import javax.swing.border.BevelBorder;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -22,6 +18,10 @@ import javax.swing.JSeparator;
 
 public class Receipt extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String session;
 
 	public Receipt(String ID) {

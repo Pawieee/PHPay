@@ -10,7 +10,6 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -31,9 +30,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class PayBills extends JPanel {
-	private String session, choice; 
+	private String choice; 
 	private static final long serialVersionUID = 1L;
-	private String id;
 	private double amount;
 	private JLabel receiverID;
 	private JLabel amountLabel;
@@ -42,7 +40,6 @@ public class PayBills extends JPanel {
 	private String amountString;
 	private RoundedTextField amountField;
 	private RoundedPanel previewPane;
-	private RoundedPanel blockPane;
 	private JLabel billerLabel;
 	private RoundedPanel transfer;
 
@@ -55,10 +52,9 @@ public class PayBills extends JPanel {
 	private RoundedComboBox<String> loanBox;
 	private RoundedComboBox<String> telecomBox;
 	
-	private JComboBox getBox;
+	private JComboBox<String> getBox;
 
 	public PayBills(String ID) {
-		this.session = ID;
 		setBounds(0, 0, 1205, 754);
 		setLayout(null);
 
@@ -704,6 +700,7 @@ public class PayBills extends JPanel {
 		});
 	}
 
+	@SuppressWarnings("unchecked")
 	public void showNext(@SuppressWarnings("rawtypes") JComboBox box) {
 		billerLabel.setVisible(true);
 		electricityBox.setVisible(false);
