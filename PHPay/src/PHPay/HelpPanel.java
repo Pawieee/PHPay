@@ -60,6 +60,7 @@ public class HelpPanel extends JPanel {
 	JLabel bl9;
 	JLabel bl11;
 	JLabel bl12;
+	JLabel bl13;
 	JLabel bimg1;
 	JLabel bimg2;
 	JLabel home_label;
@@ -816,7 +817,7 @@ public class HelpPanel extends JPanel {
 		bl8 = new JLabel("©2022-2023");
 		bl8.setForeground(new Color(0, 0, 0));
 		bl8.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 12));
-		bl8.setBounds(951, 584, 80, 14);
+		bl8.setBounds(968, 584, 80, 14);
 		add(bl8);
 		bl9 = new JLabel("Privacy");
 		bl9.setForeground(new Color(0, 0, 0));
@@ -830,32 +831,25 @@ public class HelpPanel extends JPanel {
         });
 		add(bl9);
 		
-		bl11 = new JLabel("<html>\r\n  <head>\r\n    <style>\r\n      .clickable {\r\n        color: #0000FF;\r\n        text-decoration: underline;\r\n        cursor: pointer;\r\n      }\r\n    </style>\r\n    <script>\r\n      function redirectToBSP() {\r\n        window.location.href = 'https://www.bsp.gov.ph';\r\n      }\r\n    </script>\r\n  </head>\r\n  <body>\r\n    <p>\r\n      PHPAY Pte Ltd is (i) licensed by the Monetary Authority of Singapore as a Major Payment Institution under the Payment Services Act 2019 and (ii) regulated by the Bangko Sentral ng Pilipinas\r\n      <span class=\"clickable\" onclick=\"redirectToBSP()\">https://www.bsp.gov.ph</span>\r\n      as an Operator of Payment Services in the Philippines under the National Payment Systems Act.\r\n    </p>\r\n    <br>\r\n    <p>\r\n      When you visit or interact with our sites, services, applications, tools, or messaging, we or our authorized service providers may use cookies, web beacons, and other similar technologies for storing information to help provide you with a better, faster, and safer experience and for advertising purposes.\r\n    </p>\r\n  </body>\r\n</html>\r\n");
+		bl11 = new JLabel("<html>\r\n  PHPAY Pte Ltd is (i) licensed by the Monetary Authority of Singapore as a Major Payment Institution under the Payment Services Act 2019 and (ii) regulated by the Bangko Sentral ng Pilipinas&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n  \r\n  as an Operator of Payment Services in the Philippines under the National Payment Systems Act.<br><br>When you visit or interact with our sites, services, applications, tools or messaging, we or our authorised service providers may use cookies, web beacons, and other similar technologies for storing information to help provide you with a better, faster and safer experience and for advertising purposes.\r\n</html>");
 		bl11.setHorizontalAlignment(SwingConstants.CENTER);
 		bl11.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 11));
 		bl11.setBounds(33, 597, 1157, 116);
-		bl11.addMouseListener(new MouseAdapter() {
-		    @Override
-		    public void mouseClicked(MouseEvent e) {
-		        // Open the link in a web browser when clicked
-		        try {
-		            Desktop.getDesktop().browse(new URI("https://www.bsp.gov.ph"));
-		        } catch (IOException | URISyntaxException ex) {
-		            ((Throwable) ex).printStackTrace();
-		        }
-		    }
-
-		    @Override
-		    public void mouseEntered(MouseEvent e) {
-		        bl11.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		    }
-
-		    @Override
-		    public void mouseExited(MouseEvent e) {
-		        bl11.setCursor(Cursor.getDefaultCursor());
-		    }
-		});
 		add(bl11);
+		bl13 = new JLabel("<html>\r\n <span>\r\n    <a href='https://www.bsp.gov.ph' style='color: #0000FF; text-decoration: underline;'>https://www.bsp.gov.ph</a>\r\n  </span>\r\n<html>");
+		bl13.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 11));
+		bl13.setBounds(934, 618, 114, 14);
+		 bl13.addMouseListener(new MouseAdapter() {
+	            @Override
+	            public void mouseClicked(MouseEvent e) {
+	                try {
+	                    Desktop.getDesktop().browse(new URI("https://www.bsp.gov.ph"));
+	                } catch (IOException | URISyntaxException ex) {
+	                    ex.printStackTrace();
+	                }
+	            }
+	        });
+		add(bl13);
 		bl12 = new JLabel("Help");
 		bl12.setForeground(Color.BLACK);
 		bl12.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 13));
@@ -910,6 +904,8 @@ public class HelpPanel extends JPanel {
 		privacy_label.setBounds(39, 24, 1111, 324);
 		privacy_label.setVisible(false);
 		privacy_panel.add(privacy_label);
+		
+	
 		bl12.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
             	showHome();
