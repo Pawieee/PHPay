@@ -86,6 +86,7 @@ public class SendMoney extends JPanel {
 		idField.setColumns(10);
 		idField.setBounds(46, 61, 376, 47);
 		transfer.add(idField);
+		//kini
 		idField.getDocument().addDocumentListener(new DocumentListener() {
 			@Override
 			public void insertUpdate(DocumentEvent e) {
@@ -103,7 +104,7 @@ public class SendMoney extends JPanel {
 			}
 
 			public void set() {
-				idField.setForeground(Color.WHITE);
+				sendError.setVisible(false);
 
 			}
 		});
@@ -116,6 +117,7 @@ public class SendMoney extends JPanel {
 		amountField.setColumns(10);
 		amountField.setBounds(46, 191, 376, 47);
 		transfer.add(amountField);
+		//kini
 		amountField.getDocument().addDocumentListener(new DocumentListener() {
 			@Override
 			public void insertUpdate(DocumentEvent e) {
@@ -133,11 +135,12 @@ public class SendMoney extends JPanel {
 			}
 
 			public void set() {
-				amountField.setForeground(Color.WHITE);
+				amountError.setVisible(false);
 
 			}
 		});
 
+		
 		JLabel lblNewLabel_1_1_1_1_1_1_1 = new JLabel("Amount");
 		lblNewLabel_1_1_1_1_1_1_1.setForeground(Color.WHITE);
 		lblNewLabel_1_1_1_1_1_1_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
@@ -320,10 +323,14 @@ public class SendMoney extends JPanel {
 
 				id = idField.getText();
 
-				if (SQLQuery.IDExists(id))
+				if (SQLQuery.IDExists(id)) {
 					idEdited = true;
-				else
+					sendError.setVisible(false);
+				}
+				else {
 					idEdited = false;
+					sendError.setVisible(true);
+				}
 
 				if (isNumeric(amountString)) {
 					amount = Double.parseDouble(amountString);
@@ -351,6 +358,7 @@ public class SendMoney extends JPanel {
 		transfer.add(nextButton);
 		
 		sendError = new JLabel("ID does not exist");
+		sendError.setVisible(false);
 		sendError.setVerticalAlignment(SwingConstants.BOTTOM);
 		sendError.setHorizontalAlignment(SwingConstants.LEFT);
 		sendError.setForeground(new Color(255, 0, 0));
@@ -359,6 +367,7 @@ public class SendMoney extends JPanel {
 		transfer.add(sendError);
 		
 		amountError = new JLabel("ID does not exist");
+		amountError.setVisible(false);
 		amountError.setVerticalAlignment(SwingConstants.BOTTOM);
 		amountError.setHorizontalAlignment(SwingConstants.LEFT);
 		amountError.setForeground(Color.RED);
