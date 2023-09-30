@@ -25,6 +25,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.plaf.basic.ComboPopup;
@@ -35,7 +37,7 @@ public class CashOut extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private double amount;
 	private JLabel receiverID;
-	private JLabel amountLabel;
+	private JLabel amountLabel, amountError;
 	private JLabel fee;
 	private JLabel totalAmount;
 	private String amountString;
@@ -178,6 +180,35 @@ public class CashOut extends JPanel {
 		amountField.setForeground(Color.WHITE);
 		amountField.setFont(new Font("Segoe UI Semibold", Font.BOLD, 15));
 		amountField.setColumns(10);
+		amountField.getDocument().addDocumentListener(new DocumentListener() {
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				set();
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				set();
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				set();
+			}
+
+			public void set() {
+				amountError.setVisible(false);
+
+			}
+		});
+		amountError = new JLabel("ID does not exist");
+		amountError.setVisible(false);
+		amountError.setVerticalAlignment(SwingConstants.BOTTOM);
+		amountError.setHorizontalAlignment(SwingConstants.LEFT);
+		amountError.setForeground(Color.RED);
+		amountError.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
+		amountError.setBounds(46, 239, 119, 18);
+		transfer.add(amountError);
 
 		JLabel lblNewLabel_1_1_1_1_1_1 = new JLabel("Over the Counter");
 		lblNewLabel_1_1_1_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);

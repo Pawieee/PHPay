@@ -345,6 +345,7 @@ public class SendMoney extends JPanel {
 						amountEdited = true;
 					}
 				} else
+					amountError.setVisible(true);
 					amountEdited = false;
 
 				if (idEdited && amountEdited) {
@@ -373,7 +374,7 @@ public class SendMoney extends JPanel {
 		sendError.setBounds(45, 109, 119, 18);
 		transfer.add(sendError);
 		
-		amountError = new JLabel("ID does not exist");
+		amountError = new JLabel("Error");
 		amountError.setVisible(false);
 		amountError.setVerticalAlignment(SwingConstants.BOTTOM);
 		amountError.setHorizontalAlignment(SwingConstants.LEFT);
