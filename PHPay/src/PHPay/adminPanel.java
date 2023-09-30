@@ -17,12 +17,12 @@ import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-
-
+import javax.swing.table.TableColumn;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -35,13 +35,16 @@ public class adminPanel {
 	private JTextField message;
 	private JTextField id;
 	private int index = 0;
-	private JTextField userToBan;
+	private JTextField accToDisable;
+	private JButton disable;
 
 
 	public static void main(String[] args) {
+		String laf = "com.jtattoo.plaf.smart.SmartLookAndFeel";
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					UIManager.setLookAndFeel(laf);
 					adminPanel window = new adminPanel();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
@@ -58,57 +61,15 @@ public class adminPanel {
 
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 759, 528);
+		frame.setBounds(100, 100, 900, 588);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(205, 41, 455, 351);
-		frame.getContentPane().add(panel_1);
-		panel_1.setLayout(null);
-		panel_1.setVisible(false);
-		
-		JButton btnNewButton_3 = new JButton("Ban");
-		btnNewButton_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String ID = userToBan.getText();
-				SQLQuery.disableUser(ID);
-				userToBan.setText("");
-			}
-		});
-		btnNewButton_3.setBounds(274, 286, 71, 39);
-		panel_1.add(btnNewButton_3);
-		
-		userToBan = new JTextField();
-		userToBan.setBounds(155, 145, 161, 39);
-		panel_1.add(userToBan);
-		userToBan.setColumns(10);
-		
-		JLabel lblNewLabel = new JLabel("USER ID");
-		lblNewLabel.setBounds(149, 109, 58, 13);
-		panel_1.add(lblNewLabel);
-		
-		scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(205, 47, 491, 345);
-		frame.getContentPane().add(scrollPane_1);
-		
 		JPanel panel = new JPanel();
-		panel.setBounds(211, 30, 446, 393);
+		panel.setBounds(177, 76, 564, 393);
 		frame.getContentPane().add(panel);
 		panel.setVisible(false);
 		panel.setLayout(null);
-		
-		JButton btnNewButton = new JButton("Sus transacts");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				getSus(scrollPane_1);
-				scrollPane_1.setVisible(true);
-				panel.setVisible(false);
-				panel_1.setVisible(false);
-			}
-		});
-		btnNewButton.setBounds(6, 86, 130, 21);
-		frame.getContentPane().add(btnNewButton);
 		
 		
 		JButton prev = new JButton("<");
@@ -143,11 +104,11 @@ public class adminPanel {
 				}
 			}
 		});
-		next.setBounds(374, 10, 62, 21);
+		next.setBounds(458, 10, 62, 21);
 		panel.add(next);
 		
 		message = new JTextField();
-		message.setBounds(20, 88, 397, 252);
+		message.setBounds(80, 88, 397, 252);
 		panel.add(message);
 		message.setColumns(10);
 		
@@ -164,7 +125,7 @@ public class adminPanel {
 				
 			}
 		});
-		btnNewButton_2.setBounds(267, 350, 62, 21);
+		btnNewButton_2.setBounds(196, 350, 62, 21);
 		panel.add(btnNewButton_2);
 		
 		JButton btnNewButton_2_1 = new JButton("no");
@@ -179,7 +140,7 @@ public class adminPanel {
 				}
 			}
 		});
-		btnNewButton_2_1.setBounds(339, 350, 62, 21);
+		btnNewButton_2_1.setBounds(299, 350, 62, 21);
 		panel.add(btnNewButton_2_1);
 		
 		id = new JTextField();
@@ -188,13 +149,47 @@ public class adminPanel {
 		panel.add(id);
 		id.setColumns(10);
 		
+		scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(29, 76, 823, 393);
+		frame.getContentPane().add(scrollPane_1);
+		
+		disable = new JButton("Disable");
+		disable.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String ID = accToDisable.getText();
+				SQLQuery.disableUser(ID);
+				accToDisable.setText("");
+			}
+		});
+		
+		accToDisable = new JTextField();
+		accToDisable.setBounds(433, 500, 96, 19);
+		frame.getContentPane().add(accToDisable);
+		accToDisable.setColumns(10);
+		disable.setBounds(559, 499, 85, 21);
+		frame.getContentPane().add(disable);
+		
+		JButton btnNewButton = new JButton("Transactions");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				getSus(scrollPane_1);
+				scrollPane_1.setVisible(true);
+				accToDisable.setVisible(true);
+				disable.setVisible(true);
+				panel.setVisible(false);
+			}
+		});
+		btnNewButton.setBounds(273, 30, 96, 21);
+		frame.getContentPane().add(btnNewButton);
+		
 		JButton btnAppeals = new JButton("Appeals");
-		btnAppeals.setBounds(28, 189, 92, 21);
+		btnAppeals.setBounds(524, 30, 92, 21);
 		btnAppeals.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				disable.setVisible(false);
+				accToDisable.setVisible(false);
 				scrollPane_1.setVisible(false);
-				panel_1.setVisible(false);
 				panel.setVisible(true);
 				
 				ArrayList<String[]> tickets = SQLQuery.getTickets();
@@ -213,24 +208,13 @@ public class adminPanel {
 		});
 		frame.getContentPane().add(btnAppeals);
 		
-		JButton btnNewButton_1 = new JButton("Ban");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				scrollPane_1.setVisible(false);
-				panel.setVisible(false);
-				panel_1.setVisible(true);
-			}
-		});
-		btnNewButton_1.setBounds(23, 143, 85, 21);
-		frame.getContentPane().add(btnNewButton_1);
-		
 	}
 	
 	public void getSus(JScrollPane scrollPane) {
 		
 		
 		DefaultTableModel model = new DefaultTableModel(null,
-				new String[] { "USER ID", "Time", "Ticket ID", "Cash" }) {
+		new String[] { "USER ID", "Time", "Transaction ID", "Amount", "Description", "Receiver"}) {
 			private static final long serialVersionUID = 8961818422329199291L;
 
 			@Override
@@ -239,18 +223,24 @@ public class adminPanel {
 			}
 		};
 		table = new JTable(model);
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
 		scrollPane.setViewportView(table);
 		for (int i = 0; i < table.getColumnCount(); i++) {
-			table.getColumnModel().getColumn(i).setPreferredWidth(30);
+			if (i == 1 || i == (table.getColumnCount() - 2))
+				table.getColumnModel().getColumn(i).setPreferredWidth(80);
+			else if (i == 2 || i == 3)
+				table.getColumnModel().getColumn(i).setPreferredWidth(10);
+			else 
+				table.getColumnModel().getColumn(i).setPreferredWidth(30);
 		}
 
 		DefaultTableCellRenderer whiteBackgroundRenderer = new DefaultTableCellRenderer();
 		whiteBackgroundRenderer.setBackground(Color.WHITE);
 
-		DefaultTableCellRenderer leftRender = new DefaultTableCellRenderer();
-		leftRender.setHorizontalAlignment(SwingConstants.LEFT);
+		DefaultTableCellRenderer centerRender = new DefaultTableCellRenderer();
+		centerRender.setHorizontalAlignment(SwingConstants.CENTER);
 		for (int i = 0; i < table.getColumnCount(); i++) {
-			table.getColumnModel().getColumn(i).setCellRenderer(leftRender);
+			table.getColumnModel().getColumn(i).setCellRenderer(centerRender);
 		}
 		
 		table.setFont(new Font("Nirmala UI", Font.PLAIN, 17));
@@ -258,14 +248,16 @@ public class adminPanel {
 		table.setSelectionForeground(new Color(255, 255, 255));
 		table.setSelectionBackground(new Color(255, 255, 255));
 		
-				table.setGridColor(new Color(0, 0, 0, 20));
-				table.setRowHeight(30);
-				table.setOpaque(false);
-				table.getColumnModel().getColumn(0).setCellRenderer(whiteBackgroundRenderer);
+		table.setGridColor(new Color(0, 0, 0, 20));
+		table.setRowHeight(30);
+		table.setOpaque(false);
+		table.getColumnModel().getColumn(0).setCellRenderer(whiteBackgroundRenderer);
 				
-						JTableHeader header = table.getTableHeader();
-						scrollPane = new JScrollPane(table);
-						scrollPane_1.setViewportView(scrollPane);
+		TableColumn column = table.getColumnModel().getColumn(0);
+		JTableHeader header = table.getTableHeader();
+		scrollPane = new JScrollPane(table);
+		scrollPane_1.setViewportView(scrollPane);
+		
 		scrollPane.setColumnHeaderView(header);
 		scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		scrollPane.setBackground(Color.WHITE);
