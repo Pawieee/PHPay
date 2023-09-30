@@ -85,7 +85,7 @@ public class Proceed extends JFrame {
 
 	}
 	//OVERLOAD ANOTHER PROCEED FOR TRANSACTION PURPOSES	
-	public Proceed(String message, String ID) {
+	public Proceed(String message, String ID, boolean op) {
 		Proceed.message = message;
 		this.session = ID;
 		setTitle("PHPAY");
@@ -137,17 +137,29 @@ public class Proceed extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (count > 0) {
-					countdownLabel.setText(dots);
-					dots += ".";
-					count--;
+				if (op == true) {
+					if (count > 0) {
+						countdownLabel.setText(dots);
+						dots += ".";
+						count--;
+					} else {
+						((Timer) e.getSource()).stop();
+						dispose();
+						
+						Receipt receipt = new Receipt(ID);
+						receipt.setVisible(true);
+					}
 				} else {
-					((Timer) e.getSource()).stop();
-					dispose();
-					
-					Receipt receipt = new Receipt(ID);
-					receipt.setVisible(true);
-					
+					if (count > 0) {
+						countdownLabel.setText(dots);
+						dots += ".";
+						count--;
+					} else {
+						((Timer) e.getSource()).stop();
+						dispose();
+						Home home = new Home(session);
+						home.setVisible(true);
+					}
 				}
 			}
 		});

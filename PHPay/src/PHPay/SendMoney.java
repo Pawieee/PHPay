@@ -214,7 +214,7 @@ public class SendMoney extends JPanel {
 		            frame.dispose();
 		        }
 
-				Proceed proceed = new Proceed("Processing",getSession());
+				Proceed proceed = new Proceed("Processing",getSession(), true);
 				proceed.setVisible(true);
 				SQLQuery.sendMoney(ID, id, amount);
 

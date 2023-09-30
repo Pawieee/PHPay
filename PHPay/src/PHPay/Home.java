@@ -39,6 +39,7 @@ public class Home extends JFrame {
 	private SendMoney sendMoney;
 	private PayBills payBills;
 	private BuyLoad buyLoad;
+	private CashIn cashIn;
 	private String session;
 	private JLabel home, wallet, activity, help;
 	private JPanel movingPane;
@@ -145,6 +146,7 @@ public class Home extends JFrame {
 		sendMoney = new SendMoney(session);
 		buyLoad = new BuyLoad(session);
 		payBills = new PayBills(session);
+		cashIn = new CashIn(session);
 
 		servicePanel.setVisible(false);
 		summaryPanel.setVisible(false);
@@ -152,6 +154,7 @@ public class Home extends JFrame {
 		sendMoney.setVisible(false);
 		buyLoad.setVisible(false);
 		payBills.setVisible(false);
+		cashIn.setVisible(false);
 
 		panelArea.add(homePanel);
 		panelArea.add(servicePanel);
@@ -160,6 +163,7 @@ public class Home extends JFrame {
 		panelArea.add(sendMoney);
 		panelArea.add(buyLoad);
 		panelArea.add(payBills);
+		panelArea.add(cashIn);
 
 		wallet = new JLabel("   Wallet");
 		wallet.setIcon(new ImageIcon(Home.class.getResource("/PHPay/phpimg/wallet-.png")));
@@ -223,22 +227,11 @@ public class Home extends JFrame {
 		panel.add(movingPane);
 		movingPane.setBackground(new Color(0, 0, 0, 100));
 
-		RoundedPanel profilePane = new RoundedPanel(42);
-		profilePane.setBackground(new Color(128, 0, 255, 150));
-		profilePane.setBorder(new EmptyBorder(0, 0, 0, 0));
-		profilePane.setBounds(16, 25, 70, 69);
-		panel.add(profilePane);
-		profilePane.setLayout(null);
-		JLabel lblNewLabel_1 = new JLabel("CJ");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBounds(-1, -1, 70, 70);
-		profilePane.add(lblNewLabel_1);
-
 		JLabel nameLabel = new JLabel(SQLQuery.getFullName(ID));
 		nameLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		nameLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 17));
 		nameLabel.setForeground(new Color(255, 255, 255));
-		nameLabel.setBounds(93, 30, 191, 36);
+		nameLabel.setBounds(72, 24, 191, 36);
 		panel.add(nameLabel);
 
 		RoundedButton btnNewButton = new RoundedButton("");
@@ -265,14 +258,14 @@ public class Home extends JFrame {
 		lblLogout_1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblLogout_1.setForeground(Color.WHITE);
 		lblLogout_1.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		lblLogout_1.setBounds(132, 56, 82, 36);
+		lblLogout_1.setBounds(109, 56, 82, 36);
 		panel.add(lblLogout_1);
 
 		lblLogout_2 = new JLabel("ID");
 		lblLogout_2.setHorizontalAlignment(SwingConstants.LEFT);
 		lblLogout_2.setForeground(Color.WHITE);
 		lblLogout_2.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		lblLogout_2.setBounds(113, 56, 22, 36);
+		lblLogout_2.setBounds(92, 56, 22, 36);
 		panel.add(lblLogout_2);
 
 		lblSendMoney = new JLabel("Send Money");
@@ -318,6 +311,13 @@ public class Home extends JFrame {
 		panel.add(lblPayBills);
 
 		lblCashIn = new JLabel("Cash In");
+		lblCashIn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (!SQLQuery.getStatus(ID) == false)
+					titleClicked(cashIn);
+			}
+		});
 		lblCashIn.setHorizontalAlignment(SwingConstants.LEFT);
 		lblCashIn.setForeground(Color.WHITE);
 		lblCashIn.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 14));
@@ -333,7 +333,7 @@ public class Home extends JFrame {
 
 		//AUTOMATICALLY SET STATUS AT LOG-IN
 		if (SQLQuery.getStatus(ID) == false)  {
-			profilePane.setBackground(Color.RED);
+			checkStatus(ID);
 			setDisabled(true);
 		}
 
@@ -342,11 +342,11 @@ public class Home extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (SQLQuery.getStatus(ID) == false)  {
-					profilePane.setBackground(Color.RED);
 					setDisabled(true);
+					checkStatus(ID);
 				} else {
-					profilePane.setBackground(Color.GREEN);
 					setDisabled(false);
+					checkStatus(ID);
 				}
 			}
 		});
@@ -357,18 +357,18 @@ public class Home extends JFrame {
 		accountStatus.setLayout(null);
 		accountStatus.setBorder(new EmptyBorder(0, 0, 0, 0));
 		accountStatus.setBackground(new Color(255, 255, 255));
-		accountStatus.setBounds(95, 70, 10, 10);
+		accountStatus.setBounds(72, 70, 10, 10);
 		panel.add(accountStatus);
 
 		checkStatus(ID);
 		
-		Timer status1 = new Timer(10000, new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				checkStatus(ID);
-			}
-		});
-		status1.start();
+//		Timer status1 = new Timer(10000, new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				checkStatus(ID);
+//			}
+//		});
+//		status1.start();
 
 		updateBalanceLabelFromFile();
 		int interval = 5000;
@@ -426,6 +426,7 @@ public class Home extends JFrame {
 		sendMoney.setVisible(false);
 		buyLoad.setVisible(false);
 		payBills.setVisible(false);
+		cashIn.setVisible(false);
 		
 		if (selectedPanel == sendMoney) 
 			sendMoney.reset();
@@ -433,7 +434,8 @@ public class Home extends JFrame {
 			buyLoad.reset();
 		else if (selectedPanel == payBills)
 			payBills.reset();
-		
+		else if (selectedPanel == cashIn)
+			cashIn.reset();
 		
 		selectedPanel.setVisible(true);
 	}

@@ -517,7 +517,7 @@ public class HelpPanel extends JPanel {
 		pandtl4.setBounds(10, 11, 540, 30);
 		pandtl4.setVisible(false);
 		main_panel.add(pandtl4);
-		pandtt4 = new JLabel("<html>\r\n<p style='font-size: 10px;'>\r\nHere’s how to view fees applied to any of your payments:<br>\r\n\r\n<br>1. Click Activity near the top of the page.<br>\r\n2. Find the transaction you want to check and click on it.<br>\r\n<br>\r\nFor more information on fees, click Fees at the bottom of any PHPAY page.\r\n</p>\r\n</html>\r\n");
+		pandtt4 = new JLabel("<html>\r\n<p style='font-size: 10px;'>\r\nHere’s how to view fees applied to any of your payments:<br>\r\n\r\n<br>1. Select a transaction.<br>\r\n2. Fill up the necessary details then hit 'Next'.<br>\r\n<br>\r\nFor more information on fees, click Fees at the bottom of any PHPAY page.\r\n</p>\r\n</html>\r\n");
 		pandtt4.setVerticalAlignment(SwingConstants.TOP);
 		pandtt4.setForeground(Color.BLACK);
 		pandtt4.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));

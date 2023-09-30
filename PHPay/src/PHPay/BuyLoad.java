@@ -86,7 +86,7 @@ public class BuyLoad extends JPanel {
 		previewPane = new RoundedPanel(30);
 		previewPane.setLayout(null);
 		previewPane.setBackground(new Color(0, 0, 0, 50));
-		previewPane.setBounds(622, 46, 535, 657);
+		previewPane.setBounds(622, 46, 535, 710);
 		gradientPanel.add(previewPane);
 		previewPane.setVisible(false);
 
@@ -185,7 +185,7 @@ public class BuyLoad extends JPanel {
 		numberType.setUI(new CustomComboBoxUI());
 
 		JLabel lblNewLabel_1 = new JLabel("Transaction Details");
-		lblNewLabel_1.setBounds(41, 45, 206, 27);
+		lblNewLabel_1.setBounds(41, 206, 206, 27);
 		previewPane.add(lblNewLabel_1);
 		lblNewLabel_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 19));
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
@@ -193,40 +193,40 @@ public class BuyLoad extends JPanel {
 		JLabel lblNewLabel_1_1_2_1 = new JLabel("Mobile Number:");
 		lblNewLabel_1_1_2_1.setForeground(Color.LIGHT_GRAY);
 		lblNewLabel_1_1_2_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		lblNewLabel_1_1_2_1.setBounds(41, 97, 128, 27);
+		lblNewLabel_1_1_2_1.setBounds(41, 271, 128, 27);
 		previewPane.add(lblNewLabel_1_1_2_1);
 
 		receiverLabel = new JLabel("123123123");
 		receiverLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		receiverLabel.setForeground(Color.LIGHT_GRAY);
 		receiverLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		receiverLabel.setBounds(362, 97, 128, 27);
+		receiverLabel.setBounds(362, 271, 128, 27);
 		previewPane.add(receiverLabel);
 
 		amountLabel = new JLabel("1239178651");
 		amountLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		amountLabel.setForeground(Color.LIGHT_GRAY);
 		amountLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		amountLabel.setBounds(362, 144, 128, 27);
+		amountLabel.setBounds(362, 334, 128, 27);
 		previewPane.add(amountLabel);
 
 		JLabel lblNewLabel_1_1_2 = new JLabel("Amount to send:");
 		lblNewLabel_1_1_2.setForeground(Color.LIGHT_GRAY);
 		lblNewLabel_1_1_2.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		lblNewLabel_1_1_2.setBounds(41, 144, 128, 27);
+		lblNewLabel_1_1_2.setBounds(41, 334, 128, 27);
 		previewPane.add(lblNewLabel_1_1_2);
 
 		fee = new JLabel("123,123");
 		fee.setHorizontalAlignment(SwingConstants.RIGHT);
 		fee.setForeground(Color.LIGHT_GRAY);
 		fee.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		fee.setBounds(362, 197, 128, 27);
+		fee.setBounds(362, 401, 128, 27);
 		previewPane.add(fee);
 
 		JLabel lblNewLabel_1_1 = new JLabel("Transaction Fee:");
 		lblNewLabel_1_1.setForeground(Color.LIGHT_GRAY);
 		lblNewLabel_1_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		lblNewLabel_1_1.setBounds(41, 197, 128, 27);
+		lblNewLabel_1_1.setBounds(41, 401, 128, 27);
 		previewPane.add(lblNewLabel_1_1);
 
 		JPanel transfer_2_1 = new JPanel();
@@ -270,7 +270,7 @@ public class BuyLoad extends JPanel {
 					frame.dispose();
 				}
 
-				Proceed proceed = new Proceed("Processing", getSession());
+				Proceed proceed = new Proceed("Processing", getSession(), true);
 				proceed.setVisible(true);
 				SQLQuery.load(ID, amount, number);
 

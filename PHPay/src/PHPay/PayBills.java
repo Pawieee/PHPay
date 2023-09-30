@@ -679,7 +679,7 @@ public class PayBills extends JPanel {
 		            frame.dispose();
 		        }
 
-				Proceed proceed = new Proceed("Processing",ID);
+				Proceed proceed = new Proceed("Processing",ID, true);
 				proceed.setVisible(true);
 				SQLQuery.payBills(ID, amount, choice);
 			}
