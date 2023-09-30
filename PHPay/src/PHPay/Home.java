@@ -437,6 +437,10 @@ public class Home extends JFrame {
 		else if (selectedPanel == cashIn)
 			cashIn.reset();
 		
+		if(selectedPanel==helpPanel) {
+			helpPanel.showHome();
+		}
+
 		selectedPanel.setVisible(true);
 	}
 	private void setDisabled(boolean disable) {
