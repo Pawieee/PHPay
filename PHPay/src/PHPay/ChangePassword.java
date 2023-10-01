@@ -247,6 +247,10 @@ public class ChangePassword extends JFrame {
 							@Override
 							public void actionPerformed(ActionEvent e) {
 								dispose();
+								
+								
+								
+								
 							}
 						});
 						timer.setRepeats(false);

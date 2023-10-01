@@ -29,8 +29,6 @@ import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.plaf.basic.ComboPopup;
 
-import PHPay.PayBills.CustomComboBoxUI;
-
 public class CashOut extends JPanel {
 	private String choice;
 	private static final long serialVersionUID = 1L;
