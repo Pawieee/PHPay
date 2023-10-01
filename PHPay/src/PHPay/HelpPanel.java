@@ -25,7 +25,6 @@ import javax.swing.JTextPane;
 
 import javax.swing.ImageIcon;
 import javax.swing.JEditorPane;
-import javax.swing.JButton;
 
 public class HelpPanel extends JPanel {
 	/**
@@ -43,8 +42,6 @@ public class HelpPanel extends JPanel {
 	JList home_list;
 	@SuppressWarnings("rawtypes")
 	JList pandt_list;
-	@SuppressWarnings("rawtypes")
-	JList dal_list;
 	@SuppressWarnings("rawtypes")
 	JList ma_list;
 	@SuppressWarnings("rawtypes")
@@ -64,16 +61,12 @@ public class HelpPanel extends JPanel {
 	JLabel bimg2;
 	JLabel home_label;
 	JLabel pandt_label;
-	JLabel dal_label;
 	JLabel ma_label;
 	JLabel mw_label;
 	JLabel lands_label;
-	JLabel home1l;
 	JLabel home1t;
 	JLabel home2l;
 	JLabel home2t;
-	JLabel home3l;
-	JLabel home3t;
 	JLabel home4l;
 	JLabel home4t;
 	JLabel home5l;
@@ -92,10 +85,6 @@ public class HelpPanel extends JPanel {
     JLabel pandtt3;
     JLabel pandtl4;
     JLabel pandtt4;
-    JLabel d1l;
-    JLabel d1t;
-    JLabel d2l;
-    JLabel d2t;
     JLabel ma1l;
     JLabel ma1t;
     JLabel ma2l;
@@ -113,7 +102,7 @@ public class HelpPanel extends JPanel {
     JLabel lands2l;
     JLabel lands2t;
     JEditorPane EPane1;
-    JButton TButton;
+    RoundedButton TButton;
     JLabel TicketLabel;
     JLabel CountLabel;
     JPanel about_panel;
@@ -169,7 +158,7 @@ public class HelpPanel extends JPanel {
 			 * 
 			 */
 			private static final long serialVersionUID = 1L;
-			String[] values = new String[] {"How do I issue a refund?", "", "How do I change my password and security questions?", "", "How do I escalate a PHPAY dispute to a claim?", "", "Why is the payment I sent pending or unclaimed? Can I cancel it?", "", "How can I release my payment(s) on hold?", "", "How do I remove a limitation from my account?", "", "How do I add money to my PHPAY account from my bank?", "", "I forgot my password. How do I reset it?"};
+			String[] values = new String[] {"How do I change my password?", "", "How do I add money to my PHPAY account from my bank?", "", "I forgot my password. How do I reset it?"};
 			public int getSize() {
 				return values.length;
 			}
@@ -204,7 +193,7 @@ public class HelpPanel extends JPanel {
 			 * 
 			 */
 			private static final long serialVersionUID = 1L;
-			String[] values = new String[] {"Home", "", "", "", "", "", "", "", "", "", "", "Payments and Transfers", "", "", "", "", "", "", "", "", "", "", "Disputes and Limitations", "", "", "", "", "", "", "", "", "", "", "My Account", "", "", "", "", "", "", "", "", "", "", "My Wallet", "", "", "", "", "", "", "", "", "", "", "Login & Security", "", "", "", "", "", "", "", "", "Create a Ticket", "", "", "", ""};
+			String[] values = new String[] {"Home", "", "", "", "", "", "", "", "", "", "", "Payments and Transfers", "", "", "", "", "", "", "", "", "", "", "My Account", "", "", "", "", "", "", "", "", "", "", "My Wallet", "", "", "", "", "", "", "", "", "", "", "Login & Security", "", "", "", "", "", "", "", "", "Create a Ticket", "", "", ""};
 			public int getSize() {
 				return values.length;
 			}
@@ -226,7 +215,7 @@ public class HelpPanel extends JPanel {
 			 * 
 			 */
 			private static final long serialVersionUID = 1L;
-			String[] values = new String[] {"Can I cancel a withdrawal from my PHPAY account?", "", "How can I release my payment(s) on hold?", "", "How do I issue a refund?", "", "How do I add money to my PHPAY account from my bank?", "", "What‘s the maximum amount I can send with my PHPAY account?", "", "How do I receive money through PHPAY?", "", "What are the fees for PHPAY accounts?"};
+			String[] values = new String[] {"Can I cancel a withdrawal from my PHPAY account?", "", "How do I issue a refund?", "", "How do I add money to my PHPAY account from my bank?", "", "What‘s the maximum amount I can send with my PHPAY account?", "", "How do I receive money through PHPAY?", "", "What are the fees for PHPAY accounts?"};
 			public int getSize() {
 				return values.length;
 			}
@@ -255,43 +244,13 @@ public class HelpPanel extends JPanel {
 				}
 			}	});
 		main_panel.add(pandt_list);
-		dal_list = new JList();
-		dal_list.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 20));
-		dal_list.setForeground(new Color(51, 0, 204));
-		dal_list.setModel(new AbstractListModel() {
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
-			String[] values = new String[] {"What should I do if I didn't receive all my items or if one or more were late?", "", "How do I remove a limitation from my account?", "", "What should I do if I think there has been unauthorized access to my PHPAY data?"};
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
-		dal_list.setBounds(10, 52, 743, 280);
-		dal_list.setVisible(false); 
-		dal_list.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				if (dal_list.getSelectedValue().equals("What should I do if I didn't receive all my items or if one or more were late?")) {
-					showd1();
-				} else if (dal_list.getSelectedValue().equals("How do I remove a limitation from my account?")) {
-					showh6();
-				} else if (dal_list.getSelectedValue().equals("What should I do if I think there has been unauthorized access to my PHPAY data?")) {
-					showd2();
-				}
-			}
-		});
-		main_panel.add(dal_list);
 		ma_list = new JList();
 		ma_list.setModel(new AbstractListModel() {
 			/**
 			 * 
 			 */
 			private static final long serialVersionUID = 1L;
-			String[] values = new String[] {"How do I view or edit my account information?", "", "How do I check the status of my payment?", "", "How do I verify my PHPAY account?", "", "Does PHPAY cover my purchase if there's a problem?"};
+			String[] values = new String[] {"How do I view my account information?", "", "How do I check the status of my payment?"};
 			public int getSize() {
 				return values.length;
 			}
@@ -324,7 +283,7 @@ public class HelpPanel extends JPanel {
 			 * 
 			 */
 			private static final long serialVersionUID = 1L;
-			String[] values = new String[] {"How do I link a bank account to my PHPAY account?", "", "How do I link a debit or credit card to my PHPAY account?", "", "How do I add money to my PHPAY account from my bank?", ""};
+			String[] values = new String[] {"How do I add money to my PHPAY account from my bank?"};
 			public int getSize() {
 				return values.length;
 			}
@@ -355,7 +314,7 @@ public class HelpPanel extends JPanel {
 			 * 
 			 */
 			private static final long serialVersionUID = 1L;
-			String[] values = new String[] {"I forgot my password. How do I reset it?", "", "How do I report potential fraud, spoof or unauthorized transactions to PHPAY?", "", "How can I access my personal data?"};
+			String[] values = new String[] {"I forgot my password. How do I reset it?", "", "How can I access my personal data?"};
 			public int getSize() {
 				return values.length;
 			}
@@ -388,13 +347,7 @@ public class HelpPanel extends JPanel {
 		pandt_label.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 22));
 		pandt_label.setBounds(10, 11, 251, 30);
 		main_panel.add(pandt_label);
-		pandt_label.setVisible(false); 
-		dal_label = new JLabel("Disputes and Limitations\r\n");
-		dal_label.setForeground(new Color(0, 0, 0));
-		dal_label.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 22));
-		dal_label.setBounds(10, 11, 251, 30);
-		dal_label.setVisible(false); 
-		main_panel.add(dal_label);
+		pandt_label.setVisible(false);
 		ma_label = new JLabel("My Account\r\n");
 		ma_label.setForeground(new Color(0, 0, 0));
 		ma_label.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 22));
@@ -413,12 +366,7 @@ public class HelpPanel extends JPanel {
 		lands_label.setBounds(10, 11, 251, 30);
 		lands_label.setVisible(false);
 		main_panel.add(lands_label);
-		home1l = new JLabel("<html><p style='font-size: 15px;'>How do I issue a refund?</p></html>");
-		home1l.setBounds(10, 17, 259, 24);
-		main_panel.add(home1l);
-		home1l.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 15));
-		home1l.setVisible(false); 
-		home2l = new JLabel("<html><p style='font-size: 15px;'>How do I change my password and security questions?</p></html>");
+		home2l = new JLabel("<html><p style='font-size: 15px;'>How do I change my password?</p></html>");
 		home2l.setForeground(Color.BLACK);
 		home2l.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 22));
 		home2l.setBounds(10, 11, 645, 30);
@@ -431,18 +379,6 @@ public class HelpPanel extends JPanel {
 		home2t.setBounds(10, 52, 865, 337);
 		home2t.setVisible(false);
 		main_panel.add(home2t);
-		home3l = new JLabel("<html><p style='font-size: 15px;'>How do I escalate a PHPAY dispute to a claim?\r\n</p></html>");
-		home3l.setForeground(Color.BLACK);
-		home3l.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 22));
-		home3l.setBounds(10, 11, 540, 30);
-		home3l.setVisible(false);
-		main_panel.add(home3l);
-		home3t = new JLabel("<html>\r\n<p style='font-size: 10px;'>\r\n<br><br><br>\r\n\r\nIn a dispute, you can exchange messages with the other party in your Resolution Center to try to solve the problem.\r\n<br>\r\nIf you’re unable to settle the dispute, you can escalate it to a claim. To escalate a dispute, we often require that at least 7 days have passed since the payment date.<br>\r\n<br>\r\nBy escalating a dispute to a claim, you’re asking PHPAY to investigate and decide the outcome. A dispute will automatically close after 20 days unless it’s been escalated. Closed disputes cannot be reopened or escalated to a claim.\r\n<br><br>\r\nHere's how to escalate a dispute:\r\n<br><br>\r\n1. Go to your Resolution Center.\r\n<br>2. Click View next to the dispute you want to escalate.\r\n<br>\r\n3. Click Escalate to PHPAY at the bottom of the page.<br>\r\n4. Add any relevant information for escalating the dispute and click Submit.<br>\r\n\r\n<br>The time it takes us to decide the outcome can vary. It depends on how quickly both parties respond to our inquiries and whether or not we need more information.\r\n<br><br>\r\nWe usually reach a decision within 14 days, but some cases can take 30 days or longer.\r\n</p><br>\r\n</html>");
-		home3t.setForeground(Color.BLACK);
-		home3t.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
-		home3t.setBounds(10, 11, 865, 378);
-		home3t.setVisible(false);
-		main_panel.add(home3t);
 		home4l = new JLabel("<html><p style='font-size: 15px;'>Why is the payment I sent pending or unclaimed? Can I cancel it?\r\n</p></html>");
 		home4l.setForeground(Color.BLACK);
 		home4l.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 22));
@@ -558,32 +494,6 @@ public class HelpPanel extends JPanel {
 		pandtt4.setBounds(10, 52, 856, 337);
 		pandtt4.setVisible(false);
 		main_panel.add(pandtt4);
-		d1l = new JLabel("<html><p style='font-size: 15px;'>What should I do if I didn't receive all my items or if one or more were late?</p></html>");
-		d1l.setForeground(Color.BLACK);
-		d1l.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 22));
-		d1l.setBounds(10, 0, 686, 55);
-		d1l.setVisible(false);
-		main_panel.add(d1l);
-		d1t = new JLabel("<html>\r\n<p style='font-size: 10px;'>\r\nWe encourage sellers to ship items as soon as they receive payment. Most sellers ship items within 7 days. (Allow extra time for international shipments).<br><br>\r\n\r\nOccasionally, a seller may contact you if an item is out of stock. At that point, you can decide if you want to wait longer for that item or request a refund.<br><br>\r\n\r\nIf you have waited a reasonable time for the shipment and have no updates from the seller, you can decide to open a dispute for the missing item(s).<br><br>\r\n\r\nHere's how to open a dispute from the web:<br><br>\r\n\r\n1. Go to the Resolution Center and click Report a Problem.<br>\r\n2. Select the payment and click Continue.<br>\r\n3. Select the reason for your dispute, such as:\r\n   - Issues with your purchase.\r\n   - Issues with the Seller.\r\n   - Billing errors or Issues with subscriptions.\r\n   - Unauthorized activity in your PHPAY account.<br>\r\n4. Select the option that best describes the issue you're facing and click Continue.<br><br>\r\n\r\nIf your item arrives late after receiving a refund, you should work with your seller to return it or pay for it again. You can ask the seller how they would like to proceed and stick to the instructions.<br>\r\n</p>\r\n</html>");
-		d1t.setVerticalAlignment(SwingConstants.TOP);
-		d1t.setForeground(Color.BLACK);
-		d1t.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
-		d1t.setBounds(10, 52, 865, 337);
-		d1t.setVisible(false);
-		main_panel.add(d1t);
-		d2l = new JLabel("<html><p style='font-size: 15px;'>What should I do if I think there has been unauthorized access to my PHPAY data?</p></html>");
-		d2l.setForeground(Color.BLACK);
-		d2l.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 22));
-		d2l.setBounds(10, 0, 779, 44);
-		d2l.setVisible(false);
-		main_panel.add(d2l);
-		d2t = new JLabel("<html>\r\n  <p style='font-size: 10px;'>\r\n    A data incident occurs when data is accessed by unauthorized persons or parties, or when there’s loss or destruction of data.\r\n    <br><br>\r\n    The security of your account is important to us. We have an extensive system of security protocols and controls in place to make sure that we never pass your personal data to an unauthorized party.\r\n    <br><br>\r\n    If you believe that an unauthorized party has accessed or is in possession of your personal data, contact us immediately. We can temporarily freeze your account while we investigate the incident.\r\n  </p>\r\n</html>\r\n");
-		d2t.setVerticalAlignment(SwingConstants.TOP);
-		d2t.setForeground(Color.BLACK);
-		d2t.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
-		d2t.setBounds(10, 52, 856, 337);
-		d2t.setVisible(false);
-		main_panel.add(d2t);
 		ma1l = new JLabel("<html><p style='font-size: 15px;'>How do I view or edit my account information?</p></html>");
 		ma1l.setForeground(Color.BLACK);
 		ma1l.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 22));
@@ -727,7 +637,7 @@ public class HelpPanel extends JPanel {
 	        }
 	    });
 		 
-		TButton = new JButton("Submit Ticket");
+		TButton = new RoundedButton("Submit Ticket");
 		TButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -924,22 +834,20 @@ public class HelpPanel extends JPanel {
 			 main_panel.setVisible(true);
 			 tl1.setVisible(true);
 			 pandt_label.setVisible(false);
-			 dal_label.setVisible(false);
 			 ma_label.setVisible(false);
 			 mw_label.setVisible(false);
 			 lands_label.setVisible(false);
 			 home_list.setVisible(true);
 			 pandt_list.setVisible(false);
-			 dal_list.setVisible(false);
 			 ma_list.setVisible(false);
 			 mw_list.setVisible(false);
 			 lands_list.setVisible(false);
-			 home1l.setVisible(false);
+			  
 			 home1t.setVisible(false);
 			 home2l.setVisible(false);
 			 home2t.setVisible(false);
-			 home3l.setVisible(false);
-			 home3t.setVisible(false);
+			  
+			  
 			 home4l.setVisible(false);
 			 home4t.setVisible(false);
 			 home5l.setVisible(false);
@@ -958,10 +866,6 @@ public class HelpPanel extends JPanel {
 			 pandtt3.setVisible(false);
 			 pandtl4.setVisible(false);
 			 pandtt4.setVisible(false);
-			 d1l.setVisible(false);
-			 d1t.setVisible(false);
-			 d2l.setVisible(false);
-			 d2t.setVisible(false);
 			 ma1l.setVisible(false);
 			 ma1t.setVisible(false);
 			 ma2l.setVisible(false);
@@ -990,22 +894,21 @@ public class HelpPanel extends JPanel {
 		 private void showPandt() {
 			 home_label.setVisible(false);
 			 pandt_label.setVisible(true);
-			 dal_label.setVisible(false);
+			  
 			 ma_label.setVisible(false);
 			 mw_label.setVisible(false);
 			 lands_label.setVisible(false);
 			 home_list.setVisible(false);
 			 pandt_list.setVisible(true);
-			 dal_list.setVisible(false);
 			 ma_list.setVisible(false);
 			 mw_list.setVisible(false);
 			 lands_list.setVisible(false);
-			 home1l.setVisible(false);
+			  
 			 home1t.setVisible(false);
 			 home2l.setVisible(false);
 			 home2t.setVisible(false);
-			 home3l.setVisible(false);
-			 home3t.setVisible(false);
+			  
+			  
 			 home4l.setVisible(false);
 			 home4t.setVisible(false);
 			 home5l.setVisible(false);
@@ -1024,10 +927,8 @@ public class HelpPanel extends JPanel {
 			 pandtt3.setVisible(false);
 			 pandtl4.setVisible(false);
 			 pandtt4.setVisible(false);
-			 d1l.setVisible(false);
-			 d1t.setVisible(false);
-			 d2l.setVisible(false);
-			 d2t.setVisible(false);
+			  
+			  
 			 ma1l.setVisible(false);
 			 ma1t.setVisible(false);
 			 ma2l.setVisible(false);
@@ -1052,22 +953,20 @@ public class HelpPanel extends JPanel {
 		 private void showDal() {
 			 home_label.setVisible(false);
 			 pandt_label.setVisible(false);
-			 dal_label.setVisible(true);
 			 ma_label.setVisible(false);
 			 mw_label.setVisible(false);
 			 lands_label.setVisible(false);
 			 home_list.setVisible(false);
 			 pandt_list.setVisible(false);
-			 dal_list.setVisible(true);
 			 ma_list.setVisible(false);
 			 mw_list.setVisible(false);
 			 lands_list.setVisible(false);
-			 home1l.setVisible(false);
+			  
 			 home1t.setVisible(false);
 			 home2l.setVisible(false);
 			 home2t.setVisible(false);
-			 home3l.setVisible(false);
-			 home3t.setVisible(false);
+			  
+			  
 			 home4l.setVisible(false);
 			 home4t.setVisible(false);
 			 home5l.setVisible(false);
@@ -1086,10 +985,10 @@ public class HelpPanel extends JPanel {
 			 pandtt3.setVisible(false);
 			 pandtl4.setVisible(false);
 			 pandtt4.setVisible(false);
-			 d1l.setVisible(false);
-			 d1t.setVisible(false);
-			 d2l.setVisible(false);
-			 d2t.setVisible(false);
+			  
+			  
+			  
+			  
 			 ma1l.setVisible(false);
 			 ma1t.setVisible(false);
 			 ma2l.setVisible(false);
@@ -1114,22 +1013,21 @@ public class HelpPanel extends JPanel {
 		 private void showMa() {
 			 home_label.setVisible(false);
 			 pandt_label.setVisible(false);
-			 dal_label.setVisible(false);
+			  
 			 ma_label.setVisible(true);
 			 mw_label.setVisible(false);
 			 lands_label.setVisible(false);
 			 home_list.setVisible(false);
 			 pandt_list.setVisible(false);
-			 dal_list.setVisible(false);
 			 ma_list.setVisible(true);
 			 mw_list.setVisible(false);
 			 lands_list.setVisible(false);
-			 home1l.setVisible(false);
+			  
 			 home1t.setVisible(false);
 			 home2l.setVisible(false);
 			 home2t.setVisible(false);
-			 home3l.setVisible(false);
-			 home3t.setVisible(false);  
+			  
+			    
 			 home4l.setVisible(false);
 			 home4t.setVisible(false);
 			 home5l.setVisible(false);
@@ -1148,10 +1046,10 @@ public class HelpPanel extends JPanel {
 			 pandtt3.setVisible(false);
 			 pandtl4.setVisible(false);
 			 pandtt4.setVisible(false);
-			 d1l.setVisible(false);
-			 d1t.setVisible(false);
-			 d2l.setVisible(false);
-			 d2t.setVisible(false);
+			  
+			  
+			  
+			  
 			 ma1l.setVisible(false);
 			 ma1t.setVisible(false);
 			 ma2l.setVisible(false);
@@ -1176,22 +1074,21 @@ public class HelpPanel extends JPanel {
 		 private void showMw() {
 			 home_label.setVisible(false);
 			 pandt_label.setVisible(false);
-			 dal_label.setVisible(false);
+			  
 			 ma_label.setVisible(false);
 			 mw_label.setVisible(true);
 			 lands_label.setVisible(false);
 			 home_list.setVisible(false);
 			 pandt_list.setVisible(false);
-			 dal_list.setVisible(false);
 			 ma_list.setVisible(false);
 			 mw_list.setVisible(true);
 			 lands_list.setVisible(false);
-			 home1l.setVisible(false);
+			  
 			 home1t.setVisible(false);
 			 home2l.setVisible(false);
 			 home2t.setVisible(false);
-			 home3l.setVisible(false);
-			 home3t.setVisible(false);
+			  
+			  
 			 home4l.setVisible(false);
 			 home4t.setVisible(false);
 			 home5l.setVisible(false);
@@ -1210,10 +1107,10 @@ public class HelpPanel extends JPanel {
 			 pandtt3.setVisible(false);
 			 pandtl4.setVisible(false);
 			 pandtt4.setVisible(false);
-			 d1l.setVisible(false);
-			 d1t.setVisible(false);
-			 d2l.setVisible(false);
-			 d2t.setVisible(false); 
+			  
+			  
+			  
+			   
 			 ma1l.setVisible(false);
 			 ma1t.setVisible(false);
 			 ma2l.setVisible(false);
@@ -1238,22 +1135,21 @@ public class HelpPanel extends JPanel {
 		 private void showLands() {
 			 home_label.setVisible(false);
 			 pandt_label.setVisible(false);
-			 dal_label.setVisible(false);
+			  
 			 ma_label.setVisible(false);
 			 mw_label.setVisible(false);
 			 lands_label.setVisible(true);
 			 home_list.setVisible(false);
 			 pandt_list.setVisible(false);
-			 dal_list.setVisible(false);
 			 ma_list.setVisible(false);
 			 mw_list.setVisible(false);
 			 lands_list.setVisible(true);
-			 home1l.setVisible(false);
+			  
 			 home1t.setVisible(false);
 			 home2l.setVisible(false);
 			 home2t.setVisible(false);
-			 home3l.setVisible(false);
-			 home3t.setVisible(false);
+			  
+			  
 			 home4l.setVisible(false);
 			 home4t.setVisible(false);
 			 home4l.setVisible(false);
@@ -1274,10 +1170,10 @@ public class HelpPanel extends JPanel {
 			 pandtt3.setVisible(false);
 			 pandtl4.setVisible(false);
 			 pandtt4.setVisible(false);
-			 d1l.setVisible(false);
-			 d1t.setVisible(false);
-			 d2l.setVisible(false);
-			 d2t.setVisible(false);
+			  
+			  
+			  
+			  
 			 ma1l.setVisible(false);
 			 ma1t.setVisible(false);
 			 ma2l.setVisible(false);
@@ -1302,29 +1198,26 @@ public class HelpPanel extends JPanel {
 		 private void showh1() {
 			 home_label.setVisible(false);
 			 pandt_label.setVisible(false);
-			 dal_label.setVisible(false);
+			  
 			 ma_label.setVisible(false);
 			 mw_label.setVisible(false);
 			 lands_label.setVisible(false);
 			 home_list.setVisible(false);
 			 pandt_list.setVisible(false);
-			 dal_list.setVisible(false);
 			 ma_list.setVisible(false);
 			 mw_list.setVisible(false);
 			 lands_list.setVisible(false);
-			 home1l.setVisible(true);
 			 home1t.setVisible(true);
 		 }
 		 private void showh2() {
 			 home_label.setVisible(false);
 			 pandt_label.setVisible(false);
-			 dal_label.setVisible(false);
+			  
 			 ma_label.setVisible(false);
 			 mw_label.setVisible(false);
 			 lands_label.setVisible(false);
 			 home_list.setVisible(false);
 			 pandt_list.setVisible(false);
-			 dal_list.setVisible(false);
 			 ma_list.setVisible(false);
 			 mw_list.setVisible(false);
 			 lands_list.setVisible(false);
@@ -1334,29 +1227,25 @@ public class HelpPanel extends JPanel {
 		 private void showh3() {
 			 home_label.setVisible(false);
 			 pandt_label.setVisible(false);
-			 dal_label.setVisible(false);
+			  
 			 ma_label.setVisible(false);
 			 mw_label.setVisible(false);
 			 lands_label.setVisible(false);
 			 home_list.setVisible(false);
 			 pandt_list.setVisible(false);
-			 dal_list.setVisible(false);
 			 ma_list.setVisible(false);
 			 mw_list.setVisible(false);
 			 lands_list.setVisible(false);
-			 home3l.setVisible(true);
-			 home3t.setVisible(true);
 		 }
 		 private void showh4() {
 			 home_label.setVisible(false);
 			 pandt_label.setVisible(false);
-			 dal_label.setVisible(false);
+			  
 			 ma_label.setVisible(false);
 			 mw_label.setVisible(false);
 			 lands_label.setVisible(false);
 			 home_list.setVisible(false);
 			 pandt_list.setVisible(false);
-			 dal_list.setVisible(false);
 			 ma_list.setVisible(false);
 			 mw_list.setVisible(false);
 			 lands_list.setVisible(false);
@@ -1366,13 +1255,12 @@ public class HelpPanel extends JPanel {
 		 private void showh5() {
 			 home_label.setVisible(false);
 			 pandt_label.setVisible(false);
-			 dal_label.setVisible(false);
+			  
 			 ma_label.setVisible(false);
 			 mw_label.setVisible(false);
 			 lands_label.setVisible(false);
 			 home_list.setVisible(false);
 			 pandt_list.setVisible(false);
-			 dal_list.setVisible(false);
 			 ma_list.setVisible(false);
 			 mw_list.setVisible(false);
 			 lands_list.setVisible(false);
@@ -1382,13 +1270,12 @@ public class HelpPanel extends JPanel {
 		 private void showh6() {
 			 home_label.setVisible(false);
 			 pandt_label.setVisible(false);
-			 dal_label.setVisible(false);
+			  
 			 ma_label.setVisible(false);
 			 mw_label.setVisible(false);
 			 lands_label.setVisible(false);
 			 home_list.setVisible(false);
 			 pandt_list.setVisible(false);
-			 dal_list.setVisible(false);
 			 ma_list.setVisible(false);
 			 mw_list.setVisible(false);
 			 lands_list.setVisible(false);
@@ -1398,13 +1285,12 @@ public class HelpPanel extends JPanel {
 		 private void showh7() {
 			 home_label.setVisible(false);
 			 pandt_label.setVisible(false);
-			 dal_label.setVisible(false);
+			  
 			 ma_label.setVisible(false);
 			 mw_label.setVisible(false);
 			 lands_label.setVisible(false);
 			 home_list.setVisible(false);
 			 pandt_list.setVisible(false);
-			 dal_list.setVisible(false);
 			 ma_list.setVisible(false);
 			 mw_list.setVisible(false);
 			 lands_list.setVisible(false);
@@ -1414,13 +1300,12 @@ public class HelpPanel extends JPanel {
 		 private void showh8() {
 			 home_label.setVisible(false);
 			 pandt_label.setVisible(false);
-			 dal_label.setVisible(false);
+			  
 			 ma_label.setVisible(false);
 			 mw_label.setVisible(false);
 			 lands_label.setVisible(false);
 			 home_list.setVisible(false);
 			 pandt_list.setVisible(false);
-			 dal_list.setVisible(false);
 			 ma_list.setVisible(false);
 			 mw_list.setVisible(false);
 			 lands_list.setVisible(false);
@@ -1431,13 +1316,12 @@ public class HelpPanel extends JPanel {
 		 private void showp1() {
 			 home_label.setVisible(false);
 			 pandt_label.setVisible(false);
-			 dal_label.setVisible(false);
+			  
 			 ma_label.setVisible(false);
 			 mw_label.setVisible(false);
 			 lands_label.setVisible(false);
 			 home_list.setVisible(false);
 			 pandt_list.setVisible(false);
-			 dal_list.setVisible(false);
 			 ma_list.setVisible(false);
 			 mw_list.setVisible(false);
 			 lands_list.setVisible(false);
@@ -1447,13 +1331,12 @@ public class HelpPanel extends JPanel {
 		 private void showp2() {
 			 home_label.setVisible(false);
 			 pandt_label.setVisible(false);
-			 dal_label.setVisible(false);
+			  
 			 ma_label.setVisible(false);
 			 mw_label.setVisible(false);
 			 lands_label.setVisible(false);
 			 home_list.setVisible(false);
 			 pandt_list.setVisible(false);
-			 dal_list.setVisible(false);
 			 ma_list.setVisible(false);
 			 mw_list.setVisible(false);
 			 lands_list.setVisible(false);
@@ -1463,13 +1346,12 @@ public class HelpPanel extends JPanel {
 		 private void showp3() {
 			 home_label.setVisible(false);
 			 pandt_label.setVisible(false);
-			 dal_label.setVisible(false);
+			  
 			 ma_label.setVisible(false);
 			 mw_label.setVisible(false);
 			 lands_label.setVisible(false);
 			 home_list.setVisible(false);
 			 pandt_list.setVisible(false);
-			 dal_list.setVisible(false);
 			 ma_list.setVisible(false);
 			 mw_list.setVisible(false);
 			 lands_list.setVisible(false);
@@ -1479,61 +1361,60 @@ public class HelpPanel extends JPanel {
 		 private void showp4() {
 			 home_label.setVisible(false);
 			 pandt_label.setVisible(false);
-			 dal_label.setVisible(false);
+			  
 			 ma_label.setVisible(false);
 			 mw_label.setVisible(false);
 			 lands_label.setVisible(false);
 			 home_list.setVisible(false);
 			 pandt_list.setVisible(false);
-			 dal_list.setVisible(false);
 			 ma_list.setVisible(false);
 			 mw_list.setVisible(false);
 			 lands_list.setVisible(false);
 			 pandtl4.setVisible(true);
 			 pandtt4.setVisible(true);
 		 }
-		 private void showd1() {
+		 @SuppressWarnings("unused")
+		private void showd1() {
 			 home_label.setVisible(false);
 			 pandt_label.setVisible(false);
-			 dal_label.setVisible(false);
+			  
 			 ma_label.setVisible(false);
 			 mw_label.setVisible(false);
 			 lands_label.setVisible(false);
 			 home_list.setVisible(false);
 			 pandt_list.setVisible(false);
-			 dal_list.setVisible(false);
+			  
 			 ma_list.setVisible(false);
 			 mw_list.setVisible(false);
 			 lands_list.setVisible(false);
-			 d1l.setVisible(true);
-			 d1t.setVisible(true);
+			  
+			  
 		 }
-		 private void showd2() {
+		 @SuppressWarnings("unused")
+		private void showd2() {
 			 home_label.setVisible(false);
 			 pandt_label.setVisible(false);
-			 dal_label.setVisible(false);
+			  
 			 ma_label.setVisible(false);
 			 mw_label.setVisible(false);
 			 lands_label.setVisible(false);
 			 home_list.setVisible(false);
 			 pandt_list.setVisible(false);
-			 dal_list.setVisible(false);
+			  
 			 ma_list.setVisible(false);
 			 mw_list.setVisible(false);
 			 lands_list.setVisible(false);
-			 d2l.setVisible(true);
-			 d2t.setVisible(true);
 		 }
 		 private void showma1() {
 			 home_label.setVisible(false);
 			 pandt_label.setVisible(false);
-			 dal_label.setVisible(false);
+			  
 			 ma_label.setVisible(false);
 			 mw_label.setVisible(false);
 			 lands_label.setVisible(false);
 			 home_list.setVisible(false);
 			 pandt_list.setVisible(false);
-			 dal_list.setVisible(false);
+			  
 			 ma_list.setVisible(false);
 			 mw_list.setVisible(false);
 			 lands_list.setVisible(false);
@@ -1543,13 +1424,13 @@ public class HelpPanel extends JPanel {
 		 private void showma2() {
 			 home_label.setVisible(false);
 			 pandt_label.setVisible(false);
-			 dal_label.setVisible(false);
+			  
 			 ma_label.setVisible(false);
 			 mw_label.setVisible(false);
 			 lands_label.setVisible(false);
 			 home_list.setVisible(false);
 			 pandt_list.setVisible(false);
-			 dal_list.setVisible(false);
+			  
 			 ma_list.setVisible(false);
 			 mw_list.setVisible(false);
 			 lands_list.setVisible(false);
@@ -1559,13 +1440,13 @@ public class HelpPanel extends JPanel {
 		 private void showma3() {
 			 home_label.setVisible(false);
 			 pandt_label.setVisible(false);
-			 dal_label.setVisible(false);
+			  
 			 ma_label.setVisible(false);
 			 mw_label.setVisible(false);
 			 lands_label.setVisible(false);
 			 home_list.setVisible(false);
 			 pandt_list.setVisible(false);
-			 dal_list.setVisible(false);
+			  
 			 ma_list.setVisible(false);
 			 mw_list.setVisible(false);
 			 lands_list.setVisible(false);
@@ -1575,13 +1456,13 @@ public class HelpPanel extends JPanel {
 		 private void showma4() {
 			 home_label.setVisible(false);
 			 pandt_label.setVisible(false);
-			 dal_label.setVisible(false);
+			  
 			 ma_label.setVisible(false);
 			 mw_label.setVisible(false);
 			 lands_label.setVisible(false);
 			 home_list.setVisible(false);
 			 pandt_list.setVisible(false);
-			 dal_list.setVisible(false);
+			  
 			 ma_list.setVisible(false);
 			 mw_list.setVisible(false);
 			 lands_list.setVisible(false);
@@ -1591,13 +1472,13 @@ public class HelpPanel extends JPanel {
 		 private void showmw1() {
 			 home_label.setVisible(false);
 			 pandt_label.setVisible(false);
-			 dal_label.setVisible(false);
+			  
 			 ma_label.setVisible(false);
 			 mw_label.setVisible(false);
 			 lands_label.setVisible(false);
 			 home_list.setVisible(false);
 			 pandt_list.setVisible(false);
-			 dal_list.setVisible(false);
+			  
 			 ma_list.setVisible(false);
 			 mw_list.setVisible(false);
 			 lands_list.setVisible(false);
@@ -1607,13 +1488,13 @@ public class HelpPanel extends JPanel {
 		 private void showmw2() {
 			 home_label.setVisible(false);
 			 pandt_label.setVisible(false);
-			 dal_label.setVisible(false);
+			  
 			 ma_label.setVisible(false);
 			 mw_label.setVisible(false);
 			 lands_label.setVisible(false);
 			 home_list.setVisible(false);
 			 pandt_list.setVisible(false);
-			 dal_list.setVisible(false);
+			  
 			 ma_list.setVisible(false);
 			 mw_list.setVisible(false);
 			 lands_list.setVisible(false);
@@ -1623,13 +1504,13 @@ public class HelpPanel extends JPanel {
 		 private void showlands1() {
 			 home_label.setVisible(false);
 			 pandt_label.setVisible(false);
-			 dal_label.setVisible(false);
+			  
 			 ma_label.setVisible(false);
 			 mw_label.setVisible(false);
 			 lands_label.setVisible(false);
 			 home_list.setVisible(false);
 			 pandt_list.setVisible(false);
-			 dal_list.setVisible(false);
+			  
 			 ma_list.setVisible(false);
 			 mw_list.setVisible(false);
 			 lands_list.setVisible(false);
@@ -1639,13 +1520,13 @@ public class HelpPanel extends JPanel {
 		 private void showlands2() {
 			 home_label.setVisible(false);
 			 pandt_label.setVisible(false);
-			 dal_label.setVisible(false);
+			  
 			 ma_label.setVisible(false);
 			 mw_label.setVisible(false);
 			 lands_label.setVisible(false);
 			 home_list.setVisible(false);
 			 pandt_list.setVisible(false);
-			 dal_list.setVisible(false);
+			  
 			 ma_list.setVisible(false);
 			 mw_list.setVisible(false);
 			 lands_list.setVisible(false);
@@ -1658,34 +1539,34 @@ public class HelpPanel extends JPanel {
 			 CountLabel.setVisible(true);
 			 home_label.setVisible(false);
 			 pandt_label.setVisible(false);
-			 dal_label.setVisible(false);
+			  
 			 ma_label.setVisible(false);
 			 mw_label.setVisible(false);
 			 lands_label.setVisible(false);
 			 home_list.setVisible(false);
 			 pandt_list.setVisible(false);
-			 dal_list.setVisible(false);
+			  
 			 ma_list.setVisible(false);
 			 mw_list.setVisible(false);
 			 lands_list.setVisible(false);
 			 home_label.setVisible(false);
 			 pandt_label.setVisible(false);
-			 dal_label.setVisible(false);
+			  
 			 ma_label.setVisible(false);
 			 mw_label.setVisible(false);
 			 lands_label.setVisible(false);
 			 home_list.setVisible(false);
 			 pandt_list.setVisible(false);
-			 dal_list.setVisible(false);
+			  
 			 ma_list.setVisible(false);
 			 mw_list.setVisible(false);
 			 lands_list.setVisible(false);
-			 home1l.setVisible(false);
+			  
 			 home1t.setVisible(false);
 			 home2l.setVisible(false);
 			 home2t.setVisible(false);
-			 home3l.setVisible(false);
-			 home3t.setVisible(false);
+			  
+			  
 			 home4l.setVisible(false);
 			 home4t.setVisible(false);
 			 home5l.setVisible(false);
@@ -1704,10 +1585,10 @@ public class HelpPanel extends JPanel {
 			 pandtt3.setVisible(false);
 			 pandtl4.setVisible(false);
 			 pandtt4.setVisible(false);
-			 d1l.setVisible(false);
-			 d1t.setVisible(false);
-			 d2l.setVisible(false);
-			 d2t.setVisible(false); 
+			  
+			  
+			  
+			   
 			 ma1l.setVisible(false);
 			 ma1t.setVisible(false);
 			 ma2l.setVisible(false);
@@ -1736,34 +1617,34 @@ public class HelpPanel extends JPanel {
 				 CountLabel.setVisible(false);
 				 home_label.setVisible(false);
 				 pandt_label.setVisible(false);
-				 dal_label.setVisible(false);
+				  
 				 ma_label.setVisible(false);
 				 mw_label.setVisible(false);
 				 lands_label.setVisible(false);
 				 home_list.setVisible(false);
 				 pandt_list.setVisible(false);
-				 dal_list.setVisible(false);
+				  
 				 ma_list.setVisible(false);
 				 mw_list.setVisible(false);
 				 lands_list.setVisible(false);
 				 home_label.setVisible(false);
 				 pandt_label.setVisible(false);
-				 dal_label.setVisible(false);
+				  
 				 ma_label.setVisible(false);
 				 mw_label.setVisible(false);
 				 lands_label.setVisible(false);
 				 home_list.setVisible(false);
 				 pandt_list.setVisible(false);
-				 dal_list.setVisible(false);
+				  
 				 ma_list.setVisible(false);
 				 mw_list.setVisible(false);
 				 lands_list.setVisible(false);
-				 home1l.setVisible(false);
+				  
 				 home1t.setVisible(false);
 				 home2l.setVisible(false);
 				 home2t.setVisible(false);
-				 home3l.setVisible(false);
-				 home3t.setVisible(false);
+				  
+				  
 				 home4l.setVisible(false);
 				 home4t.setVisible(false);
 				 home5l.setVisible(false);
@@ -1782,10 +1663,10 @@ public class HelpPanel extends JPanel {
 				 pandtt3.setVisible(false);
 				 pandtl4.setVisible(false);
 				 pandtt4.setVisible(false);
-				 d1l.setVisible(false);
-				 d1t.setVisible(false);
-				 d2l.setVisible(false);
-				 d2t.setVisible(false); 
+				  
+				  
+				  
+				   
 				 ma1l.setVisible(false);
 				 ma1t.setVisible(false);
 				 ma2l.setVisible(false);
@@ -1817,34 +1698,34 @@ public class HelpPanel extends JPanel {
 				 CountLabel.setVisible(false);
 				 home_label.setVisible(false);
 				 pandt_label.setVisible(false);
-				 dal_label.setVisible(false);
+				  
 				 ma_label.setVisible(false);
 				 mw_label.setVisible(false);
 				 lands_label.setVisible(false);
 				 home_list.setVisible(false);
 				 pandt_list.setVisible(false);
-				 dal_list.setVisible(false);
+				  
 				 ma_list.setVisible(false);
 				 mw_list.setVisible(false);
 				 lands_list.setVisible(false);
 				 home_label.setVisible(false);
 				 pandt_label.setVisible(false);
-				 dal_label.setVisible(false);
+				  
 				 ma_label.setVisible(false);
 				 mw_label.setVisible(false);
 				 lands_label.setVisible(false);
 				 home_list.setVisible(false);
 				 pandt_list.setVisible(false);
-				 dal_list.setVisible(false);
+				  
 				 ma_list.setVisible(false);
 				 mw_list.setVisible(false);
 				 lands_list.setVisible(false);
-				 home1l.setVisible(false);
+				  
 				 home1t.setVisible(false);
 				 home2l.setVisible(false);
 				 home2t.setVisible(false);
-				 home3l.setVisible(false);
-				 home3t.setVisible(false);
+				  
+				  
 				 home4l.setVisible(false);
 				 home4t.setVisible(false);
 				 home5l.setVisible(false);
@@ -1863,10 +1744,10 @@ public class HelpPanel extends JPanel {
 				 pandtt3.setVisible(false);
 				 pandtl4.setVisible(false);
 				 pandtt4.setVisible(false);
-				 d1l.setVisible(false);
-				 d1t.setVisible(false);
-				 d2l.setVisible(false);
-				 d2t.setVisible(false); 
+				  
+				  
+				  
+				   
 				 ma1l.setVisible(false);
 				 ma1t.setVisible(false);
 				 ma2l.setVisible(false);
@@ -1900,34 +1781,34 @@ public class HelpPanel extends JPanel {
 				 CountLabel.setVisible(false);
 				 home_label.setVisible(false);
 				 pandt_label.setVisible(false);
-				 dal_label.setVisible(false);
+				  
 				 ma_label.setVisible(false);
 				 mw_label.setVisible(false);
 				 lands_label.setVisible(false);
 				 home_list.setVisible(false);
 				 pandt_list.setVisible(false);
-				 dal_list.setVisible(false);
+				  
 				 ma_list.setVisible(false);
 				 mw_list.setVisible(false);
 				 lands_list.setVisible(false);
 				 home_label.setVisible(false);
 				 pandt_label.setVisible(false);
-				 dal_label.setVisible(false);
+				  
 				 ma_label.setVisible(false);
 				 mw_label.setVisible(false);
 				 lands_label.setVisible(false);
 				 home_list.setVisible(false);
 				 pandt_list.setVisible(false);
-				 dal_list.setVisible(false);
+				  
 				 ma_list.setVisible(false);
 				 mw_list.setVisible(false);
 				 lands_list.setVisible(false);
-				 home1l.setVisible(false);
+				  
 				 home1t.setVisible(false);
 				 home2l.setVisible(false);
 				 home2t.setVisible(false);
-				 home3l.setVisible(false);
-				 home3t.setVisible(false);
+				  
+				  
 				 home4l.setVisible(false);
 				 home4t.setVisible(false);
 				 home5l.setVisible(false);
@@ -1946,10 +1827,10 @@ public class HelpPanel extends JPanel {
 				 pandtt3.setVisible(false);
 				 pandtl4.setVisible(false);
 				 pandtt4.setVisible(false);
-				 d1l.setVisible(false);
-				 d1t.setVisible(false);
-				 d2l.setVisible(false);
-				 d2t.setVisible(false); 
+				  
+				  
+				  
+				   
 				 ma1l.setVisible(false);
 				 ma1t.setVisible(false);
 				 ma2l.setVisible(false);
@@ -1985,34 +1866,34 @@ public class HelpPanel extends JPanel {
 				 CountLabel.setVisible(false);
 				 home_label.setVisible(false);
 				 pandt_label.setVisible(false);
-				 dal_label.setVisible(false);
+				  
 				 ma_label.setVisible(false);
 				 mw_label.setVisible(false);
 				 lands_label.setVisible(false);
 				 home_list.setVisible(false);
 				 pandt_list.setVisible(false);
-				 dal_list.setVisible(false);
+				  
 				 ma_list.setVisible(false);
 				 mw_list.setVisible(false);
 				 lands_list.setVisible(false);
 				 home_label.setVisible(false);
 				 pandt_label.setVisible(false);
-				 dal_label.setVisible(false);
+				  
 				 ma_label.setVisible(false);
 				 mw_label.setVisible(false);
 				 lands_label.setVisible(false);
 				 home_list.setVisible(false);
 				 pandt_list.setVisible(false);
-				 dal_list.setVisible(false);
+				  
 				 ma_list.setVisible(false);
 				 mw_list.setVisible(false);
 				 lands_list.setVisible(false);
-				 home1l.setVisible(false);
+				  
 				 home1t.setVisible(false);
 				 home2l.setVisible(false);
 				 home2t.setVisible(false);
-				 home3l.setVisible(false);
-				 home3t.setVisible(false);
+				  
+				  
 				 home4l.setVisible(false);
 				 home4t.setVisible(false);
 				 home5l.setVisible(false);
@@ -2031,10 +1912,6 @@ public class HelpPanel extends JPanel {
 				 pandtt3.setVisible(false);
 				 pandtl4.setVisible(false);
 				 pandtt4.setVisible(false);
-				 d1l.setVisible(false);
-				 d1t.setVisible(false);
-				 d2l.setVisible(false);
-				 d2t.setVisible(false); 
 				 ma1l.setVisible(false);
 				 ma1t.setVisible(false);
 				 ma2l.setVisible(false);

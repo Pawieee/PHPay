@@ -400,7 +400,7 @@ public class CashOut extends JPanel {
 					frame.dispose();
 				}
 
-				Proceed proceed = new Proceed("Processing", ID, true, true);
+				Proceed proceed = new Proceed("Processing", ID, true, false);
 				proceed.setVisible(true);
 				SQLQuery.withdraw(ID, amount, choice);
 			}

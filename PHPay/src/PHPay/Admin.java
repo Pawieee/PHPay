@@ -219,7 +219,7 @@ public class Admin {
 		panel.add(lblUserId);
 
 		scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(164, 76, 1032, 393);
+		scrollPane_1.setBounds(164, 76, 1032, 429);
 		scrollPane_1.setVisible(false);
 		frmPhpayAdministrator.getContentPane().add(scrollPane_1);
 
@@ -236,10 +236,10 @@ public class Admin {
 
 		accToDisable = new JTextField();
 		accToDisable.setVisible(false);
-		accToDisable.setBounds(839, 493, 217, 28);
+		accToDisable.setBounds(839, 515, 217, 28);
 		frmPhpayAdministrator.getContentPane().add(accToDisable);
 		accToDisable.setColumns(10);
-		disable.setBounds(1086, 490, 110, 32);
+		disable.setBounds(1086, 511, 110, 32);
 
 		JButton appealButton = new JButton("Appeals");
 		appealButton.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
@@ -284,7 +284,7 @@ public class Admin {
 		idLabel.setVisible(false);
 		idLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
 		idLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		idLabel.setBounds(744, 495, 85, 21);
+		idLabel.setBounds(744, 517, 85, 21);
 		frmPhpayAdministrator.getContentPane().add(idLabel);
 
 		textField = new JTextField();
