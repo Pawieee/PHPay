@@ -57,6 +57,7 @@ public class Welcome extends JFrame {
 	private JPanel invalidPrompt;
 	private JLabel invalidMessage;
 	private static JLabel timeoutLabel;
+	private RoundedPanel signupPanel;
 
 	public Welcome() {
 
@@ -160,6 +161,7 @@ public class Welcome extends JFrame {
 				attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
 				register.setFont(font.deriveFont(attributes));
 				register.setForeground(new Color(128, 0, 255));
+				signupPanel.setBounds(532, 293, 101, 40);
 			}
 
 			@Override
@@ -169,10 +171,22 @@ public class Welcome extends JFrame {
 				attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE);
 				register.setFont(font.deriveFont(attributes));
 				register.setForeground(Color.BLACK);
+				signupPanel.setBounds(533, 294, 99, 38);
 			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				signupPanel.setBounds(533, 294, 99, 38);
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				signupPanel.setBounds(532, 293, 101, 40);
+			}
+
 		});
 
-		JPanel signupPanel = new RoundedPanel(15);
+		signupPanel = new RoundedPanel(15);
 		signupPanel.setBackground(new Color(255, 255, 255));
 		signupPanel.setBounds(533, 294, 99, 38);
 		mainPanel.add(signupPanel);
@@ -248,7 +262,7 @@ public class Welcome extends JFrame {
 		JLabel experienceLabel = new JLabel("Experience the convenience of cashless transactions today");
 		experienceLabel.setBackground(new Color(102, 0, 204, 225));
 		experienceLabel.setForeground(new Color(153, 0, 255));
-		experienceLabel.setBounds(347, 68, 488, 21);
+		experienceLabel.setBounds(347, 80, 488, 21);
 		mainPanel.add(experienceLabel);
 		experienceLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		experienceLabel.setFont(new Font("Segoe UI Semibold", Font.ITALIC, 14));
@@ -278,13 +292,33 @@ public class Welcome extends JFrame {
 		mainPanel.add(textField);
 
 		loginButton = new RoundedButton("LOGIN");
+		loginButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				loginButton.setBounds(89, 288, 170, 32);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				loginButton.setBounds(90, 289, 168, 30);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				loginButton.setBounds(90, 289, 168, 30);
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				loginButton.setBounds(89, 288, 170, 32);
+			}
+		});
 		loginButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		loginButton.setEnabled(false);
 		loginButton.setBorder(new EmptyBorder(0, 0, 0, 0));
 		loginButton.setBounds(90, 289, 168, 30);
 		mainPanel.add(loginButton);
 		loginButton.setBackground(new Color(0, 128, 255));
-		loginButton.setForeground(new Color(0, 0, 0));
+		loginButton.setForeground(Color.gray);
 
 		getRootPane().setDefaultButton(loginButton);
 		loginButton.addActionListener(new ActionListener() {
@@ -315,17 +349,8 @@ public class Welcome extends JFrame {
 		loginButton.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
 
 		JLabel phpayLOGO = new JLabel("");
-		phpayLOGO.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Home home = new Home("admin");
-				home.setVisible(true);
-				dispose();
-				setVisible(false);
-			}
-		});
 		phpayLOGO.setBackground(new Color(0, 0, 0));
-		phpayLOGO.setBounds(339, 104, 488, 135);
+		phpayLOGO.setBounds(339, 116, 488, 135);
 		mainPanel.add(phpayLOGO);
 		phpayLOGO.setIcon(new ImageIcon(Welcome.class.getResource("/PHPay/phpimg/PHPAY-BRAND-LARGE.png")));
 
@@ -343,20 +368,10 @@ public class Welcome extends JFrame {
 		invalidMessage.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
 		invalidMessage.setBackground(new Color(255, 255, 255));
 
-		JButton btnNewButton = new JButton("Auto fill");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				userField.setText("qweqwe");
-				passField.setText("Qwe123123");
-			}
-		});
-		btnNewButton.setBounds(125, 264, 89, 23);
-		mainPanel.add(btnNewButton);
-
 		timeoutLabel = new JLabel("Session timeout");
 		timeoutLabel.setVisible(false);
 		timeoutLabel.setForeground(new Color(255, 0, 0));
-		timeoutLabel.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 12));
+		timeoutLabel.setFont(new Font("Leelawadee UI", Font.PLAIN, 12));
 		timeoutLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		timeoutLabel.setBounds(388, 19, 412, 29);
 		mainPanel.add(timeoutLabel);
