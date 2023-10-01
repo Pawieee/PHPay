@@ -135,6 +135,30 @@ public class Home extends JFrame {
 		panel.setBounds(0, 0, 1464, 754);
 		getContentPane().add(panel);
 		panel.setLayout(null);
+		
+		JLabel lblChangePassword = new JLabel("Change Password");
+		lblChangePassword.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+				ResetPassword reset = new ResetPassword(session);
+				reset.setVisible(true);
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				selectedPane.setBounds(49, 651, 220, 30);
+			}
+		});
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setOrientation(SwingConstants.VERTICAL);
+		separator_1.setBounds(49, 649, 2, 36);
+		panel.add(separator_1);
+		lblChangePassword.setHorizontalAlignment(SwingConstants.LEFT);
+		lblChangePassword.setForeground(Color.WHITE);
+		lblChangePassword.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 14));
+		lblChangePassword.setBounds(61, 650, 115, 30);
+		panel.add(lblChangePassword);
 
 		home = new JLabel("   Home");
 		home.setIcon(new ImageIcon(Home.class.getResource("/PHPay/phpimg/home-.png")));
@@ -310,24 +334,36 @@ public class Home extends JFrame {
 
 				Proceed logout = new Proceed("Logging out");
 				logout.setVisible(true);
-				
 				dispose();
-				
 				inactive.setRepeats(false);
-				Welcome back = new Welcome();
-				back.setVisible(true);
+				
+				Timer time = new Timer(4000, new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+
+						Welcome welcome = new Welcome();
+						welcome.setVisible(true);
+
+						inactive.setRepeats(false);
+
+					}
+				});
+				time.start();
+				time.setRepeats(false);
+				
 			}
 		});
 		btnNewButton.setIcon(new ImageIcon(Home.class.getResource("/PHPay/phpimg/logout.png")));
 		btnNewButton.setBorder(new EmptyBorder(0, 0, 0, 0));
-		btnNewButton.setBounds(28, 701, 46, 30);
+		btnNewButton.setBounds(32, 708, 34, 30);
 		panel.add(btnNewButton);
 
 		JLabel lblLogout = new JLabel("Log Out");
 		lblLogout.setHorizontalAlignment(SwingConstants.LEFT);
 		lblLogout.setForeground(Color.WHITE);
-		lblLogout.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 15));
-		lblLogout.setBounds(84, 697, 70, 36);
+		lblLogout.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 13));
+		lblLogout.setBounds(74, 707, 70, 36);
 		panel.add(lblLogout);
 
 		RoundedPanel profilePane = new RoundedPanel(42);
@@ -461,6 +497,7 @@ public class Home extends JFrame {
 		lblTransfer.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 14));
 		lblTransfer.setBounds(72, 501, 115, 30);
 		panel.add(lblTransfer);
+
 		accountStatus = new RoundedPanel(42);
 		accountStatus.setBounds(81, 95, 10, 10);
 		panel.add(accountStatus);
@@ -480,7 +517,7 @@ public class Home extends JFrame {
 			setDisabled(true);
 		}
 
-		//TIMER TO UPDATE STATUS
+		// TIMER TO UPDATE STATUS
 		Timer status = new Timer(10000, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -494,7 +531,6 @@ public class Home extends JFrame {
 			}
 		});
 		status.start();
-		
 
 		checkStatus(ID);
 
@@ -621,7 +657,7 @@ public class Home extends JFrame {
 		Proceed logout = new Proceed("Disconnecting");
 		logout.setVisible(true);
 
-		Timer inactivityTimer = new Timer(4000, new ActionListener() { //FROM 4000
+		Timer inactivityTimer = new Timer(4000, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();

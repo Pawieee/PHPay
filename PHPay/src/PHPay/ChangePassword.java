@@ -249,6 +249,10 @@ public class ChangePassword extends JFrame {
 								Welcome runFrame = new Welcome();
 								runFrame.setVisible(true);
 								dispose();
+								
+								
+								
+								
 							}
 						});
 						timer.setRepeats(false);
