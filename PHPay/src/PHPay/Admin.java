@@ -584,7 +584,7 @@ public class Admin {
 			double totalAmountDouble = 0.0;
 
 			while (rs.next()) {
-				totalAmountDouble = rs.getDouble("total_amount");
+				totalAmountDouble = (double)Math.round(rs.getDouble("total_amount") * 100) / 100;
 			}
 
 			String totalAmount = Double.toString(totalAmountDouble);
