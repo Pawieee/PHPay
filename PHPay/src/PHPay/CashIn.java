@@ -5,6 +5,8 @@ import java.awt.Dimension;
 
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -23,7 +25,7 @@ public class CashIn extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private double amount;
 	private JLabel receiverID;
-	private JLabel amountLabel;
+	private JLabel amountLabel, amountError;
 	private JLabel totalAmount;
 	private String amountString;
 	private RoundedTextField amountField;
@@ -68,6 +70,37 @@ public class CashIn extends JPanel {
 		amountField.setBounds(47, 153, 376, 47);
 		transfer.add(amountField);
 
+		amountField.getDocument().addDocumentListener(new DocumentListener() {
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				set();
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				set();
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				set();
+			}
+
+			public void set() {
+				amountError.setVisible(false);
+
+			}
+		});
+		
+		amountError = new JLabel("Invalid Amount");
+		amountError.setVisible(false);
+		amountError.setVerticalAlignment(SwingConstants.BOTTOM);
+		amountError.setHorizontalAlignment(SwingConstants.LEFT);
+		amountError.setForeground(Color.RED);
+		amountError.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
+		amountError.setBounds(47, 204, 119, 18);
+		transfer.add(amountError);
+		
 		JLabel lblNewLabel_1_1_1_1_1_1_1 = new JLabel("Amount");
 		lblNewLabel_1_1_1_1_1_1_1.setForeground(Color.WHITE);
 		lblNewLabel_1_1_1_1_1_1_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
@@ -212,19 +245,24 @@ public class CashIn extends JPanel {
 				boolean amountEdited = false;
 
 				amountString = amountField.getText();
-
-				if (isNumeric(amountString)) {
-					amount = Double.parseDouble(amountString);
-					amountEdited = true;
-				} else
-					amountEdited = false;
-
-				if (amountEdited) {
-					setPreview();
-					previewPane.setVisible(true);
-
-				} else
-					System.out.println("failed");
+				
+				if (!amountString.isEmpty()) {
+					if (isNumeric(amountString)) {
+						amount = Double.parseDouble(amountString);
+						if (amount >= 0) {
+							amountEdited = true;
+							amountError.setVisible(false);
+						}
+					} else {
+						amountEdited = false;
+						amountError.setVisible(true);
+					}
+					
+					if (amountEdited) {
+						setPreview();
+						previewPane.setVisible(true);
+					}
+				}
 
 			}
 		});

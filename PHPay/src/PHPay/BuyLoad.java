@@ -16,6 +16,8 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 import javax.swing.plaf.basic.BasicComboBoxUI;
@@ -45,7 +47,7 @@ public class BuyLoad extends JPanel {
 	private double amount;
 	private RoundedPanel previewPane;
 	private JLabel receiverLabel;
-	private JLabel amountLabel;
+	private JLabel amountLabel, amountError, sendError;
 	private JLabel fee;
 	private JLabel totalAmount;
 
@@ -127,40 +129,47 @@ public class BuyLoad extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 				boolean numEdited = false, telcoEdited = false, amountEdited = false;
-
+				
 				number = numField.getText();
 				amountString = amountField.getText();
-				amount = Double.parseDouble(amountString);
 				telco = (String) telcoBox.getSelectedItem();
 				type = (String) numberType.getSelectedItem();
-
-				if (isNumber(number)) {
-					if (number.length() == 10) {
+				
+				if (!number.isEmpty() && !amountString.isEmpty() && !telco.isEmpty() && !type.isEmpty()) {
+					if (isNumber(number)) {
+						if (number.length() == 10) {
 							numEdited = true;
-					} else 
+						} else {
+							numEdited = false;
+							sendError.setVisible(true);
+						}
+					} else {
 						numEdited = false;
-				} else 
-					numEdited = false;
-
-				if (isNumeric(amountString)) {
-					if (amount * 1.03 <= SQLQuery.getBalance(ID)) {
-						amountEdited = true;
+						sendError.setVisible(true);
+					}
+					if (isNumeric(amountString)) {
+						amount = Double.parseDouble(amountString);
+						if (amount * 1.03 <= SQLQuery.getBalance(ID)) {
+							amountEdited = true;
+							amountError.setVisible(false);
+						} else {
+							amountEdited = false;
+							amountError.setVisible(true);
+						}
 					} else {
 						amountEdited = false;
+						amountError.setVisible(true);
 					}
-				} else {
-					amountEdited = false;
-				}
-
-				if (!telco.equals(" ")) {
-					telcoEdited = true;
-				} else {
-					telcoEdited = false;
-				}
-
-				if (numEdited && amountEdited && telcoEdited) {
-					setPreview();
-					previewPane.setVisible(true);
+					if (!telco.equals(" ")) {
+						telcoEdited = true;
+					} else {
+						telcoEdited = false;
+					}
+					
+					if (numEdited && amountEdited && telcoEdited) {
+						setPreview();
+						previewPane.setVisible(true);
+					}
 				}
 			}
 		});
@@ -305,6 +314,11 @@ public class BuyLoad extends JPanel {
 		confirmBox.setBounds(157, 565, 221, 23);
 		previewPane.add(confirmBox);
 		
+		JLabel lblNewLabel_3 = new JLabel("New label");
+		lblNewLabel_3.setIcon(new ImageIcon(BuyLoad.class.getResource("/PHPay/phpimg/PHPAY-BRAND-LARGE.png")));
+		lblNewLabel_3.setBounds(29, 0, 473, 209);
+		previewPane.add(lblNewLabel_3);
+		
 		Timer status = new Timer(1000, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -330,7 +344,73 @@ public class BuyLoad extends JPanel {
 		amountField.setColumns(10);
 		amountField.setBounds(46, 179, 376, 47);
 		transfer.add(amountField);
+		
+		
+		numField.getDocument().addDocumentListener(new DocumentListener() {
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				set();
+			}
 
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				set();
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				set();
+			}
+
+			public void set() {
+				sendError.setVisible(false);
+
+			}
+		});
+		
+		amountField.getDocument().addDocumentListener(new DocumentListener() {
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				set();
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				set();
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				set();
+			}
+
+			public void set() {
+				amountError.setVisible(false);
+
+			}
+		});
+		
+		
+
+		amountError = new JLabel("Error");
+		amountError.setVisible(false);
+		amountError.setVerticalAlignment(SwingConstants.BOTTOM);
+		amountError.setHorizontalAlignment(SwingConstants.LEFT);
+		amountError.setForeground(Color.RED);
+		amountError.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
+		amountError.setBounds(46, 224, 119, 18);
+		transfer.add(amountError);
+		
+		sendError = new JLabel("Invalid number");
+		sendError.setVisible(false);
+		sendError.setVerticalAlignment(SwingConstants.BOTTOM);
+		sendError.setHorizontalAlignment(SwingConstants.LEFT);
+		sendError.setForeground(new Color(255, 0, 0));
+		sendError.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
+		sendError.setBounds(45, 109, 119, 18);
+		transfer.add(sendError);
+		
+		
 		JLabel lblNewLabel_11 = new JLabel("");
 		lblNewLabel_11.setIcon(new ImageIcon(BuyLoad.class.getResource("/PHPay/phpimg/load.png")));
 		lblNewLabel_11.setForeground(Color.WHITE);

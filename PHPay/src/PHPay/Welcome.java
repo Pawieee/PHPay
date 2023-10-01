@@ -343,16 +343,6 @@ public class Welcome extends JFrame {
 		invalidMessage.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
 		invalidMessage.setBackground(new Color(255, 255, 255));
 
-		JButton btnNewButton = new JButton("Auto fill");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				userField.setText("jay123");
-				passField.setText("Qweqwe123");
-			}
-		});
-		btnNewButton.setBounds(125, 264, 89, 23);
-		mainPanel.add(btnNewButton);
-
 		timeoutLabel = new JLabel("Session timeout");
 		timeoutLabel.setVisible(false);
 		timeoutLabel.setForeground(new Color(255, 0, 0));

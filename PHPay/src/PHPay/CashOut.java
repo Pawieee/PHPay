@@ -95,7 +95,7 @@ public class CashOut extends JPanel {
 		lblNewLabel_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 19));
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 
-		JLabel lblNewLabel_1_1_2_1 = new JLabel("Receiver ID:");
+		JLabel lblNewLabel_1_1_2_1 = new JLabel("Outlet:");
 		lblNewLabel_1_1_2_1.setBounds(41, 310, 128, 27);
 		previewPane.add(lblNewLabel_1_1_2_1);
 		lblNewLabel_1_1_2_1.setForeground(Color.LIGHT_GRAY);
@@ -180,6 +180,7 @@ public class CashOut extends JPanel {
 		amountField.setForeground(Color.WHITE);
 		amountField.setFont(new Font("Segoe UI Semibold", Font.BOLD, 15));
 		amountField.setColumns(10);
+		
 		amountField.getDocument().addDocumentListener(new DocumentListener() {
 			@Override
 			public void insertUpdate(DocumentEvent e) {
@@ -201,13 +202,13 @@ public class CashOut extends JPanel {
 
 			}
 		});
-		amountError = new JLabel("ID does not exist");
+		amountError = new JLabel("Invalid Amount");
 		amountError.setVisible(false);
 		amountError.setVerticalAlignment(SwingConstants.BOTTOM);
 		amountError.setHorizontalAlignment(SwingConstants.LEFT);
 		amountError.setForeground(Color.RED);
 		amountError.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
-		amountError.setBounds(46, 239, 119, 18);
+		amountError.setBounds(45, 479, 119, 18);
 		transfer.add(amountError);
 
 		JLabel lblNewLabel_1_1_1_1_1_1 = new JLabel("Over the Counter");
@@ -479,28 +480,35 @@ public class CashOut extends JPanel {
 		RoundedButton nextButton = new RoundedButton("OK");
 		nextButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				choice = (String) getBox.getSelectedItem();
-
-				if (!(choice == null) || !choice.isEmpty()) {
-
+				
+				if (!(getBox == null)) {
+					
+					choice = (String) getBox.getSelectedItem();
 					amountString = amountField.getText();
-
-					boolean amountEdited = false;
-
-					if (isNumeric(amountString)) {
-						amount = Double.parseDouble(amountString);
-						if (amount * 1.03 <= SQLQuery.getBalance(ID)) {
-							amountEdited = true;
+					
+					if (!choice.isEmpty() && !amountString.isEmpty()) {
+						
+						boolean amountEdited = false;
+						
+						if (isNumeric(amountString)) {
+							amount = Double.parseDouble(amountString);
+							if (amount > 0 && amount * 1.03 <= SQLQuery.getBalance(ID)) {
+								amountEdited = true;
+								amountError.setVisible(false);
+							} else {
+								amountEdited = false;
+								amountError.setVisible(true);
+							}
+						} else {
+							amountEdited = false;
+							amountError.setVisible(true);
 						}
-					} else
-						amountEdited = false;
-
-					if (amountEdited) {
-						setPreview(choice);
-						previewPane.setVisible(true);
-
-					} else
-						System.out.println("failed");
+						
+						if (amountEdited) {
+							setPreview(choice);
+							previewPane.setVisible(true);
+						}
+					}
 				}
 
 			}

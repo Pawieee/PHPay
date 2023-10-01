@@ -164,7 +164,7 @@ public class SendMoney extends JPanel {
 		receiverName.setHorizontalAlignment(SwingConstants.CENTER);
 		receiverName.setForeground(Color.WHITE);
 		receiverName.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 19));
-		receiverName.setBounds(165, 181, 206, 27);
+		receiverName.setBounds(157, 195, 206, 27);
 		previewPane.add(receiverName);
 
 		JLabel lblNewLabel_1 = new JLabel("Transaction Details");
@@ -211,26 +211,6 @@ public class SendMoney extends JPanel {
 		previewPane.add(amountLabel);
 		amountLabel.setForeground(Color.LIGHT_GRAY);
 		amountLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-
-		RoundedPanel transfer_2 = new RoundedPanel(35);
-		transfer_2.setBounds(182, 89, 172, 71);
-		previewPane.add(transfer_2);
-		transfer_2.setLayout(null);
-		transfer_2.setBackground(new Color(128, 0, 255, 100));
-
-		JLabel receiverInitials = new JLabel("CJ");
-		receiverInitials.setBounds(26, 0, 110, 71);
-		transfer_2.add(receiverInitials);
-		receiverInitials.setHorizontalAlignment(SwingConstants.CENTER);
-		receiverInitials.setForeground(Color.WHITE);
-		receiverInitials.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 35));
-		receiverInitials.setBackground(Color.WHITE);
-
-		JLabel lblNewLabel_1_4 = new JLabel("You are sending to");
-		lblNewLabel_1_4.setForeground(Color.WHITE);
-		lblNewLabel_1_4.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 19));
-		lblNewLabel_1_4.setBounds(41, 29, 206, 27);
-		previewPane.add(lblNewLabel_1_4);
 
 		JPanel transfer_2_1 = new JPanel();
 		transfer_2_1.setLayout(null);
@@ -295,6 +275,11 @@ public class SendMoney extends JPanel {
 		confirmBox.setBackground(Color.WHITE);
 		confirmBox.setBounds(157, 565, 221, 23);
 		previewPane.add(confirmBox);
+		
+		JLabel lblNewLabel_3 = new JLabel("New label");
+		lblNewLabel_3.setIcon(new ImageIcon(SendMoney.class.getResource("/PHPay/phpimg/PHPAY-BRAND-LARGE.png")));
+		lblNewLabel_3.setBounds(28, 10, 473, 209);
+		previewPane.add(lblNewLabel_3);
 
 		Timer status = new Timer(1000, new ActionListener() {
 			@Override
@@ -337,14 +322,14 @@ public class SendMoney extends JPanel {
 					if (amount * 1.03 <= SQLQuery.getBalance(ID)) {
 						amountEdited = true;
 					}
-				} else
+				} else {
 					amountError.setVisible(true);
 					amountEdited = false;
+				}
 
 				if (idEdited && amountEdited) {
 					setPreview();
 					previewPane.setVisible(true);
-
 				} else
 					System.out.println("failed");
 

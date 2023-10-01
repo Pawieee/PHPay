@@ -57,7 +57,7 @@ public class Home extends JFrame {
 	private JSeparator separator;
 	private RoundedPanel accountStatus;
 	private JLabel statusLabel;
-	private int countdown = 10;
+	private int countdown = 1000;
 	private boolean isCountdownActive = true;
 	static Timer inactive;
 

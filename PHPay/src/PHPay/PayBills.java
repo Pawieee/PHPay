@@ -19,6 +19,8 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.plaf.basic.ComboPopup;
@@ -34,7 +36,7 @@ public class PayBills extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private double amount;
 	private JLabel receiverID;
-	private JLabel amountLabel;
+	private JLabel amountLabel, amountError;
 	private JLabel fee;
 	private JLabel totalAmount;
 	private String amountString;
@@ -494,34 +496,6 @@ public class PayBills extends JPanel {
 		billerLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
 
 		RoundedButton nextButton = new RoundedButton("OK");
-		nextButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				choice = (String) getBox.getSelectedItem();
-
-				if (!(choice == null) || !choice.isEmpty()) {
-
-					amountString = amountField.getText();
-
-					boolean amountEdited = false;
-
-					if (isNumeric(amountString)) {
-						amount = Double.parseDouble(amountString);
-						if (amount * 1.03 <= SQLQuery.getBalance(ID)) {
-							amountEdited = true;
-						}
-					} else
-						amountEdited = false;
-
-					if (amountEdited) {
-						setPreview(choice);
-						previewPane.setVisible(true);
-
-					} else
-						System.out.println("failed");
-				}
-
-			}
-		});
 		nextButton.setText("Next");
 		nextButton.setIconTextGap(1);
 		nextButton.setForeground(UIManager.getColor("ScrollBar.background"));
@@ -569,7 +543,7 @@ public class PayBills extends JPanel {
 
 		receiverID = new JLabel("123123123");
 		receiverID.setHorizontalAlignment(SwingConstants.RIGHT);
-		receiverID.setBounds(362, 390, 128, 27);
+		receiverID.setBounds(252, 390, 238, 27);
 		previewPane.add(receiverID);
 		receiverID.setForeground(Color.LIGHT_GRAY);
 		receiverID.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
@@ -588,6 +562,41 @@ public class PayBills extends JPanel {
 		amountLabel.setForeground(Color.LIGHT_GRAY);
 		amountLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
 
+		nextButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if (!(getBox == null)) {
+					choice = (String) getBox.getSelectedItem();
+					amountString = amountField.getText();
+					
+					if (!choice.isEmpty() && !amountString.isEmpty()) {
+						
+						boolean amountEdited = false;
+						
+						if (isNumeric(amountString)) {
+							amount = Double.parseDouble(amountString);
+							if (amount > 0 && amount * 1.03 <= SQLQuery.getBalance(ID)) {
+								amountEdited = true;
+								amountError.setVisible(false);
+							} else {
+								amountEdited = false;
+								amountError.setVisible(true);
+							}
+						} else {
+							amountError.setVisible(true);
+							amountEdited = false;
+						}
+						
+						if (amountEdited) {
+							setPreview(choice);
+							previewPane.setVisible(true);
+						}
+					}
+				}
+
+			}
+		});
+		
 		RoundedButton electricityButton = new RoundedButton("");
 		electricityButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -635,6 +644,36 @@ public class PayBills extends JPanel {
 		amountField.setForeground(Color.WHITE);
 		amountField.setFont(new Font("Segoe UI Semibold", Font.BOLD, 15));
 		amountField.setColumns(10);
+		
+		amountField.getDocument().addDocumentListener(new DocumentListener() {
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				set();
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				set();
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				set();
+			}
+
+			public void set() {
+				amountError.setVisible(false);
+
+			}
+		});
+		amountError = new JLabel("Invalid Amount");
+		amountError.setVisible(false);
+		amountError.setVerticalAlignment(SwingConstants.BOTTOM);
+		amountError.setHorizontalAlignment(SwingConstants.LEFT);
+		amountError.setForeground(Color.RED);
+		amountError.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
+		amountError.setBounds(45, 479, 119, 18);
+		transfer.add(amountError);
 
 		JPanel transfer_2_1 = new JPanel();
 		transfer_2_1.setLayout(null);
@@ -688,6 +727,11 @@ public class PayBills extends JPanel {
 		confirmButton.setAlignmentY(0.0f);
 		confirmButton.setBounds(202, 654, 130, 34);
 		previewPane.add(confirmButton);
+		
+		JLabel lblNewLabel_3 = new JLabel("New label");
+		lblNewLabel_3.setIcon(new ImageIcon(PayBills.class.getResource("/PHPay/phpimg/PHPAY-BRAND-LARGE.png")));
+		lblNewLabel_3.setBounds(30, 70, 473, 209);
+		previewPane.add(lblNewLabel_3);
 
 		confirmBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
