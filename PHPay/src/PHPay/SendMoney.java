@@ -330,8 +330,7 @@ public class SendMoney extends JPanel {
 				if (idEdited && amountEdited) {
 					setPreview();
 					previewPane.setVisible(true);
-				} else
-					System.out.println("failed");
+				}
 
 			}
 		});
