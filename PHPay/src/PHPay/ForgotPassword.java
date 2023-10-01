@@ -187,11 +187,20 @@ public class ForgotPassword extends JFrame {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				next.setForeground(new Color(255, 255, 255));
+				next.setBounds(191, 274, 132, 36);
 			}
-
 			@Override
 			public void mouseExited(MouseEvent e) {
 				next.setForeground(new Color(150, 150, 150));
+				next.setBounds(192, 275, 130, 34);
+			}
+			public void mousePressed(MouseEvent e) {
+				next.setForeground(new Color(255, 255, 255));
+				next.setBounds(192, 275, 130, 34);
+			}
+			public void mouseReleased(MouseEvent e) {
+				next.setBounds(191, 274, 132, 36);
+				next.setForeground(new Color(255, 255, 255));
 			}
 		});
 		next.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

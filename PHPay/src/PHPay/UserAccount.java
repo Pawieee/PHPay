@@ -79,12 +79,6 @@ public class UserAccount extends JFrame {
 		panel.add(hidePane);
 		hidePane.setLayout(null);
 
-		RoundedPanel signupPane = new RoundedPanel(20);
-		signupPane.setBounds(492, 0, 333, 512);
-		panel.add(signupPane);
-		signupPane.setBackground(new Color(64, 0, 128, 120));
-		signupPane.setLayout(null);
-
 		JLabel lblUsername_1_1 = new JLabel("Account Information");
 		lblUsername_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUsername_1_1.setForeground(new Color(255, 255, 255));
@@ -123,6 +117,12 @@ public class UserAccount extends JFrame {
 		rndchckbxIHaveSaved.setBackground(Color.WHITE);
 		rndchckbxIHaveSaved.setBounds(159, 405, 185, 23);
 		hidePane.add(rndchckbxIHaveSaved);
+
+		RoundedPanel signupPane = new RoundedPanel(20);
+		signupPane.setBounds(492, 0, 333, 512);
+		panel.add(signupPane);
+		signupPane.setBackground(new Color(64, 0, 128, 120));
+		signupPane.setLayout(null);
 
 		RoundedButton confirmButton = new RoundedButton("10");
 		confirmButton.setEnabled(false);
@@ -359,6 +359,27 @@ public class UserAccount extends JFrame {
 		panel.add(lblAnd);
 
 		RoundedButton nextButton = new RoundedButton("10");
+		nextButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				nextButton.setBounds(179, 439, 132, 36);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				nextButton.setBounds(180, 440, 130, 34);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				nextButton.setBounds(180, 440, 130, 34);
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				nextButton.setBounds(179, 439, 132, 36);
+			}
+		});
 		nextButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 

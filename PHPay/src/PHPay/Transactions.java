@@ -248,10 +248,6 @@ public class Transactions extends JPanel {
 
 		lblWithdraw.setForeground(new Color(255, 255, 255));
 		lblWithdraw.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-
-		JSeparator separator = new JSeparator();
-		separator.setBounds(31, 132, 31, 4);
-		add(separator);
 		
 		resizeTableColumnsToDefault();
 	}
