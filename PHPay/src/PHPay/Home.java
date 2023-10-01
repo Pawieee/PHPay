@@ -533,8 +533,15 @@ public class Home extends JFrame {
 			if (rs.next()) {
 				double doubleBalance = rs.getDouble("balance");
 
-				String formattedBalance = addCommaSeparator(String.format("%.2f", doubleBalance));
-				balance.setText(formattedBalance);
+	            String formattedBalance;
+	            
+	            if (doubleBalance == 0.0) {
+	                formattedBalance = "0.0";
+	            } else {
+	                formattedBalance = addCommaSeparator(String.format("%.2f", doubleBalance));
+	            }
+	            
+	            balance.setText("₱ " +formattedBalance);
 
 			}
 		} catch (SQLException ex) {
