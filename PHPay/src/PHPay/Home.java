@@ -621,7 +621,7 @@ public class Home extends JFrame {
 		Proceed logout = new Proceed("Disconnecting");
 		logout.setVisible(true);
 
-		Timer inactivityTimer = new Timer(4000, new ActionListener() {
+		Timer inactivityTimer = new Timer(4000, new ActionListener() { //FROM 4000
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();

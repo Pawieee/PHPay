@@ -153,7 +153,7 @@ public class HelpPanel extends JPanel {
 		home_list.setBounds(10, 52, 743, 280);
 		home_list.setModel(new AbstractListModel() {
 			private static final long serialVersionUID = 1L;
-			String[] values = new String[] { "How do I change my password?", "",
+			String[] values = new String[] {
 					"How do I add money to my PHPAY account from my bank?", "",
 					"I forgot my password. How do I reset it?" };
 
@@ -216,7 +216,7 @@ public class HelpPanel extends JPanel {
 		pandt_list.setModel(new AbstractListModel() {
 			private static final long serialVersionUID = 1L;
 			String[] values = new String[] { "Can I cancel a withdrawal from my PHPAY account?", "",
-					"How do I issue a refund?", "", "How do I add money to my PHPAY account from my bank?", "",
+					"", "How do I add money to my PHPAY account from my bank?", "",
 					"What‘s the maximum amount I can send with my PHPAY account?", "",
 					"How do I receive money through PHPAY?", "", "What are the fees for PHPAY accounts?" };
 
@@ -255,8 +255,8 @@ public class HelpPanel extends JPanel {
 		ma_list = new JList();
 		ma_list.setModel(new AbstractListModel() {
 			private static final long serialVersionUID = 1L;
-			String[] values = new String[] { "How do I view my account information?", "",
-					"How do I check the status of my payment?" };
+			String[] values = new String[] { "How do I view my account information?",
+					"How do I check the status of my payment?", "Why can't I access the wallet features like 'Cash-in', 'Pay Bills', etc?", "Why is my account on-hold?", "What do I do if my account is on-hold?" };
 
 			public int getSize() {
 				return values.length;
@@ -276,10 +276,13 @@ public class HelpPanel extends JPanel {
 					showma1();
 				} else if (ma_list.getSelectedValue().equals("How do I check the status of my payment?")) {
 					showma2();
-				} else if (ma_list.getSelectedValue().equals("How do I verify my PHPAY account?")) {
+				} else if (ma_list.getSelectedValue().equals("Why can't I access the wallet features like 'Cash-in', 'Pay Bills', etc?")) {
+					showh5();
+				} else if (ma_list.getSelectedValue().equals("Why is my account on-hold?")) {
 					showma3();
-				} else if (ma_list.getSelectedValue().equals("Does PHPAY cover my purchase if there's a problem?")) {
+				} else if (ma_list.getSelectedValue().equals("What do I do if my account is on-hold?")) {
 					showma4();
+					
 				}
 			}
 		});
@@ -407,17 +410,17 @@ public class HelpPanel extends JPanel {
 		home4t.setVisible(false);
 		main_panel.add(home4t);
 		home5l = new JLabel(
-				"<html><p style='font-size: 15px;'>How can I release my payment(s) on hold?\r\n</p></html>");
+				"<html><p style='font-size: 15px;'>Why can't I access the wallet features like 'Cash-in', 'Pay Bills', etc?\r\n</p></html>");
 		home5l.setForeground(Color.BLACK);
 		home5l.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 22));
-		home5l.setBounds(10, 11, 462, 30);
+		home5l.setBounds(10, 11, 462, 74);
 		home5l.setVisible(false);
 		main_panel.add(home5l);
 		home5t = new JLabel(
-				"<html>\r\n<p style='font-size: 9px;'><br>\r\nLog in to your account to see if you can help release your payments on hold. If you don’t have this option, we’ll hold your payment for up to 21 days.<br><br>\r\n\r\nYou may be able to release eligible payments by following one of the below steps:<br><br>\r\n\r\n1. Add Tracking: Use one of our approved shipping carriers, and we’ll release the hold approximately 24 hours after the courier confirms delivery to the buyer’s address.<br>\r\n2. Update the order status if the held payment is for a service or intangible item (e.g., piano lessons, e-book). We'll release the hold 7 days after you confirm the order status as Completed.<br><br>\r\n\r\nIn rare cases, after these steps are completed, we may need to hold the payment for up to 21 days. For example, this can happen if we notice an unusual change in your selling patterns.<br><br>\r\n\r\nTo add tracking information or update an order status:<br><br>\r\n\r\n1. Go to your Activity.<br>\r\n2. Find the purchase you want to update and click Get your money. If you sold a product, choose “Product” to add tracking information or print a shipping label. If you sold an intangible item or service, choose “Service or virtual product” to update the order status. You can update the order status to Completed, Pending, or Canceled.<br>\r\n3. Click Submit.<br>\r\n</p>\r\n</html>");
+				"<html>\r\n<p style='font-size: 9px;'><br>\r\n If you can't access the wallet features, then you're account must've been put on hold by one of our admins.<br>\r\n</p>\r\n</html>");
 		home5t.setForeground(Color.BLACK);
 		home5t.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
-		home5t.setBounds(10, 11, 865, 378);
+		home5t.setBounds(10, 11, 865, 160);
 		home5t.setVisible(false);
 		main_panel.add(home5t);
 		home6l = new JLabel(
@@ -443,7 +446,7 @@ public class HelpPanel extends JPanel {
 		home7l.setVisible(false);
 		main_panel.add(home7l);
 		home7t = new JLabel(
-				"<html>\r\n<p style='font-size: 10px;'>\r\nHow do I add money to my PHPAY account from my bank?<br><br>\r\n\r\nAdding money to a PHPAY account from a bank account may not be available in some countries.<br><br>\r\n\r\nHere’s how to add money to your PHPAY account from a bank account using your computer:<br><br>\r\n\r\n1. Go to your Wallet.<br>\r\n2. Click Transfer Money.<br>\r\n3. Click Add money to your balance.<br>\r\n4. Follow the instructions.\r\n</p>\r\n</html>\r\n");
+				"<html>\r\n<p style='font-size: 10px;'>\r\nHow do I add money to my PHPAY account from my bank?<br><br>\r\n\r\nAdding money to a PHPAY account from a bank account may not be available in some countries.<br><br>\r\n\r\nHere’s how to add money to your PHPAY account from a bank account using your computer:<br><br>\r\n\r\n1. Go to your Wallet.<br>\r\n2. Click Cash In.<br>\r\n3. Enter desired cash to add your PHPay wallet.<br>\r\n4. Confirm the details.\r\n</p>\r\n</html>\r\n");
 		home7t.setVerticalAlignment(SwingConstants.TOP);
 		home7t.setForeground(Color.BLACK);
 		home7t.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
@@ -458,7 +461,7 @@ public class HelpPanel extends JPanel {
 		home8l.setVisible(false);
 		main_panel.add(home8l);
 		home8t = new JLabel(
-				"<html>\r\n<p style='font-size: 10px;'>\r\nTo reset your password on the web:<br><br>\r\n1. Go to our login.<br>\r\n2. Click Forgot password?<br>\r\n3. Enter the email address you use for PHPAY and click Next.<br>\r\n4. Choose how you want to complete our security check and click Next.<br>\r\n5. Once you complete the security check, we’ll ask you to create a new password.<br><br>\r\n\r\nTo reset your password on the app:<br><br>\r\n\r\n1. Tap Forgot password?<br>\r\n2. Enter the email address you use for PHPAY and tap Next.<br>\r\n3. Choose how you want to complete our security check and tap Next.<br>\r\n4. Once you complete the security check, we’ll ask you to create a new password.\r\n</p>\r\n</html>\r\n");
+				"<html>\r\n<p style='font-size: 10px;'>\r\nTo reset your password:<br><br>\r\n1. Go to login page.<br>\r\n2. Click Forgot password?<br>\r\n3. Enter the username you use for PHPAY and click Next.<br>\r\n4. Enter your unique passkey.<br>\r\n5. Create a new password that matches the given requirements.<br><br>\r\n</p>\r\n</html>\r\n");
 		home8t.setVerticalAlignment(SwingConstants.TOP);
 		home8t.setForeground(Color.BLACK);
 		home8t.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
@@ -551,14 +554,14 @@ public class HelpPanel extends JPanel {
 		ma2t.setBounds(10, 52, 865, 337);
 		ma2t.setVisible(false);
 		main_panel.add(ma2t);
-		ma3l = new JLabel("<html><p style='font-size: 15px;'>How do I verify my PHPAY account?</p></html>");
+		ma3l = new JLabel("<html><p style='font-size: 15px;'>Why is my account on-hold?</p></html>");
 		ma3l.setForeground(Color.BLACK);
 		ma3l.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 22));
 		ma3l.setBounds(10, 11, 540, 30);
 		ma3l.setVisible(false);
 		main_panel.add(ma3l);
 		ma3t = new JLabel(
-				"<html>\r\n  <p style='font-size: 10px;'>\r\n    We only ask you for essential information when you sign up to PHPAY but as you transact with us, we're under a legal obligation to know more about you. When you verify your account, you're proving that you own the financial details added to your account.\r\n    <br><br>\r\n    To get verified, go to your account to add and confirm your bank account or, if you prefer, add and confirm your debit or credit card.\r\n  </p>\r\n</html>\r\n");
+				"<html>\r\n  <p style='font-size: 10px;'>\r\n If you're account can't access any transaction, then you're account is on-hold. This means that your account is flagged for suspicious transactions.\r\n<br><br>\r\n\r\n  </p>\r\n</html>\r\n");
 		ma3t.setVerticalAlignment(SwingConstants.TOP);
 		ma3t.setForeground(Color.BLACK);
 		ma3t.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
@@ -566,14 +569,14 @@ public class HelpPanel extends JPanel {
 		ma3t.setVisible(false);
 		main_panel.add(ma3t);
 		ma4l = new JLabel(
-				"<html><p style='font-size: 15px;'>Does PHPAY cover my purchase if there's a problem?</p></html>");
+				"<html><p style='font-size: 15px;'>What do I do if my account is on-hold?</p></html>");
 		ma4l.setForeground(Color.BLACK);
 		ma4l.setFont(new Font("Leelawadee UI Semilight", Font.BOLD, 22));
 		ma4l.setBounds(10, 11, 611, 30);
 		ma4l.setVisible(false);
 		main_panel.add(ma4l);
 		ma4t = new JLabel(
-				"<html>\r\n  <p style='font-size: 10px;'>\r\n    Our Purchase Protection covers all eligible PHPAY transactions. \r\n    <br><br>\r\n    To avail of our Purchase Protection, we require that your PHPAY account is kept in good standing and that you open a dispute within 180 days of payment. \r\n    <br><br>\r\n    Go to your Resolution Center and click Report a Problem.\r\n    <br><br>\r\n    In a dispute, you can exchange messages with the other party in your Resolution Center to try to solve the problem.\r\n    <br><br>\r\n    If you’re unable to settle the dispute, you can escalate it to a claim. To escalate a dispute, we often require that at least 7 days have passed since the payment date.\r\n    <br><br>\r\n    By escalating a dispute to a claim, you’re asking PHPAY to investigate and decide the outcome. A dispute will automatically close after 20 days unless it’s been escalated. Closed disputes cannot be reopened or escalated to a claim.\r\n    <br><br>\r\n    We’ll review the case and decide if you're eligible for a refund. If we decide the claim in your favor, we’ll reimburse you for the full purchase price and original shipping costs.    \r\n    <br><br>\r\n    Some items aren’t eligible for our Purchase Protection and include but aren't limited to:\r\n    <br>\r\n    - Motor vehicles \r\n    - Industrial machinery \r\n    - Real estate \r\n    - Prepaid cards \r\n    - Items that violate our policies\r\n    - Friends and Family payments\r\n  </p>\r\n</html>\r\n");
+				"<html>\r\n  <p style='font-size: 10px;'>\r\n If you're account is on-hold, you can go to the 'Create a Ticket' tab and create a ticket to appeal for you account.\r\n    <br><br>\r\n\r\n  Once sent, our team will look into it and assess whether your appeal justifies your actions or not.  <br><br>\r\n  </p>\r\n</html>\r\n");
 		ma4t.setVerticalAlignment(SwingConstants.TOP);
 		ma4t.setForeground(Color.BLACK);
 		ma4t.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 22));
