@@ -38,7 +38,6 @@ import javax.swing.JSeparator;
 public class Home extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private int x, y;
-	private ServicePanel servicePanel;
 	private Transactions summaryPanel;
 	private HomePanel homePanel;
 	private HelpPanel helpPanel;
@@ -63,6 +62,7 @@ public class Home extends JFrame {
 	private int countdown = 10;
 	private boolean isCountdownActive = true;
 	static Timer inactive;
+	private JPanel selectedPane;
 
 	public static String addCommaSeparator(String value) {
 		DecimalFormat formatter = new DecimalFormat("#,###.0");
@@ -139,6 +139,32 @@ public class Home extends JFrame {
 		getContentPane().add(panel);
 		panel.setLayout(null);
 
+		home = new JLabel("   Home");
+		home.setIcon(new ImageIcon(Home.class.getResource("/PHPay/phpimg/home-.png")));
+		home.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 15));
+		home.setBounds(28, 238, 115, 50);
+		panel.add(home);
+		home.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				titleClicked(homePanel);
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				selectedPane.setBounds(0, 238, 266, 50);
+			}
+		});
+		home.setHorizontalAlignment(SwingConstants.LEFT);
+		home.setForeground(new Color(255, 255, 255));
+
+		statusLabel = new JLabel("Active");
+		statusLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		statusLabel.setForeground(Color.WHITE);
+		statusLabel.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 11));
+		statusLabel.setBounds(96, 81, 166, 36);
+		panel.add(statusLabel);
+
 		JLabel time = new JLabel("");
 		time.setHorizontalAlignment(SwingConstants.RIGHT);
 		time.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 13));
@@ -191,7 +217,6 @@ public class Home extends JFrame {
 		panel.add(panelArea);
 		panelArea.setLayout(null);
 
-		servicePanel = new ServicePanel(session);
 		summaryPanel = new Transactions(session);
 		helpPanel = new HelpPanel(session);
 		homePanel = new HomePanel();
@@ -201,7 +226,6 @@ public class Home extends JFrame {
 		cashIn = new CashIn(session);
 		cashOut = new CashOut(session);
 
-		servicePanel.setVisible(false);
 		summaryPanel.setVisible(false);
 		helpPanel.setVisible(false);
 		sendMoney.setVisible(false);
@@ -211,7 +235,6 @@ public class Home extends JFrame {
 		cashOut.setVisible(false);
 
 		panelArea.add(homePanel);
-		panelArea.add(servicePanel);
 		panelArea.add(summaryPanel);
 		panelArea.add(helpPanel);
 		panelArea.add(sendMoney);
@@ -221,32 +244,19 @@ public class Home extends JFrame {
 		panelArea.add(cashOut);
 
 		wallet = new JLabel("   Wallet");
+		wallet.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				selectedPane.setBounds(1, 303, 266, 50);
+
+			}
+		});
 		wallet.setIcon(new ImageIcon(Home.class.getResource("/PHPay/phpimg/wallet-.png")));
 		wallet.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 15));
 		wallet.setBounds(28, 302, 115, 50);
 		panel.add(wallet);
-		wallet.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				titleClicked(servicePanel);
-			}
-		});
 		wallet.setHorizontalAlignment(SwingConstants.LEFT);
 		wallet.setForeground(new Color(255, 255, 255));
-
-		home = new JLabel("   Home");
-		home.setIcon(new ImageIcon(Home.class.getResource("/PHPay/phpimg/home-.png")));
-		home.setFont(new Font("Leelawadee UI Semilight", Font.PLAIN, 15));
-		home.setBounds(28, 238, 115, 50);
-		panel.add(home);
-		home.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				titleClicked(homePanel);
-			}
-		});
-		home.setHorizontalAlignment(SwingConstants.LEFT);
-		home.setForeground(new Color(255, 255, 255));
 
 		help = new JLabel("   Help");
 		help.setIcon(new ImageIcon(Home.class.getResource("/PHPay/phpimg/help-.png")));
@@ -257,6 +267,10 @@ public class Home extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				titleClicked(helpPanel);
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				selectedPane.setBounds(1, 602, 266, 50);
 			}
 		});
 		help.setHorizontalAlignment(SwingConstants.LEFT);
@@ -273,6 +287,10 @@ public class Home extends JFrame {
 				titleClicked(summaryPanel);
 			}
 
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				selectedPane.setBounds(1, 541, 266, 50);
+			}
 		});
 		activity.setHorizontalAlignment(SwingConstants.LEFT);
 		activity.setForeground(new Color(255, 255, 255));
@@ -292,7 +310,7 @@ public class Home extends JFrame {
 		RoundedButton btnNewButton = new RoundedButton("");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				Proceed logout = new Proceed("Logging out");
 				dispose();
 				inactive.setRepeats(false);
@@ -353,6 +371,11 @@ public class Home extends JFrame {
 				if (!SQLQuery.getStatus(ID) == false)
 					titleClicked(sendMoney);
 			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				selectedPane.setBounds(49, 352, 220, 30);
+			}
 		});
 		lblSendMoney.setHorizontalAlignment(SwingConstants.LEFT);
 		lblSendMoney.setForeground(Color.WHITE);
@@ -366,6 +389,11 @@ public class Home extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				if (!SQLQuery.getStatus(ID) == false)
 					titleClicked(buyLoad);
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				selectedPane.setBounds(49, 389, 220, 30);
 			}
 		});
 		lblBuyLoad.setHorizontalAlignment(SwingConstants.LEFT);
@@ -381,6 +409,11 @@ public class Home extends JFrame {
 				if (!SQLQuery.getStatus(ID) == false)
 					titleClicked(payBills);
 			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				selectedPane.setBounds(49, 427, 220, 30);
+			}
 		});
 		lblPayBills.setHorizontalAlignment(SwingConstants.LEFT);
 		lblPayBills.setForeground(Color.WHITE);
@@ -394,6 +427,11 @@ public class Home extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				if (!SQLQuery.getStatus(ID) == false)
 					titleClicked(cashIn);
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				selectedPane.setBounds(49, 466, 220, 30);
 			}
 		});
 		lblCashIn.setHorizontalAlignment(SwingConstants.LEFT);
@@ -410,6 +448,11 @@ public class Home extends JFrame {
 					titleClicked(cashOut);
 
 			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				selectedPane.setBounds(49, 501, 220, 30);
+			}
 		});
 		lblTransfer.setHorizontalAlignment(SwingConstants.LEFT);
 		lblTransfer.setForeground(Color.WHITE);
@@ -425,12 +468,10 @@ public class Home extends JFrame {
 		accountStatus.setBorder(new EmptyBorder(0, 0, 0, 0));
 		accountStatus.setBackground(new Color(255, 255, 255));
 
-		statusLabel = new JLabel("Active");
-		statusLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		statusLabel.setForeground(Color.WHITE);
-		statusLabel.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 11));
-		statusLabel.setBounds(96, 81, 166, 36);
-		panel.add(statusLabel);
+		selectedPane = new JPanel();
+		selectedPane.setBackground(new Color(89, 0, 179));
+		selectedPane.setBounds(0, 238, 266, 50);
+		panel.add(selectedPane);
 
 		// AUTOMATICALLY SET STATUS AT LOG-IN
 		if (SQLQuery.getStatus(ID) == false) {
@@ -520,7 +561,6 @@ public class Home extends JFrame {
 
 	private void titleClicked(JPanel selectedPanel) {
 		homePanel.setVisible(false);
-		servicePanel.setVisible(false);
 		summaryPanel.setVisible(false);
 		helpPanel.setVisible(false);
 		sendMoney.setVisible(false);
@@ -591,9 +631,9 @@ public class Home extends JFrame {
 
 		isCountdownActive = false;
 	}
-	
-	 public void stopInactiveTimer() {
-	        	inactive.stop();
-	        	inactive.setRepeats(false);
-	 }
+
+	public void stopInactiveTimer() {
+		inactive.stop();
+		inactive.setRepeats(false);
+	}
 }

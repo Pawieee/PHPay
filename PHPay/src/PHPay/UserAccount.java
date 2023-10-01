@@ -79,6 +79,12 @@ public class UserAccount extends JFrame {
 		panel.add(hidePane);
 		hidePane.setLayout(null);
 
+		RoundedPanel signupPane = new RoundedPanel(20);
+		signupPane.setBounds(492, 0, 333, 512);
+		panel.add(signupPane);
+		signupPane.setBackground(new Color(64, 0, 128, 120));
+		signupPane.setLayout(null);
+
 		JLabel lblUsername_1_1 = new JLabel("Account Information");
 		lblUsername_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUsername_1_1.setForeground(new Color(255, 255, 255));
@@ -117,7 +123,58 @@ public class UserAccount extends JFrame {
 		rndchckbxIHaveSaved.setBackground(Color.WHITE);
 		rndchckbxIHaveSaved.setBounds(159, 405, 185, 23);
 		hidePane.add(rndchckbxIHaveSaved);
-		
+
+		RoundedButton confirmButton = new RoundedButton("10");
+		confirmButton.setEnabled(false);
+		confirmButton.setBounds(93, 446, 130, 34);
+		signupPane.add(confirmButton);
+		confirmButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		confirmButton.setAlignmentY(0.0f);
+		confirmButton.setIconTextGap(1);
+		confirmButton.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
+		confirmButton.setText("Confirm");
+		confirmButton.setVisible(false);
+		confirmButton.setForeground(new Color(150, 150, 150));
+		confirmButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Proceed successful = new Proceed("Account successfully created");
+				successful.setVisible(true);
+
+				Timer timer = new Timer(4000, new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+						Welcome runFrame = new Welcome();
+						runFrame.setVisible(true);
+					}
+				});
+				timer.setRepeats(false);
+				timer.start();
+			}
+
+		});
+
+		confirmButton.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				confirmButton.setForeground(new Color(255, 255, 255));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				confirmButton.setForeground(new Color(150, 150, 150));
+			}
+		});
+
+		rndchckbxIHaveSaved.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (rndchckbxIHaveSaved.isSelected())
+					confirmButton.setEnabled(true);
+				else
+					confirmButton.setEnabled(false);
+			}
+		});
 
 		JLabel lblPrivacyPolicy = new JLabel("Privacy Policy");
 		lblPrivacyPolicy.setHorizontalAlignment(SwingConstants.LEFT);
@@ -185,12 +242,6 @@ public class UserAccount extends JFrame {
 			}
 		});
 
-		RoundedPanel signupPane = new RoundedPanel(20);
-		signupPane.setBounds(492, 0, 333, 512);
-		panel.add(signupPane);
-		signupPane.setBackground(new Color(64, 0, 128, 120));
-		signupPane.setLayout(null);
-
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setIcon(new ImageIcon(UserAccount.class.getResource("/PHPay/phpimg/secured.png")));
@@ -218,58 +269,6 @@ public class UserAccount extends JFrame {
 		signupPane.add(signupPane_1);
 
 		RandomIdGenerator generator = new RandomIdGenerator();
-		RoundedButton confirmButton = new RoundedButton("10");
-		confirmButton.setEnabled(false);
-		confirmButton.setBounds(93, 446, 130, 34);
-		signupPane.add(confirmButton);
-		confirmButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		confirmButton.setAlignmentY(0.0f);
-		confirmButton.setIconTextGap(1);
-		confirmButton.setFont(new Font("Segoe UI Semibold", Font.BOLD, 16));
-		confirmButton.setText("Confirm");
-		confirmButton.setVisible(false);
-		confirmButton.setForeground(new Color(150, 150, 150));
-		confirmButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Proceed successful = new Proceed("Account successfully created");
-				successful.setVisible(true);
-
-				Timer timer = new Timer(4000, new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						dispose();
-						Welcome runFrame = new Welcome();
-						runFrame.setVisible(true);
-					}
-				});
-				timer.setRepeats(false);
-				timer.start();
-			}
-
-		});
-		
-		rndchckbxIHaveSaved.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (rndchckbxIHaveSaved.isSelected()) 
-					confirmButton.setEnabled(true); 
-				else
-					confirmButton.setEnabled(false);
-			}
-		});
-		
-		
-		confirmButton.addMouseListener(new MouseAdapter() {
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				confirmButton.setForeground(new Color(255, 255, 255));
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				confirmButton.setForeground(new Color(150, 150, 150));
-			}
-		});
 
 		JPanel titleBar = new JPanel();
 		titleBar.setBackground(new Color(255, 255, 255, 0));
@@ -414,10 +413,15 @@ public class UserAccount extends JFrame {
 					UserData newAccount = new UserData(ID, user, pass, hashedPasskey, 0, account);
 
 					if (newAccount.accountExist() == true) {
-						System.out.println("Duplicate username");
+						userLabel.setToolTipText("Username already exists");
+						userLabel.setVisible(true);
 					} else if (!pass.equals(confirmPass)) {
-						System.out.println("Password should match");
+						confirmPassLabel.setToolTipText("Passwords doesn't match");
+						confirmPassLabel.setVisible(true);
 					} else {
+						confirmPassLabel.setVisible(false);
+						userLabel.setVisible(false);
+						passLabel.setVisible(false);
 
 						newAccount.saveAccount();
 						hidePane.setVisible(true);
@@ -428,14 +432,14 @@ public class UserAccount extends JFrame {
 						lblUsername_1_6.setHorizontalAlignment(SwingConstants.CENTER);
 						lblUsername_1_6.setForeground(new Color(255, 255, 255));
 						lblUsername_1_6.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 17));
-						
+
 						confirmButton.setVisible(true);
 					}
 
 				}
 			}
 		});
-		
+
 		nextButton.setBounds(180, 440, 130, 34);
 		panel.add(nextButton);
 		nextButton.setText("Next");
@@ -701,10 +705,11 @@ public class UserAccount extends JFrame {
 			return false;
 		}
 	}
-	
-	public  void setPasskey(String passkey) {
+
+	public void setPasskey(String passkey) {
 		UserAccount.passkeyf = passkey;
 	}
+
 	public String getPasskey() {
 		return UserAccount.passkeyf;
 	}

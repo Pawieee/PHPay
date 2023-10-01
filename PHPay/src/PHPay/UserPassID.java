@@ -157,14 +157,12 @@ public class UserPassID extends JFrame {
 							double balance = 0;
 
 							String passkey = RandomID.generatePassKey();
-							System.out.println(passkey);
 
 							String hashedPassKey = AccountVerify.passkey(passkey);
 
 							UserData newAccount = new UserData(saveID, saveUser, savePass, hashedPassKey, balance,
 									account);
 							if (newAccount.accountExist() == true) {
-								System.out.println("Duplicate username");
 								System.exit(0);
 							}
 							newAccount.saveAccount();
