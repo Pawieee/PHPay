@@ -102,6 +102,27 @@ public class SignUp extends JFrame {
 		getContentPane().add(panel);
 		panel.setLayout(null);
 
+		yearLabel = new JLabel("");
+		yearLabel.setBounds(727, 189, 20, 20);
+		panel.add(yearLabel);
+		yearLabel.setVisible(false);
+		yearLabel.setIcon(new ImageIcon(SignUp.class.getResource("/PHPay/phpimg/warning.png")));
+		yearLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
+
+		phoneStatusLabel = new JLabel("");
+		phoneStatusLabel.setBounds(727, 261, 20, 20);
+		panel.add(phoneStatusLabel);
+		phoneStatusLabel.setVisible(false);
+		phoneStatusLabel.setIcon(new ImageIcon(SignUp.class.getResource("/PHPay/phpimg/warning.png")));
+		phoneStatusLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
+
+		emailStatusLabel = new JLabel("");
+		emailStatusLabel.setBounds(726, 399, 20, 20);
+		panel.add(emailStatusLabel);
+		emailStatusLabel.setVisible(false);
+		emailStatusLabel.setIcon(new ImageIcon(SignUp.class.getResource("/PHPay/phpimg/warning.png")));
+		emailStatusLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
+
 		dayLabel = new JLabel("");
 		dayLabel.setBounds(590, 189, 20, 20);
 		panel.add(dayLabel);
@@ -115,13 +136,6 @@ public class SignUp extends JFrame {
 		addressStatusLabel.setVisible(false);
 		addressStatusLabel.setIcon(new ImageIcon(SignUp.class.getResource("/PHPay/phpimg/warning.png")));
 		addressStatusLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
-
-		yearLabel = new JLabel("");
-		yearLabel.setBounds(727, 189, 20, 20);
-		panel.add(yearLabel);
-		yearLabel.setVisible(false);
-		yearLabel.setIcon(new ImageIcon(SignUp.class.getResource("/PHPay/phpimg/warning.png")));
-		yearLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
 
 		monthLabel = new JLabel("");
 		monthLabel.setBounds(489, 189, 20, 20);
@@ -275,12 +289,32 @@ public class SignUp extends JFrame {
 		emailField.setForeground(new Color(255, 255, 255));
 
 		RoundedButton nextButton = new RoundedButton("");
+		nextButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				nextButton.setBounds(664, 453, 94, 32);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				nextButton.setBounds(665, 454, 92, 30);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				nextButton.setBounds(665, 454, 92, 30);
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				nextButton.setBounds(664, 453, 94, 32);
+			}
+		});
 		nextButton.setBounds(665, 454, 92, 30);
 		panel.add(nextButton);
-		nextButton.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 18));
+		nextButton.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
 		nextButton.setText("Next");
 		nextButton.setBorder(new EmptyBorder(0, 0, 0, 0));
-
 		nextButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -305,39 +339,23 @@ public class SignUp extends JFrame {
 				}
 
 				phone = phonenumberField.getText();
-				if (!phone.matches("^\\d{11}$")) {
-					phoneStatusLabel.setVisible(true);
-					phoneStatusLabel.setToolTipText("Invalid phone number");
-					phoneEdited = false;
-				} else if (!phone.matches("^\\d{11}$")) {
-					phoneStatusLabel.setVisible(true);
-					phoneStatusLabel.setToolTipText("Invalid phone number");
-					phoneEdited = false;
-				} else if (!(phone.length() == 11)) {
-					phoneStatusLabel.setVisible(true);
-					phoneStatusLabel.setToolTipText("Phone number length is invalid");
-					phoneEdited = false;
-				} else {
+				if (phone.matches("^(\\+63|0)\\d{10}$")) {
 					phoneStatusLabel.setVisible(false);
 					phoneEdited = true;
+				} else {
+					phoneStatusLabel.setVisible(true);
+					phoneStatusLabel.setToolTipText("Invalid phone number");
+					phoneEdited = false;
 				}
 
 				address = addressField.getText();
-				if (address.isEmpty()) {
-					addressStatusLabel.setVisible(true);
-					addressStatusLabel.setToolTipText("Please type in your address");
-					addressEdited = false;
-				} else if (address.matches("^\\s+$")) {
+				if (address.matches("^[A-Za-z0-9,\\.\\s]+$")) {
+					addressStatusLabel.setVisible(false);
+					addressEdited = true;
+				} else {
 					addressStatusLabel.setVisible(true);
 					addressStatusLabel.setToolTipText("Invalid address");
 					addressEdited = false;
-				} else if (address.length() <= 3) {
-					addressStatusLabel.setVisible(true);
-					addressStatusLabel.setToolTipText("Fill your full address");
-					addressEdited = false;
-				} else {
-					addressStatusLabel.setVisible(false);
-					addressEdited = true;
 				}
 
 				String email = emailField.getText();
@@ -578,6 +596,27 @@ public class SignUp extends JFrame {
 		lastNameStatusLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
 
 		rndbtnClearAll = new PHPay.RoundedButton("");
+		rndbtnClearAll.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				rndbtnClearAll.setBounds(370, 453, 71, 32);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				rndbtnClearAll.setBounds(371, 454, 69, 30);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				rndbtnClearAll.setBounds(371, 454, 69, 30);
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				rndbtnClearAll.setBounds(370, 453, 71, 32);
+			}
+		});
 		rndbtnClearAll.setBounds(371, 454, 69, 30);
 		panel.add(rndbtnClearAll);
 		rndbtnClearAll.addActionListener(new ActionListener() {
@@ -591,8 +630,8 @@ public class SignUp extends JFrame {
 			}
 		});
 		rndbtnClearAll.setText("Clear All");
-		rndbtnClearAll.setForeground(Color.WHITE);
-		rndbtnClearAll.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
+		rndbtnClearAll.setForeground(new Color(192, 192, 192));
+		rndbtnClearAll.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
 		rndbtnClearAll.setBorder(new EmptyBorder(0, 0, 0, 0));
 		rndbtnClearAll.setBackground(Color.BLACK);
 
@@ -629,13 +668,6 @@ public class SignUp extends JFrame {
 		lblPhoneNumber_1.setForeground(new Color(192, 192, 192));
 		lblPhoneNumber_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 13));
 
-		phoneStatusLabel = new JLabel("");
-		phoneStatusLabel.setBounds(727, 261, 20, 20);
-		panel.add(phoneStatusLabel);
-		phoneStatusLabel.setVisible(false);
-		phoneStatusLabel.setIcon(new ImageIcon(SignUp.class.getResource("/PHPay/phpimg/warning.png")));
-		phoneStatusLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
-
 		lastnameField = new RoundedTextField(10);
 		lastnameField.setBounds(567, 52, 184, 30);
 		panel.add(lastnameField);
@@ -643,15 +675,6 @@ public class SignUp extends JFrame {
 		lastnameField.setMargin(new Insets(2, 7, 2, 7));
 		lastnameField.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
 		lastnameField.setForeground(new Color(255, 255, 255));
-
-		emailStatusLabel = new JLabel("");
-		emailStatusLabel.setBounds(726, 399, 20, 20);
-		panel.add(emailStatusLabel);
-		emailStatusLabel.setVisible(false);
-		emailStatusLabel.setIcon(new ImageIcon(SignUp.class.getResource("/PHPay/phpimg/warning.png")));
-		emailStatusLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 11));
-
-//		FlatDarkLaf.setup();
 
 		civilBox = new RoundedComboBox<String>(civil);
 		civilBox.setBounds(567, 118, 184, 30);
@@ -663,17 +686,16 @@ public class SignUp extends JFrame {
 					civilBox.removeItemAt(4);
 				}
 				civilBox.setSelectedItem("Single");
+				civilLabel.setVisible(false);
 
 			}
 
 			@Override
 			public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
-				// You can handle any actions when the dropdown becomes invisible here if needed
 			}
 
 			@Override
 			public void popupMenuCanceled(PopupMenuEvent e) {
-				// You can handle any actions when the dropdown is canceled here if needed
 			}
 		});
 		civilBox.setMaximumRowCount(4);
@@ -694,17 +716,16 @@ public class SignUp extends JFrame {
 					genderBox.removeItemAt(3);
 				}
 				genderBox.setSelectedItem("Male");
+				genderLabel.setVisible(false);
 
 			}
 
 			@Override
 			public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
-				// You can handle any actions when the dropdown becomes invisible here if needed
 			}
 
 			@Override
 			public void popupMenuCanceled(PopupMenuEvent e) {
-				// You can handle any actions when the dropdown is canceled here if needed
 			}
 		});
 		genderBox.setMaximumRowCount(3);
@@ -723,6 +744,22 @@ public class SignUp extends JFrame {
 		monthBox.setForeground(new Color(255, 255, 255));
 		monthBox.setSelectedIndex(currentMonth);
 		monthBox.setUI(new CustomComboBoxUI());
+		monthBox.addPopupMenuListener(new PopupMenuListener() {
+			@Override
+			public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
+				monthLabel.setVisible(false);
+
+			}
+
+			@Override
+			public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
+			}
+
+			@Override
+			public void popupMenuCanceled(PopupMenuEvent e) {
+			}
+		});
+
 
 		dayBox = new RoundedComboBox<>(days);
 		dayBox.setBounds(526, 184, 87, 30);
@@ -733,6 +770,21 @@ public class SignUp extends JFrame {
 		dayBox.setMaximumRowCount(6);
 		dayBox.setSelectedIndex(currentDay - 1);
 		dayBox.setUI(new CustomComboBoxUI());
+		dayBox.addPopupMenuListener(new PopupMenuListener() {
+			@Override
+			public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
+				dayLabel.setVisible(false);
+
+			}
+
+			@Override
+			public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
+			}
+
+			@Override
+			public void popupMenuCanceled(PopupMenuEvent e) {
+			}
+		});
 
 		yearBox = new JComboBox<>(years);
 		yearBox.setBounds(627, 184, 124, 30);
@@ -742,6 +794,21 @@ public class SignUp extends JFrame {
 		yearBox.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
 		yearBox.setMaximumRowCount(6);
 		yearBox.setUI(new CustomComboBoxUI());
+		yearBox.addPopupMenuListener(new PopupMenuListener() {
+			@Override
+			public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
+				yearLabel.setVisible(false);
+
+			}
+
+			@Override
+			public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
+			}
+
+			@Override
+			public void popupMenuCanceled(PopupMenuEvent e) {
+			}
+		});
 
 		firstnameField.getDocument().addDocumentListener(new DocumentListener() {
 			@Override
@@ -859,9 +926,6 @@ public class SignUp extends JFrame {
 		@Override
 		protected JButton createArrowButton() {
 			return new JButton() {
-				/**
-				 * 
-				 */
 				private static final long serialVersionUID = 1L;
 
 				@Override
